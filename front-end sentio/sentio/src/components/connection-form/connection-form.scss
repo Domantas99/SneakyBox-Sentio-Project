@@ -1,5 +1,14 @@
 .form {
-    height: 400px;
-    width: 60%;
-    background: lightcoral;
+    border: 2px solid #0062cc;
+    border-radius: 25px;
+    font-size: 20px;
+    padding: 40px 35px;
+    width: 60%; 
+    max-width: 800px;
+    //height: 400px;
+    //min-width: 600px;
+    //background: lightcoral;
+    &-btn {
+        padding: 10px 100px;
+    }
 }

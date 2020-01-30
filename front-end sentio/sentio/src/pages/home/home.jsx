@@ -4,9 +4,8 @@ import ConnectionForm from '../../components/connection-form/connection-form';
 
 export default function Home() {
   return (
-    <div>welcome from home page
-
-        <div>
+    <div>
+        <div className="home">
             <ConnectionForm></ConnectionForm>
         </div>
     </div>
