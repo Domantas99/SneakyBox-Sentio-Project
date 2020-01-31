@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sentio", "Sentio\Sentio.csproj", "{573E2B90-ECD3-4630-88AA-EFF64A5BFC27}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sentio", "Sentio\Sentio.csproj", "{D79B3F1C-5976-4483-B66B-99A6005013D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{573E2B90-ECD3-4630-88AA-EFF64A5BFC27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{573E2B90-ECD3-4630-88AA-EFF64A5BFC27}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{573E2B90-ECD3-4630-88AA-EFF64A5BFC27}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{573E2B90-ECD3-4630-88AA-EFF64A5BFC27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D79B3F1C-5976-4483-B66B-99A6005013D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D79B3F1C-5976-4483-B66B-99A6005013D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D79B3F1C-5976-4483-B66B-99A6005013D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D79B3F1C-5976-4483-B66B-99A6005013D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {0110466A-DE23-4867-95EC-ADD2647C6BFC}
+		SolutionGuid = {8A066E66-B313-48E2-9F77-1A59710D7F3E}
 	EndGlobalSection
 EndGlobal
