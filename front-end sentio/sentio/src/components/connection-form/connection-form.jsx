@@ -2,44 +2,52 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { InputGroup, FormControl, FormLabel, FormGroup, Button} from 'react-bootstrap';
 import { validationAPI } from '../../services/backend';
-
 import './connection-form.scss'
-export default function ConnectionForm() {
-  const[DataBases, SetDataBases] = useState(['MSSQL', 'MySQL', 'PostgreSQL', 'MongoDB']);
+import {store} from '../../index';
+import {history} from '../../services/redirections/redirect';
+
+
+import { updateDbConnection } from '../../services/redux/actions/DatabaseConnection-actions';
+import { connect } from 'react-redux';
+
+function ConnectionForm(props) {
+  const DataBases = ['MSSQL', 'MySQL', 'PostgreSQL', 'MongoDB'];
   const[DatabaseType, SetSelectedDB] = useState(DataBases[0]);
   const[ConnectionString, SetConnStr] = useState('');
   const[Resp, SetResp] = useState('dasdas');
 
+  function onUpdateConnStr(connectionStr) {
+    debugger;
+    props.onDBConnUpdate({connStr: connectionStr, type: DatabaseType});
+  }
+
   async function ValidateData() {
     const obj = JSON.stringify({DatabaseType,ConnectionString});
-    debugger;
 
-    console.log(validationAPI);
     const result = await fetch(validationAPI, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: obj
-    } 
-    )//.then(res => { SetResp(res); console.log(res.json())})
-        .catch(err=>console.log(err));
-      const response = await result.json();
+    })
+      .catch(err=>SetResp(err));
+    
+    const response = await result.json();
       
-      if(response.IsValid) {
-       // store settinu response.ConnectionString
-
-      }
-
-      console.log(response);
+    if(response.isValid===true) {
+      onUpdateConnStr(response.connectionString);
+      console.log(store.getState(), 'cia store');
+      alert("Success");
+      window.location.replace("http://localhost:3001/creation");
+    }
   }
-
 
   return (
     
     <div className="form" >
       <div> 
-  <h2>{Resp.ok}</h2>
+        <h2>{Resp.ok}</h2>
         <FormGroup 
           controlId="exampleForm.ControlSelect1">
             <FormLabel>Select Your Database </FormLabel>
@@ -74,7 +82,17 @@ export default function ConnectionForm() {
               Start
         </Button>
       {/* </Link> */}
-
     </div>
   );
 }
+
+const mapStateToProps = state => ({
+ // tables: state.tables,
+ // onDBConnUpdate: state.connectionStr
+
+});
+
+const mapActionsToProps = {
+  onDBConnUpdate: updateDbConnection
+}
+export default connect(mapStateToProps, mapActionsToProps) (ConnectionForm);

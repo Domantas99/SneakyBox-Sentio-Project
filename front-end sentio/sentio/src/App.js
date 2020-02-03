@@ -10,22 +10,10 @@ import Home from './pages/home/home';
 import Creation from './pages/creation/creation';
 import About from './pages/about/about';
 
-import { updateConnectionStr } from './services/redux/actions/connectionStr-actions';
+import { updateDbConnection } from './services/redux/actions/DatabaseConnection-actions';
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-    this.onUpdateConnStr = this.onUpdateConnStr.bind(this);
-  }
- 
-  onUpdateConnStr(event) {
-    //this.props.onUpdateConnStr(event.target.value);
-   // console.log(event.target.value);
-   // console.log(this.props.onConnStrUpdate);
-    this.props.onConnStrUpdate(event.target.value)
-  }
-
-
+  
   render(){
   return (
     <div className="App">
@@ -41,8 +29,8 @@ class App extends Component {
       </Router>
       <div onClick={this.updateConnectionStr}>Update connStr</div>
 
-      <input onChange={this.onUpdateConnStr}></input>
-      {this.props.connectionStr}
+      {/* <input onChange={this.onUpdateConnStr}></input> */}
+      {this.props.ConnectionString}
     </div>
 
   );
@@ -55,7 +43,7 @@ const mapStateToProps = state => ({
 });
 
 const mapActionsToProps = {
-  onConnStrUpdate: updateConnectionStr
+  onDbConnUpdate: updateDbConnection
 }
 
 export default connect(mapStateToProps, mapActionsToProps) (App);

@@ -9,11 +9,8 @@ export default function Home() {
     <div>
         <div className="home">
             {/* <h1>{connStr}</h1> */}
-            <ConnectionForm></ConnectionForm>
-
-           
+            <ConnectionForm></ConnectionForm>     
         </div>
     </div>
-
   );
 }

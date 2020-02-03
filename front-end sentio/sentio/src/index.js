@@ -6,21 +6,20 @@ import * as serviceWorker from './serviceWorker';
 import { createStore, combineReducers } from 'redux';
 //import rootReducer from './services/redux/reducers';
 import { Provider } from 'react-redux';
-import ConnectionStringReducer from './services/redux/reducers/connectionStr-reducer';
+import DbConnectionReducer from './services/redux/reducers/DatabaseConnection-reducer';
 import TablesReducer from './services/redux/reducers/tables-reducer';
 
 
 
 
-const AllReducers = combineReducers({tables: TablesReducer, connectionStr: ConnectionStringReducer});
+const AllReducers = combineReducers({tables: TablesReducer, DbConnection: DbConnectionReducer});
 
 
-const store = createStore(
-
+export const store = createStore(
     AllReducers, 
     {
     tables:[{ name: 'Studnets'}, {name:'Teachers'}],
-    connectionStr:'qwertyusda'
+    DbConnection: { ConnectionString:'qwertyusda', DatabaseType: 'MYSQL'}
     },
     window.devToolsExtension && window.devToolsExtension()
     );
