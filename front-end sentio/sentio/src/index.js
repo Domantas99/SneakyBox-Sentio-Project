@@ -6,53 +6,26 @@ import * as serviceWorker from './serviceWorker';
 import { createStore, combineReducers } from 'redux';
 //import rootReducer from './services/redux/reducers';
 import { Provider } from 'react-redux';
+import ConnectionStringReducer from './services/redux/reducers/connectionStr-reducer';
+import TablesReducer from './services/redux/reducers/tables-reducer';
 
 
 
-function TablesReducer(state = [], action) {
-    // switch(action.type) {
-    //     case 'ADD': ret
-    // }
 
-    return state;
-}
-
-function ConnectionStringReducer(state='', action) {
-    switch(action.type) {
-        case 'updateUser': return action.payload;
-    }
-    
-    // if(action.type===  'changeState') {
-    //     return action.payload.newState;
-    // }
-
-    // console.log(action, 'cia action')
-    return state;
-}
-
-const AllReducers = combineReducers({tables: TablesReducer, connectionString: ConnectionStringReducer});
+const AllReducers = combineReducers({tables: TablesReducer, connectionStr: ConnectionStringReducer});
 
 
 const store = createStore(
+
     AllReducers, 
     {
     tables:[{ name: 'Studnets'}, {name:'Teachers'}],
-    connectionString:'qwertyusda'
+    connectionStr:'qwertyusda'
     },
     window.devToolsExtension && window.devToolsExtension()
     );
+console.log(store.getState(), 'cia store');
 
-//https://www.youtube.com/watch?v=OSSpVLpuVWA
-console.log(store.getState());
-
-const updateConnStrAction = {
-    type: 'updateUser',
-    payload: {
-        connectionString:'aaaaa'
-    }
-}
-
-store.dispatch(updateConnStrAction);
 
 //console.log(store.getState())
 ReactDOM.render(
