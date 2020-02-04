@@ -1,1 +1,0 @@
-export const validationAPI = "https://localhost:44351/api/databaseconnection";

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { InputGroup, FormControl, FormLabel, FormGroup, Button} from 'react-bootstrap';
+
 import { validationAPI } from '../../services/backend';
 import './connection-form.scss'
 import {store} from '../../index';
-import {history} from '../../services/redirections/redirect';
 
 
 import { updateDbConnection } from '../../services/redux/actions/DatabaseConnection-actions';
@@ -14,16 +14,15 @@ function ConnectionForm(props) {
   const DataBases = ['MSSQL', 'MySQL', 'PostgreSQL', 'MongoDB'];
   const[DatabaseType, SetSelectedDB] = useState(DataBases[0]);
   const[ConnectionString, SetConnStr] = useState('');
-  const[Resp, SetResp] = useState('dasdas');
+  const[Resp, SetResp] = useState('');
 
   function onUpdateConnStr(connectionStr) {
-    debugger;
     props.onDBConnUpdate({connStr: connectionStr, type: DatabaseType});
   }
 
   async function ValidateData() {
     const obj = JSON.stringify({DatabaseType,ConnectionString});
-
+    debugger;
     const result = await fetch(validationAPI, {
       method: 'POST',
       headers: {
@@ -39,7 +38,7 @@ function ConnectionForm(props) {
       onUpdateConnStr(response.connectionString);
       console.log(store.getState(), 'cia store');
       alert("Success");
-      window.location.replace("http://localhost:3001/creation");
+      //window.location.replace("http://localhost:3001/creation");
     }
   }
 

@@ -9,17 +9,14 @@ import Navbar from './components/navbar/navbar';
 import Home from './pages/home/home';
 import Creation from './pages/creation/creation';
 import About from './pages/about/about';
-
 import { updateDbConnection } from './services/redux/actions/DatabaseConnection-actions';
 
-class App extends Component {
-  
-  render(){
+function App () {
   return (
     <div className="App">
       <Router>
         <Navbar></Navbar>
-
+      
         <Switch>
           <Route exact path="/"><Home></Home></Route>
           <Route exact path="/creation"><Creation></Creation></Route>
@@ -27,14 +24,11 @@ class App extends Component {
         </Switch>
       
       </Router>
-      <div onClick={this.updateConnectionStr}>Update connStr</div>
-
-      {/* <input onChange={this.onUpdateConnStr}></input> */}
-      {this.props.ConnectionString}
+    
     </div>
 
   );
-}
+
 }
 const mapStateToProps = state => ({
   tables: state.tables,
@@ -46,4 +40,5 @@ const mapActionsToProps = {
   onDbConnUpdate: updateDbConnection
 }
 
-export default connect(mapStateToProps, mapActionsToProps) (App);
+// export default connect(mapStateToProps, mapActionsToProps) (App);
+export default App;

@@ -15,25 +15,19 @@ namespace Sentio.Controllers
     [ApiController]
     public class DatabaseConnectionController : ControllerBase
     {
-
         private readonly Dictionary<DatabaseType, IDatabaseProvider> providers;
         public DatabaseConnectionController() {
             providers = new Dictionary<DatabaseType, IDatabaseProvider>();
             providers.Add(DatabaseType.MSSQL, new MSSQLDatabaseProvider());
         }
 
-
         // GET: api/DatabaseConnection
-        [HttpPost]
+        [HttpPost][Route("validate")]
         public ActionResult Validate([FromBody]DatabaseConnection data)
         {
             if (providers.ContainsKey(data.DatabaseType))
             {
                 ConnectionValidationResult validation = providers[data.DatabaseType].Validate(data);
-                //providers[data.DatabaseType].GetAllTables(data);
-                //providers[data.DatabaseType].GetAllTableProperties("Students");
-                IEnumerable<TableModel> tm =  providers[data.DatabaseType].GetAllTablesData();
-
 
                 if (validation.IsValid)
                 {
@@ -42,18 +36,19 @@ namespace Sentio.Controllers
                 else {
                     return NotFound(validation);
                 }
-
-                //return validation.IsValid ? Ok(validation) : NotFound(validation);             
             }
-            return NotFound(data.DatabaseType);
+            return NotFound(data);
         }
 
-        [HttpGet]
-        public ActionResult<IEnumerable<TableModel>> GetAllTables( )
+        [HttpPost][Route("tables")]
+        public ActionResult<IEnumerable<TableModel>> GetAllTables([FromBody]DatabaseConnection data)
         {
+            if (providers.ContainsKey(data.DatabaseType))
+            {
+                return Ok(providers[data.DatabaseType].GetAllTablesData(data));
+            }
 
-
-            return null;
+            return NotFound(data);
         }
 
 

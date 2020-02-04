@@ -19,9 +19,9 @@ export const store = createStore(
     AllReducers, 
     {
     tables:[{ name: 'Studnets'}, {name:'Teachers'}],
-    DbConnection: { ConnectionString:'qwertyusda', DatabaseType: 'MYSQL'}
+    DbConnection: { ConnectionString:'Server=tcp:e-learning-tasks.database.windows.net,1433;Initial Catalog=e-learning-dev;Persist Security Info=False;User ID=e-learning;Password=2k0uU9CQcq%P5R%G@k7^R476FE6;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;', DatabaseType: 'MSSQL'}
     },
-    window.devToolsExtension && window.devToolsExtension()
+    //window.devToolsExtension && window.devToolsExtension()
     );
 console.log(store.getState(), 'cia store');
 
