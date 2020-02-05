@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Sentio.Context;
 //using Microsoft.EntityFrameworkCore.Storage;
 using Sentio.DatabaseConnectors;
 using Sentio.DTO;
@@ -15,8 +16,10 @@ namespace Sentio.Controllers
     [ApiController]
     public class DatabaseConnectionController : ControllerBase
     {
+        private readonly SentioContext _context;
         private readonly Dictionary<DatabaseType, IDatabaseProvider> providers;
-        public DatabaseConnectionController() {
+        public DatabaseConnectionController(SentioContext context) {
+            _context = context;
             providers = new Dictionary<DatabaseType, IDatabaseProvider>();
             providers.Add(DatabaseType.MSSQL, new MSSQLDatabaseProvider());
         }

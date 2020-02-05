@@ -21,7 +21,7 @@ namespace Sentio.DatabaseConnectors
         }
 
         public IEnumerable<TableModel> GetAllTablesData(DatabaseConnection data)
-        {
+        { // AllTableResult
             try
             {
                 SqlConnection Connection = ConnectToDataBase(data);
@@ -29,12 +29,12 @@ namespace Sentio.DatabaseConnectors
                 string query = $"SELECT c.TABLE_NAME, c.COLUMN_NAME, c.DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS c;";
 
                 Dictionary<string, TableModel> dict = new Dictionary<string, TableModel>();
-                List<TableModel> list = new List<TableModel>();
+                List<TableModel> tableList = new List<TableModel>();
                 TableModel tableModel;
 
                 SqlCommand command = new SqlCommand(query, Connection);
                 SqlDataReader reader = command.ExecuteReader();
-
+                
                 string tableName;
                 string collumnName;
                 string collumnType;
@@ -65,13 +65,14 @@ namespace Sentio.DatabaseConnectors
 
                 foreach (KeyValuePair<string, TableModel> entry in dict)
                 {
-                    list.Add(entry.Value);
+                    tableList.Add(entry.Value);
                 }
 
-                return list;
+                return tableList;
             }
             catch (Exception e) {
-                return null;
+                throw e;
+                //return null;
             }
         }
 
@@ -143,7 +144,7 @@ namespace Sentio.DatabaseConnectors
                 {
                     Connection.Open();
                 }
-                return new ConnectionValidationResult { IsValid = true, Message = "Success", ConnectionString=data.ConnectionString };
+                return new ConnectionValidationResult { IsValid = true, Message = "Success", ConnectionString = data.ConnectionString };
             } 
             catch (Exception e) 
             {

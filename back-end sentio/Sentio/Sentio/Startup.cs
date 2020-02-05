@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Sentio.Context;
 
 namespace Sentio
 {
@@ -29,7 +31,21 @@ namespace Sentio
             {
                 c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            //services.AddDbContext<SentioContext>(options =>
+            //{
+            //    options.EnableSensitiveDataLogging();
+            //    options.use
+            //});
+            services.AddDbContext<SentioContext>(options => {
+                
+                options.EnableSensitiveDataLogging();
+                options.UseSqlServer(Configuration["ConnectionString:SentioDB"],
+                    builder => builder.MigrationsAssembly("Sentio"));
+            });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
