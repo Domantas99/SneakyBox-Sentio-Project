@@ -14,7 +14,7 @@ namespace Sentio.Context
         public DbSet<User> Users { get; set; }
         public DbSet <Database> Databases { get; set; }
         public DbSet<Table> Tables { get; set; }
-        public DbSet<TableProperty> TableProperties { get; set; }
+        public DbSet<CollumnProperty> TableProperties { get; set; }
         public DbSet<TrackableCustomProperty> TrackableCustomProperties { get; set; }
         public DbSet<TrackableQuery> TrackableQueries { get; set; }
     }

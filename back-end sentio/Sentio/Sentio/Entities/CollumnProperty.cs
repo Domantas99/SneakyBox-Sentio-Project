@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Sentio.Entities
 {
-    public class TableProperty
+    public class CollumnProperty
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
         public string Name { get; set; }
-        public CollumnType CollumnType { get; set; }       
+        public string Type { get; set; }       
     }
 }

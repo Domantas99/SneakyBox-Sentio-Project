@@ -10,7 +10,7 @@ namespace Sentio.Entities
     public class TrackableCustomProperty
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
         public string Query { get; set; }
         [ForeignKey("DbId")]
         public virtual Database Database { get; set; }

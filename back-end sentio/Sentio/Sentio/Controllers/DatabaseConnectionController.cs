@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sentio.Context;
 //using Microsoft.EntityFrameworkCore.Storage;
 using Sentio.DatabaseConnectors;
 using Sentio.DTO;
+using Sentio.Entities;
 using Sentio.Models;
+using Sentio.Services;
 
 namespace Sentio.Controllers
 {
@@ -18,7 +21,10 @@ namespace Sentio.Controllers
     {
         private readonly SentioContext _context;
         private readonly Dictionary<DatabaseType, IDatabaseProvider> providers;
-        public DatabaseConnectionController(SentioContext context) {
+        private readonly IMapper _mapper;
+        
+        public DatabaseConnectionController(SentioContext context, IMapper mapper) {
+            _mapper = mapper;
             _context = context;
             providers = new Dictionary<DatabaseType, IDatabaseProvider>();
             providers.Add(DatabaseType.MSSQL, new MSSQLDatabaseProvider());
@@ -31,9 +37,13 @@ namespace Sentio.Controllers
             if (providers.ContainsKey(data.DatabaseType))
             {
                 ConnectionValidationResult validation = providers[data.DatabaseType].Validate(data);
-
+                Database db = providers[data.DatabaseType].GetDatabaseData(data);
                 if (validation.IsValid)
                 {
+                    // Sukurti doumbaze
+                    var tableList = _mapper.Map<IEnumerable<Table>>(providers[data.DatabaseType].GetAllTablesData(data));
+                    DatabaseDataService dbService;
+                    TableDataService tableService;
                     return Ok(validation);
                 }
                 else {

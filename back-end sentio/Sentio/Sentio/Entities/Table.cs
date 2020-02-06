@@ -9,8 +9,8 @@ namespace Sentio.Entities
     public class Table
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
         public string Name { get; set; }
-        public virtual ICollection<TableProperty> TableProperties { get; set; }
+        public virtual ICollection<CollumnProperty> CollumnProperties { get; set; }
     }
 }

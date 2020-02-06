@@ -1,4 +1,5 @@
 ﻿using Sentio.DTO;
+using Sentio.Entities;
 using Sentio.Models;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 namespace Sentio.DatabaseConnectors
 {
     public class MSSQLDatabaseProvider : IDatabaseProvider
-    {  
+    {
         public SqlConnection ConnectToDataBase(DatabaseConnection data) {
             SqlConnection connection = new SqlConnection(data.ConnectionString);
             if (connection.State != ConnectionState.Open)
@@ -18,6 +19,23 @@ namespace Sentio.DatabaseConnectors
                 connection.Open();
             }
             return connection;
+        }
+
+        public Database GetDatabaseData(DatabaseConnection data) { 
+            SqlConnection connection = ConnectToDataBase(data);
+            string query = "SELECT DB_NAME() AS [Current Database];";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            SqlDataReader reader = command.ExecuteReader();
+            reader.Read();
+            string name = reader[0].ToString();
+
+            Database db = new Database { DatabaseName = name, 
+                                         DatabaseType = data.DatabaseType,
+                                         ConnectionString = data.ConnectionString
+                                };
+
+            return db;
         }
 
         public IEnumerable<TableModel> GetAllTablesData(DatabaseConnection data)
@@ -28,7 +46,7 @@ namespace Sentio.DatabaseConnectors
 
                 string query = $"SELECT c.TABLE_NAME, c.COLUMN_NAME, c.DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS c;";
 
-                Dictionary<string, TableModel> dict = new Dictionary<string, TableModel>();
+                Dictionary<string, TableModel> tableDictionary = new Dictionary<string, TableModel>();
                 List<TableModel> tableList = new List<TableModel>();
                 TableModel tableModel;
 
@@ -49,21 +67,21 @@ namespace Sentio.DatabaseConnectors
                         CollumnName = collumnName,
                         CollumnType = collumnType
                     };
-                    if (dict.ContainsKey(tableName))
+                    if (tableDictionary.ContainsKey(tableName))
                     {
-                        dict[tableName].Properties.Add(prop);
+                        tableDictionary[tableName].Properties.Add(prop);
                     }
                     else
                     {
                         tableModel = new TableModel(tableName);
                         tableModel.AddProperty(prop);
-                        dict.Add(tableName, tableModel);
+                        tableDictionary.Add(tableName, tableModel);
                     }
 
                 }
                 reader.Close();
 
-                foreach (KeyValuePair<string, TableModel> entry in dict)
+                foreach (KeyValuePair<string, TableModel> entry in tableDictionary)
                 {
                     tableList.Add(entry.Value);
                 }
@@ -140,10 +158,8 @@ namespace Sentio.DatabaseConnectors
             try 
             {
                 SqlConnection Connection = ConnectToDataBase(data);
-                if (Connection.State != ConnectionState.Open)
-                {
-                    Connection.Open();
-                }
+                
+
                 return new ConnectionValidationResult { IsValid = true, Message = "Success", ConnectionString = data.ConnectionString };
             } 
             catch (Exception e) 

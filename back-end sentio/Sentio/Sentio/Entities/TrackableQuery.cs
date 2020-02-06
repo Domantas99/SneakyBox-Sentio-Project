@@ -12,7 +12,7 @@ namespace Sentio.Entities
     public class TrackableQuery
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
         public OperationType OperationType { get; set; }
 
         [ForeignKey("TableId")]        
@@ -25,7 +25,7 @@ namespace Sentio.Entities
 
         // public virtual ICollection<QueryCondition> QueryConditions { get; set; }
         [ForeignKey("TablePropertyId")]
-        public virtual TableProperty TableProperty { get; set; }
+        public virtual CollumnProperty TableProperty { get; set; }
         public Guid TablePropertyId { get; set; } 
     }
 }

@@ -11,7 +11,7 @@ namespace Sentio.Entities
     public class Database
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
         public string DatabaseName { get; set; }
         public DatabaseType DatabaseType { get; set; }
         public string ConnectionString { get; set; }
