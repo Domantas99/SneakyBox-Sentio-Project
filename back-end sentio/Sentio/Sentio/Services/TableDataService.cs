@@ -1,4 +1,5 @@
-﻿using Sentio.Entities;
+﻿using Sentio.Context;
+using Sentio.Entities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,9 +10,16 @@ namespace Sentio.Services
 {
     public class TableDataService
     {
-        //public IEnumerable<Table> GetTables(Database db) { 
-        
-        //}
+        private readonly SentioContext _context;
+        public TableDataService(SentioContext context)
+        {
+            _context = context;
+        }
+
+        public async void AddTable(Table table)
+        {
+            
+        }
 
     }
 }

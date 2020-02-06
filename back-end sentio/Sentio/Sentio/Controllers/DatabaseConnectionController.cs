@@ -19,13 +19,15 @@ namespace Sentio.Controllers
     [ApiController]
     public class DatabaseConnectionController : ControllerBase
     {
-        private readonly SentioContext _context;
         private readonly Dictionary<DatabaseType, IDatabaseProvider> providers;
+        private readonly DatabaseDataService _dbDataService;
+        private readonly TableDataService _tableDataService;
         private readonly IMapper _mapper;
-        
-        public DatabaseConnectionController(SentioContext context, IMapper mapper) {
+
+        public DatabaseConnectionController(IMapper mapper, DatabaseDataService dbDataService, TableDataService tableDataService) {
             _mapper = mapper;
-            _context = context;
+            _dbDataService = dbDataService;
+            _tableDataService = tableDataService;
             providers = new Dictionary<DatabaseType, IDatabaseProvider>();
             providers.Add(DatabaseType.MSSQL, new MSSQLDatabaseProvider());
         }
@@ -40,10 +42,10 @@ namespace Sentio.Controllers
                 Database db = providers[data.DatabaseType].GetDatabaseData(data);
                 if (validation.IsValid)
                 {
-                    // Sukurti doumbaze
+                    
                     var tableList = _mapper.Map<IEnumerable<Table>>(providers[data.DatabaseType].GetAllTablesData(data));
-                    DatabaseDataService dbService;
-                    TableDataService tableService;
+                    _dbDataService.AddDatabase(db);
+                  
                     return Ok(validation);
                 }
                 else {

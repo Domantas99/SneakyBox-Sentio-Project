@@ -16,21 +16,12 @@ namespace Sentio.Services
             _context = context;
         }
 
-        public async void AddDatabase(DatabaseConnection data)
+        public async void AddDatabase(Database database)
         {
-            
 
-
-            string query = "SELECT DB_NAME() AS [Current Database];";
-            SqlCommand command;
-            SqlDataReader reader;
-          //  _context.Databases.Add();
+            _context.Databases.Add(database);
             await _context.SaveChangesAsync();
         }
 
-
-        // ateis prides duombaze i table ir tada kreiptis i 
-        // GetAllTablesData ir uzpildyti tableData tablus
- 
     }
 }

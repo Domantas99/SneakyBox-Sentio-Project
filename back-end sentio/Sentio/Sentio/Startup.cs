@@ -14,6 +14,8 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Sentio.Context;
 using AutoMapper;
+using Sentio.Services;
+
 namespace Sentio
 {
     public class Startup
@@ -46,9 +48,10 @@ namespace Sentio
                 options.UseSqlServer(Configuration["ConnectionString:SentioDB"],
                     builder => builder.MigrationsAssembly("Sentio"));
             });
-             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            
+            services.AddScoped<DatabaseDataService>();
+            services.AddScoped<TableDataService>();
 
         }
 
