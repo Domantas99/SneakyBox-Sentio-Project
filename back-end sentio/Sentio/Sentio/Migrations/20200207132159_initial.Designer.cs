@@ -10,8 +10,8 @@ using Sentio.Context;
 namespace Sentio.Migrations
 {
     [DbContext(typeof(SentioContext))]
-    [Migration("20200206111430_namingEdit")]
-    partial class namingEdit
+    [Migration("20200207132159_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,17 +26,17 @@ namespace Sentio.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CollumnType");
-
                     b.Property<string>("Name");
 
-                    b.Property<Guid?>("TableId");
+                    b.Property<Guid>("TableId");
+
+                    b.Property<string>("Type");
 
                     b.HasKey("Id");
 
                     b.HasIndex("TableId");
 
-                    b.ToTable("TableProperties");
+                    b.ToTable("CollumnProperties");
                 });
 
             modelBuilder.Entity("Sentio.Entities.Database", b =>
@@ -50,11 +50,7 @@ namespace Sentio.Migrations
 
                     b.Property<int>("DatabaseType");
 
-                    b.Property<Guid>("UserId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Databases");
                 });
@@ -64,7 +60,7 @@ namespace Sentio.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("DatabaseId");
+                    b.Property<Guid>("DatabaseId");
 
                     b.Property<string>("Name");
 
@@ -100,7 +96,7 @@ namespace Sentio.Migrations
 
                     b.Property<int>("OperationType");
 
-                    b.Property<Guid>("TableId");
+                    b.Property<Guid?>("TableId");
 
                     b.Property<Guid>("TablePropertyId");
 
@@ -135,24 +131,18 @@ namespace Sentio.Migrations
 
             modelBuilder.Entity("Sentio.Entities.CollumnProperty", b =>
                 {
-                    b.HasOne("Sentio.Entities.Table")
-                        .WithMany("TableProperties")
-                        .HasForeignKey("TableId");
-                });
-
-            modelBuilder.Entity("Sentio.Entities.Database", b =>
-                {
-                    b.HasOne("Sentio.Entities.User", "User")
-                        .WithMany("Databases")
-                        .HasForeignKey("UserId")
+                    b.HasOne("Sentio.Entities.Table", "Table")
+                        .WithMany("CollumnProperties")
+                        .HasForeignKey("TableId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Sentio.Entities.Table", b =>
                 {
-                    b.HasOne("Sentio.Entities.Database")
+                    b.HasOne("Sentio.Entities.Database", "Database")
                         .WithMany("Tables")
-                        .HasForeignKey("DatabaseId");
+                        .HasForeignKey("DatabaseId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Sentio.Entities.TrackableCustomProperty", b =>
@@ -170,15 +160,14 @@ namespace Sentio.Migrations
                         .HasForeignKey("DbId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Sentio.Entities.Table", "Table")
-                        .WithMany()
-                        .HasForeignKey("TableId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("Sentio.Entities.Table")
+                        .WithMany("TrackableQueries")
+                        .HasForeignKey("TableId");
 
                     b.HasOne("Sentio.Entities.CollumnProperty", "TableProperty")
-                        .WithMany()
+                        .WithMany("TrackableQueries")
                         .HasForeignKey("TablePropertyId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 #pragma warning restore 612, 618
         }

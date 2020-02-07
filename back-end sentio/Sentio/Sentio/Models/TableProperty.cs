@@ -10,6 +10,5 @@ namespace Sentio.Models
     {
         public string CollumnName { get; set; }
         public string CollumnType { get; set; }
-
     }
 }

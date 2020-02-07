@@ -29,8 +29,7 @@ namespace Sentio
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
-            
+        {     
             services.AddAutoMapper(typeof(Startup));//.AddAutoMapper(typeof(Startup));
             services.AddCors(c =>
             {
@@ -39,9 +38,7 @@ namespace Sentio
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
-            });
-
-           
+            });        
             services.AddDbContext<SentioContext>(options => {
                 
                 options.EnableSensitiveDataLogging();
@@ -49,10 +46,8 @@ namespace Sentio
                     builder => builder.MigrationsAssembly("Sentio"));
             });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
             services.AddScoped<DatabaseDataService>();
             services.AddScoped<TableDataService>();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,13 +66,9 @@ namespace Sentio
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
-
             app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-            app.UseHttpsRedirection();
-            
-            app.UseMvc();
-            
-
+            app.UseHttpsRedirection();         
+            app.UseMvc();          
         }
     }
 }

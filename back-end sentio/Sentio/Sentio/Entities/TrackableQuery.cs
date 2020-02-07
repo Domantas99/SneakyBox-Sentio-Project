@@ -1,5 +1,4 @@
-﻿
-using Sentio.DTO;
+﻿using Sentio.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,10 +14,10 @@ namespace Sentio.Entities
         public Guid Id { get; set; } = Guid.NewGuid();
         public OperationType OperationType { get; set; }
 
-        [ForeignKey("TableId")]        
+        [ForeignKey("TableId")]
         public virtual Table Table { get; set; }
         public Guid TableId { get; set; }
-        
+
         [ForeignKey("DbId")]
         public virtual Database Database { get; set; }
         public Guid DbId { get; set; }
@@ -26,6 +25,6 @@ namespace Sentio.Entities
         // public virtual ICollection<QueryCondition> QueryConditions { get; set; }
         [ForeignKey("TablePropertyId")]
         public virtual CollumnProperty TableProperty { get; set; }
-        public Guid TablePropertyId { get; set; } 
+        public Guid TablePropertyId { get; set; }
     }
 }

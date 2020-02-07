@@ -10,8 +10,8 @@ namespace Sentio.DatabaseConnectors
 {
     public interface IDatabaseProvider
     {
-        Database GetDatabaseData(DatabaseConnection data);
-        IEnumerable<TableModel> GetAllTablesData(DatabaseConnection data);
+        DatabaseViewModel GetDatabaseData(DatabaseConnection data);
+        ICollection<TableModel> GetAllTablesData(DatabaseConnection data);
         ConnectionValidationResult Validate(DatabaseConnection data);
         IEnumerable<string> GetAllTables(DatabaseConnection data);
         IEnumerable<TableProperty> GetAllTableProperties(DatabaseConnection data, string tableName);

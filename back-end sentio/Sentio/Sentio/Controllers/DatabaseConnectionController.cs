@@ -6,7 +6,6 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sentio.Context;
-//using Microsoft.EntityFrameworkCore.Storage;
 using Sentio.DatabaseConnectors;
 using Sentio.DTO;
 using Sentio.Entities;
@@ -19,10 +18,10 @@ namespace Sentio.Controllers
     [ApiController]
     public class DatabaseConnectionController : ControllerBase
     {
+        private readonly IMapper _mapper;
         private readonly Dictionary<DatabaseType, IDatabaseProvider> providers;
         private readonly DatabaseDataService _dbDataService;
-        private readonly TableDataService _tableDataService;
-        private readonly IMapper _mapper;
+        private readonly TableDataService _tableDataService;    
 
         public DatabaseConnectionController(IMapper mapper, DatabaseDataService dbDataService, TableDataService tableDataService) {
             _mapper = mapper;
@@ -34,18 +33,19 @@ namespace Sentio.Controllers
 
         // GET: api/DatabaseConnection
         [HttpPost][Route("validate")]
-        public ActionResult Validate([FromBody]DatabaseConnection data)
+        public async Task<ActionResult> Validate([FromBody]DatabaseConnection data)
         {
             if (providers.ContainsKey(data.DatabaseType))
             {
-                ConnectionValidationResult validation = providers[data.DatabaseType].Validate(data);
-                Database db = providers[data.DatabaseType].GetDatabaseData(data);
+                ConnectionValidationResult validation = providers[data.DatabaseType].Validate(data);                    
                 if (validation.IsValid)
                 {
-                    
-                    var tableList = _mapper.Map<IEnumerable<Table>>(providers[data.DatabaseType].GetAllTablesData(data));
-                    _dbDataService.AddDatabase(db);
-                  
+                    DatabaseViewModel dbModel = providers[data.DatabaseType].GetDatabaseData(data);
+                    var tableList = providers[data.DatabaseType].GetAllTablesData(data);          
+                    var id = await _dbDataService.AddDatabase(dbModel);
+                    await _tableDataService.AddTables(tableList, id);
+
+                    var aa=  await _tableDataService.GetTables(id);
                     return Ok(validation);
                 }
                 else {
@@ -64,32 +64,6 @@ namespace Sentio.Controllers
             }
 
             return NotFound(data);
-        }
-
-
-        // GET: api/DatabaseConnection/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        //// POST: api/DatabaseConnection
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
-
-        // PUT: api/DatabaseConnection/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }

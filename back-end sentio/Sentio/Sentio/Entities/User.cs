@@ -14,6 +14,6 @@ namespace Sentio.Entities
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public virtual ICollection<Database> Databases { get; set; }
+       // public virtual ICollection<Database> Databases { get; set; }
     }
 }

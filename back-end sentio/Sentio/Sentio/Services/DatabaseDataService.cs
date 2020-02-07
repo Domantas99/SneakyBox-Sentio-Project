@@ -1,6 +1,8 @@
-﻿using Sentio.Context;
+﻿using AutoMapper;
+using Sentio.Context;
 using Sentio.DTO;
 using Sentio.Entities;
+using Sentio.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -12,16 +14,22 @@ namespace Sentio.Services
     public class DatabaseDataService
     {
         private readonly SentioContext _context;
-        public DatabaseDataService(SentioContext context) {
+        private readonly IMapper _mapper;
+        public DatabaseDataService(SentioContext context, IMapper mapper) {
             _context = context;
+            _mapper = mapper;
         }
-
-        public async void AddDatabase(Database database)
+        
+        public async Task<Guid> AddDatabase(DatabaseViewModel database)
         {
-
-            _context.Databases.Add(database);
-            await _context.SaveChangesAsync();
+            var db = _context.Databases.FirstOrDefault(x=> x.ConnectionString == database.ConnectionString);
+            if (db == null)
+            {
+                var newDb = _context.Databases.Add(_mapper.Map<Database>(database));
+                await _context.SaveChangesAsync();
+                return newDb.Entity.Id;
+            }
+            return db.Id;    
         }
-
     }
 }

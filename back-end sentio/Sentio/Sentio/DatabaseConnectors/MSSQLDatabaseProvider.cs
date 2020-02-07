@@ -20,25 +20,24 @@ namespace Sentio.DatabaseConnectors
             }
             return connection;
         }
-
-        public Database GetDatabaseData(DatabaseConnection data) { 
+        
+        public DatabaseViewModel GetDatabaseData(DatabaseConnection data) { 
             SqlConnection connection = ConnectToDataBase(data);
             string query = "SELECT DB_NAME() AS [Current Database];";
 
             SqlCommand command = new SqlCommand(query, connection);
             SqlDataReader reader = command.ExecuteReader();
             reader.Read();
-            string name = reader[0].ToString();
-
-            Database db = new Database { DatabaseName = name, 
-                                         DatabaseType = data.DatabaseType,
-                                         ConnectionString = data.ConnectionString
-                                };
+            string dbName = reader[0].ToString();
+  
+            DatabaseViewModel db = new DatabaseViewModel { DatabaseName = dbName, 
+                                                           DatabaseType = data.DatabaseType,
+                                                           ConnectionString = data.ConnectionString };
 
             return db;
         }
 
-        public IEnumerable<TableModel> GetAllTablesData(DatabaseConnection data)
+        public ICollection<TableModel> GetAllTablesData(DatabaseConnection data)
         { // AllTableResult
             try
             {
@@ -77,7 +76,6 @@ namespace Sentio.DatabaseConnectors
                         tableModel.AddProperty(prop);
                         tableDictionary.Add(tableName, tableModel);
                     }
-
                 }
                 reader.Close();
 
@@ -90,10 +88,8 @@ namespace Sentio.DatabaseConnectors
             }
             catch (Exception e) {
                 throw e;
-                //return null;
             }
         }
-
 
         public IEnumerable<TableProperty> GetAllTableProperties(DatabaseConnection data, string tableName)
         {
@@ -159,7 +155,6 @@ namespace Sentio.DatabaseConnectors
             {
                 SqlConnection Connection = ConnectToDataBase(data);
                 
-
                 return new ConnectionValidationResult { IsValid = true, Message = "Success", ConnectionString = data.ConnectionString };
             } 
             catch (Exception e) 
@@ -167,6 +162,5 @@ namespace Sentio.DatabaseConnectors
                 return new ConnectionValidationResult { IsValid = false, Message = "Error: " + e.Message, ConnectionString = data.ConnectionString };
             }
         }
-
     }
 }
