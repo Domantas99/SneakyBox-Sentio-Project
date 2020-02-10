@@ -21,7 +21,7 @@ namespace Sentio.Controllers
         private readonly IMapper _mapper;
         private readonly Dictionary<DatabaseType, IDatabaseProvider> providers;
         private readonly DatabaseDataService _dbDataService;
-        private readonly TableDataService _tableDataService;    
+        private readonly TableDataService _tableDataService;
 
         public DatabaseConnectionController(IMapper mapper, DatabaseDataService dbDataService, TableDataService tableDataService) {
             _mapper = mapper;
@@ -32,20 +32,20 @@ namespace Sentio.Controllers
         }
 
         // GET: api/DatabaseConnection
-        [HttpPost][Route("validate")]
+        [HttpPost] [Route("validate")]
         public async Task<ActionResult> Validate([FromBody]DatabaseConnection data)
         {
             if (providers.ContainsKey(data.DatabaseType))
             {
-                ConnectionValidationResult validation = providers[data.DatabaseType].Validate(data);                    
+                ConnectionValidationResult validation = providers[data.DatabaseType].Validate(data);
                 if (validation.IsValid)
                 {
                     DatabaseViewModel dbModel = providers[data.DatabaseType].GetDatabaseData(data);
-                    var tableList = providers[data.DatabaseType].GetAllTablesData(data);          
+                    var tableList = providers[data.DatabaseType].GetAllTablesData(data);
                     var id = await _dbDataService.AddDatabase(dbModel);
                     await _tableDataService.AddTables(tableList, id);
 
-                    var aa=  await _tableDataService.GetTables(id);
+                    var aa = await _tableDataService.GetTables(id);
                     return Ok(validation);
                 }
                 else {
@@ -53,6 +53,18 @@ namespace Sentio.Controllers
                 }
             }
             return NotFound(data);
+        }
+
+        [HttpGet("{dbId}")]
+        public async Task<ActionResult<TableDataResult>> GetAllTablesFromDb(Guid dbId) {
+            var result = await _tableDataService.GetTables(dbId);
+            if (result.IsValid)
+            {
+                return Ok(result);
+            }
+            else {
+                return NotFound(result); 
+            }         
         }
 
         [HttpPost][Route("tables")]

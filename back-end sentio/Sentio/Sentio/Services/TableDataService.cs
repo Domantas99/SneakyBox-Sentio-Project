@@ -21,7 +21,8 @@ namespace Sentio.Services
             _mapper = mapper;
         }
 
-        public async Task<ICollection<TableModel>> GetTables(Guid databaseId) {
+        public async Task<TableDataResult> GetTables(Guid databaseId) {
+            TableDataResult tableDataResult;
             var db = _context.Databases.FirstOrDefault(d => d.Id == databaseId);
             if (db != null)
             {
@@ -32,11 +33,10 @@ namespace Sentio.Services
                     tableModel = new TableModel(table.Id, table.DatabaseId, table.Name, _mapper.Map<List<TableProperty>>(table.CollumnProperties));
                     tableModels.Add(tableModel);
                 }
-
-                return tableModels;   
+                return new TableDataResult { IsValid = true, Message = "Tables data returned successfully", TableModels = tableModels };              
             }
-            
-            return null;
+
+            return new TableDataResult { IsValid = false, Message = "An error occured", TableModels = null };
         }
 
         public async Task<Guid> AddTables(ICollection<TableModel> tableModels, Guid dbGuid)
