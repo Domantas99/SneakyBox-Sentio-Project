@@ -29,8 +29,11 @@ namespace Sentio
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {     
+        {
+
+            
             services.AddAutoMapper(typeof(Startup));//.AddAutoMapper(typeof(Startup));
+
             services.AddCors(c =>
             {
                 c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
@@ -45,9 +48,13 @@ namespace Sentio
                 options.UseSqlServer(Configuration["ConnectionString:SentioDB"],
                     builder => builder.MigrationsAssembly("Sentio"));
             });
+            //services.AddScoped<IDatabaseDataService, DatabaseDataService>();
+            //services.AddScoped<ITableDataService, TableDataService>();
+            services.AddScoped< DatabaseDataService>();
+            services.AddScoped< TableDataService>();
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddScoped<DatabaseDataService>();
-            services.AddScoped<TableDataService>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

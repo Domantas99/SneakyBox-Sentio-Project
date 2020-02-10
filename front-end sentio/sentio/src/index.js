@@ -19,7 +19,7 @@ export const store = createStore(
     AllReducers, 
     {
     tables:[{ name: 'Studnets'}, {name:'Teachers'}],
-    DbConnection: { DatabaseId:'86bc6815-6c32-4418-ba97-a94cc4a1dc51', DatabaseType: 'MSSQL'}
+    DbConnection: { DatabaseId: '86bc6815-6c32-4418-ba97-a94cc4a1dc51', DatabaseType: 'MSSQL'}
     },
     //window.devToolsExtension && window.devToolsExtension()
     );

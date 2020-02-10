@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Sentio.Services
 {
-    public class DatabaseDataService
+    public class DatabaseDataService: IDatabaseDataService
     {
         private readonly SentioContext _context;
         private readonly IMapper _mapper;

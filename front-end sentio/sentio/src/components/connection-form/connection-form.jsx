@@ -16,13 +16,12 @@ function ConnectionForm(props) {
   const[ConnectionString, SetConnStr] = useState('');
   const[Resp, SetResp] = useState('');
 
-  function onUpdateConnStr(connectionStr) {
-    props.onDBConnUpdate({connStr: connectionStr, type: DatabaseType});
+  function onUpdateConnStr(dbId) {
+    props.onDBConnUpdate({DatabaseId: dbId, type: DatabaseType});
   }
 
   async function ValidateData() {
     const obj = JSON.stringify({DatabaseType,ConnectionString});
-    debugger;
     const result = await fetch(validationAPI, {
       method: 'POST',
       headers: {
@@ -36,7 +35,6 @@ function ConnectionForm(props) {
       
     if(response.isValid===true) {
       onUpdateConnStr(response.dbId);
-      console.log(store.getState(), 'cia store');
       alert("Success");
       //window.location.replace("http://localhost:3001/creation");
     }

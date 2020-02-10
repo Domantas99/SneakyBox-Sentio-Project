@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Sentio.Services
 {
-    public class TableDataService
+    public class TableDataService: ITableDataService
     {
         private readonly SentioContext _context;
         private readonly IMapper _mapper;
@@ -26,7 +26,7 @@ namespace Sentio.Services
             var db = _context.Databases.FirstOrDefault(d => d.Id == databaseId);
             if (db != null)
             {
-                var tables = _context.Tables.Where(t => t.DatabaseId == databaseId).Include(t=>t.CollumnProperties);
+                var tables =  _context.Tables.Where(t => t.DatabaseId == databaseId).Include(t=>t.CollumnProperties);
                 ICollection<TableModel> tableModels = new List<TableModel>();
                 TableModel tableModel;
                 foreach (var table in tables) {
@@ -50,7 +50,7 @@ namespace Sentio.Services
                     var table = _mapper.Map<Table>(tableModel);
                     table.DatabaseId = dbGuid;
                     _context.Tables.Add(table);
-                    var x = AddCollumnProperties(table.CollumnProperties);
+                    AddCollumnProperties(table.CollumnProperties);
                 }
 
             }
@@ -58,9 +58,9 @@ namespace Sentio.Services
             return dbGuid;
         }
 
-        public async Task<bool> AddCollumnProperties(ICollection<CollumnProperty> properties)
+        public void AddCollumnProperties(ICollection<CollumnProperty> properties)
         {
-            bool flag = true;
+           // bool flag = true;
             foreach (CollumnProperty collumnProperty in properties)
             {
                 var property = _context.CollumnProperties.FirstOrDefault(p => p.Name == collumnProperty.Name && p.Id == collumnProperty.Id);
@@ -75,7 +75,7 @@ namespace Sentio.Services
                 //} 
 
             }
-            return flag;
+           // return flag;
         }      
     }
 }

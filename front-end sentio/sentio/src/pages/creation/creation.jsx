@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './creation.scss';
 import { useSelector} from 'react-redux';
-import {allTableDataAPI} from '../../services/backend';
+import {allTableDataResultAPI} from '../../services/backend';
+import TableCard from '../../components/table-card/table-card';
 
 export default function Creation() {
   const db = useSelector(state=>state.DbConnection);
   const [data, setData] = useState([]);
   
   useEffect(()=> {
-      const url = allTableDataAPI + db.DatabaseId;
+      const url = allTableDataResultAPI + db.DatabaseId;
       fetch(url, {
         method: 'POST',
         headers: {
@@ -23,7 +24,6 @@ export default function Creation() {
         }
       })
       .catch(error => console.log(error))
-  
   }, [])
 
   return (
@@ -33,18 +33,19 @@ export default function Creation() {
           <div className="sub-container1">
           <input placeholder="Search" type="text"/>
             {
-              data.map(table => (
-                <div className="item1">
-                  <h2>{table.tableName}</h2>
-                  <ul>
-                  {
-                    table.properties.map(prop => (
-                    <li>{prop.collumnName} ---- {prop.collumnType}</li>    
-                    ))
-                  }
-                  </ul>
-                </div>
-              ))
+              data.map(tableModel => (
+                <TableCard table={tableModel}></TableCard>
+                // <div className="item1">
+                //   <h2>{table.tableName}</h2>
+                //   <ul>
+                //   {
+                //     table.properties.map(prop => (
+                //     <li>{prop.collumnName} ---- {prop.collumnType}</li>    
+                //     ))
+                //   }
+                //   </ul>
+                // </div>
+                ))
             }
           </div>
           <div className="sub-container2">
