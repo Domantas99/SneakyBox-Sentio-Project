@@ -8,8 +8,8 @@ export default function Creation() {
   const [data, setData] = useState([]);
   
   useEffect(()=> {
-   
-      fetch(allTableDataAPI, {
+      const url = allTableDataAPI + db.DatabaseId;
+      fetch(url, {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json'
@@ -17,9 +17,14 @@ export default function Creation() {
         body: JSON.stringify(db)
       })
       .then(res => res.json())
-      .then(json => setData(json))
-    
-  },[])
+      .then(json => {
+        if(json.isValid) {
+          setData(json.tableModels)
+        }
+      })
+      .catch(error => console.log(error))
+  
+  }, [])
 
   return (
     <div className="container2" >

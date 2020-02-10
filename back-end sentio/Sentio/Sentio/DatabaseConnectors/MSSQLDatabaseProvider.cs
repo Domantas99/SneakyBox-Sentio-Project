@@ -155,7 +155,7 @@ namespace Sentio.DatabaseConnectors
             {
                 SqlConnection Connection = ConnectToDataBase(data);
                 
-                return new ConnectionValidationResult { IsValid = true, Message = "Success", ConnectionString = data.ConnectionString };
+                return new ConnectionValidationResult { IsValid = true, Message = "Success", ConnectionString = data.ConnectionString  };
             } 
             catch (Exception e) 
             {

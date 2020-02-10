@@ -35,7 +35,7 @@ function ConnectionForm(props) {
     const response = await result.json();
       
     if(response.isValid===true) {
-      onUpdateConnStr(response.connectionString);
+      onUpdateConnStr(response.dbId);
       console.log(store.getState(), 'cia store');
       alert("Success");
       //window.location.replace("http://localhost:3001/creation");

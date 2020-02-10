@@ -54,7 +54,7 @@ namespace Sentio.Controllers
             return NotFound(data);
         }
 
-        [HttpGet("{dbId}")]
+        [HttpPost("{dbId}")]
         public async Task<ActionResult<TableDataResult>> GetAllTablesFromDb(Guid dbId) {
             var result = await _tableDataService.GetTables(dbId);
             if (result.IsValid)

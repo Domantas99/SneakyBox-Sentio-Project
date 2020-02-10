@@ -19,7 +19,7 @@ export const store = createStore(
     AllReducers, 
     {
     tables:[{ name: 'Studnets'}, {name:'Teachers'}],
-    DbConnection: { ConnectionString:'Server=tcp:e-learning-tasks.database.windows.net,1433;Initial Catalog=e-learning-dev;Persist Security Info=False;User ID=e-learning;Password=2k0uU9CQcq%P5R%G@k7^R476FE6;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;', DatabaseType: 'MSSQL'}
+    DbConnection: { DatabaseId:'86bc6815-6c32-4418-ba97-a94cc4a1dc51', DatabaseType: 'MSSQL'}
     },
     //window.devToolsExtension && window.devToolsExtension()
     );

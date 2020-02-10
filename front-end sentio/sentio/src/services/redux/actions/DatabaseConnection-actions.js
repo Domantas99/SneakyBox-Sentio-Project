@@ -4,7 +4,7 @@ export function updateDbConnection(db) {
     return {
         type: UPDATE_DB_CONNECTION,
         payload: {
-            ConnectionString: db.connStr,
+            DatabaseId: db.DatabaseId,
             DatabaseType: db.type
         }
     }
