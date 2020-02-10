@@ -41,11 +41,10 @@ namespace Sentio.Controllers
                 if (validation.IsValid)
                 {
                     DatabaseViewModel dbModel = providers[data.DatabaseType].GetDatabaseData(data);
-                    var tableList = providers[data.DatabaseType].GetAllTablesData(data);
+                    
                     var id = await _dbDataService.AddDatabase(dbModel);
-                    await _tableDataService.AddTables(tableList, id);
-
-                    var aa = await _tableDataService.GetTables(id);
+                    validation.DbId = id;
+                   
                     return Ok(validation);
                 }
                 else {

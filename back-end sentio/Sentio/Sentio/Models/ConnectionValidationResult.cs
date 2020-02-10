@@ -10,5 +10,6 @@ namespace Sentio.Models
         public bool IsValid { get; set; }
         public string Message { get; set; }
         public string ConnectionString { get; set; }
+        public Guid DbId { get; set; }
     }
 }
