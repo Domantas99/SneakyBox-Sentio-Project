@@ -20,10 +20,10 @@ namespace Sentio.Controllers
     {
         private readonly IMapper _mapper;
         private readonly Dictionary<DatabaseType, IDatabaseProvider> providers;
-        private readonly DatabaseDataService _dbDataService;
-        private readonly TableDataService _tableDataService;
+        private readonly IDatabaseDataService _dbDataService;
+        private readonly ITableDataService _tableDataService;
 
-        public DatabaseConnectionController(IMapper mapper, DatabaseDataService dbDataService, TableDataService tableDataService) {
+         public DatabaseConnectionController(IMapper mapper, IDatabaseDataService dbDataService, ITableDataService tableDataService) {
             _mapper = mapper;
             _dbDataService = dbDataService;
             _tableDataService = tableDataService;

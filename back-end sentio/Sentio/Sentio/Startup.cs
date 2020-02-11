@@ -48,10 +48,10 @@ namespace Sentio
                 options.UseSqlServer(Configuration["ConnectionString:SentioDB"],
                     builder => builder.MigrationsAssembly("Sentio"));
             });
-            //services.AddScoped<IDatabaseDataService, DatabaseDataService>();
-            //services.AddScoped<ITableDataService, TableDataService>();
-            services.AddScoped< DatabaseDataService>();
-            services.AddScoped< TableDataService>();
+          
+            services.AddScoped<IDatabaseDataService, DatabaseDataService>();
+           services.AddScoped<ITableDataService, TableDataService>();
+           
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             

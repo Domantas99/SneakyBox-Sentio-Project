@@ -6,14 +6,13 @@ export default function PopUpForm(props) {
     return (
         <Modal
             {...props}
-            size=""
+            size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
                     <h2>Customize</h2>
-
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -28,19 +27,23 @@ export default function PopUpForm(props) {
                         </tr>
                     </thead>
                     <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td colSpan="2">Total rows count </td>
+                        <td><input type="checkbox"></input></td>
+                    </tr>
                     {
                         table.properties.map((prop, index) => (
-                            <tr key={index}>
-                                <td>{index}</td>
+                            <tr key={index+1}>
+                                <td>{index+1}</td>
                                 <td>{prop.collumnName}</td> 
                                 <td>{prop.collumnType}</td>
                                 <td>
                                 <Form.Control as="select">
+                                    <option>No option</option>
                                     <option>1</option>
                                     <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                    <option>3</option>                                  
                                 </Form.Control>                        
                                 </td>
                             </tr>                  

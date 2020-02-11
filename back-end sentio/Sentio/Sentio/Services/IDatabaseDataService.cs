@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sentio.Services
 {
-    interface IDatabaseDataService
+    public interface IDatabaseDataService
     {
         Task<Guid> AddDatabase(DatabaseViewModel database);
     }

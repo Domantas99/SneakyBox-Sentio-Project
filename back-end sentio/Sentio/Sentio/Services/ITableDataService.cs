@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sentio.Services
 {
-    interface ITableDataService
+    public interface ITableDataService
     {
         Task<TableDataResult> GetTables(Guid databaseId);
         Task<Guid> AddTables(ICollection<TableModel> tableModels, Guid dbGuid);
