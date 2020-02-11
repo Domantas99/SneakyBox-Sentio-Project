@@ -17,6 +17,7 @@ export default function TableCard({table}) {
             <PopUpForm
                 show={ showPopUp }
                 onHide={() => setPopUp(false)}
+                table={table}
             >
 
             </PopUpForm>

@@ -1,9 +1,8 @@
-import React from 'react'
-import { Modal } from 'react-bootstrap'
+import React, {useState} from 'react'
+import { Modal, Table, DropdownButton, Dropdown, Form } from 'react-bootstrap'
 
 export default function PopUpForm(props) {
-    
-
+    const [table, setTable] = useState(props.table)
     return (
         <Modal
             {...props}
@@ -13,15 +12,46 @@ export default function PopUpForm(props) {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Customize
+                    <h2>Customize</h2>
 
                 </Modal.Title>
             </Modal.Header>
+            <Modal.Body>
+                <h3>{table.tableName}</h3>
+                <Table striped bordered hover>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Property Name</th>
+                            <th>Property Type</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {
+                        table.properties.map((prop, index) => (
+                            <tr key={index}>
+                                <td>{index}</td>
+                                <td>{prop.collumnName}</td> 
+                                <td>{prop.collumnType}</td>
+                                <td>
+                                <Form.Control as="select">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </Form.Control>                        
+                                </td>
+                            </tr>                  
+                        ))
+                    }
+                    </tbody>
+                </Table>
+            </Modal.Body>
             <Modal.Footer>
             <button onClick={props.onHide}>Close</button>
          </Modal.Footer>
         </Modal>
-
     )
-  
 }
