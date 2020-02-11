@@ -10,13 +10,15 @@ export default function Creation() {
   
   useEffect(()=> {
       const url = allTableDataResultAPI + db.DatabaseId;
-      fetch(url, {
-        method: 'POST',
-        headers: {
-        'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(db)
-      })
+      fetch(url, 
+        {
+        method: 'GET',
+        // headers: {
+        // 'Content-Type': 'application/json'
+        // },
+        // body: JSON.stringify(db)
+      }
+      )
       .then(res => res.json())
       .then(json => {
         if(json.isValid) {
@@ -34,26 +36,17 @@ export default function Creation() {
           <input placeholder="Search" type="text"/>
             {
               data.map(tableModel => (
-                <TableCard table={tableModel}></TableCard>
-                // <div className="item1">
-                //   <h2>{table.tableName}</h2>
-                //   <ul>
-                //   {
-                //     table.properties.map(prop => (
-                //     <li>{prop.collumnName} ---- {prop.collumnType}</li>    
-                //     ))
-                //   }
-                //   </ul>
-                // </div>
+                <TableCard key={tableModel.id} table={tableModel}></TableCard>           
                 ))
             }
-          </div>
+          </div> 
           <div className="sub-container2">
-            <div>List of items</div>
+          <button className="btn-custom">Custumize</button>
+          <div>Selected</div>
             <div>
-              Items..
-            </div>
-            <button className="btn-custom">Custumize</button>
+              <div className="item1">item A</div>
+              <div className="item1">item B</div>
+            </div>      
           </div>
       </div>
     </div>
