@@ -21,9 +21,17 @@ export default function TableCard({table}) {
 
                 <div>                
                     <h3>
-                        <span><Accordion.Toggle  eventKey="0"><FaAngleDoubleDown></FaAngleDoubleDown></Accordion.Toggle></span>
+                        <span>
+                            <Accordion.Toggle  eventKey="0">
+                                <FaAngleDoubleDown></FaAngleDoubleDown>
+                            </Accordion.Toggle>
+                        </span>
                         {table.tableName} 
-                    <span><MdAddCircle className="icon" onClick={() => setPopUp(true)}></MdAddCircle></span> </h3>
+                        <span>
+                            <MdAddCircle className="icon" onClick={() => setPopUp(true)}>
+                                </MdAddCircle>
+                        </span> 
+                    </h3>
                 </div>
 
                 <Accordion.Collapse eventKey="0">

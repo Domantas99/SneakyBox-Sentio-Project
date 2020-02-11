@@ -7,18 +7,21 @@ import { createStore, combineReducers } from 'redux';
 //import rootReducer from './services/redux/reducers';
 import { Provider } from 'react-redux';
 import DbConnectionReducer from './services/redux/reducers/DatabaseConnection-reducer';
-import TablesReducer from './services/redux/reducers/tables-reducer';
+import CreatedOptionsReducer from './services/redux/reducers/CreatedOptions-reducer';
 
 
 
 
-const AllReducers = combineReducers({tables: TablesReducer, DbConnection: DbConnectionReducer});
+const AllReducers = combineReducers({CreatedOptions: CreatedOptionsReducer, DbConnection: DbConnectionReducer});
 
 
 export const store = createStore(
     AllReducers, 
     {
-    tables:[{ name: 'Studnets'}, {name:'Teachers'}],
+    CreatedOptions:[
+        { TableName: "Badges", options: ["Rows count"] }
+    
+    ],
     DbConnection: { DatabaseId: '86bc6815-6c32-4418-ba97-a94cc4a1dc51', DatabaseType: 'MSSQL'}
     },
     //window.devToolsExtension && window.devToolsExtension()

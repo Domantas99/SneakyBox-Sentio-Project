@@ -8,6 +8,7 @@ export default function Creation() {
   const db = useSelector(state=>state.DbConnection);
   const [data, setData] = useState([]);
   
+
   useEffect(()=> {
       const url = allTableDataResultAPI + db.DatabaseId;
       fetch(url, 
@@ -44,6 +45,7 @@ export default function Creation() {
           <button className="btn-custom">Custumize</button>
           <div>Selected</div>
             <div>
+              {/* map iš redux store gautų sukurtų optionų juos idėsiu i created option component */}
               <div className="item1">item A</div>
               <div className="item1">item B</div>
             </div>      

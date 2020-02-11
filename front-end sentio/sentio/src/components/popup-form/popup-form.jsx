@@ -1,15 +1,25 @@
 import React, {useState} from 'react'
 import { Modal, Table, DropdownButton, Dropdown, Form } from 'react-bootstrap'
 
+import { rowOptions } from '../../services/propery-options';
+
+
 export default function PopUpForm(props) {
-    const [table, setTable] = useState(props.table)
+    const table = props.table;
+    const [selectedOptions, setSelectedOptions] = useState([]);
+    const [rowOption, setRowOptions] = useState('');
+
+    function Add() {
+
+
+    } 
+
     return (
         <Modal
             {...props}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
-            centered
-        >
+            centered>
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
                     <h2>Customize</h2>
@@ -29,8 +39,15 @@ export default function PopUpForm(props) {
                     <tbody>
                     <tr>
                         <td>0</td>
-                        <td colSpan="2">Total rows count </td>
-                        <td><input type="checkbox"></input></td>
+                        <td colSpan="2">All rows </td>
+                        <td>
+                            <Form.Control onChange={ e => setRowOptions(e.target.value) } 
+                                          as="select">
+                                { rowOptions.map((opt, index) => (
+                                    <option key={index+opt}>{opt}</option>
+                                )) }                                                    
+                            </Form.Control> 
+                        </td>
                     </tr>
                     {
                         table.properties.map((prop, index) => (
@@ -53,6 +70,7 @@ export default function PopUpForm(props) {
                 </Table>
             </Modal.Body>
             <Modal.Footer>
+            <button onClick={() => Add()}>Add</button>
             <button onClick={props.onHide}>Close</button>
          </Modal.Footer>
         </Modal>
