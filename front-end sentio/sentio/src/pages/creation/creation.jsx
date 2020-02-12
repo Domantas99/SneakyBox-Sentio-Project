@@ -6,8 +6,15 @@ import TableCard from '../../components/table-card/table-card';
 
 export default function Creation() {
   const db = useSelector(state=>state.DbConnection);
+  const options = useSelector(state=>state.CreatedOptions);
+  
   const [data, setData] = useState([]);
   
+
+  function deleteOption() {}
+  function editOption() {}
+
+
 
   useEffect(()=> {
       const url = allTableDataResultAPI + db.DatabaseId;
