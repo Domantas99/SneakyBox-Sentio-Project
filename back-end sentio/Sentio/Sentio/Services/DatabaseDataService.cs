@@ -31,5 +31,28 @@ namespace Sentio.Services
             }
             return db.Id;    
         }
+
+        public async Task<DatabaseViewModelsListResult> GetAllDatabasesByUserId(Guid userId)
+        {
+            var databases = _context.Databases.Where(db => db.UserId == userId);
+
+            if (databases != null)
+            {
+                return new DatabaseViewModelsListResult { IsValid = true, Message = "Success", Databases = _mapper.Map<ICollection<DatabaseViewModel>>(databases) };
+            }
+
+            return new DatabaseViewModelsListResult { IsValid = false, Message = "No databases with that user ID" };
+        }
+
+        public async Task<DatabaseViewModelResult> GetDatabaseByDbId(Guid dbId)
+        {
+            var db = _context.Databases.FirstOrDefault(database => database.Id == dbId);
+
+            if (db != null)
+            {
+                return new DatabaseViewModelResult { IsValid = true, Message = "Success", Database = _mapper.Map<DatabaseViewModel>(db) };
+            }
+            return new DatabaseViewModelResult { IsValid = false, Message = "Database with that ID not found", Database = null };
+        }
     }
 }

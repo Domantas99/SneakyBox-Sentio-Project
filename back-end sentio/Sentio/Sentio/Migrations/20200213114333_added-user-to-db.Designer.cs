@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sentio.Context;
 
 namespace Sentio.Migrations
 {
     [DbContext(typeof(SentioContext))]
-    partial class SentioContextModelSnapshot : ModelSnapshot
+    [Migration("20200213114333_added-user-to-db")]
+    partial class addedusertodb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -142,7 +144,7 @@ namespace Sentio.Migrations
             modelBuilder.Entity("Sentio.Entities.Database", b =>
                 {
                     b.HasOne("Sentio.Entities.User", "User")
-                        .WithMany("Databases")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

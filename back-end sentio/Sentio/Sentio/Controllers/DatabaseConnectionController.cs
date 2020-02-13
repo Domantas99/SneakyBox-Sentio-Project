@@ -54,6 +54,12 @@ namespace Sentio.Controllers
             return NotFound(data);
         }
 
+        [HttpGet("{userId}")]
+        public async Task<ActionResult<DatabaseViewModelsListResult>> GetDatabaseByDatabaseId(Guid userId) {
+            return await _dbDataService.GetAllDatabasesByUserId(userId);
+        }
+
+
         //[HttpPost("{dbId}")]
         //public async Task<ActionResult<TableDataResult>> GetAllTablesFromDb(Guid dbId) {
         //    var result = await _tableDataService.GetTables(dbId);

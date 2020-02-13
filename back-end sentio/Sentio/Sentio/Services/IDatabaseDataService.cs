@@ -9,5 +9,7 @@ namespace Sentio.Services
     public interface IDatabaseDataService
     {
         Task<Guid> AddDatabase(DatabaseViewModel database);
+        Task<DatabaseViewModelResult> GetDatabaseByDbId(Guid dbId);
+        Task<DatabaseViewModelsListResult> GetAllDatabasesByUserId(Guid userId);
     }
 }

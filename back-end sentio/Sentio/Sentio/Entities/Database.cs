@@ -16,9 +16,9 @@ namespace Sentio.Entities
         public DatabaseType DatabaseType { get; set; }
         public string ConnectionString { get; set; }
         
-        //[ForeignKey("UserId")]
-        //public virtual User User { get; set; }
-       // public Guid UserId { get; set; }
+        [ForeignKey("UserId")]
+        public virtual User User { get; set; }
+        public Guid UserId { get; set; }
         public virtual ICollection<Table> Tables { get; set; }
         public virtual ICollection<TrackableQuery> TrackableQueries { get; set; }
         public virtual ICollection<TrackableCustomProperty> TrackableCustomProperties { get; set; }
