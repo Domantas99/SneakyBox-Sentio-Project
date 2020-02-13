@@ -29,9 +29,9 @@ namespace Sentio.Controllers
         //}
 
         [HttpGet("{dbId}")]
-        public async Task<ActionResult<TableDataResult>> GetAllTablesFromDb(Guid dbId)
+        public async Task<ActionResult<TableDataResult>> GetAllTablesFromDb(Guid databasebId)
         {
-            var result = await _tableDataService.GetTables(dbId);
+            var result = await _tableDataService.GetTables(databasebId);
             if (result.IsValid)
             {
                 return Ok(result);

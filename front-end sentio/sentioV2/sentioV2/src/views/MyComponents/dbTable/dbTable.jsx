@@ -3,87 +3,53 @@ import React from 'react'
 import { Badge, Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap';
 
 
-export default function DbTable({table}) {
+export default function DbTable({databases}) {
      
     return (
-        <div>
-        <Col xs={6} sm={6} md={8} lg={10} >
+        <div  className="d-flex justify-content-around" >
+        <Col xs={12} sm={12} md={8} lg={8} >
             <Card>
-              <CardHeader>
-                <i className="fa fa-align-justify"></i> Databases Table
+              <CardHeader>    
+                <div class="d-flex mb-3">
+                    
+                    <div class="p-2 "><i className="fa fa-align-justify"></i> </div>
+                    <div class="p-2 ">Databases Table</div>
+                    <div class="ml-auto  "><button type="button" class="btn btn-success">Add new database</button></div>            
+                </div>
+
               </CardHeader>
+              
               <CardBody>
                 <Table responsive>
                   <thead>
                   <tr>
                     <th>Name</th>
                     <th>Type</th>
-                    <th>Status</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                   
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>Samppa Nori</td>
-                    <td>2012/01/01</td>
-                    <td>Member</td>
-                    <td>
-                      <Badge color="success">Active</Badge>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Estavan Lykos</td>
-                    <td>2012/02/01</td>
-                    <td>Staff</td>
-                    <td>
-                      <Badge color="danger">Banned</Badge>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Chetan Mohamed</td>
-                    <td>2012/02/01</td>
-                    <td>Admin</td>
-                    <td>
-                      <Badge color="secondary">Inactive</Badge>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Derick Maximinus</td>
-                    <td>2012/03/01</td>
-                    <td>Member</td>
-                    <td>
-                      <Badge color="warning">Pending</Badge>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Friderik Dávid</td>
-                    <td>2012/01/21</td>
-                    <td>Staff</td>
-                    <td>
-                      <Badge color="success">Active</Badge>
-                    </td>
-                  </tr>
+                  { databases.map(db => (
+                      <tr>
+                        <td className="align-middle">{ db.databaseName }</td>    
+                        { 
+                            db.databaseType ===0 ? <td className="align-middle" >MSSQL</td > : <td className="align-middle">Other SQL</td>                  
+                        } 
+                        <td className="align-middle">
+                            <button type="button" class="btn btn-primary">Add new metric</button>
+                           
+                        </td>
+                        <td> <button type="button" class="btn btn-danger">Remove</button></td>
+                      </tr>
+                  )) }
+                  
+                 
                   </tbody>
                 </Table>
-                <Pagination>
-                  <PaginationItem>
-                    <PaginationLink previous tag="button"></PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem active>
-                    <PaginationLink tag="button">1</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink tag="button">2</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink tag="button">3</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink tag="button">4</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink next tag="button"></PaginationLink>
-                  </PaginationItem>
-                </Pagination>
+              
               </CardBody>
             </Card>
           </Col>
