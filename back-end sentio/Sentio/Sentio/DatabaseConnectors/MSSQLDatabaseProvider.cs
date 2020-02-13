@@ -29,10 +29,14 @@ namespace Sentio.DatabaseConnectors
             SqlDataReader reader = command.ExecuteReader();
             reader.Read();
             string dbName = reader[0].ToString();
-  
-            DatabaseViewModel db = new DatabaseViewModel { DatabaseName = dbName, 
-                                                           DatabaseType = data.DatabaseType,
-                                                           ConnectionString = data.ConnectionString };
+
+            DatabaseViewModel db = new DatabaseViewModel
+            {
+                DatabaseName = dbName,
+                DatabaseType = data.DatabaseType,
+                ConnectionString = data.ConnectionString,
+                UserId = Guid.Parse("72c50eeb-bb66-47fa-ae1d-63eacbeb74fe")
+            };
 
             return db;
         }

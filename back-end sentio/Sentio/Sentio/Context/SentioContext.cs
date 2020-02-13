@@ -29,12 +29,6 @@ namespace Sentio.Context
                 .HasOne(i => i.Table)
                 .WithMany(b => b.TrackableQueries)
                 .OnDelete(DeleteBehavior.Restrict);
-
-            //modelBuilder.Entity<User>()
-            //    .HasMany(b => b.Databases);
-
-            //modelBuilder.Entity<Database>()
-            //    .HasOne(b => b.);
         }
     }
 }

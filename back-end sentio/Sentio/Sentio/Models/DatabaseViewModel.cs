@@ -12,5 +12,6 @@ namespace Sentio.Models
         public string DatabaseName { get; set; }
         public DatabaseType DatabaseType { get; set; }
         public string ConnectionString { get; set; }
+        public Guid UserId { get; set; }
     }
 }
