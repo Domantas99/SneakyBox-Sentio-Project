@@ -65,28 +65,5 @@ namespace Sentio.Controllers
             return await _dbDataService.RemoveDatabase(dbId);
         }
 
-
-        //[HttpPost("{dbId}")]
-        //public async Task<ActionResult<TableDataResult>> GetAllTablesFromDb(Guid dbId) {
-        //    var result = await _tableDataService.GetTables(dbId);
-        //    if (result.IsValid)
-        //    {
-        //        return Ok(result);
-        //    }
-        //    else {
-        //        return NotFound(result); 
-        //    }         
-        //}
-
-        //[HttpPost][Route("tables")]
-        //public ActionResult<IEnumerable<TableModel>> GetAllTables([FromBody]DatabaseConnection data)
-        //{
-        //    if (providers.ContainsKey(data.DatabaseType))
-        //    {
-        //        return Ok(providers[data.DatabaseType].GetAllTablesData(data));
-        //    }
-
-        //    return NotFound(data);
-        //}
     }
 }

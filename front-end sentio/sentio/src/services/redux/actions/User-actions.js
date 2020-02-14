@@ -1,6 +1,6 @@
 export const LOGIN_USER = 'users:Login';
 
-export function setUserId(id) {
+export function updateDbConnection(id) {
     return {
         type: LOGIN_USER,
         payload: {

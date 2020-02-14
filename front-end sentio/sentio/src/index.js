@@ -13,7 +13,9 @@ import CreatedOptionsReducer from './services/redux/reducers/CreatedOptions-redu
 
 
 const AllReducers = combineReducers({CreatedOptions: CreatedOptionsReducer, DbConnection: DbConnectionReducer});
-
+// Store - object that holds the applications state data
+// Reducer - a function that return new state data(triggered by an action type)
+// actions yra funkcijos per kuriuos perduodami duomenys
 
 export const store = createStore(
     AllReducers, 
