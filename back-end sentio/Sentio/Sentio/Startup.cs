@@ -50,8 +50,8 @@ namespace Sentio
             });
           
             services.AddScoped<IDatabaseDataService, DatabaseDataService>();
-           services.AddScoped<ITableDataService, TableDataService>();
-           
+            services.AddScoped<ITableDataService, TableDataService>();
+            services.AddScoped<IUserService, UserService>();
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             
