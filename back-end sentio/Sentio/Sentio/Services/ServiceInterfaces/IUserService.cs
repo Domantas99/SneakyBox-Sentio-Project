@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Sentio.DTO;
+using Sentio.Models;
 using Sentio.RequestResults;
 using System;
 using System.Collections.Generic;
@@ -9,7 +11,7 @@ namespace Sentio.Services
 {
     public interface IUserService
     {
-        //Task<ActionResult<UserValidationResult>> RegisterUser();
-
+        Task<UserValidationResult> RegisterNewUser(UserRegistrationForm userViewModel);
+        Task<UserValidationResult> LoginUser(UserLoginModel userLoginModel);
     }
 }

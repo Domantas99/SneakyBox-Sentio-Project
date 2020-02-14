@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Sentio.Context;
+using Sentio.DTO;
 using Sentio.Entities;
 using Sentio.Models;
 using Sentio.RequestResults;
@@ -20,19 +21,21 @@ namespace Sentio.Services
             _mapper = mapper;
         }
 
-        public async Task<UserValidationResult> RegisterNewUser(UserViewModel userViewModel) {
+        public async Task<UserValidationResult> RegisterNewUser(UserRegistrationForm userRegistrationForm) {
             try
             {
-                var user = _context.Users.FirstOrDefault(u => u.Id == userViewModel.Id);
+               
+                var user = _context.Users.FirstOrDefault(u => u.Email == userRegistrationForm.Email);
                 if (user != null)
                 {
-                    return new UserValidationResult { Id = userViewModel.Id, Message = "User already exists", IsValid = true };
+                    return new UserValidationResult {  Message = "User with that email already exists", IsValid = true };
                 }
                 else
                 {
-                    _context.Users.Add(_mapper.Map<User>(userViewModel));
+                    var newUser = _mapper.Map<User>(userRegistrationForm);
+                    _context.Users.Add(newUser);
                     await _context.SaveChangesAsync();
-                    return new UserValidationResult { Id = userViewModel.Id, IsValid = true, Message = "User registered successfully" };
+                    return new UserValidationResult { Id = newUser.Id, IsValid = true, Message = "User registered successfully" };
                 }
             }
             catch (Exception ex)

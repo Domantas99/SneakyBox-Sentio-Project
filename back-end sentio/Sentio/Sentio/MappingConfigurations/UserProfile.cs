@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using Sentio.DTO;
 using Sentio.Entities;
+using Sentio.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +13,14 @@ namespace Sentio.MappingConfigurations
     {
         public UserProfile()
         {
-            CreateMap<User, UserProfile>();
-            CreateMap<UserProfile, User>();
+            CreateMap<User, UserRegistrationForm>();
+            CreateMap<UserRegistrationForm, User>();
+
+            CreateMap<UserViewModel, UserRegistrationForm>();
+            CreateMap<UserRegistrationForm, UserViewModel>();
+
+            CreateMap<User, UserViewModel>();
+            CreateMap<UserViewModel, User>();
         }
 
     }

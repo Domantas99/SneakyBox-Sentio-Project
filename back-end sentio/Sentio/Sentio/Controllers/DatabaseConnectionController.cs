@@ -18,13 +18,12 @@ namespace Sentio.Controllers
     [ApiController]
     public class DatabaseConnectionController : ControllerBase
     {
-        private readonly IMapper _mapper;
         private readonly Dictionary<DatabaseType, IDatabaseProvider> providers;
         private readonly IDatabaseDataService _dbDataService;
         private readonly ITableDataService _tableDataService;
 
-         public DatabaseConnectionController(IMapper mapper, IDatabaseDataService dbDataService, ITableDataService tableDataService) {
-            _mapper = mapper;
+        public DatabaseConnectionController(IDatabaseDataService dbDataService, ITableDataService tableDataService)
+        {
             _dbDataService = dbDataService;
             _tableDataService = tableDataService;
             providers = new Dictionary<DatabaseType, IDatabaseProvider>();
