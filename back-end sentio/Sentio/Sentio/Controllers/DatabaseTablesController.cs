@@ -21,13 +21,6 @@ namespace Sentio.Controllers
             _tableDataService = tableDataService;
         }
 
-
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult> GetAllTables(Guid databaseId) {
-        //    //_tableDataService.
-        //    return Ok();
-        //}
-
         [HttpGet("{dbId}")]
         public async Task<ActionResult<TableDataResult>> GetAllTablesFromDb(Guid databasebId)
         {

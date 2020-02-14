@@ -53,7 +53,5 @@ namespace Sentio.Services
 
             return new UserValidationResult { IsValid = false, Message = "User not found" };            
         }
-
-
     }
 }
