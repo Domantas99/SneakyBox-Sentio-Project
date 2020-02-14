@@ -32,6 +32,35 @@ namespace Sentio.Services
             return db.Id;    
         }
 
+        public async Task<DatabaseViewModel> RemoveDatabase(Guid databaseId)
+        {
+            var db = _context.Databases.FirstOrDefault(x => x.Id == databaseId);
+            if (db != null)
+            {
+                _context.Databases.Remove(db);
+                await RemoveDatabaseTables(databaseId);
+                await _context.SaveChangesAsync();
+                return _mapper.Map<DatabaseViewModel>(db);
+            }
+            return new DatabaseViewModel();
+        }
+
+        public async Task RemoveDatabaseTables(Guid databaseId) {
+            var tables = _context.Tables.Where(table => table.DatabaseId == databaseId);
+            foreach (var table in tables) {
+                _context.Tables.Remove(table);
+                await RemoveTableCollumns(table.Id);
+            }     
+        }
+
+        public async Task RemoveTableCollumns(Guid tableId) {
+            var collumnProperties = _context.CollumnProperties.Where(x => x.TableId == tableId);
+            foreach (var prop in collumnProperties) {
+                _context.CollumnProperties.Remove(prop);
+            }
+        }
+
+
         public async Task<DatabaseViewModelsListResult> GetAllDatabasesByUserId(Guid userId)
         {
             var databases = _context.Databases.Where(db => db.UserId == userId);

@@ -60,6 +60,12 @@ namespace Sentio.Controllers
             return await _dbDataService.GetAllDatabasesByUserId(userId);
         }
 
+        // api/databaseconnection/dbId
+        [HttpDelete("{dbId}")]
+        public async Task<ActionResult<DatabaseViewModel>> DeleteDatabase(Guid dbId) {
+            return await _dbDataService.RemoveDatabase(dbId);
+        }
+
 
         //[HttpPost("{dbId}")]
         //public async Task<ActionResult<TableDataResult>> GetAllTablesFromDb(Guid dbId) {

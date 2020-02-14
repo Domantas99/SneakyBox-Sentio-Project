@@ -11,5 +11,6 @@ namespace Sentio.Services
         Task<Guid> AddDatabase(DatabaseViewModel database);
         Task<DatabaseViewModelResult> GetDatabaseByDbId(Guid dbId);
         Task<DatabaseViewModelsListResult> GetAllDatabasesByUserId(Guid userId);
+        Task<DatabaseViewModel> RemoveDatabase(Guid databaseId);
     }
 }
