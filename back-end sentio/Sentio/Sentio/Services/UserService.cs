@@ -35,7 +35,7 @@ namespace Sentio.Services
                     var newUser = _mapper.Map<User>(userRegistrationForm);
                     _context.Users.Add(newUser);
                     await _context.SaveChangesAsync();
-                    return new UserValidationResult { Id = newUser.Id, IsValid = true, Message = "User registered successfully" };
+                    return new UserValidationResult { User = _mapper.Map<UserViewModel>(newUser), IsValid = true, Message = "User registered successfully" };
                 }
             }
             catch (Exception ex)
@@ -48,7 +48,7 @@ namespace Sentio.Services
             var user = _context.Users.FirstOrDefault(u => u.Email == userLoginModel.Email && u.Password == userLoginModel.Password);
             if (user != null)
             {
-                return new UserValidationResult { IsValid = true, Message = "Logged in successfully", Id = user.Id };
+                return new UserValidationResult { IsValid = true, Message = "Logged in successfully", User= _mapper.Map<UserViewModel>(user) };
             }
 
             return new UserValidationResult { IsValid = false, Message = "User not found" };            
