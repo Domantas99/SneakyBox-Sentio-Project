@@ -10,8 +10,8 @@ using Sentio.Context;
 namespace Sentio.Migrations
 {
     [DbContext(typeof(SentioContext))]
-    [Migration("20200213114846_added-user-to-db2")]
-    partial class addedusertodb2
+    [Migration("20200221085951_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -10,19 +10,20 @@ using Sentio.DatabaseConnectors;
 using Sentio.DTO;
 using Sentio.Entities;
 using Sentio.Models;
+using Sentio.RequestResults;
 using Sentio.Services;
 
 namespace Sentio.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DatabaseConnectionController : ControllerBase
+    public class DatabasesController : ControllerBase
     {
         private readonly Dictionary<DatabaseType, IDatabaseProvider> providers;
         private readonly IDatabaseDataService _dbDataService;
         private readonly ITableDataService _tableDataService;
 
-        public DatabaseConnectionController(IDatabaseDataService dbDataService, ITableDataService tableDataService)
+        public DatabasesController(IDatabaseDataService dbDataService, ITableDataService tableDataService)
         {
             _dbDataService = dbDataService;
             _tableDataService = tableDataService;
@@ -32,7 +33,7 @@ namespace Sentio.Controllers
 
         // GET: api/DatabaseConnection
         [HttpPost] [Route("validate")]
-        public async Task<ActionResult> Validate([FromBody]DatabaseConnection data)
+        public async Task<ActionResult<ResponseResult<DatabaseViewModel>>> Validate([FromBody]DatabaseConnection data)
         {
             if (providers.ContainsKey(data.DatabaseType))
             {
@@ -45,23 +46,25 @@ namespace Sentio.Controllers
                     validation.DbId = id;
                     await _tableDataService.AddTables(tableList, id);
 
-                    return Ok(validation);
+                    return (new ResponseResult<DatabaseViewModel> { IsValid = true, Message = "Success", ReturnResult = dbModel });
                 }
                 else {
-                    return NotFound(validation);
+                    return (new ResponseResult<DatabaseViewModel> { IsValid = false, Message = "Not Found" });
                 }
             }
-            return NotFound(data);
+            return (new ResponseResult<DatabaseViewModel> { IsValid = false, Message = "Error" });
         }
 
-        [HttpGet("databases/{userId}")]
-        public async Task<ActionResult<DatabaseViewModelsListResult>> GetDatabaseByDatabaseId(Guid userId) {
+        [HttpGet("{userId}")]
+        public async Task<ActionResult<DatabaseViewModelsListResult>> GetDatabaseByUserId(Guid userId) {
             return await _dbDataService.GetAllDatabasesByUserId(userId);
         }
 
+        
+
         // api/databaseconnection/dbId
-        [HttpDelete("{dbId}")]
-        public async Task<ActionResult<DatabaseViewModel>> DeleteDatabase(Guid dbId) {
+        [HttpDelete("delete/{dbId}")]
+        public async Task<ActionResult<ResponseResult<DatabaseViewModel>>> DeleteDatabase(Guid dbId) {
             return await _dbDataService.RemoveDatabase(dbId);
         }
 
