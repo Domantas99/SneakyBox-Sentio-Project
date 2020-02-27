@@ -10,13 +10,8 @@ import * as serviceWorker from './serviceWorker';
 import { createStore, combineReducers } from 'redux';
 import  UserDataReducer  from './services/redux/reducers/user-reducer';
 import { Provider } from 'react-redux';
+import { store } from './services/redux/store/store';
 
-const allReducers = combineReducers({UserData: UserDataReducer});
-export const store = createStore(
-    allReducers, {
-    UserData: {FirstName:'', LastName:'', Email: '', Id:''}
-    }
-);
 console.log(store.getState(), 'cia store');
 
 ReactDOM.render( <Provider store={store}><App /></Provider>, document.getElementById('root'));

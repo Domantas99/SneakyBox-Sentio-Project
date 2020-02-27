@@ -32,7 +32,7 @@ export default function DbTable({databases}) {
                   </tr>
                   </thead>
                   <tbody>
-                  { databases.map(db => (
+                  { databases || databases.map(db => (
                       <tr>
                         <td className="align-middle">{ db.databaseName }</td>    
                         { 
