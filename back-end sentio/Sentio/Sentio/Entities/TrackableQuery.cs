@@ -18,11 +18,11 @@ namespace Sentio.Entities
         public virtual Table Table { get; set; }
         public Guid TableId { get; set; }
 
-        [ForeignKey("DbId")]
-        public virtual Database Database { get; set; }
-        public Guid DbId { get; set; }
+        //[ForeignKey("DbId")]
+        //public virtual Database Database { get; set; }
+        //public Guid DbId { get; set; }
 
-        // public virtual ICollection<QueryCondition> QueryConditions { get; set; }
+        public virtual ICollection<QueryCondition> QueryConditions { get; set; }
         [ForeignKey("TablePropertyId")]
         public virtual CollumnProperty TableProperty { get; set; }
         public Guid TablePropertyId { get; set; }

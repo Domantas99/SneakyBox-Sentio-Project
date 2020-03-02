@@ -21,6 +21,8 @@ namespace Sentio.Services
             _mapper = mapper;
         }
         
+        //public async Task<DatabaseViewModel> 
+
         public async Task<Guid> AddDatabase(DatabaseViewModel database)
         {
            // var db = _context.Databases.FirstOrDefault(x=> x.ConnectionString == database.ConnectionString);

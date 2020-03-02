@@ -19,7 +19,7 @@ namespace Sentio.Controllers
     [ApiController]
     public class DatabasesController : ControllerBase
     {
-        private readonly Dictionary<DatabaseType, IDatabaseProvider> providers;
+        private readonly Dictionary<DatabaseType, IDatabaseProvider> _providers;
         private readonly IDatabaseDataService _dbDataService;
         private readonly ITableDataService _tableDataService;
 
@@ -27,21 +27,21 @@ namespace Sentio.Controllers
         {
             _dbDataService = dbDataService;
             _tableDataService = tableDataService;
-            providers = new Dictionary<DatabaseType, IDatabaseProvider>();
-            providers.Add(DatabaseType.MSSQL, new MSSQLDatabaseProvider());
+            _providers = new Dictionary<DatabaseType, IDatabaseProvider>();
+            _providers.Add(DatabaseType.MSSQL, new MSSQLDatabaseProvider());
         }
 
         // GET: api/DatabaseConnection
         [HttpPost] [Route("validate")]
         public async Task<ActionResult<ResponseResult<DatabaseViewModel>>> Validate([FromBody]DatabaseConnection data)
         {
-            if (providers.ContainsKey(data.DatabaseType))
+            if (_providers.ContainsKey(data.DatabaseType))
             {
-                ConnectionValidationResult validation = providers[data.DatabaseType].Validate(data);
+                ConnectionValidationResult validation = _providers[data.DatabaseType].Validate(data);
                 if (validation.IsValid)
                 {
-                    DatabaseViewModel dbModel = providers[data.DatabaseType].GetDatabaseData(data);
-                    var tableList = providers[data.DatabaseType].GetAllTablesData(data);
+                    DatabaseViewModel dbModel = _providers[data.DatabaseType].GetDatabaseData(data);
+                    var tableList = _providers[data.DatabaseType].GetAllTablesData(data);
                     var id = await _dbDataService.AddDatabase(dbModel);
                     validation.DbId = id;
                     await _tableDataService.AddTables(tableList, id);
@@ -60,7 +60,6 @@ namespace Sentio.Controllers
             return await _dbDataService.GetAllDatabasesByUserId(userId);
         }
 
-        
 
         // api/databaseconnection/dbId
         [HttpDelete("delete/{dbId}")]

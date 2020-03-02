@@ -10,12 +10,15 @@ namespace Sentio.Entities
 {
     public class QueryCondition
     {
-   //     [Key]
-    //    public Guid Id { get; set; }
-     //   public QueryConditionType ConditionType { get; set; }
-      //  public string Value { get; set; }
-      //  [ForeignKey("TablePropertyId")]
-      //  public TableProperty TableProperty { get; set; }
-      //  public Guid TablePropertyId { get; set; }
+       [Key]
+       public Guid Id { get; set; } = Guid.NewGuid();
+       public string ConditionType { get; set; }    // <, <=, == ....
+       public string Value { get; set; }        // value
+                                                //[ForeignKey("CollumnPropertyId")]
+                                                //public CollumnProperty CollumnProperty { get; set; }
+                                                //public Guid CollumnPropertyId { get; set; }
+       [ForeignKey("TrackableQueryId")]
+       public TrackableQuery TrackableQuery { get; set; }
+       public Guid TrackableQueryId { get; set; }
     }
 }

@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 
 namespace Sentio.Generators
 {
-    public class MSSQLQueryGenerator
+    public class MSSQLQueryGenerator : IQueryGenerator
     {
+        public MSSQLQueryGenerator() { }
+
     }
 }

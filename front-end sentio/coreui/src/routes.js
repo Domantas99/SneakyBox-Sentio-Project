@@ -1,6 +1,10 @@
 import React from 'react';
 import Databases from './my-pages/databases/databases';
 import AllMetrics from './my-pages/all-metrics/all-metrics';
+import DatabaseMetrics from './my-pages/database-metrics/database-metrics';
+import FirstStep from './my-pages/stepper/first-step/first-step';
+import SecondStep from './my-pages/stepper/second-step/second-step';
+import ThirdStep from './my-pages/stepper/third-step/third-step';
 
 const Breadcrumbs = React.lazy(() => import('./views/Base/Breadcrumbs'));
 const Cards = React.lazy(() => import('./views/Base/Cards'));
@@ -41,8 +45,14 @@ const User = React.lazy(() => import('./views/Users/User'));
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/home', exact: true, name: 'Home' },
+  
   { path: '/databases', exact: true, name: 'Databases', component: Databases },
+  { path: '/databases/:dbId/metrics', exact: true, name: 'Metrics', component: DatabaseMetrics },
+  { path: '/databases/:dbId/metrics/first-step', exact: true, name: 'First Step', component: FirstStep },
+  { path: '/databases/:dbId/metrics/first-step/:tableId/second-step', exact: true, name: 'Second Step', component: SecondStep },
+  { path: '/databases/:dbId/metrics/first-step/:tableId/second-step/third-step', exact: true, name: 'Third Step', component: ThirdStep },
   { path: '/all-metrics', exact: true, name: 'All Metrics', component: AllMetrics },
+  
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/theme', exact: true, name: 'Theme', component: Colors },
   { path: '/theme/colors', name: 'Colors', component: Colors },
