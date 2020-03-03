@@ -17,6 +17,7 @@ namespace Sentio.Context
         public DbSet<CollumnProperty> CollumnProperties { get; set; }
         public DbSet<TrackableCustomProperty> TrackableCustomProperties { get; set; }
         public DbSet<TrackableQuery> TrackableQueries { get; set; }
+        public DbSet<QueryCondition> QueryConditions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

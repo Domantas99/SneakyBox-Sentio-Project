@@ -15,6 +15,7 @@ using Microsoft.OpenApi.Models;
 using Sentio.Context;
 using AutoMapper;
 using Sentio.Services;
+using Sentio.Services.ServiceInterfaces;
 
 namespace Sentio
 {
@@ -52,7 +53,9 @@ namespace Sentio
             services.AddScoped<IDatabaseDataService, DatabaseDataService>();
             services.AddScoped<ITableDataService, TableDataService>();
             services.AddScoped<IUserService, UserService>();
-            
+            services.AddScoped<IQueryService, QueryService>();
+
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             
         }
