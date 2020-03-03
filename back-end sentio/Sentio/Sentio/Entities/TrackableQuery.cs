@@ -12,19 +12,10 @@ namespace Sentio.Entities
     {
         [Key]
         public Guid Id { get; set; } = Guid.NewGuid();
-        public OperationType OperationType { get; set; }
-
+        public string OperationType { get; set; }
         [ForeignKey("TableId")]
         public virtual Table Table { get; set; }
         public Guid TableId { get; set; }
-
-        //[ForeignKey("DbId")]
-        //public virtual Database Database { get; set; }
-        //public Guid DbId { get; set; }
-
         public virtual ICollection<QueryCondition> QueryConditions { get; set; }
-        [ForeignKey("TablePropertyId")]
-        public virtual CollumnProperty TableProperty { get; set; }
-        public Guid TablePropertyId { get; set; }
     }
 }

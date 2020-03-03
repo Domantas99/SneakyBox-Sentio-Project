@@ -20,7 +20,7 @@ namespace Sentio.Entities
         public virtual User User { get; set; }
         public Guid UserId { get; set; } = Guid.Parse("72c50eeb-bb66-47fa-ae1d-63eacbeb74fe");
         public virtual ICollection<Table> Tables { get; set; }
-        public virtual ICollection<TrackableQuery> TrackableQueries { get; set; }
-        public virtual ICollection<TrackableCustomProperty> TrackableCustomProperties { get; set; }
+        //public virtual ICollection<TrackableQuery> TrackableQueries { get; set; }
+        public virtual ICollection<TrackableCustomQuery> TrackableCustomProperties { get; set; }
     }
 }

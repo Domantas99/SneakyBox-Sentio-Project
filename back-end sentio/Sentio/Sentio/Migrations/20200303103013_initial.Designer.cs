@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sentio.Context;
 
 namespace Sentio.Migrations
 {
     [DbContext(typeof(SentioContext))]
-    partial class SentioContextModelSnapshot : ModelSnapshot
+    [Migration("20200303103013_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -116,11 +118,19 @@ namespace Sentio.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<Guid?>("CollumnPropertyId");
+
+                    b.Property<Guid?>("DatabaseId");
+
                     b.Property<string>("OperationType");
 
                     b.Property<Guid>("TableId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CollumnPropertyId");
+
+                    b.HasIndex("DatabaseId");
 
                     b.HasIndex("TableId");
 
@@ -192,6 +202,14 @@ namespace Sentio.Migrations
 
             modelBuilder.Entity("Sentio.Entities.TrackableQuery", b =>
                 {
+                    b.HasOne("Sentio.Entities.CollumnProperty")
+                        .WithMany("TrackableQueries")
+                        .HasForeignKey("CollumnPropertyId");
+
+                    b.HasOne("Sentio.Entities.Database")
+                        .WithMany("TrackableQueries")
+                        .HasForeignKey("DatabaseId");
+
                     b.HasOne("Sentio.Entities.Table", "Table")
                         .WithMany("TrackableQueries")
                         .HasForeignKey("TableId")

@@ -3,6 +3,7 @@ using Sentio.DTO;
 using Sentio.Generators;
 using Sentio.Models;
 using Sentio.RequestResults;
+using Sentio.Services.ServiceInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,10 @@ namespace Sentio.Controllers
     public class QueryController : ControllerBase
     {
         private readonly Dictionary<DatabaseType, IQueryGenerator> _generators;
-        public QueryController() {
+        private readonly IQueryService _queryService;
+
+        public QueryController(IQueryService queryService) {
+            _queryService = queryService;
             _generators = new Dictionary<DatabaseType, IQueryGenerator>();
             _generators.Add(DatabaseType.MSSQL, new MSSQLQueryGenerator());
             
@@ -26,6 +30,7 @@ namespace Sentio.Controllers
         [Route("CreateNewQuery")]
         public async Task<ActionResult<ResponseResult<TableQueryConditions>>> CreateNewQuery([FromBody] TableQueryConditions conditions)
         {
+            await _queryService.SaveQueryPropertiesToDb(conditions);
             var x = conditions;
             var a = 2 + 2;
 

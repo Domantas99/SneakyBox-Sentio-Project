@@ -17,6 +17,6 @@ namespace Sentio.Entities
         [ForeignKey("TableId")]
         public virtual Table Table { get; set; }
         public Guid TableId { get; set; }
-        public virtual ICollection<TrackableQuery> TrackableQueries { get; set; }
+       // public virtual ICollection<TrackableQuery> TrackableQueries { get; set; }
     }
 }

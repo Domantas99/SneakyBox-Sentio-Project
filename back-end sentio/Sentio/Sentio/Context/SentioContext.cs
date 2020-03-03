@@ -15,16 +15,16 @@ namespace Sentio.Context
         public DbSet <Database> Databases { get; set; }
         public DbSet<Table> Tables { get; set; }
         public DbSet<CollumnProperty> CollumnProperties { get; set; }
-        public DbSet<TrackableCustomProperty> TrackableCustomProperties { get; set; }
+        public DbSet<TrackableCustomQuery> TrackableCustomQueries { get; set; }
         public DbSet<TrackableQuery> TrackableQueries { get; set; }
         public DbSet<QueryCondition> QueryConditions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<TrackableQuery>()
-                .HasOne(i => i.TableProperty)
-                .WithMany(b => b.TrackableQueries)              
-                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<TrackableQuery>();
+                //.HasOne(i => i.TableProperty)
+                //.WithMany(b => b.TrackableQueries)              
+                //.OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<TrackableQuery>()
                 .HasOne(i => i.Table)

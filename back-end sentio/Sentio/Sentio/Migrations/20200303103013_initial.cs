@@ -40,8 +40,7 @@ namespace Sentio.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                         //onDelete: ReferentialAction.Cascade);
-                         onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -60,12 +59,11 @@ namespace Sentio.Migrations
                         column: x => x.DatabaseId,
                         principalTable: "Databases",
                         principalColumn: "Id",
-                         //onDelete: ReferentialAction.Cascade);
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "TrackableCustomProperties",
+                name: "TrackableCustomQueries",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -74,9 +72,9 @@ namespace Sentio.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TrackableCustomProperties", x => x.Id);
+                    table.PrimaryKey("PK_TrackableCustomQueries", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TrackableCustomProperties_Databases_DbId",
+                        name: "FK_TrackableCustomQueries_Databases_DbId",
                         column: x => x.DbId,
                         principalTable: "Databases",
                         principalColumn: "Id",
@@ -100,8 +98,7 @@ namespace Sentio.Migrations
                         column: x => x.TableId,
                         principalTable: "Tables",
                         principalColumn: "Id",
-                         //onDelete: ReferentialAction.Cascade);
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -109,32 +106,59 @@ namespace Sentio.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    OperationType = table.Column<int>(nullable: false),
+                    OperationType = table.Column<string>(nullable: true),
                     TableId = table.Column<Guid>(nullable: false),
-                    DbId = table.Column<Guid>(nullable: false),
-                    TablePropertyId = table.Column<Guid>(nullable: false)
+                    CollumnPropertyId = table.Column<Guid>(nullable: true),
+                    DatabaseId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TrackableQueries", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TrackableQueries_Databases_DbId",
-                        column: x => x.DbId,
+                        name: "FK_TrackableQueries_CollumnProperties_CollumnPropertyId",
+                        column: x => x.CollumnPropertyId,
+                        principalTable: "CollumnProperties",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_TrackableQueries_Databases_DatabaseId",
+                        column: x => x.DatabaseId,
                         principalTable: "Databases",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_TrackableQueries_Tables_TableId",
                         column: x => x.TableId,
                         principalTable: "Tables",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "QueryConditions",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    ConditionType = table.Column<string>(nullable: true),
+                    Value = table.Column<string>(nullable: true),
+                    TrackableQueryId = table.Column<Guid>(nullable: false),
+                    CollumnPropertyId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_QueryConditions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TrackableQueries_CollumnProperties_TablePropertyId",
-                        column: x => x.TablePropertyId,
+                        name: "FK_QueryConditions_CollumnProperties_CollumnPropertyId",
+                        column: x => x.CollumnPropertyId,
                         principalTable: "CollumnProperties",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_QueryConditions_TrackableQueries_TrackableQueryId",
+                        column: x => x.TrackableQueryId,
+                        principalTable: "TrackableQueries",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -148,35 +172,48 @@ namespace Sentio.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_QueryConditions_CollumnPropertyId",
+                table: "QueryConditions",
+                column: "CollumnPropertyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_QueryConditions_TrackableQueryId",
+                table: "QueryConditions",
+                column: "TrackableQueryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Tables_DatabaseId",
                 table: "Tables",
                 column: "DatabaseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TrackableCustomProperties_DbId",
-                table: "TrackableCustomProperties",
+                name: "IX_TrackableCustomQueries_DbId",
+                table: "TrackableCustomQueries",
                 column: "DbId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TrackableQueries_DbId",
+                name: "IX_TrackableQueries_CollumnPropertyId",
                 table: "TrackableQueries",
-                column: "DbId");
+                column: "CollumnPropertyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TrackableQueries_DatabaseId",
+                table: "TrackableQueries",
+                column: "DatabaseId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TrackableQueries_TableId",
                 table: "TrackableQueries",
                 column: "TableId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TrackableQueries_TablePropertyId",
-                table: "TrackableQueries",
-                column: "TablePropertyId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "TrackableCustomProperties");
+                name: "QueryConditions");
+
+            migrationBuilder.DropTable(
+                name: "TrackableCustomQueries");
 
             migrationBuilder.DropTable(
                 name: "TrackableQueries");

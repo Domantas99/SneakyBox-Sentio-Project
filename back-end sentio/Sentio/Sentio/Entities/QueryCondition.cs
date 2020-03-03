@@ -17,8 +17,13 @@ namespace Sentio.Entities
                                                 //[ForeignKey("CollumnPropertyId")]
                                                 //public CollumnProperty CollumnProperty { get; set; }
                                                 //public Guid CollumnPropertyId { get; set; }
-       [ForeignKey("TrackableQueryId")]
-       public TrackableQuery TrackableQuery { get; set; }
-       public Guid TrackableQueryId { get; set; }
+        [ForeignKey("TrackableQueryId")]
+        public TrackableQuery TrackableQuery { get; set; }
+        public Guid TrackableQueryId { get; set; }
+
+        [ForeignKey("CollumnPropertyId")]
+        public virtual CollumnProperty CollumnProperty { get; set; } // reiktu perkelt i query condition nes gali but daug skirtingu properciu
+        public Guid CollumnPropertyId { get; set; }
+
     }
 }

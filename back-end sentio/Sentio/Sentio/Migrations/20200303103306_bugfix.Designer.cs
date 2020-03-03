@@ -10,8 +10,8 @@ using Sentio.Context;
 namespace Sentio.Migrations
 {
     [DbContext(typeof(SentioContext))]
-    [Migration("20200221085951_initial")]
-    partial class initial
+    [Migration("20200303103306_bugfix")]
+    partial class bugfix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -59,6 +59,28 @@ namespace Sentio.Migrations
                     b.ToTable("Databases");
                 });
 
+            modelBuilder.Entity("Sentio.Entities.QueryCondition", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("CollumnPropertyId");
+
+                    b.Property<string>("ConditionType");
+
+                    b.Property<Guid>("TrackableQueryId");
+
+                    b.Property<string>("Value");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CollumnPropertyId");
+
+                    b.HasIndex("TrackableQueryId");
+
+                    b.ToTable("QueryConditions");
+                });
+
             modelBuilder.Entity("Sentio.Entities.Table", b =>
                 {
                     b.Property<Guid>("Id")
@@ -75,7 +97,7 @@ namespace Sentio.Migrations
                     b.ToTable("Tables");
                 });
 
-            modelBuilder.Entity("Sentio.Entities.TrackableCustomProperty", b =>
+            modelBuilder.Entity("Sentio.Entities.TrackableCustomQuery", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -88,7 +110,7 @@ namespace Sentio.Migrations
 
                     b.HasIndex("DbId");
 
-                    b.ToTable("TrackableCustomProperties");
+                    b.ToTable("TrackableCustomQueries");
                 });
 
             modelBuilder.Entity("Sentio.Entities.TrackableQuery", b =>
@@ -96,21 +118,13 @@ namespace Sentio.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid>("DbId");
-
-                    b.Property<int>("OperationType");
+                    b.Property<string>("OperationType");
 
                     b.Property<Guid>("TableId");
 
-                    b.Property<Guid>("TablePropertyId");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("DbId");
-
                     b.HasIndex("TableId");
-
-                    b.HasIndex("TablePropertyId");
 
                     b.ToTable("TrackableQueries");
                 });
@@ -149,6 +163,19 @@ namespace Sentio.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("Sentio.Entities.QueryCondition", b =>
+                {
+                    b.HasOne("Sentio.Entities.CollumnProperty", "CollumnProperty")
+                        .WithMany()
+                        .HasForeignKey("CollumnPropertyId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Sentio.Entities.TrackableQuery", "TrackableQuery")
+                        .WithMany("QueryConditions")
+                        .HasForeignKey("TrackableQueryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Sentio.Entities.Table", b =>
                 {
                     b.HasOne("Sentio.Entities.Database", "Database")
@@ -157,7 +184,7 @@ namespace Sentio.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Sentio.Entities.TrackableCustomProperty", b =>
+            modelBuilder.Entity("Sentio.Entities.TrackableCustomQuery", b =>
                 {
                     b.HasOne("Sentio.Entities.Database", "Database")
                         .WithMany("TrackableCustomProperties")
@@ -167,19 +194,9 @@ namespace Sentio.Migrations
 
             modelBuilder.Entity("Sentio.Entities.TrackableQuery", b =>
                 {
-                    b.HasOne("Sentio.Entities.Database", "Database")
-                        .WithMany("TrackableQueries")
-                        .HasForeignKey("DbId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("Sentio.Entities.Table", "Table")
                         .WithMany("TrackableQueries")
                         .HasForeignKey("TableId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("Sentio.Entities.CollumnProperty", "TableProperty")
-                        .WithMany("TrackableQueries")
-                        .HasForeignKey("TablePropertyId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 #pragma warning restore 612, 618

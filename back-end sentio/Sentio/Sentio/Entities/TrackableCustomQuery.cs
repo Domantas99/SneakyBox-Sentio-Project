@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sentio.Entities
 {
-    public class TrackableCustomProperty // QUEry
+    public class TrackableCustomQuery // QUEry
     {
         [Key]
         public Guid Id { get; set; } = Guid.NewGuid();
