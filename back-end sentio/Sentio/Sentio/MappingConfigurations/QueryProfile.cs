@@ -17,10 +17,13 @@ namespace Sentio.MappingConfigurations
             //    //.ForMember(dest => dest.TableProperty, opt => opt.MapFrom(src => src.CollumnProperty))
             //    .ForMember(dest => dest.TableProperty.Id, opt => opt.MapFrom(src => src.CollumnPropertyId));
 
-            //CreateMap<TrackableQuery, TableQueryConditions>()
-            //    .ForMember(dest => dest.Operation, opt => opt.MapFrom(src => src.OperationType))
-            //    .ForMember(dest => dest.TableId, opt => opt.MapFrom(src => src.TableId))
-            //    .ForMember(dest => dest.Conditions, opt => opt.MapFrom(src => src.QueryConditions));
+            CreateMap<TableQueryConditions, TrackableQuery>()
+                .ForMember(dest => dest.OperationType, opt => opt.MapFrom(src => src.Operation))
+               // .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+                .ForMember(dest => dest.QueryConditions, opt => opt.MapFrom(src => src.Conditions));
+                //.ForMember(dest => dest.Operation, opt => opt.MapFrom(src => src.OperationType))
+                //.ForMember(dest => dest.TableId, opt => opt.MapFrom(src => src.TableId))
+                //.ForMember(dest => dest.Conditions, opt => opt.MapFrom(src => src.QueryConditions));
 
         }
 

@@ -2,6 +2,7 @@
 using Sentio.Context;
 using Sentio.Entities;
 using Sentio.Models;
+using Sentio.RequestResults;
 using Sentio.Services.ServiceInterfaces;
 using System;
 using System.Collections.Generic;
@@ -20,49 +21,51 @@ namespace Sentio.Services
             _mapper = mapper;
         }
 
-        public async Task SaveQueryPropertiesToDb(TableQueryConditions queryConditions) {
-          
-            ICollection<QueryCondition> conditionsList = new List<QueryCondition>();
+        public async Task<ResponseResult<ICollection<TrackableQuery>>> GetDatabaseQueries(Guid databaseId)
+        {
+            var tableIds = _context.Tables.Where(table => table.DatabaseId == databaseId).Select(table=> table.Id).ToArray();
+            //List<TableQueryConditions> metricsList = new List<TableQueryConditions>();
+            var metricsList = new List<TrackableQuery>();
+            int c = 0;
+            for (int i = 0; i < tableIds.Count(); i++)
+            {
+                //var queries = _mapper.Map<IQueryable<TableQueryConditions>>(_context.TrackableQueries.Where(query => query.TableId == tableIds.ElementAt(i)));
+                var queries = (_context.TrackableQueries.Select(q => q).Where(query => query.TableId == tableIds[i])).ToList();
+                c += queries.Count;
+                metricsList.AddRange(queries);
+            }
+            return new ResponseResult<ICollection<TrackableQuery>> { IsValid = true, Message = "Success", ReturnResult = metricsList };
+
+            
+        }
+
+        public async Task<ResponseResult<TableQueryConditions>> SaveQueryPropertiesToDb(TableQueryConditions queryConditions) {  
+            var conditionsList = new List<QueryCondition>();
             Guid trackableQueryId = Guid.NewGuid();
             for (int i = 0; i < queryConditions.Conditions.Count; i++)
             {
                 var conditions = queryConditions.Conditions.ElementAt(i);
-                QueryCondition queryCondition = new QueryCondition
+                var queryCondition = new QueryCondition
                 {
-                    // CollumnProperty = _mapper.Map<CollumnProperty>(cond.TableProperty),
                     Value = conditions.FilterValue,
                     CollumnPropertyId = conditions.TableProperty.Id,
                     ConditionType = conditions.FilterOption,
                     TrackableQueryId = trackableQueryId
                 };
-                var condResult = _context.QueryConditions.Add(queryCondition);
                 conditionsList.Add(queryCondition);
             }
 
-            _context.SaveChangesAsync();
-            TrackableQuery trackableQuery = new TrackableQuery
+            var trackableQuery = new TrackableQuery
             {
+                Name = queryConditions.Name,
                 OperationType = queryConditions.Operation,
                 TableId = queryConditions.TableId,
                 QueryConditions = conditionsList,
                 Id = trackableQueryId
             };
-
-            var qResult = _context.TrackableQueries.Add(trackableQuery);
+            _context.TrackableQueries.Add(trackableQuery);
             await _context.SaveChangesAsync();
-            //var queryConditions = conditions.Conditions;
-            var a = 1;
-            //var trackableQuery = new TrackableQuery { 
-            //                        OperationType = conditions.Operation, 
-            //                        TableId = conditions.TableId,
-                                        
-            //    }
-            //_context.QueryConditions.ElementAt(0).
-        
-        
+            return new ResponseResult<TableQueryConditions> { IsValid = true, Message = "Success", ReturnResult = queryConditions };
         }
-
-
-
     }
 }

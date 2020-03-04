@@ -1,18 +1,24 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Button, Card, CardBody, CardHeader, Col, Input, Table } from 'reactstrap';
+import { FormGroup, Label, Button, Card, CardBody, CardHeader, Col, Input, Table } from 'reactstrap';
 import { AddNewMetric } from '../../../services/redux/actions/metrics-actions';
+import { useHistory } from 'react-router-dom';
 
 
  
 function ThirdStep(props) {
     console.log(props)
+    const dbId = props.match.params.dbId;
     const options = props.tempProperties.options;
     const [Operation, setOperation] = useState(false);
+    const [MetricName, setMetricName] = useState('');
+    const history = useHistory();
+
     console.log(options, 'cia options')
     function onSubmit() {
       debugger;     
       const json = JSON.stringify({ 
+        Name: MetricName,
         TableId: props.tempProperties.tableId,
         Conditions: options.map(opt => ({
           TableProperty: opt.property,
@@ -22,10 +28,22 @@ function ThirdStep(props) {
         Operation: Operation
       });
       props.addNewMetric(json)
+        .then(res => res.json)
+        .then(json => {
+          if(!json.isValid) {
+            alert('There was an error adding metric')
+          }
+          history.push(`/databases/${dbId}/metrics`)
+        }
+        )
     }
 
     function handleOperationChange(value) {
       setOperation(value);
+    }
+
+    function handleMetricNameChange(value) {
+      setMetricName(value);
     }
 
     return (
@@ -48,8 +66,7 @@ function ThirdStep(props) {
                     <th>Filter Value</th>        
                   </tr>
                   </thead>
-                  <tbody>
-                     
+                  <tbody>     
                     {
                         options && options.map((opt, index) => (
                             <tr className="tableRow" key={index}>
@@ -64,16 +81,21 @@ function ThirdStep(props) {
                 </Table>                                       
               </CardBody>
             </Card>
-            <Input onChange={(e) => handleOperationChange(e.target.value)} type="select">
-                <option value="No Option">No option</option>
-                <option value="COUNT">COUNT</option>  
-                { 
-                    (options.length === 1 && options[0].property.collumnType==='int') && <option value="Without">Average</option> 
-                }                             
-            </Input>  
+            <FormGroup>
+              <Label htmlFor="name">Enter Metric Name</Label>
+              <Input onChange={(e) => handleMetricNameChange(e.target.value)} type="text" id="name" placeholder="My Metric" required />
+            </FormGroup>
+            <FormGroup>
+              <Input onChange={(e) => handleOperationChange(e.target.value)} type="select">
+                  <option value="No Option">No option</option>
+                  <option value="COUNT">COUNT</option>  
+                  { 
+                      (options.length === 1 && options[0].property.collumnType==='int') && <option value="Without">Average</option> 
+                  }                             
+              </Input>  
+            </FormGroup>
             <Button onClick={() => onSubmit()} color="success">Submit</Button>
           </Col>
-
         </div>
     )
 }

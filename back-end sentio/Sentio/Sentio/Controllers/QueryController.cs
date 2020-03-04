@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Sentio.DTO;
+using Sentio.Entities;
 using Sentio.Generators;
 using Sentio.Models;
 using Sentio.RequestResults;
@@ -30,12 +31,24 @@ namespace Sentio.Controllers
         [Route("CreateNewQuery")]
         public async Task<ActionResult<ResponseResult<TableQueryConditions>>> CreateNewQuery([FromBody] TableQueryConditions conditions)
         {
-            await _queryService.SaveQueryPropertiesToDb(conditions);
-            var x = conditions;
-            var a = 2 + 2;
-
-            return null;
+            if (conditions != null)
+            {
+                var result = await _queryService.SaveQueryPropertiesToDb(conditions);
+                return result;
+            }
+            return new ResponseResult<TableQueryConditions> { IsValid = false, Message = "Cannot add null objects", ReturnResult = null };
         }
+
+
+        [HttpGet("{databasebId}")]
+        public async Task<ActionResult<ResponseResult<ICollection<TrackableQuery>>>> GetDatabaseQueries(Guid databasebId)
+        {
+            var result = await _queryService.GetDatabaseQueries(databasebId);
+            return result;
+            //return null;
+        }
+
+
 
     }
 }

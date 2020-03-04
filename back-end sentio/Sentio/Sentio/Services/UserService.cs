@@ -24,7 +24,6 @@ namespace Sentio.Services
         public async Task<UserValidationResult> RegisterNewUser(UserRegistrationForm userRegistrationForm) {
             try
             {
-               
                 var user = _context.Users.FirstOrDefault(u => u.Email == userRegistrationForm.Email);
                 if (user != null)
                 {
