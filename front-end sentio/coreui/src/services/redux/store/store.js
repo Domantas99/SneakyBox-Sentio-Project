@@ -4,6 +4,7 @@ import databasesReducer from '../reducers/databases-reducers'; //'./services/red
 import dbTablesReducer from '../reducers/dbTables-reducers';
 import queryDataReducer from '../reducers/queryData-reducer';
 import tempPropertiesReducer from '../reducers/tempProperties-reducer';
+import metricsReducer from '../reducers/metrics-reducer';
 
 import thunk from 'redux-thunk';
 
@@ -12,7 +13,8 @@ const allReducers = combineReducers({
     databases: databasesReducer,
     dbTables: dbTablesReducer,
     queryData: queryDataReducer,
-    tempProperties: tempPropertiesReducer
+    tempProperties: tempPropertiesReducer,
+    metrics: metricsReducer
 })
 
 export const store = createStore(allReducers, {
@@ -20,7 +22,8 @@ export const store = createStore(allReducers, {
     queryData: [ 5 , 4, 44],
     dbTables: {},
     databases: {},
-    tempProperties: {}
+    tempProperties: {},
+    metrics: {}
 },
     compose(applyMiddleware(thunk)),
     window.devToolsExtension && window.devToolsExtension()

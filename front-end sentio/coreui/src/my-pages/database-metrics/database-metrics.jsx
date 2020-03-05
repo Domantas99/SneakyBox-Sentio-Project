@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { DatabaseMetricsAPI } from '../../services/backend-urls';
+import { connect } from 'react-redux';
+import { fetchDbMetrics } from '../../services/redux/actions/metrics-actions';
 
 import { Button, Card, CardBody, CardHeader, Col, Table } from 'reactstrap';
-export default function DatabaseMetrics(props) {
+function DatabaseMetrics(props) {
     const dbId = props.match.params.dbId;
 
     useEffect(() => {
-      fetch(DatabaseMetricsAPI + dbId).then(res => res.json()).then(json => console.log(json, 'cia json'));
+        props.getMetrics(dbId)
     },[])
 
     return (
 
         <div>
+          { console.log(props,'cia props')}
             <Col xs="6" lg="6">
                 <Link to={`/databases/${dbId}/metrics/first-step`}>
                     <Button color="success">Create new metric</Button>
@@ -42,3 +45,10 @@ export default function DatabaseMetrics(props) {
         </div>
     )
 }
+
+const mapStateToProps = state => ({ state });
+const mapDispatchToProps = dispatch => ({
+  getMetrics: dbId => dispatch(fetchDbMetrics(dbId))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(DatabaseMetrics)
