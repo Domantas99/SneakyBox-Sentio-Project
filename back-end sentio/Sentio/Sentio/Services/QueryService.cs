@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Sentio.Context;
 using Sentio.Entities;
 using Sentio.Models;
@@ -26,12 +27,10 @@ namespace Sentio.Services
             var tableIds = _context.Tables.Where(table => table.DatabaseId == databaseId).Select(table=> table.Id).ToArray();
             //List<TableQueryConditions> metricsList = new List<TableQueryConditions>();
             var metricsList = new List<TrackableQuery>();
-            int c = 0;
+         
             for (int i = 0; i < tableIds.Count(); i++)
             {
-                //var queries = _mapper.Map<IQueryable<TableQueryConditions>>(_context.TrackableQueries.Where(query => query.TableId == tableIds.ElementAt(i)));
-                var queries = (_context.TrackableQueries.Select(q => q).Where(query => query.TableId == tableIds[i])).ToList();
-                c += queries.Count;
+                var queries = await (_context.TrackableQueries.Where(query => query.TableId == tableIds[i]).Include(q => q.QueryConditions)).ToListAsync();        
                 metricsList.AddRange(queries);
             }
             return new ResponseResult<ICollection<TrackableQuery>> { IsValid = true, Message = "Success", ReturnResult = metricsList };

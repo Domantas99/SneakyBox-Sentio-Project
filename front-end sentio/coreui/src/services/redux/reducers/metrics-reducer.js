@@ -6,7 +6,7 @@ function metrics(state = { isFetching:false, error: false,metrics:[] }, action) 
             debugger;
             console.log(state, 'cia state')
             console.log(action, 'cia action')
-            // pagal viska metrics.push() 
+            //metrics.push(act) 
             return state
     case REQUEST_DB_METRICS:
         debugger;

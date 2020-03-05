@@ -45,7 +45,6 @@ namespace Sentio.Controllers
         {
             var result = await _queryService.GetDatabaseQueries(databasebId);
             return result;
-            //return null;
         }
 
 

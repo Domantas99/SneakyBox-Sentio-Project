@@ -7,7 +7,7 @@ import { fetchDbMetrics } from '../../services/redux/actions/metrics-actions';
 import { Button, Card, CardBody, CardHeader, Col, Table } from 'reactstrap';
 function DatabaseMetrics(props) {
     const dbId = props.match.params.dbId;
-
+    const metrics = props.metrics.metrics
     useEffect(() => {
         props.getMetrics(dbId)
     },[])
@@ -20,7 +20,9 @@ function DatabaseMetrics(props) {
                 <Link to={`/databases/${dbId}/metrics/first-step`}>
                     <Button color="success">Create new metric</Button>
                 </Link>
-                             
+                <Link to={`/databases/${dbId}/metrics/panel-creation/metric-selection`}>
+                    <Button color="success">Create new visualization</Button>
+                </Link>
             <Card>
               <CardHeader>
                  <h3>Metrics</h3>
@@ -30,11 +32,20 @@ function DatabaseMetrics(props) {
                   <thead>
                     <tr>
                         <th>Metric name</th>
-                        <th>Action</th>  
+                        <th>Operation Type</th>  
+                        <th>Edit</th>  
+                        <th>Remove</th>  
                     </tr>
                   </thead>
                   <tbody>
-
+                    { metrics && metrics.map((metric, index) => (
+                      <tr key={index}>
+                        <td>{metric.name}</td>
+                        <td>{metric.operationType}</td>                
+                        <td><Button className="px-3"  color="warning"><i className="cui-pencil icons"></i></Button></td>
+                        <td><Button className="px-3"  color="danger"><i className="cui-trash icons"></i></Button></td>
+                      </tr>
+                    )) }
                   </tbody>
                 </Table>         
               </CardBody>
@@ -46,7 +57,7 @@ function DatabaseMetrics(props) {
     )
 }
 
-const mapStateToProps = state => ({ state });
+const mapStateToProps = state => ({ metrics: state.metrics });
 const mapDispatchToProps = dispatch => ({
   getMetrics: dbId => dispatch(fetchDbMetrics(dbId))
 });

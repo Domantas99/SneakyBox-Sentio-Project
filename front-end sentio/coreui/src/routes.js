@@ -5,6 +5,8 @@ import DatabaseMetrics from './my-pages/database-metrics/database-metrics';
 import FirstStep from './my-pages/stepper/first-step/first-step';
 import SecondStep from './my-pages/stepper/second-step/second-step';
 import ThirdStep from './my-pages/stepper/third-step/third-step';
+import MetricSelection from './my-pages/panel-creation/metrics-selection/metrics-selection';
+import VisualizationSettings from './my-pages/panel-creation/visualization-settings/visualization-settings';
 
 const Breadcrumbs = React.lazy(() => import('./views/Base/Breadcrumbs'));
 const Cards = React.lazy(() => import('./views/Base/Cards'));
@@ -51,6 +53,8 @@ const routes = [
   { path: '/databases/:dbId/metrics/first-step', exact: true, name: 'First Step', component: FirstStep },
   { path: '/databases/:dbId/metrics/first-step/:tableId/second-step', exact: true, name: 'Second Step', component: SecondStep },
   { path: '/databases/:dbId/metrics/first-step/:tableId/second-step/third-step', exact: true, name: 'Third Step', component: ThirdStep },
+  { path: '/databases/:dbId/metrics/panel-creation/metric-selection', exact: true, name: 'Metric Selection', component: MetricSelection },
+  { path: '/databases/:dbId/metrics/panel-creation/metric-selection/visualization-settings', exact: true, name: 'Metric Selection', component: VisualizationSettings },
   { path: '/all-metrics', exact: true, name: 'All Metrics', component: AllMetrics },
   
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
