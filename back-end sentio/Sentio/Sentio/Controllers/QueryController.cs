@@ -16,13 +16,12 @@ namespace Sentio.Controllers
     [ApiController]
     public class QueryController : ControllerBase
     {
-        private readonly Dictionary<DatabaseType, IQueryGenerator> _generators;
+        
         private readonly IQueryService _queryService;
 
         public QueryController(IQueryService queryService) {
             _queryService = queryService;
-            _generators = new Dictionary<DatabaseType, IQueryGenerator>();
-            _generators.Add(DatabaseType.MSSQL, new MSSQLQueryGenerator());
+            
             
         }
 
@@ -33,7 +32,7 @@ namespace Sentio.Controllers
         {
             if (conditions != null)
             {
-                var result = await _queryService.SaveQueryPropertiesToDb(conditions);
+                var result = await _queryService.AddNewQuery(conditions);
                 //saugoti i duombaze sugenruota query
                 return result;
             }

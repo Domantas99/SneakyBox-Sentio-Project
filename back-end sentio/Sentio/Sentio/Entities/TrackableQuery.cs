@@ -18,5 +18,6 @@ namespace Sentio.Entities
         public virtual Table Table { get; set; }
         public Guid TableId { get; set; }
         public virtual ICollection<QueryCondition> QueryConditions { get; set; }
+        public string GeneratedQuery { get; set; }
     }
 }
