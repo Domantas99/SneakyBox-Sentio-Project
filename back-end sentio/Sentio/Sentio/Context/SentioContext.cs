@@ -24,7 +24,7 @@ namespace Sentio.Context
             modelBuilder.Entity<TrackableQuery>();
                 //.HasOne(i => i.TableProperty)
                 //.WithMany(b => b.TrackableQueries)              
-                //.OnDelete(DeleteBehavior.Restrict);
+                //.OnDelete(DeleteBehavior.);
 
             modelBuilder.Entity<TrackableQuery>()
                 .HasOne(i => i.Table)

@@ -34,9 +34,16 @@ namespace Sentio.Controllers
             if (conditions != null)
             {
                 var result = await _queryService.SaveQueryPropertiesToDb(conditions);
+                //saugoti i duombaze sugenruota query
                 return result;
             }
             return new ResponseResult<TableQueryConditions> { IsValid = false, Message = "Cannot add null objects", ReturnResult = null };
+        }
+
+        [HttpDelete("delete/{queryId}")]
+        public async Task<ActionResult<ResponseResult<TrackableQuery>>> DeleteQuery(Guid queryId) {
+            var result = await _queryService.DeleteQuery(queryId);
+            return result;
         }
 
 

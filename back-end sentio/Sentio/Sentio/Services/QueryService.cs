@@ -22,6 +22,18 @@ namespace Sentio.Services
             _mapper = mapper;
         }
 
+        public async Task<ResponseResult<TrackableQuery>> DeleteQuery(Guid queryId)
+        {
+            var queryToRemove = await _context.TrackableQueries.Include(q=> q.QueryConditions).FirstOrDefaultAsync(q => q.Id == queryId);
+            if (queryToRemove != null)
+            {
+                _context.QueryConditions.RemoveRange(_context.QueryConditions.Where(x => x.TrackableQueryId == queryId));
+                _context.TrackableQueries.Remove(queryToRemove);
+                return new ResponseResult<TrackableQuery> { IsValid = true, Message = "Query removed successfully", ReturnResult = queryToRemove };
+            }
+            return new ResponseResult<TrackableQuery> { IsValid = true, Message = "Query not found", ReturnResult = null };
+        }
+
         public async Task<ResponseResult<ICollection<TrackableQuery>>> GetDatabaseQueries(Guid databaseId)
         {
             var tableIds = _context.Tables.Where(table => table.DatabaseId == databaseId).Select(table=> table.Id).ToArray();

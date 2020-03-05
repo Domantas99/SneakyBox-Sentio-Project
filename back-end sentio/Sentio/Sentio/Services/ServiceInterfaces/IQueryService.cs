@@ -13,5 +13,7 @@ namespace Sentio.Services.ServiceInterfaces
         Task<ResponseResult<TableQueryConditions>> SaveQueryPropertiesToDb(TableQueryConditions queryConditions);
         Task<ResponseResult<ICollection<TrackableQuery>>> GetDatabaseQueries(Guid databaseId);
 
+        Task<ResponseResult<TrackableQuery>> DeleteQuery(Guid queryId);
+
     }
 }
