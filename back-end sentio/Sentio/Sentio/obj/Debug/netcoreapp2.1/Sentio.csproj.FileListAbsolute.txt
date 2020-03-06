@@ -32,3 +32,4 @@ C:\Users\User\Desktop\SneakyBox Sentio\back-end sentio\Sentio\Sentio\obj\Debug\n
 C:\Users\User\Desktop\SneakyBox Sentio\back-end sentio\Sentio\Sentio\obj\Debug\netcoreapp2.1\Sentio.dll
 C:\Users\User\Desktop\SneakyBox Sentio\back-end sentio\Sentio\Sentio\obj\Debug\netcoreapp2.1\Sentio.pdb
 C:\Users\User\Desktop\SneakyBox Sentio\back-end sentio\Sentio\Sentio\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
+C:\Users\User\Desktop\SneakyBox Sentio\back-end sentio\Sentio\Sentio\bin\Debug\netcoreapp2.1\metricsFile.json

@@ -53,7 +53,10 @@ namespace Sentio.Controllers
             return result;
         }
 
-
+        [HttpPost][Route("CreateMetricsFile")]
+        public async Task GenerateMetricsJsonFile([FromBody]MetricFileProps props) {
+            await _queryService.CreateMetricsJson(props);
+        }
 
     }
 }

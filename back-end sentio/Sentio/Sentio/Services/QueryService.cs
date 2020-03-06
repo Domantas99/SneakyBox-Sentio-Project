@@ -9,6 +9,7 @@ using Sentio.RequestResults;
 using Sentio.Services.ServiceInterfaces;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -33,7 +34,9 @@ namespace Sentio.Services
             if (queryToRemove != null)
             {
                 _context.QueryConditions.RemoveRange(_context.QueryConditions.Where(x => x.TrackableQueryId == queryId));
+                await _context.SaveChangesAsync();
                 _context.TrackableQueries.Remove(queryToRemove);
+                await _context.SaveChangesAsync();
                 return new ResponseResult<TrackableQuery> { IsValid = true, Message = "Query removed successfully", ReturnResult = queryToRemove };
             }
             return new ResponseResult<TrackableQuery> { IsValid = true, Message = "Query not found", ReturnResult = null };
@@ -101,6 +104,49 @@ namespace Sentio.Services
                     break;
             }
             return queryString;
+        }
+     
+
+        public async Task CreateMetricsJson(MetricFileProps props)
+        {
+            if (File.Exists(props.FileName))
+            {
+                File.Delete(props.FileName);
+            }
+            var queries = await _context.TrackableQueries.Include(q => q.Table)
+                            .Where(q => q.Table.DatabaseId == props.DatabaseId).ToListAsync();
+            using (StreamWriter sr = new StreamWriter(props.FileName, true))
+            {
+                sr.WriteLine("{");
+                sr.WriteLine("  \"Queries\":[");
+
+                for (int i = 0; i < queries.Count; i++)
+                {
+                    var query = queries[i];
+                    sr.WriteLine("              {");
+                    sr.WriteLine("          \"Name\": \"" + query.Name + "\",");
+                    sr.WriteLine("          \"Query\": \"" + query.GeneratedQuery + "\",");
+                    sr.WriteLine("          \"Name\": \"" + query.Name + "\",");
+                    sr.WriteLine("          \"Columns\": [\"");
+                    sr.WriteLine("              {");
+                    sr.WriteLine("                  \"Name\": \"" + query.OperationType + "\",");
+                    sr.WriteLine("                  \"Label\": \"" + query.Name + "_" + query.OperationType + "\",");
+                    sr.WriteLine("                  \"Usage\": \"Gauge\",\"");
+                    sr.WriteLine("                  \"DefaultValue\": 0");
+                    sr.WriteLine("              }");
+                    sr.WriteLine("          ]");
+                    if (i != queries.Count - 1)
+                    {
+                        sr.WriteLine("      },");
+                    }
+                    else {
+                        sr.WriteLine("      }");
+                    }          
+                }
+                sr.WriteLine("  ]");
+                sr.WriteLine("  \"MillisecondTimeout\": 4000");
+                sr.WriteLine("}");
+            }
         }
 
     }
