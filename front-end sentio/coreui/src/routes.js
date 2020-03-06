@@ -7,6 +7,7 @@ import SecondStep from './my-pages/stepper/second-step/second-step';
 import ThirdStep from './my-pages/stepper/third-step/third-step';
 import MetricSelection from './my-pages/panel-creation/metrics-selection/metrics-selection';
 import VisualizationSettings from './my-pages/panel-creation/visualization-settings/visualization-settings';
+import Dashboards from './my-pages/dashboards/dashboards';
 
 const Breadcrumbs = React.lazy(() => import('./views/Base/Breadcrumbs'));
 const Cards = React.lazy(() => import('./views/Base/Cards'));
@@ -48,6 +49,7 @@ const User = React.lazy(() => import('./views/Users/User'));
 const routes = [
   { path: '/home', exact: true, name: 'Home' },
   
+  { path: '/my-dashboards', exact: true, name: 'Dashboards', component: Dashboards },
   { path: '/databases', exact: true, name: 'Databases', component: Databases },
   { path: '/databases/:dbId/metrics', exact: true, name: 'Metrics', component: DatabaseMetrics },
   { path: '/databases/:dbId/metrics/first-step', exact: true, name: 'First Step', component: FirstStep },

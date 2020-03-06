@@ -29,6 +29,11 @@ export default {
       icon: 'icon-drop',
     },
     {
+      name: 'My Dashboards',
+      url: '/my-dashboards',
+      icon: 'icon-drop',
+    },
+    {
       title: true,
       name: 'Theme',
       wrapper: {            // optional wrapper object
