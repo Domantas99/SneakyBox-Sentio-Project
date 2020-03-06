@@ -18,8 +18,10 @@ namespace Sentio.Context
         public DbSet<TrackableCustomQuery> TrackableCustomQueries { get; set; }
         public DbSet<TrackableQuery> TrackableQueries { get; set; }
         public DbSet<QueryCondition> QueryConditions { get; set; }
-        public DbSet<PanelQuery> PanelQueries { get; set; }
+        public DbSet<Dashboard> Dashboards { get; set; }
         public DbSet<Panel> Panels { get; set; }
+        public DbSet<PanelQuery> PanelQueries { get; set; }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
