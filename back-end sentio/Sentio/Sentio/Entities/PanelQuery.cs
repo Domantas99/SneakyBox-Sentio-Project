@@ -11,7 +11,12 @@ namespace Sentio.Entities
         public Guid Id { get; set; }
         public string Legend { get; set; }
         [ForeignKey("TrackableQueryId")]
-        public TrackableQuery TrackableQuery { get; set; }
+        public virtual TrackableQuery TrackableQuery { get; set; }
         public Guid TrackableQueryId { get; set; }
+
+        [ForeignKey("PanelId")]
+        public virtual Panel Panel { get; set; }
+        public Guid PanelId { get; set; }
+
     }
 }
