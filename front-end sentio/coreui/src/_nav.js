@@ -34,6 +34,11 @@ export default {
       icon: 'icon-drop',
     },
     {
+      name: 'My Panels',
+      url: '/my-panels',
+      icon: 'icon-drop',
+    },
+    {
       title: true,
       name: 'Theme',
       wrapper: {            // optional wrapper object
