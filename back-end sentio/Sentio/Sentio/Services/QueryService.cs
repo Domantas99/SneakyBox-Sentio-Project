@@ -68,16 +68,21 @@ namespace Sentio.Services
                 };
                 conditionsList.Add(queryCondition);
             }
-            
-           
+            //queryConditions
+            string tableName = _context.Tables.FirstOrDefaultAsync(table => table.Id == queryConditions.TableId).Result.Name;
+            queryConditions.TableName = tableName;
+            string generatedQuery = await GetGeneratedQuery(queryConditions);
+
             var trackableQuery = new TrackableQuery
             {
                 Name = queryConditions.Name,
                 OperationType = queryConditions.Operation,
                 TableId = queryConditions.TableId,
                 QueryConditions = conditionsList,
-                Id = trackableQueryId
+                Id = trackableQueryId,
+                GeneratedQuery = generatedQuery
             };
+
             _context.TrackableQueries.Add(trackableQuery);
             await _context.SaveChangesAsync();
             return new ResponseResult<TableQueryConditions> { IsValid = true, Message = "Success", ReturnResult = queryConditions };
@@ -86,14 +91,16 @@ namespace Sentio.Services
         private async Task<string> GetGeneratedQuery(TableQueryConditions tableQueryConditions) {
             var table = await _context.Tables.Include(t => t.Database).FirstOrDefaultAsync(t => t.Id == tableQueryConditions.TableId);
             var databaseId =  table.Database.DatabaseType;//_context..FirstOrDefaultAsync(db => db.Id == tableQueryConditions.)
+            string queryString;
             switch (databaseId) {
                 case DatabaseType.MSSQL:
+                    queryString = _generators[DatabaseType.MSSQL].GenerateQuery(tableQueryConditions);
                     break;
-                default: 
+                default:
+                    queryString = "Database type not found";
                     break;
-
             }
-            return null;
+            return queryString;
         }
 
     }

@@ -9,6 +9,7 @@ namespace Sentio.Models
     {
         public string Name { get; set; }
         public Guid TableId { get; set; }
+        public string TableName { get; set; }  // to generate table from
         public ICollection<QueryConditionModel> Conditions { get; set; }
         public string Operation { get; set; }
     }
