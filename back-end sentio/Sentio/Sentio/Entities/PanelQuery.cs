@@ -8,15 +8,16 @@ namespace Sentio.Entities
 {
     public class PanelQuery
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
         public string Legend { get; set; }
         [ForeignKey("TrackableQueryId")]
         public virtual TrackableQuery TrackableQuery { get; set; }
         public Guid TrackableQueryId { get; set; }
 
-        [ForeignKey("PanelId")]
-        public virtual Panel Panel { get; set; }
-        public Guid PanelId { get; set; }
+        // Nereikia nes gali turet ir kelias panel
+        //[ForeignKey("PanelId")]
+        //public virtual Panel Panel { get; set; }
+        //public Guid PanelId { get; set; }
 
     }
 }

@@ -9,6 +9,10 @@ import MetricSelection from './my-pages/panel-creation/metrics-selection/metrics
 import VisualizationSettings from './my-pages/panel-creation/visualization-settings/visualization-settings';
 import Dashboards from './my-pages/dashboards/dashboards';
 import Panels from './my-pages/panels/panels';
+import DatabaseDashboard from './my-pages/database-dashboard/database-dashboard';
+import DatabasePanels from './my-pages/database-panels/database-panels';
+import DatabaseDashboards from './my-pages/database-dashboards/database-dashboards';
+import DatabaseCreation from './my-pages/database-creation/database-creation';
 
 const Breadcrumbs = React.lazy(() => import('./views/Base/Breadcrumbs'));
 const Cards = React.lazy(() => import('./views/Base/Cards'));
@@ -53,12 +57,19 @@ const routes = [
   { path: '/my-dashboards', exact: true, name: 'Dashboards', component: Dashboards },
   { path: '/my-panels', exact: true, name: 'Panels', component: Panels },
   { path: '/databases', exact: true, name: 'Databases', component: Databases },
+  { path: '/databases/creation', exact: true, name: 'Database Creation', component: DatabaseCreation },
+  { path: '/databases/:dbId', exact: true, name: 'Database Dashboard', component: DatabaseDashboard },
   { path: '/databases/:dbId/metrics', exact: true, name: 'Metrics', component: DatabaseMetrics },
   { path: '/databases/:dbId/metrics/first-step', exact: true, name: 'First Step', component: FirstStep },
   { path: '/databases/:dbId/metrics/first-step/:tableId/second-step', exact: true, name: 'Second Step', component: SecondStep },
   { path: '/databases/:dbId/metrics/first-step/:tableId/second-step/third-step', exact: true, name: 'Third Step', component: ThirdStep },
-  { path: '/databases/:dbId/metrics/panel-creation/metric-selection', exact: true, name: 'Metric Selection', component: MetricSelection },
-  { path: '/databases/:dbId/metrics/panel-creation/metric-selection/visualization-settings', exact: true, name: 'Metric Selection', component: VisualizationSettings },
+
+ 
+  { path: '/databases/:dbId/panels', exact: true, name: 'Database Panels', component: DatabasePanels },
+  { path: '/databases/:dbId/panels/creation/metric-selection', exact: true, name: 'Metric Selection', component: MetricSelection },
+  { path: '/databases/:dbId/panels/creation/metric-selection/visualization-settings', exact: true, name: 'Settings', component: VisualizationSettings },
+ 
+  { path: '/databases/:dbId/dashboards', exact: true, name: 'Database Dashboards', component: DatabaseDashboards },
   { path: '/all-metrics', exact: true, name: 'All Metrics', component: AllMetrics },
   
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
@@ -86,7 +97,7 @@ const routes = [
   { path: '/buttons', exact: true, name: 'Buttons', component: Buttons },
   { path: '/buttons/buttons', name: 'Buttons', component: Buttons },
   { path: '/buttons/button-dropdowns', name: 'Button Dropdowns', component: ButtonDropdowns },
-  { path: '/buttons/button-groups', name: 'Button Groups', component: ButtonGroups },
+  { path: '/buttonsT/button-groups', name: 'Button Groups', component: ButtonGroups },
   { path: '/buttons/brand-buttons', name: 'Brand Buttons', component: BrandButtons },
   { path: '/icons', exact: true, name: 'Icons', component: CoreUIIcons },
   { path: '/icons/coreui-icons', name: 'CoreUI Icons', component: CoreUIIcons },

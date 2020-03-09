@@ -1,11 +1,49 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { FormGroup, Label, Button, Card, CardBody, CardHeader, Col, Table, Input } from 'reactstrap';
-
+import { AddNewPanelAPI } from '../../../services/backend-urls';
 
 function GraphVisualizationSettings(props) {
     const panelOptions = props.panelOptions;
     let metrics = props.panelOptions.panelMetrics
+    let name = '';
+    let arr = [];
+    debugger;
+    metrics.forEach(
+      m => arr.push({TrackableQueryId: m.id, Legend: m.name})
+    )
+
+    function onNameChange(value) {
+      name = value;
+    }
+
+    function onLegendChange(metricId, value) {
+      const element = arr.find(el => el.TrackableQueryId === metricId);  
+      const index = arr.indexOf(element);
+      arr[index].Legend = value;
+      
+    }
+
+    function onSubmit() {
+      debugger;
+      const panelObj = JSON.stringify({
+        Legend: name,
+        PanelQueries: arr,
+        PanelType: 'graph'
+      });
+      debugger;
+      fetch(AddNewPanelAPI, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: panelObj
+      }).then(res => console.log(res))
+      
+
+    }
+
+
     return (
         <div>
             GraphVisualizationSettings comp
@@ -18,7 +56,7 @@ function GraphVisualizationSettings(props) {
               <CardBody>
                 <FormGroup>
                     <Label>Graph name</Label>
-                    <Input></Input>
+                    <Input onChange={(e) => onNameChange(e.target.value)}></Input>
                 </FormGroup>
                 <Table responsive>
                   <thead>
@@ -32,11 +70,11 @@ function GraphVisualizationSettings(props) {
                   </thead>
                   <tbody>
                     { metrics && metrics.map((metric, index) => (
-                      <tr onChange={(e) => console.log(e.target)} key={index}>
+                      <tr key={index}>
                         <td>{metric.name}</td>
                         <td>{metric.operationType}</td>                
                         <td>
-                          <Input></Input>
+                          <Input onChange={(e) => onLegendChange(metric.id, e.target.value) }></Input>
                         </td> 
                         {/* <td><Input className="col-sm"></Input></td>                      */}
                         {/* <td><Input className="col-sm"></Input></td>                      */}
@@ -46,8 +84,7 @@ function GraphVisualizationSettings(props) {
                 </Table>         
               </CardBody>
             </Card>          
-              <Button>Finish</Button>
-            
+              <Button onClick={() => onSubmit()}>Finish</Button>       
             </Col>       
         </div>
     )

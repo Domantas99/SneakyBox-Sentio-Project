@@ -49,11 +49,13 @@ namespace Sentio
                 options.UseSqlServer(Configuration["ConnectionString:SentioDB"],
                     builder => builder.MigrationsAssembly("Sentio"));
             });
-          
+            
+            // Dependency Injection
             services.AddScoped<IDatabaseDataService, DatabaseDataService>();
             services.AddScoped<ITableDataService, TableDataService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IQueryService, QueryService>();
+            services.AddScoped<IPanelService, PanelService>();
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)

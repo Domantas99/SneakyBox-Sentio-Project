@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Button, Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Table } from 'reactstrap';
 import { deleteDatabase, fetchUserDatabases } from '../../services/redux/actions/databases-actions';
-
+import {Link} from 'react-router-dom';
 
 
 function Databases({userId, databases, getUserDatabases, deleteDb}) {
@@ -15,7 +15,7 @@ function Databases({userId, databases, getUserDatabases, deleteDb}) {
      }, [])
 
     function onViewDbMetricsMetricClick(dbId) {
-        history.push(`/databases/${dbId}/metrics`)
+        history.push(`/databases/${dbId}`)
     }
 
     function onDeleteDatabaseClick(dbId) {      
@@ -28,6 +28,9 @@ function Databases({userId, databases, getUserDatabases, deleteDb}) {
 {console.log(databases)}
             
             <Col xs="8" lg="8">
+              <Link to="databases/creation">
+                <Button>Add new database </Button>
+              </Link>
             <Card>
               <CardHeader>
                  <h3>Select database to create new metric</h3>

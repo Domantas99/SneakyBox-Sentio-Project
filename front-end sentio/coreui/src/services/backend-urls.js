@@ -19,3 +19,7 @@ export const DatabaseTablesAPI = `${RootApiUrl}/Databasetables/`;           // +
 export const AddNewMetricAPI = `${RootApiUrl}/Query/CreateNewQuery`;        //
 export const DatabaseMetricsAPI = `${RootApiUrl}/Query/`;                   // + DatabaseId
 export const DeleteMetricAPI = `${RootApiUrl}/Query/delete/`;               // + QueryId
+
+// Panels
+export const AddNewPanelAPI = `${RootApiUrl}/Panel/Add`;               
+//export const AddNewPanelAPI = `${RootApiUrl}/Query/delete/`;               // + QueryId

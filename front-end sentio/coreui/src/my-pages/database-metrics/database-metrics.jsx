@@ -26,7 +26,10 @@ function DatabaseMetrics(props) {
                     <Button color="success">Create new metric</Button>
                 </Link>
                 <Link to={`/databases/${dbId}/metrics/panel-creation/metric-selection`}>
-                    <Button color="success">Create new visualization</Button>
+                    <Button color="success">Create new panel</Button>
+                </Link>
+                <Link to={`/databases/${dbId}/metrics/panel-creation/metric-selection`}>
+                    <Button color="success">Create new panel</Button>
                 </Link>
             <Card>
               <CardHeader>

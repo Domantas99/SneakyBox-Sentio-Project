@@ -1,8 +1,11 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { connect } from 'react-redux';
 import { Link, useHistory} from 'react-router-dom';
 import { FormGroup, Label, Button, Card, CardBody, CardHeader, Col, Table, Input } from 'reactstrap';
 import { setPanelOptionsAction } from '../../../services/redux/actions/tempPanelOptions-actions';
+import { fetchDbMetrics } from '../../../services/redux/actions/metrics-actions';
+
+
 
 function MetricSelection(props) {
     const dbId = props.match.params.dbId;
@@ -10,6 +13,9 @@ function MetricSelection(props) {
     
     const history = useHistory();
     
+    useEffect(() => {
+      props.getMetrics(dbId)
+    },[])
     
     let visualization='No Option';
     let selectedMetrics = [];
@@ -40,7 +46,7 @@ function MetricSelection(props) {
       };
       
       props.setOptions(obj);
-      history.push(`/databases/${dbId}/metrics/panel-creation/metric-selection/visualization-settings`);
+      history.push(`/databases/${dbId}/panels/creation/metric-selection/visualization-settings`);
       } else {
         alert('Please select visualization option');
       }
@@ -48,6 +54,7 @@ function MetricSelection(props) {
 
     return (
         <div>        
+          {console.log(props, 'cia props ms')}
             <Col xs="9" lg="10">                                         
             <Card>
               <CardHeader>
@@ -96,6 +103,7 @@ function MetricSelection(props) {
 
 const mapStateToProps = state => ({ metrics: state.metrics });
 const mapDispatchToProps = dispatch => ({
+  getMetrics: dbId => dispatch(fetchDbMetrics(dbId)),
   setOptions: obj => dispatch(setPanelOptionsAction(obj))
  });
 
