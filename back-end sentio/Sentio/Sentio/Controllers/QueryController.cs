@@ -53,6 +53,14 @@ namespace Sentio.Controllers
             return result;
         }
 
+        [HttpGet("getAll")]
+        public async Task<ActionResult<ResponseResult<ICollection<TrackableQuery>>>> GetAllQueries(Guid databasebId)
+        {
+            var result = await _queryService.GetAllQueries();
+            return result;
+        }
+
+
         [HttpPost][Route("CreateMetricsFile")]
         public async Task GenerateMetricsJsonFile([FromBody]MetricFileProps props) {
             await _queryService.CreateMetricsJson(props);

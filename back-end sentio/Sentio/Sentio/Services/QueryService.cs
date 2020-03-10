@@ -42,6 +42,11 @@ namespace Sentio.Services
             return new ResponseResult<TrackableQuery> { IsValid = true, Message = "Query not found", ReturnResult = null };
         }
 
+        public async Task<ResponseResult<ICollection<TrackableQuery>>> GetAllQueries() {
+            var queryList = await _context.TrackableQueries.ToListAsync();
+            return new ResponseResult<ICollection<TrackableQuery>> { IsValid = true, Message = "Success", ReturnResult = queryList };
+        }
+
         public async Task<ResponseResult<ICollection<TrackableQuery>>> GetDatabaseQueries(Guid databaseId)
         {
             var tableIds = _context.Tables.Where(table => table.DatabaseId == databaseId).Select(table=> table.Id).ToArray();
