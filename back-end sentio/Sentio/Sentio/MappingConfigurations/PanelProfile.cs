@@ -14,8 +14,11 @@ namespace Sentio.MappingConfigurations
         public PanelProfile()
         {
             CreateMap<PanelQuery, PanelQueryModel>();
+            //  .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.));
+            CreateMap<PanelQueryModel, PanelQuery>();
+
             CreateMap<Panel, PanelModel>();
-                
+            CreateMap<PanelModel, Panel>();
 
             //CreateMap<QueryCondition, QueryConditionModel>()
             //    .ForMember(dest => dest.FilterValue, opt => opt.MapFrom(src => src.Value))

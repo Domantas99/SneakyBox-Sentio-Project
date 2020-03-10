@@ -127,11 +127,11 @@ namespace Sentio.Services
                     sr.WriteLine("          \"Name\": \"" + query.Name + "\",");
                     sr.WriteLine("          \"Query\": \"" + query.GeneratedQuery + "\",");
                     sr.WriteLine("          \"Name\": \"" + query.Name + "\",");
-                    sr.WriteLine("          \"Columns\": [\"");
+                    sr.WriteLine("          \"Columns\": [\");
                     sr.WriteLine("              {");
                     sr.WriteLine("                  \"Name\": \"" + query.OperationType + "\",");
                     sr.WriteLine("                  \"Label\": \"" + query.Name + "_" + query.OperationType + "\",");
-                    sr.WriteLine("                  \"Usage\": \"Gauge\",\"");
+                    sr.WriteLine("                  \"Usage\": \"Gauge\",");
                     sr.WriteLine("                  \"DefaultValue\": 0");
                     sr.WriteLine("              }");
                     sr.WriteLine("          ]");
@@ -143,7 +143,7 @@ namespace Sentio.Services
                         sr.WriteLine("      }");
                     }          
                 }
-                sr.WriteLine("  ]");
+                sr.WriteLine("  ],");
                 sr.WriteLine("  \"MillisecondTimeout\": 4000");
                 sr.WriteLine("}");
             }

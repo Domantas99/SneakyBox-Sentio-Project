@@ -3,5 +3,5 @@ let TypeOptions= [];
     TypeOptions["bigint"] = ["No Option","<", "<=", ">", ">=", "==","!="];
     TypeOptions["nvarchar"] = ["No Option","==", "!="];
     TypeOptions["datetimeoffset"] = ["No Option"];
-    TypeOptions["bit"] = ["No Option", "true", "false"];
+    TypeOptions["bit"] = ["No Option", "!=", "=="];
 export default TypeOptions;

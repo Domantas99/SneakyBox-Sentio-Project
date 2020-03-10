@@ -15,14 +15,14 @@ namespace Sentio.Generators
         public string GenerateQuery(TableQueryConditions tableQueryConditions) {
             if (tableQueryConditions.Operation == "COUNT")
             {
-                string query = "SELECT * FROM " + tableQueryConditions.TableName + " WHERE ";
+                string query = "SELECT COUNT(*) COUNT FROM " + tableQueryConditions.TableName + " WHERE ";
                 var conditions = tableQueryConditions.Conditions;
                 for (int i = 0; i < conditions.Count; i++)
                 {
                     var element = conditions.ElementAt(i);
                     if (element.FilterOption != "No Option")
                     {
-                        string condition = element.TableProperty.CollumnName + element.FilterOption + element.FilterValue;
+                        string condition = element.TableProperty.CollumnName + element.FilterOption + "'" +element.FilterValue + "'";
                         if (i != conditions.Count - 1)
                         {
                             condition += " AND ";

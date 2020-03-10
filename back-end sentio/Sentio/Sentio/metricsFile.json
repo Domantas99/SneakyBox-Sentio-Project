@@ -1,31 +1,31 @@
 {
   "Queries":[
               {
-          "Name": "Pirma metric",
-          "Query": "SELECT * FROM Prizes WHERE PointPrice>3 AND Name!=baravykas;",
-          "Name": "Pirma metric",
-          "Columns": ["
+          "Name": "Pirma_metric",
+          "Query": "SELECT COUNT(*) COUNT FROM Prizes WHERE PointPrice>'3' AND Name!='baravykas';",
+          "Name": "Pirma_metric",
+          "Columns": [
               {
                   "Name": "COUNT",
-                  "Label": "Pirma metric_COUNT",
-                  "Usage": "Gauge","
+                  "Label": "Pirma_metric_COUNT",
+                  "Usage": "Gauge",
                   "DefaultValue": 0
               }
           ]
       },
               {
           "Name": "Antra",
-          "Query": "SELECT * FROM Teams WHERE PointReward!=0 AND TeamName!=noobs;",
+          "Query": "SELECT COUNT(*) COUNT FROM Teams WHERE PointReward!='0' AND TeamName!='noobs';",
           "Name": "Antra",
-          "Columns": ["
+          "Columns": [
               {
                   "Name": "COUNT",
                   "Label": "Antra_COUNT",
-                  "Usage": "Gauge","
+                  "Usage": "Gauge",
                   "DefaultValue": 0
               }
           ]
       }
-  ]
+  ],
   "MillisecondTimeout": 4000
 }

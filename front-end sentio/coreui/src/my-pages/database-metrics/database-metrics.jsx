@@ -25,12 +25,6 @@ function DatabaseMetrics(props) {
                 <Link to={`/databases/${dbId}/metrics/first-step`}>
                     <Button color="success">Create new metric</Button>
                 </Link>
-                <Link to={`/databases/${dbId}/metrics/panel-creation/metric-selection`}>
-                    <Button color="success">Create new panel</Button>
-                </Link>
-                <Link to={`/databases/${dbId}/metrics/panel-creation/metric-selection`}>
-                    <Button color="success">Create new panel</Button>
-                </Link>
             <Card>
               <CardHeader>
                  <h3>Metrics</h3>
