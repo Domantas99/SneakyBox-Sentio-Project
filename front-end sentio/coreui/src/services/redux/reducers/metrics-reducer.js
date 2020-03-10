@@ -3,39 +3,39 @@ import { DELETE_DATABASE } from '../actions/databases-actions';
 
 function metrics(state = { isFetching:false, error: false,metrics:[] }, action) {
     switch(action.type) {
-    case ADD_NEW_METRIC:
+        case ADD_NEW_METRIC:
             debugger;
             console.log(state, 'cia state')
             console.log(action, 'cia action')
             //metrics.push(act) 
             return state
-    case REQUEST_DB_METRICS:
-        debugger;
-        return Object.assign({}, state, { isFetching: true, error: false });
-    case RECEIVE_DB_METRICS:
-        debugger;
-        const result = action.result   // reiktu padaryti, kad pridetu prie praeitu [...praeitos, naujos] ir paskui atfiltruotu
-        if(result.isValid) {
+        case REQUEST_DB_METRICS:
+            debugger;
+            return Object.assign({}, state, { isFetching: true, error: false });
+        case RECEIVE_DB_METRICS:
+            debugger;
+            const result = action.result   // reiktu padaryti, kad pridetu prie praeitu [...praeitos, naujos] ir paskui atfiltruotu
+            if(result.isValid) {
+                return Object.assign({}, state, {
+                    isFetching: false,
+                    error: false,
+                    metrics: result.returnResult
+                })
+            }
             return Object.assign({}, state, {
                 isFetching: false,
-                error: false,
-                metrics: result.returnResult
+                error: true
             })
-        }
-        return Object.assign({}, state, {
-            isFetching: false,
-            error: true
-        })
-    case DELETE_METRIC_IN_STORE:
-        const filteredMetrics = state.metrics.filter(m => m.id !== action.metricId)
-        return Object.assign({}, state, {
-            metrics: filteredMetrics
-        })
-    case DELETE_METRIC_IN_DB:
-        return state
+        case DELETE_METRIC_IN_STORE:
+            const filteredMetrics = state.metrics.filter(m => m.id !== action.metricId)
+            return Object.assign({}, state, {
+                metrics: filteredMetrics
+            })
+        case DELETE_METRIC_IN_DB:
+            return state
         default: 
-        return state;
-        }
+            return state;
+            }
 }
 
 export default function metricsReducer(state='', action) {

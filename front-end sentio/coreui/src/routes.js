@@ -8,11 +8,11 @@ import ThirdStep from './my-pages/stepper/third-step/third-step';
 import MetricSelection from './my-pages/panel-creation/metrics-selection/metrics-selection';
 import VisualizationSettings from './my-pages/panel-creation/visualization-settings/visualization-settings';
 import Dashboards from './my-pages/dashboards/dashboards';
-import Panels from './my-pages/panels/panels';
 import DatabaseDashboard from './my-pages/database-dashboard/database-dashboard';
 import DatabasePanels from './my-pages/database-panels/database-panels';
 import DatabaseDashboards from './my-pages/database-dashboards/database-dashboards';
 import DatabaseCreation from './my-pages/database-creation/database-creation';
+import AllPanels from './my-pages/all-panels/all-panels';
 
 const Breadcrumbs = React.lazy(() => import('./views/Base/Breadcrumbs'));
 const Cards = React.lazy(() => import('./views/Base/Cards'));
@@ -55,7 +55,7 @@ const routes = [
   { path: '/home', exact: true, name: 'Home' },
   
   { path: '/my-dashboards', exact: true, name: 'Dashboards', component: Dashboards },
-  { path: '/my-panels', exact: true, name: 'Panels', component: Panels },
+  { path: '/my-panels', exact: true, name: 'Panels', component: AllPanels },
   { path: '/databases', exact: true, name: 'Databases', component: Databases },
   { path: '/databases/creation', exact: true, name: 'Database Creation', component: DatabaseCreation },
   { path: '/databases/:dbId', exact: true, name: 'Database Dashboard', component: DatabaseDashboard },

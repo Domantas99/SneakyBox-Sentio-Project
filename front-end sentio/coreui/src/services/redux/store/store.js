@@ -6,6 +6,7 @@ import queryDataReducer from '../reducers/queryData-reducer';
 import tempPropertiesReducer from '../reducers/tempProperties-reducer';
 import metricsReducer from '../reducers/metrics-reducer';
 import tempPanelOptionsReducer from '../reducers/tempPanelOptions-reducer';
+import panelsReducer from '../reducers/panels-reducer';
 
 import thunk from 'redux-thunk';
 
@@ -16,7 +17,8 @@ const allReducers = combineReducers({
     queryData: queryDataReducer,
     tempProperties: tempPropertiesReducer,
     tempPanelOptions: tempPanelOptionsReducer,
-    metrics: metricsReducer
+    metrics: metricsReducer,
+    panels: panelsReducer
 })
 
 export const store = createStore(allReducers, {
@@ -26,7 +28,8 @@ export const store = createStore(allReducers, {
     databases: {},
     tempProperties: {},
     tempPanelOptions: {},
-    metrics: {}
+    metrics: {},
+    panels: {}
 },
     compose(applyMiddleware(thunk)),
     window.devToolsExtension && window.devToolsExtension()

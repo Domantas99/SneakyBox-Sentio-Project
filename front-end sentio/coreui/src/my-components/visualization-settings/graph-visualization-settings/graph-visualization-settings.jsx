@@ -2,9 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { FormGroup, Label, Button, Card, CardBody, CardHeader, Col, Table, Input } from 'reactstrap';
 import { AddNewPanelAPI } from '../../../services/backend-urls';
+import { useHistory } from 'react-router-dom';
 
-function GraphVisualizationSettings(props) {
-    const panelOptions = props.panelOptions;
+function GraphVisualizationSettings(props, { dbId }) {
+    const history = useHistory();
+    //const panelOptions = props.panelOptions;
     let metrics = props.panelOptions.panelMetrics
     let name = '';
     let arr = [];
@@ -23,13 +25,14 @@ function GraphVisualizationSettings(props) {
       arr[index].Legend = value;
       
     }
-
+    // prideti db id
     function onSubmit() {
       debugger;
       const panelObj = JSON.stringify({
         Legend: name,
         PanelQueries: arr,
-        PanelType: 'graph'
+        PanelType: 'graph',
+        DatabaseId: props.dbId
       });
       debugger;
       fetch(AddNewPanelAPI, {
@@ -38,7 +41,12 @@ function GraphVisualizationSettings(props) {
           'Content-Type': 'application/json'
         },
         body: panelObj
-      }).then(res => console.log(res))
+      }).then(res => res.json())
+          .then(json => {
+            if(json.isValid) {
+              history.push(`databases/${props.dbId}/panels`);
+            }
+          })
       
 
     }
@@ -47,9 +55,9 @@ function GraphVisualizationSettings(props) {
     return (
         <div>
             GraphVisualizationSettings comp
-
             <Col xs="9" lg="10">                                         
             <Card>
+              { console.log(props,'cia porps gvs')}
               <CardHeader>
                  <h3>Select what metrics you would like to see</h3>
               </CardHeader>
@@ -90,7 +98,7 @@ function GraphVisualizationSettings(props) {
     )
 }
 
-const mapStateToProps = state => ({ panelOptions: state.tempPanelOptions })
+const mapStateToProps = state => ({ panelOptions: state.tempPanelOptions, s:state })
 const mapDispatchToProps = dispatch => ({})
 
 export default connect(mapStateToProps, mapDispatchToProps)(GraphVisualizationSettings)
