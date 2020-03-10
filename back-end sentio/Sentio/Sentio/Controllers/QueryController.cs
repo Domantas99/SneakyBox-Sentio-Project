@@ -53,7 +53,8 @@ namespace Sentio.Controllers
             return result;
         }
 
-        [HttpGet("getAll")]
+        [HttpGet]
+        [Route("getAll")]
         public async Task<ActionResult<ResponseResult<ICollection<TrackableQuery>>>> GetAllQueries(Guid databasebId)
         {
             var result = await _queryService.GetAllQueries();

@@ -14,9 +14,11 @@ namespace Sentio.Entities
         public string Legend { get; set; }
         public virtual ICollection<PanelQuery> PanelQueries { get; set; }
         // Later add size and other options
+        [ForeignKey("DatabaseId")]
+        public virtual Database Database { get; set; }
+        public Guid DatabaseId { get; set; }
         
-        
-        // 
+        //  nereikia nes turi ne viena dashboard
         //[ForeignKey("DashboardId")]
         //public virtual Dashboard Dashboard { get; set; }
         //public Guid DashboardId { get; set; }

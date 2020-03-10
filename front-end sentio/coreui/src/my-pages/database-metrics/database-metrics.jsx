@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { DatabaseMetricsAPI } from '../../services/backend-urls';
 import { connect } from 'react-redux';
 import { fetchDbMetrics, DeleteMetric } from '../../services/redux/actions/metrics-actions';
-
+// reikes padaryt kad atfiltroutu metric pagal db id
 import { Button, Card, CardBody, CardHeader, Col, Table } from 'reactstrap';
 function DatabaseMetrics(props) {
     const dbId = props.match.params.dbId;

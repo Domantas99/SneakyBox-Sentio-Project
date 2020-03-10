@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sentio.Context;
 
 namespace Sentio.Migrations
 {
     [DbContext(typeof(SentioContext))]
-    partial class SentioContextModelSnapshot : ModelSnapshot
+    [Migration("20200310100310_addedDbToPanel")]
+    partial class addedDbToPanel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -226,7 +228,7 @@ namespace Sentio.Migrations
                         .HasForeignKey("DashboardId");
 
                     b.HasOne("Sentio.Entities.Database", "Database")
-                        .WithMany("Panels")
+                        .WithMany()
                         .HasForeignKey("DatabaseId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

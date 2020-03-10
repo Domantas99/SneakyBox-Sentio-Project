@@ -132,7 +132,7 @@ namespace Sentio.Services
                     sr.WriteLine("          \"Name\": \"" + query.Name + "\",");
                     sr.WriteLine("          \"Query\": \"" + query.GeneratedQuery + "\",");
                     sr.WriteLine("          \"Name\": \"" + query.Name + "\",");
-                    sr.WriteLine("          \"Columns\": [\");
+                    sr.WriteLine("          \"Columns\": [");
                     sr.WriteLine("              {");
                     sr.WriteLine("                  \"Name\": \"" + query.OperationType + "\",");
                     sr.WriteLine("                  \"Label\": \"" + query.Name + "_" + query.OperationType + "\",");

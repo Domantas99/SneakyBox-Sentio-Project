@@ -22,5 +22,6 @@ namespace Sentio.Entities
         public virtual ICollection<Table> Tables { get; set; }
         //public virtual ICollection<TrackableQuery> TrackableQueries { get; set; }
         public virtual ICollection<TrackableCustomQuery> TrackableCustomProperties { get; set; }
+        public virtual ICollection<Panel> Panels { get; set; }
     }
 }

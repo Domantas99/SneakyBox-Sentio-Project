@@ -55,7 +55,15 @@ namespace Sentio.Services
             return null;
         }
 
+        public async Task<ResponseResult<ICollection<PanelModel>>> GetAllDbPanels(Guid databaseId)
+        {
+           // _context.Panels.Where(p => p.)
+            throw new NotImplementedException();
+        }
 
-
+        public async Task<ResponseResult<ICollection<PanelModel>>> GetAllUserPanels(Guid userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
