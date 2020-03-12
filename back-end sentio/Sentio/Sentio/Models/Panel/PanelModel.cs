@@ -13,7 +13,7 @@ namespace Sentio.Models
         public string Legend { get; set; }
         public ICollection<PanelQueryModel> PanelQueries { get; set; }
         //public Guid DashboardId { get; set; }
-        
+        public Guid DatabaseId { get; set; }
 
     }
 }

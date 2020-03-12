@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import {fetchUser } from '../../../services/redux/actions/user-actions'; 
 
 function Login(props) {
-    const [Email, setEmail] = useState('');
-    const [Password, setPassword] = useState('');
+    const [Email, setEmail] = useState('Dom');
+    const [Password, setPassword] = useState('Dom');
     const history = useHistory();
     
 
@@ -52,7 +52,7 @@ function Login(props) {
                             <i className="icon-user"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input  onChange={ event => handleEmailChange(event.target.value) } 
+                        <Input value="Dom" onChange={ event => handleEmailChange(event.target.value) } 
                                 type="text" placeholder="Username" autoComplete="username" />
                       </InputGroup>
                       <InputGroup className="mb-4">
@@ -61,7 +61,7 @@ function Login(props) {
                             <i className="icon-lock"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input  onChange={ event => handlePasswordChange(event.target.value) } 
+                        <Input  value="Dom" onChange={ event => handlePasswordChange(event.target.value) } 
                                 type="password" placeholder="Password" autoComplete="current-password" />
                       </InputGroup>
                       <Row>

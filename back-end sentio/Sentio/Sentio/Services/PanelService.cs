@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Sentio.Context;
 using Sentio.Entities;
 using Sentio.Models;
@@ -40,7 +41,8 @@ namespace Sentio.Services
                 Id = Guid.NewGuid(),
                 Legend = panelModel.Legend,
                 PanelType = panelModel.PanelType,
-                PanelQueries = panelQueryList
+                PanelQueries = panelQueryList,
+                DatabaseId = panelModel.DatabaseId
             };
             var res = _context.Panels.Add(panel);
             // res = res.Entity();
@@ -52,18 +54,20 @@ namespace Sentio.Services
             //var o = panel;
             //_context.Panels
             
-            return null;
+            return new ResponseResult<PanelModel> { IsValid=true, Message="Added successfully", ReturnResult = panelModel};
         }
 
-        public async Task<ResponseResult<ICollection<PanelModel>>> GetAllDbPanels(Guid databaseId)
+        // irgi nebutina nes pagal filtra atrinks
+        public async Task<ResponseResult<ICollection<Panel>>> GetAllDbPanels(Guid databaseId)
         {
-           // _context.Panels.Where(p => p.)
-            throw new NotImplementedException();
+            var panels = await _context.Panels.Where(p => p.DatabaseId == databaseId).ToListAsync();
+            return new ResponseResult<ICollection<Panel>> { IsValid = true, Message = "Success", ReturnResult = panels };
         }
 
-        public async Task<ResponseResult<ICollection<PanelModel>>> GetAllUserPanels(Guid userId)
+        public async Task<ResponseResult<ICollection<Panel>>> GetAllUserPanels(Guid userId)
         {
-            throw new NotImplementedException();
+            var panels = await _context.Panels.Include(p => p.Database).Where(p => p.Database.UserId == userId).ToListAsync();
+            return new ResponseResult<ICollection<Panel>> { IsValid = true, Message = "Success", ReturnResult = panels };       
         }
     }
 }

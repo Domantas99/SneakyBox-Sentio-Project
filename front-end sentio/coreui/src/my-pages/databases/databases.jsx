@@ -53,9 +53,14 @@ function Databases({userId, databases, getUserDatabases, deleteDb}) {
                                 <td>{ db.databaseName }</td>
                                 <td> MSSQL</td>
                                 <td> 
-                                    <Button onClick={() => onViewDbMetricsMetricClick(db.id)} color="success"><i className="cui-layers icons px-4"></i></Button> </td>
-                                   <td> <Button className="px-3"color="warning"><i className="cui-pencil icons"></i></Button> </td>
-                                   <td>   <Button className="px-3" onClick={() => onDeleteDatabaseClick(db.id)} color="danger"><i className="cui-trash icons ="></i></Button></td>
+                                  <Button onClick={() => onViewDbMetricsMetricClick(db.id)} color="success"><i className="cui-layers icons px-4"></i></Button> 
+                                </td>
+                                <td> 
+                                  <Button className="px-3"color="warning"><i className="cui-pencil icons"></i></Button> 
+                                </td>
+                                <td>  
+                                  <Button className="px-3" onClick={() => onDeleteDatabaseClick(db.id)} color="danger"><i className="cui-trash icons ="></i></Button>
+                                </td>
                                 
                                 {/* <td> 
                                     <Button onClick={() => onViewDbMetricsMetricClick(db.id)} color="success"><i className="cui-layers icons px-2"></i></Button> 
