@@ -18,6 +18,8 @@ namespace Sentio.Entities
         public virtual Database Database { get; set; }
         public Guid DatabaseId { get; set; }
         
+        public virtual ICollection<Dashboard> Dashboards { get; set; }
+
         //  nereikia nes turi ne viena dashboard
         //[ForeignKey("DashboardId")]
         //public virtual Dashboard Dashboard { get; set; }

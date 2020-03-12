@@ -21,7 +21,7 @@ namespace Sentio.Context
         public DbSet<Dashboard> Dashboards { get; set; }
         public DbSet<Panel> Panels { get; set; }
         public DbSet<PanelQuery> PanelQueries { get; set; }
-        
+       // public DbSet<DashboardPanels> DashboardPanels { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
