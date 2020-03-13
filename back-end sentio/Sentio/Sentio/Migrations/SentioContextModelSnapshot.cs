@@ -42,11 +42,28 @@ namespace Sentio.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<Guid>("DatabaseId");
+
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DatabaseId");
+
                     b.ToTable("Dashboards");
+                });
+
+            modelBuilder.Entity("Sentio.Entities.DashboardPanel", b =>
+                {
+                    b.Property<Guid>("DashboardId");
+
+                    b.Property<Guid>("PanelId");
+
+                    b.HasKey("DashboardId", "PanelId");
+
+                    b.HasIndex("PanelId");
+
+                    b.ToTable("DashboardPanels");
                 });
 
             modelBuilder.Entity("Sentio.Entities.Database", b =>
@@ -74,8 +91,6 @@ namespace Sentio.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("DashboardId");
-
                     b.Property<Guid>("DatabaseId");
 
                     b.Property<string>("Legend");
@@ -83,8 +98,6 @@ namespace Sentio.Migrations
                     b.Property<string>("PanelType");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DashboardId");
 
                     b.HasIndex("DatabaseId");
 
@@ -211,6 +224,27 @@ namespace Sentio.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("Sentio.Entities.Dashboard", b =>
+                {
+                    b.HasOne("Sentio.Entities.Database", "Database")
+                        .WithMany("Dashboards")
+                        .HasForeignKey("DatabaseId")
+                        .OnDelete(DeleteBehavior.SetNull);
+                });
+
+            modelBuilder.Entity("Sentio.Entities.DashboardPanel", b =>
+                {
+                    b.HasOne("Sentio.Entities.Dashboard", "Dashboard")
+                        .WithMany("DashboardPanels")
+                        .HasForeignKey("DashboardId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Sentio.Entities.Panel", "Panel")
+                        .WithMany("DashboardPanels")
+                        .HasForeignKey("PanelId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Sentio.Entities.Database", b =>
                 {
                     b.HasOne("Sentio.Entities.User", "User")
@@ -221,10 +255,6 @@ namespace Sentio.Migrations
 
             modelBuilder.Entity("Sentio.Entities.Panel", b =>
                 {
-                    b.HasOne("Sentio.Entities.Dashboard")
-                        .WithMany("Panels")
-                        .HasForeignKey("DashboardId");
-
                     b.HasOne("Sentio.Entities.Database", "Database")
                         .WithMany("Panels")
                         .HasForeignKey("DatabaseId")

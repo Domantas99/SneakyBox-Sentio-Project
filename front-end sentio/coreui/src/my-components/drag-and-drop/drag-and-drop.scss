@@ -1,0 +1,45 @@
+.DragAndDrop {
+    min-width: 300px;
+    margin: 0px 30px;
+    padding: 20px;
+    border: rgb(167, 167, 167) solid 2px;
+    display: flex;
+    flex-direction: column;
+    //justify-content: space-between;
+    &__list {
+    height: 400px;
+    overflow-y: scroll;
+    &-item {
+        border: rgb(45, 196, 255) solid 2px;
+        background-color: rgb(209, 209, 209);
+        margin: 6px 0px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+       
+    }
+   } 
+  
+}
+.container {
+    &-main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    &-data {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    &-submit {
+       // text-align: center;
+       margin:auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 600px;
+    }
+    
+}
+

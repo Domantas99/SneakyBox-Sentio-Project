@@ -20,7 +20,7 @@ function DatabasePanels(props) {
           { console.log(dbPanels,'cia props db panel')}
             <Col xs="6" lg="6">
                 
-                <Link to={`/databases/${dbId}/panels/creation/metric-selection`}>
+                <Link to={`/databases/${dbId}/dashboard/creation/metric-selection`}>
                     <Button color="success">Create new panel</Button>
                 </Link>
                 

@@ -6,14 +6,19 @@ using System.Threading.Tasks;
 
 namespace Sentio.Entities
 {
-    public class DashboardPanels
+    public class DashboardPanel
     {
-        [ForeignKey("DashboardId")]
+
+        //Turi turet dar savo guid nes gali kartotis
+        public Guid Id { get; set; }
+        //[ForeignKey("DashboardId")]
         public virtual Dashboard Dashboard { get; set; }
         public Guid DashboardId { get; set; }
         
-        [ForeignKey("PanelId")]
+        //[ForeignKey("PanelId")]
         public virtual Panel Panel { get; set; }
         public Guid PanelId { get; set; }
+
+
     }
 }

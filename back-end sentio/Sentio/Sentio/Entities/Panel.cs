@@ -9,20 +9,14 @@ namespace Sentio.Entities
     // reikia nustatyt ar tai graph'as ar singlestat
     public class Panel
     {
-        public string PanelType { get; set; } // graph/ single stat
+        public string PanelType { get; set; } 
         public Guid Id { get; set; } = Guid.NewGuid();
         public string Legend { get; set; }
         public virtual ICollection<PanelQuery> PanelQueries { get; set; }
-        // Later add size and other options
         [ForeignKey("DatabaseId")]
         public virtual Database Database { get; set; }
         public Guid DatabaseId { get; set; }
-        
-        public virtual ICollection<Dashboard> Dashboards { get; set; }
+        public virtual ICollection<DashboardPanel> DashboardPanels { get; set; }
 
-        //  nereikia nes turi ne viena dashboard
-        //[ForeignKey("DashboardId")]
-        //public virtual Dashboard Dashboard { get; set; }
-        //public Guid DashboardId { get; set; }
     }
 }

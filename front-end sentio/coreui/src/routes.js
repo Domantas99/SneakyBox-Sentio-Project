@@ -13,6 +13,7 @@ import DatabasePanels from './my-pages/database-panels/database-panels';
 import DatabaseDashboards from './my-pages/database-dashboards/database-dashboards';
 import DatabaseCreation from './my-pages/database-creation/database-creation';
 import AllPanels from './my-pages/all-panels/all-panels';
+import DashboardCreation from './my-pages/dashboard-creation/dashboard-creation';
 
 const Breadcrumbs = React.lazy(() => import('./views/Base/Breadcrumbs'));
 const Cards = React.lazy(() => import('./views/Base/Cards'));
@@ -70,6 +71,7 @@ const routes = [
   { path: '/databases/:dbId/panels/creation/metric-selection/visualization-settings', exact: true, name: 'Settings', component: VisualizationSettings },
  
   { path: '/databases/:dbId/dashboards', exact: true, name: 'Database Dashboards', component: DatabaseDashboards },
+  { path: '/databases/:dbId/dashboards/create', exact: true, name: 'DashboardCreation', component: DashboardCreation },
   { path: '/all-metrics', exact: true, name: 'All Metrics', component: AllMetrics },
   
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },

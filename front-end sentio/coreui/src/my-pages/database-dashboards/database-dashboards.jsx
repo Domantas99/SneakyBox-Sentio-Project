@@ -2,6 +2,7 @@ import React from 'react'
 import { FormGroup, Label, Button, Card, CardBody, CardHeader, Col, Table, Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
+
 export default function DatabaseDashboards(props) {
     const dbId = props.match.params.dbId;
 
@@ -12,10 +13,9 @@ export default function DatabaseDashboards(props) {
             <div>
           { console.log(props,'cia props')}
             <Col xs="6" lg="6">
-                
-                {/* <Link to={`/databases/${dbId}/panels/creation/metric-selection`}> */}
+                <Link to={`/databases/${dbId}/dashboards/create`}>
                     <Button color="success">Create new Dashboard</Button>
-                {/* </Link> */}
+                </Link>
                 
             <Card>
               <CardHeader>

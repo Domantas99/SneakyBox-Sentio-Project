@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { Button, Card, CardBody, CardHeader, Col, Table } from 'reactstrap';
-
+// database dashboard to view data
 export default function DatabaseDashboard(props) {
     const dbId = props.match.params.dbId
     return (

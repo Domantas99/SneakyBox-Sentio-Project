@@ -3,7 +3,7 @@ import { ADD_NEW_PANEL, FILTER_DB_PANELS, DELETE_PANEL, REQUEST_DB_PANELS, RECEI
 function panels(state={ isFetching:false, error:false, panels:[] }, action) {
     debugger
     switch(action.type) {
-        // case ADD_NEW_PANEL:
+        // case ADD_NEW_PANEL:  /// padaryt kad duotu api
         //     return panels(state, action);
         // case DELETE_PANEL:
         //     return panels(state, action);

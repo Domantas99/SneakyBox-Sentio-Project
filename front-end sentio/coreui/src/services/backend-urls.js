@@ -22,7 +22,11 @@ export const DatabaseMetricsAPI = `${RootApiUrl}/Query/`;                   // +
 export const DeleteMetricAPI = `${RootApiUrl}/Query/delete/`;               // + QueryId
 
 // Panels
-export const AddNewPanelAPI = `${RootApiUrl}/Panel/Add`;               
-export const AllPanelsAPI = `${RootApiUrl}/Panel/all-panels/`;     // + userId            
-export const DatabasePanelsApi = `${RootApiUrl}/Panel/db-panels/`;    // + dbid            
-//export const AddNewPanelAPI = `${RootApiUrl}/Query/delete/`;               // + QueryId
+export const AddNewPanelAPI = `${RootApiUrl}/Panel/Add`;                    // POST         
+export const AllPanelsAPI = `${RootApiUrl}/Panel/all-panels/`;              // + userId            
+export const DatabasePanelsApi = `${RootApiUrl}/Panel/db-panels/`;          // + dbid            
+//export const AddNewPanelAPI = `${RootApiUrl}/Query/delete/`;              // + QueryId
+
+
+// Dashboard
+export const AddNewDashboardAPI = `${RootApiUrl}/Dashboards/Add`;

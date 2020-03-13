@@ -21,10 +21,33 @@ namespace Sentio.Context
         public DbSet<Dashboard> Dashboards { get; set; }
         public DbSet<Panel> Panels { get; set; }
         public DbSet<PanelQuery> PanelQueries { get; set; }
-       // public DbSet<DashboardPanels> DashboardPanels { get; set; }
+        public DbSet<DashboardPanel> DashboardPanels { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<DashboardPanel>().HasKey(x => new { x.DashboardId, x.PanelId });
+
+            modelBuilder.Entity<DashboardPanel>()
+                .HasOne(e => e.Dashboard)
+                .WithMany(e => e.DashboardPanels)
+                .HasForeignKey(e => e.DashboardId);
+
+            modelBuilder.Entity<DashboardPanel>()
+                .HasOne(e => e.Panel)
+                .WithMany(e => e.DashboardPanels)
+                .HasForeignKey(e => e.PanelId);
+
+            modelBuilder.Entity<Dashboard>()
+                .HasOne(i => i.Database)
+                .WithMany(b => b.Dashboards)
+                .OnDelete(DeleteBehavior.SetNull);
+
+           
+
+
+
+
+
             modelBuilder.Entity<TrackableQuery>();
                 //.HasOne(i => i.TableProperty)
                 //.WithMany(b => b.TrackableQueries)              

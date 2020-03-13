@@ -10,8 +10,8 @@ using Sentio.Context;
 namespace Sentio.Migrations
 {
     [DbContext(typeof(SentioContext))]
-    [Migration("20200305140901_added-generate-query-prop")]
-    partial class addedgeneratequeryprop
+    [Migration("20200313085407_aaa")]
+    partial class aaa
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -39,6 +39,35 @@ namespace Sentio.Migrations
                     b.ToTable("CollumnProperties");
                 });
 
+            modelBuilder.Entity("Sentio.Entities.Dashboard", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("DatabaseId");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DatabaseId");
+
+                    b.ToTable("Dashboards");
+                });
+
+            modelBuilder.Entity("Sentio.Entities.DashboardPanel", b =>
+                {
+                    b.Property<Guid>("DashboardId");
+
+                    b.Property<Guid>("PanelId");
+
+                    b.HasKey("DashboardId", "PanelId");
+
+                    b.HasIndex("PanelId");
+
+                    b.ToTable("DashboardPanels");
+                });
+
             modelBuilder.Entity("Sentio.Entities.Database", b =>
                 {
                     b.Property<Guid>("Id")
@@ -57,6 +86,44 @@ namespace Sentio.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Databases");
+                });
+
+            modelBuilder.Entity("Sentio.Entities.Panel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("DatabaseId");
+
+                    b.Property<string>("Legend");
+
+                    b.Property<string>("PanelType");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DatabaseId");
+
+                    b.ToTable("Panels");
+                });
+
+            modelBuilder.Entity("Sentio.Entities.PanelQuery", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Legend");
+
+                    b.Property<Guid?>("PanelId");
+
+                    b.Property<Guid>("TrackableQueryId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PanelId");
+
+                    b.HasIndex("TrackableQueryId");
+
+                    b.ToTable("PanelQueries");
                 });
 
             modelBuilder.Entity("Sentio.Entities.QueryCondition", b =>
@@ -159,11 +226,52 @@ namespace Sentio.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("Sentio.Entities.Dashboard", b =>
+                {
+                    b.HasOne("Sentio.Entities.Database", "Database")
+                        .WithMany("Dashboards")
+                        .HasForeignKey("DatabaseId")
+                        .OnDelete(DeleteBehavior.SetNull);
+                });
+
+            modelBuilder.Entity("Sentio.Entities.DashboardPanel", b =>
+                {
+                    b.HasOne("Sentio.Entities.Dashboard", "Dashboard")
+                        .WithMany("DashboardPanels")
+                        .HasForeignKey("DashboardId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Sentio.Entities.Panel", "Panel")
+                        .WithMany("DashboardPanels")
+                        .HasForeignKey("PanelId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Sentio.Entities.Database", b =>
                 {
                     b.HasOne("Sentio.Entities.User", "User")
                         .WithMany("Databases")
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Sentio.Entities.Panel", b =>
+                {
+                    b.HasOne("Sentio.Entities.Database", "Database")
+                        .WithMany("Panels")
+                        .HasForeignKey("DatabaseId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Sentio.Entities.PanelQuery", b =>
+                {
+                    b.HasOne("Sentio.Entities.Panel")
+                        .WithMany("PanelQueries")
+                        .HasForeignKey("PanelId");
+
+                    b.HasOne("Sentio.Entities.TrackableQuery", "TrackableQuery")
+                        .WithMany("PanelQueries")
+                        .HasForeignKey("TrackableQueryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

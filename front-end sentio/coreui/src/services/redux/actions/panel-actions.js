@@ -35,6 +35,8 @@ export function fetchAllPanels(userId) {
     }
 }
 
+// prideti add panel
+
 // // POST Panel
 // function AddNewPanelAction(json) {
 //     return {
