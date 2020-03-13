@@ -1,5 +1,6 @@
 import {RECEIVE_DASHBOARDS,REQUEST_DASHBOARDS, ADD_NEW_DASHBOARD, DELETE_DASHBOARD} from '../actions/dashboards-actions';
 import { AddNewDashboardAPI } from '../../backend-urls';
+import { object } from 'prop-types';
 
 function dashboards(state = { isFetching: false, error: false, user: '',databases:[]}, action,) { 
     switch (action.type) {
@@ -28,17 +29,15 @@ function dashboards(state = { isFetching: false, error: false, user: '',database
             }
             break;
         case ADD_NEW_DASHBOARD:
-            debugger;
-            if(action.json.isValid === true) {
-                const newDB = action.json.returnResult
-                const temp = state.databases
-                temp.push(newDB)
-                return Object.assign({}, state, {
-                    isFetching: false,
-                    databases: temp
+            if(action.json.isValid) {
+                return  Object.assign({}, state, {
+                    error: "Dashboard added successfully"
                 })
-            }    
-            break;
+            }
+             return Object.assign({}, state, {
+                error: "There was an error adding dashboard"
+            })             
+            
         default: 
             return state     
     }

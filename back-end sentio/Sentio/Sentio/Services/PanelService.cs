@@ -46,7 +46,7 @@ namespace Sentio.Services
             };
             var res = _context.Panels.Add(panel);
             // res = res.Entity();
-            await _context.SaveChangesAsync();
+            int x = await _context.SaveChangesAsync();
             //var o = 2;
 
             //var panel = _mapper.Map<Panel>(panelModel);

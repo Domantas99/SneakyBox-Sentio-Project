@@ -9,6 +9,7 @@ import tempPanelOptionsReducer from '../reducers/tempPanelOptions-reducer';
 import panelsReducer from '../reducers/panels-reducer';
 
 import thunk from 'redux-thunk';
+import dashboardsReducer from '../reducers/dashboards-reducer';
 
 const allReducers = combineReducers({
     user: userReducer,
@@ -18,7 +19,8 @@ const allReducers = combineReducers({
     tempProperties: tempPropertiesReducer,
     tempPanelOptions: tempPanelOptionsReducer,
     metrics: metricsReducer,
-    panels: panelsReducer
+    panels: panelsReducer,
+    dashboards: dashboardsReducer
 })
 
 export const store = createStore(allReducers, {
@@ -29,7 +31,8 @@ export const store = createStore(allReducers, {
     tempProperties: {},
     tempPanelOptions: {},
     metrics: {},
-    panels: {}
+    panels: {},
+    dashboardsReducer: {}
 },
     compose(applyMiddleware(thunk)),
     window.devToolsExtension && window.devToolsExtension()

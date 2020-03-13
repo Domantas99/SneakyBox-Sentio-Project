@@ -2,7 +2,7 @@ import React,{Component} from 'react'
 import { connect } from 'react-redux';
 import './drag-and-drop.scss';
 import {Button, Input} from 'reactstrap';
-
+import { addDashboard } from '../../services/redux/actions/dashboards-actions';
 
 
 let uniqId=0;
@@ -17,12 +17,14 @@ class DragDrop extends React.Component {
     }
     
     onSubmit = () => {
-        const obj = { 
+        debugger;
+        const obj = JSON.stringify({ 
             Name: this.state.name,
             DatabaseId: this.props.dbId,
             Panels: this.state.container
-        }
+        });
 
+        this.props.addDashboard(obj);
 
     }
 
@@ -104,7 +106,7 @@ class DragDrop extends React.Component {
                     
                         <label htmlFor="">Enter your dashboard name</label>
                         <Input onChange={(e) => this.onNameChange(e.target.value)}></Input>
-                        <Button>Sumbit</Button>
+                        <Button onClick={() => this.onSubmit()}>Sumbit</Button>
                     
                 </div>
             </div>
@@ -115,6 +117,8 @@ class DragDrop extends React.Component {
 const mapStateToProps = state => ({
     panels: state.panels.panels
 });
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+    addDashboard: json => dispatch(addDashboard(json))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(DragDrop)
