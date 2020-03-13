@@ -10,7 +10,7 @@ namespace Sentio.Entities
     {
 
         //Turi turet dar savo guid nes gali kartotis
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
         //[ForeignKey("DashboardId")]
         public virtual Dashboard Dashboard { get; set; }
         public Guid DashboardId { get; set; }

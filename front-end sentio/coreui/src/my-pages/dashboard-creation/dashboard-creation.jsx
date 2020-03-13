@@ -18,7 +18,7 @@ function DashboardCreation(props) {
     return (
         // <div className="flexbox">
         <div >
-            
+            {console.log(props, 'cia props db create')}
             <DragDrop data={ panels }></DragDrop>
             
             {/* <Board id="board-1" className="flexbox__board">

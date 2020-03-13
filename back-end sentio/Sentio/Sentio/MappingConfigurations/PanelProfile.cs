@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Sentio.Entities;
 using Sentio.Models;
-using Sentio.Models.Panel;
+using Sentio.Models.DashboardCreation;
 using System;
 using System.Collections.Generic;
 using System.Linq;

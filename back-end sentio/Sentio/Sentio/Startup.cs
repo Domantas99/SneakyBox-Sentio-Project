@@ -56,7 +56,7 @@ namespace Sentio
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IQueryService, QueryService>();
             services.AddScoped<IPanelService, PanelService>();
-
+            services.AddScoped<IDashboardService, DashboardService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);

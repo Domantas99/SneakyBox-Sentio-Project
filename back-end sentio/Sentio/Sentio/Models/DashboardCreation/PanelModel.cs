@@ -1,4 +1,5 @@
-﻿using Sentio.Models.Panel;
+﻿
+using Sentio.Models.DashboardCreation;
 using System;
 using System.Collections.Generic;
 using System.Linq;

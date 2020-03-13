@@ -11,7 +11,7 @@ namespace Sentio.Entities
         //public Dashboard() {
         //    this.Panels = new HashSet<Panel>();
         //}
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
         public string Name { get; set; }
         public virtual ICollection<DashboardPanel> DashboardPanels { get; set; }
         //public virtual ICollection<Panel> Panels { get; set; }
