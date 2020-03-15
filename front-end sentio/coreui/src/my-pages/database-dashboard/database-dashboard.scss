@@ -1,5 +1,11 @@
 .db-dash-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
+
+    &-item {
+        width: 400px;
+        margin: 10px;
+        
+    }
 }

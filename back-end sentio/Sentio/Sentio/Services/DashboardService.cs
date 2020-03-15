@@ -27,15 +27,17 @@ namespace Sentio.Services
                 Guid newDashboardId = Guid.NewGuid();
                 var panels = dashboardModel.Panels;
                 var dashboardPanelList = new List<DashboardPanel>();
+                
                 for (int i = 0; i < panels.Count; i++)
                 {
                     var dbPanel = new DashboardPanel { DashboardId = newDashboardId, PanelId = panels.ElementAt(i).Id };
                     //_context.DashboardPanels.Add(dbPanel);
                     dashboardPanelList.Add(dbPanel);
                 }
-               // _context.SaveChanges();
-                var dashboard = new Dashboard { DatabaseId = newDashboardId, Name = dashboardModel.Name, DashboardPanels = dashboardPanelList };
+                // _context.SaveChanges();
+                var dashboard = new Dashboard { Id = newDashboardId, DatabaseId = newDashboardId, Name = dashboardModel.Name, DashboardPanels = dashboardPanelList };
                 _context.Dashboards.Add(dashboard);
+                //var a = _context.SaveChanges();
                 var x = await _context.SaveChangesAsync();
 
                 return new ResponseResult<ReceivedDashboardModel> { IsValid = true, Message = "Successfully added", ReturnResult = dashboardModel };

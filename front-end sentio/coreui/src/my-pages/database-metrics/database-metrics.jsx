@@ -14,6 +14,7 @@ function DatabaseMetrics(props) {
 
     function onDeleteMetricClick(metricId) {
       debugger
+      //props.panels.find(panel => panel)
       props.deleteMetric(metricId)
     }
 
@@ -59,7 +60,10 @@ function DatabaseMetrics(props) {
     )
 }
 
-const mapStateToProps = state => ({ metrics: state.metrics });
+const mapStateToProps = state => ({ 
+  metrics: state.metrics, 
+  panels: state.panels.panels
+});
 const mapDispatchToProps = dispatch => ({
   getMetrics: dbId => dispatch(fetchDbMetrics(dbId)),
   deleteMetric: metricId => dispatch(DeleteMetric(metricId))

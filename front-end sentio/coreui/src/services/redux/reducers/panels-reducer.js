@@ -22,7 +22,11 @@ function panels(state={ isFetching:false, error:false, panels:[] }, action) {
                     panels: result.returnResult
                 })
             }
-            return Object.assign({}, state, {isFetching:false, error:true});
+            return Object.assign({}, state, {
+                isFetching: false,
+                error: true,
+                panels: []
+            })
         default: 
             return state
     }

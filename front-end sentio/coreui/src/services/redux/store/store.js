@@ -31,8 +31,11 @@ export const store = createStore(allReducers, {
     databases: {},
     tempProperties: {},
     tempPanelOptions: {},
-    metrics: {},
-    panels: {},
+    metrics: { metrics: []},
+    panels: {
+        isFetching:true,
+        error: false
+    },
     dashboardsReducer: {}
 },
     compose(applyMiddleware(thunk))

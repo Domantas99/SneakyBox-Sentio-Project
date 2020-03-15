@@ -42,7 +42,8 @@ namespace Sentio.Context
                 .WithMany(b => b.Dashboards)
                 .OnDelete(DeleteBehavior.SetNull);
 
-           
+            modelBuilder.Entity<Panel>().HasMany(dp => dp.DashboardPanels).WithOne(a => a.Panel);
+            modelBuilder.Entity<Dashboard>().HasMany(dp => dp.DashboardPanels).WithOne(a => a.Dashboard);
 
 
 
