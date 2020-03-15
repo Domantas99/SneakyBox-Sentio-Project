@@ -10,7 +10,6 @@ function Databases({userId, databases, getUserDatabases, deleteDb}) {
     const history = useHistory();
     
     useEffect(()=>{  
-        debugger
         getUserDatabases(userId)
      }, [])
 

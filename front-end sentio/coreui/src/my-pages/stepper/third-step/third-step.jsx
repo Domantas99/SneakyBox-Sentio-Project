@@ -16,7 +16,6 @@ function ThirdStep(props) {
 
     console.log(options, 'cia options')
     function onSubmit() {
-      debugger;     
       const json = JSON.stringify({ 
         Name: MetricName,
         TableId: props.tempProperties.tableId,

@@ -31,11 +31,13 @@ function dashboards(state = { isFetching: false, error: false, user: '',database
         case ADD_NEW_DASHBOARD:
             if(action.json.isValid) {
                 return  Object.assign({}, state, {
-                    error: "Dashboard added successfully"
+                    error: false,
+                    message: "Dashboard added successfully"
                 })
             }
              return Object.assign({}, state, {
-                error: "There was an error adding dashboard"
+                error: true,
+                message: "There was an error adding dashboard"
             })             
             
         default: 
@@ -44,7 +46,6 @@ function dashboards(state = { isFetching: false, error: false, user: '',database
 }
 
 export default function dashboardsReducer(state ='', action) {
-    debugger;
     switch(action.type) {
         case REQUEST_DASHBOARDS:
             return  dashboards(state, action)

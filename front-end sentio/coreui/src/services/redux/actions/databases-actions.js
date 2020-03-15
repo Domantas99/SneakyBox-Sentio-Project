@@ -4,7 +4,7 @@ export const RECEIVE_DATABASE_BY_UID_RESULT = 'databases:receive_Db_By_Uid_Resul
 export const DELETE_DATABASE = 'databases:delete_database_by_dbId';
 export const ADD_NEW_DATABASE = 'databases:add_new_database';
 
-
+// Get databases
 function requestDatabasesByUserIdResult(userId) {   
     return {
         type: REQUEST_DATABASE_BY_UID_RESULT,
@@ -13,7 +13,6 @@ function requestDatabasesByUserIdResult(userId) {
 }
 
 function receiveDatabasesByUserIdResult(userId, json) { 
-    //console.log(json, 'cia db tas json');  
     return {
         type: RECEIVE_DATABASE_BY_UID_RESULT,
         userId,
@@ -21,8 +20,6 @@ function receiveDatabasesByUserIdResult(userId, json) {
         receivedAt: Date.now()
     }
 }
-
-
 
 export function fetchUserDatabases(userId) {
     return dispatch => {
@@ -34,7 +31,7 @@ export function fetchUserDatabases(userId) {
     }
 }
 
-
+// Delete database
 export function deleteDatabase(dbId) {
     return dispatch => {
         return fetch(DatabaseDeleteAPI + dbId, {
@@ -51,6 +48,7 @@ function deleteDBAction(json) {
     }
 } 
 
+// Add database
 function AddNewDBAction(json) {
     return {
         type: ADD_NEW_DATABASE,
@@ -59,7 +57,6 @@ function AddNewDBAction(json) {
 }
 
 export function AddNewDatabaseToDB(json) {
-    debugger
     return dispatch => {
         return fetch(AddNewDatabaseAPI, {
             method: 'POST',

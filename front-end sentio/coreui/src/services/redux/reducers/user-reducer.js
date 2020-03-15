@@ -4,7 +4,6 @@ function user(state = { isFetching: false,
                         didInvalidate: false,
                         user: ''},
                         action){
-    debugger;
      
     switch (action.type) {
         case REQUEST_VALIDATION_RESULT:
@@ -13,7 +12,6 @@ function user(state = { isFetching: false,
                 didInvalidate: false
             })
         case RECEIVE_VALIDATION_RESULT:
-            debugger
             let user;
             let didInv;
             if(!action.validationResult.isValid) {

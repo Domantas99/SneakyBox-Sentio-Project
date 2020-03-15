@@ -26,7 +26,6 @@ function databases(state = { isFetching: false, user: '',databases:[]}, action,)
             }
             break;
         case ADD_NEW_DATABASE:
-            debugger;
             if(action.json.isValid === true) {
                 const newDB = action.json.returnResult
                 const temp = state.databases
@@ -43,7 +42,6 @@ function databases(state = { isFetching: false, user: '',databases:[]}, action,)
 }
 
 export default function DatabasesReducer(state ='', action) {
-    debugger;
     switch(action.type) {
         case REQUEST_DATABASE_BY_UID_RESULT:
             return Object.assign({}, state, {

@@ -40,7 +40,6 @@ function SecondStep(props) {
     }
 
     function onSubmit() {
-        debugger;
         const metricOptions = { tableId: tableId, options: propertyOptionArray.filter(p => p.include === true) };
         console.log(metricOptions)
 

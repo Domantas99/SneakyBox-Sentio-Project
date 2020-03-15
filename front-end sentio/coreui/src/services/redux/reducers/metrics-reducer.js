@@ -4,16 +4,13 @@ import { DELETE_DATABASE } from '../actions/databases-actions';
 function metrics(state = { isFetching:false, error: false,metrics:[] }, action) {
     switch(action.type) {
         case ADD_NEW_METRIC:
-            debugger;
             console.log(state, 'cia state')
             console.log(action, 'cia action')
             //metrics.push(act) 
             return state
         case REQUEST_DB_METRICS:
-            debugger;
             return Object.assign({}, state, { isFetching: true, error: false });
         case RECEIVE_DB_METRICS:
-            debugger;
             const result = action.result   // reiktu padaryti, kad pridetu prie praeitu [...praeitos, naujos] ir paskui atfiltruotu
             if(result.isValid) {
                 return Object.assign({}, state, {
@@ -39,7 +36,6 @@ function metrics(state = { isFetching:false, error: false,metrics:[] }, action) 
 }
 
 export default function metricsReducer(state='', action) {
-    debugger;
     switch(action.type) {
         case ADD_NEW_METRIC:
             return metrics(state, action)

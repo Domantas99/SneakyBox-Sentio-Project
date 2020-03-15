@@ -7,7 +7,6 @@ export const DELETE_METRIC_IN_DB = 'metrics:delete_in_database';
 
 // GET metrics
 function requestMetricsAction(databaseId) {
-    debugger;
     return {
         type: REQUEST_DB_METRICS,
         databaseId
@@ -32,7 +31,7 @@ export function fetchDbMetrics(databaseId) {
     }
 }
 
-// POST metric
+// Add metric
 function AddNewMetricAction(json) {
     return {
         type: ADD_NEW_METRIC,
@@ -41,7 +40,6 @@ function AddNewMetricAction(json) {
 }
 
 export function AddNewMetric(json) {
-    debugger
     return dispatch => {
         return fetch(AddNewMetricAPI, {
             method: 'POST',
@@ -54,7 +52,7 @@ export function AddNewMetric(json) {
     }
 }
 
-// DELETE metric
+// Delete metric
 function DeleteMetricInStoreAction(metricId){
     return {
         type: DELETE_METRIC_IN_STORE,
@@ -69,15 +67,12 @@ function DeleteMetricInDbResultAction(jsonResult){
 }
 
 export function DeleteMetric(metricId) {
-    debugger;
     return dispatch => {
-        // issisaugoti metric ir jei is api gautas ats kad nesitryne, prideti atgal
         dispatch(DeleteMetricInStoreAction(metricId))
-        //dispatch(DeleteMetricInDBAction(metricId))
         return fetch(DeleteMetricAPI+metricId, {
             method: 'DELETE'
         }).then(res => res.json())
-            .then(json => // if response blogas
+            .then(json => 
                  dispatch(DeleteMetricInDbResultAction(json)))
     }
 }

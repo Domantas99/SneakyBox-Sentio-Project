@@ -17,15 +17,12 @@ class DragDrop extends React.Component {
     }
     
     onSubmit = () => {
-        debugger;
         const obj = JSON.stringify({ 
             Name: this.state.name,
             DatabaseId: this.props.dbId,
             Panels: this.state.container
         });
-
         this.props.addDashboard(obj);
-
     }
 
     onNameChange = (value) => {
@@ -56,9 +53,7 @@ class DragDrop extends React.Component {
     }
     
     onRemoveClick = uniqueId => {
-        debugger;
-        let { container } = this.state;
-        
+        let { container } = this.state; 
         container =  container.filter(x=> x.uniqId !== uniqueId)
         this.setState({ container });
     }

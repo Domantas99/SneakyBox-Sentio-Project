@@ -57,7 +57,25 @@ namespace Sentio.Services
             return new ResponseResult<PanelModel> { IsValid=true, Message="Added successfully", ReturnResult = panelModel};
         }
 
-        // irgi nebutina nes pagal filtra atrinks
+        public async Task<ResponseResult<Panel>> DeletePanel(Guid panelId)
+        {
+            var panel = await _context.Panels.FirstOrDefaultAsync(p => p.Id == panelId);
+            string message;
+            bool flag = true;
+            if (panel != null)
+            {
+                _context.Panels.Remove(panel);
+                _context.SaveChanges();
+                message = "Panel removed successfully";
+            }
+            else {
+                message = "Panel not found";
+                flag = false;
+            } 
+            return new ResponseResult<Panel> { IsValid = flag, Message = message, ReturnResult = panel };
+        }
+
+        // Unnecessary(but maybe be needed later on) because there is filtering by dbId in frontend.
         public async Task<ResponseResult<ICollection<Panel>>> GetAllDbPanels(Guid databaseId)
         {
             var panels = await _context.Panels.Where(p => p.DatabaseId == databaseId).ToListAsync();

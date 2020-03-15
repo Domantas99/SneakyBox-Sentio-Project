@@ -42,6 +42,12 @@ namespace Sentio.Controllers
             return result;
         }
 
+        [HttpDelete("delete/{panelId}")]
+        public async Task<ActionResult<ResponseResult<Panel>>> DeletePanel(Guid panelId) {
+            var result = await _panelService.DeletePanel(panelId);
+            return result;
+        } 
+
 
 
     }

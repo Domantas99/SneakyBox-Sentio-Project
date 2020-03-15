@@ -13,7 +13,6 @@ function DatabaseMetrics(props) {
     },[])
 
     function onDeleteMetricClick(metricId) {
-      debugger
       //props.panels.find(panel => panel)
       props.deleteMetric(metricId)
     }

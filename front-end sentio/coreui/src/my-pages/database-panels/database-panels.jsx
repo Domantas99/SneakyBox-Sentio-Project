@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { Button, Card, CardBody, CardHeader, Col, Table } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { fetchAllPanels } from '../../services/redux/actions/panel-actions';
+import { fetchAllPanels, DeletePanel } from '../../services/redux/actions/panel-actions';
 
 function DatabasePanels(props) {
     const dbId = props.match.params.dbId;
@@ -13,6 +13,9 @@ function DatabasePanels(props) {
       props.getPanels(userId);         
     }, [])
 
+    function onDeleteClick(panelId) {
+      props.deletePanel(panelId);
+    }
 
     return (
       
@@ -47,7 +50,7 @@ function DatabasePanels(props) {
                           <Button className="px-3" color="warning"><i className="cui-pencil icons"></i></Button>
                         </td>
                         <td>
-                          <Button className="px-3" color="danger"><i className="cui-trash icons"></i></Button>
+                          <Button onClick={() => onDeleteClick(panel.id)} className="px-3" color="danger"><i className="cui-trash icons"></i></Button>
                         </td>
                       </tr>)
                     }
@@ -64,7 +67,8 @@ const mapStateToProps = state => ({
   panels: state.panels.panels
 });
 const mapDispatchToProps = dispatch => ({
-  getPanels: userId => dispatch(fetchAllPanels(userId))
+  getPanels: userId => dispatch(fetchAllPanels(userId)),
+  deletePanel: panelId => dispatch(DeletePanel(panelId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DatabasePanels)

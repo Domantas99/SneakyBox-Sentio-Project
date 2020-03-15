@@ -26,7 +26,6 @@ function MetricSelection(props) {
     }
 
     function onCheckBoxClick(metric) {
-      debugger;
       const index = selectedMetrics.indexOf(metric);
       if(index > -1) {
         selectedMetrics.splice(index, 1);
@@ -38,7 +37,6 @@ function MetricSelection(props) {
 
     function onSubmit() {
       console.log(selectedMetrics)
-      debugger;
       if(visualization !== 'No Option') {
       const obj = {
         visualization: visualization,

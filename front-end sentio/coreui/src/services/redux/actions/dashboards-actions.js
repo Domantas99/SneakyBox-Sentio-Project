@@ -4,9 +4,8 @@ export const RECEIVE_DASHBOARDS = 'dashboards:receive_dashboard';
 export const DELETE_DASHBOARD = 'dashboards:delete_dashboard';
 export const ADD_NEW_DASHBOARD = 'dashboards:add_new_dashboard';
 
-
+// Add dashboard
 export function AddNewDashboardAction(json) {
-    debugger;
     return {
         type: ADD_NEW_DASHBOARD,
         json
@@ -14,7 +13,6 @@ export function AddNewDashboardAction(json) {
 }
 
 export  function  addDashboard(json){
-    debugger
     return dispatch => {
         return  fetch(AddNewDashboardAPI, {
             method: 'POST',
@@ -27,6 +25,7 @@ export  function  addDashboard(json){
     }
 }
 
+// Delete dashboard
 export function DeleteDashboard(dashboardId) {
     return {
         type: REQUEST_DASHBOARDS,
@@ -34,6 +33,7 @@ export function DeleteDashboard(dashboardId) {
     }
 }
 
+// Get dashboards
 function RequestDashboards(userId) {
     return {
         type: REQUEST_DASHBOARDS,
@@ -57,4 +57,3 @@ export function fetchDashboards(userId) {
             .then(json => dispatch(ReceiveDashboards(json)))
     }
 }
-
