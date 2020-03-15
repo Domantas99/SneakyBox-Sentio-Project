@@ -21,6 +21,9 @@ namespace Sentio.Entities
         public virtual ICollection<QueryCondition> QueryConditions { get; set; }
         public string GeneratedQuery { get; set; }
         public virtual ICollection<PanelQuery> PanelQueries { get; set; }
+        [ForeignKey("DatabaseId")]
+        public virtual Database Database { get; set; }
+        public Guid DatabaseId { get; set; }
 
     }
 }

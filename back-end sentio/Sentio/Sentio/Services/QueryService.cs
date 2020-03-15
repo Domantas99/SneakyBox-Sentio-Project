@@ -72,7 +72,7 @@ namespace Sentio.Services
                     Value = conditions.FilterValue,
                     CollumnPropertyId = conditions.TableProperty.Id,
                     ConditionType = conditions.FilterOption,
-                    TrackableQueryId = trackableQueryId
+                    TrackableQueryId = trackableQueryId                    
                 };
                 conditionsList.Add(queryCondition);
             }
@@ -88,7 +88,8 @@ namespace Sentio.Services
                 TableId = queryConditions.TableId,
                 QueryConditions = conditionsList,
                 Id = trackableQueryId,
-                GeneratedQuery = generatedQuery
+                GeneratedQuery = generatedQuery,
+                DatabaseId = queryConditions.DatabaseId
             };
 
             _context.TrackableQueries.Add(trackableQuery);

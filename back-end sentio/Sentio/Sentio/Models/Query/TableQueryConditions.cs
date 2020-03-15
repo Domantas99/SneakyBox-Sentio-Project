@@ -12,5 +12,6 @@ namespace Sentio.Models
         public string TableName { get; set; }  // to generate table from
         public ICollection<QueryConditionModel> Conditions { get; set; }
         public string Operation { get; set; }
+        public Guid DatabaseId { get; set; }
     }
 }

@@ -34,14 +34,22 @@ namespace Sentio.Generators
 
                 return query;
             }
-            else if (tableQueryConditions.Operation == "AVR" && tableQueryConditions.Conditions.Count == 1) {
+            else if (tableQueryConditions.Operation == "AVERAGE" && tableQueryConditions.Conditions.Count == 1) {
                 var condition = tableQueryConditions.Conditions.ElementAt(0);
-                string query = String.Format("SELECT AVR({0}) FROM {1} WHERE {2}{3}{4};",
-                    condition.TableProperty.CollumnName, 
-                    tableQueryConditions.TableName, 
-                    condition.TableProperty.CollumnName,
-                    condition.FilterOption, 
-                    condition.FilterValue);
+                string query;
+                if (condition.FilterOption == "No Option")
+                {
+                    query = $"SELECT AVG({condition.TableProperty.CollumnName}) FROM {tableQueryConditions.TableName};";
+                }
+                else
+                {
+                    query = String.Format("SELECT AVG({0}) FROM {1} WHERE {2}{3}{4};",
+                        condition.TableProperty.CollumnName,
+                        tableQueryConditions.TableName,
+                        condition.TableProperty.CollumnName,
+                        condition.FilterOption,
+                        condition.FilterValue);
+                }
                 return query;
             }
 

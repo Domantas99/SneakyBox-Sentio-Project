@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\SneakyBox Sentio\\back-end sentio\\Sentio\\Sentio\\Sentio.csproj": {}
+    "C:\\Users\\User\\Desktop\\Programavimas\\Sneakybox\\SneakyBox-Sentio-Project\\back-end sentio\\Sentio\\Sentio\\Sentio.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\SneakyBox Sentio\\back-end sentio\\Sentio\\Sentio\\Sentio.csproj": {
+    "C:\\Users\\User\\Desktop\\Programavimas\\Sneakybox\\SneakyBox-Sentio-Project\\back-end sentio\\Sentio\\Sentio\\Sentio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\SneakyBox Sentio\\back-end sentio\\Sentio\\Sentio\\Sentio.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\Programavimas\\Sneakybox\\SneakyBox-Sentio-Project\\back-end sentio\\Sentio\\Sentio\\Sentio.csproj",
         "projectName": "Sentio",
-        "projectPath": "C:\\Users\\User\\Desktop\\SneakyBox Sentio\\back-end sentio\\Sentio\\Sentio\\Sentio.csproj",
+        "projectPath": "C:\\Users\\User\\Desktop\\Programavimas\\Sneakybox\\SneakyBox-Sentio-Project\\back-end sentio\\Sentio\\Sentio\\Sentio.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\SneakyBox Sentio\\back-end sentio\\Sentio\\Sentio\\obj\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\Programavimas\\Sneakybox\\SneakyBox-Sentio-Project\\back-end sentio\\Sentio\\Sentio\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
