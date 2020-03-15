@@ -21,8 +21,6 @@ namespace Sentio.Controllers
 
         public QueryController(IQueryService queryService) {
             _queryService = queryService;
-            
-            
         }
 
 
@@ -53,11 +51,10 @@ namespace Sentio.Controllers
             return result;
         }
 
-        [HttpGet]
-        [Route("getAll")]
-        public async Task<ActionResult<ResponseResult<ICollection<TrackableQuery>>>> GetAllQueries(Guid databasebId)
+        [HttpGet("getAll/{userId}")]
+        public async Task<ActionResult<ResponseResult<ICollection<TrackableQuery>>>> GetAllQueries(Guid userId)
         {
-            var result = await _queryService.GetAllQueries();
+            var result = await _queryService.GetAllQueries(userId);
             return result;
         }
 

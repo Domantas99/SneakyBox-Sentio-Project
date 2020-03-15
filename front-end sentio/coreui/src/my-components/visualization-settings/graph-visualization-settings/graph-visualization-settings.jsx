@@ -43,8 +43,9 @@ function GraphVisualizationSettings(props, { dbId }) {
         body: panelObj
       }).then(res => res.json())
           .then(json => {
+            debugger
             if(json.isValid) {
-              history.push(`databases/${props.dbId}/panels`);
+              history.push(`/databases/${props.dbId}/panels`);
             }
           })
       

@@ -17,7 +17,7 @@ export const DatabaseTablesAPI = `${RootApiUrl}/Databasetables/`;           // +
 
 // Metrics
 export const AddNewMetricAPI = `${RootApiUrl}/Query/CreateNewQuery`;        //
-export const AllMetricsAPI = `${RootApiUrl}/Query/getAll`;        //
+export const AllMetricsAPI = `${RootApiUrl}/Query/getAll/`;                 // + userId
 export const DatabaseMetricsAPI = `${RootApiUrl}/Query/`;                   // + DatabaseId
 export const DeleteMetricAPI = `${RootApiUrl}/Query/delete/`;               // + QueryId
 

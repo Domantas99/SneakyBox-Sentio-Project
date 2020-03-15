@@ -25,7 +25,8 @@ function ThirdStep(props) {
           FilterOption: opt.filterOption,
           FilterValue: opt.filter
         })),
-        Operation: Operation
+        Operation: Operation,
+        DatabaseId: dbId
       });
       props.addNewMetric(json)
         .then(res => res.json)
@@ -90,7 +91,7 @@ function ThirdStep(props) {
                   <option value="No Option">No option</option>
                   <option value="COUNT">COUNT</option>  
                   { 
-                      (options.length === 1 && options[0].property.collumnType==='int') && <option value="Without">Average</option> 
+                      (options.length === 1 && options[0].property.collumnType==='int') && <option value="AVERAGE">Average</option> 
                   }                             
               </Input>  
             </FormGroup>

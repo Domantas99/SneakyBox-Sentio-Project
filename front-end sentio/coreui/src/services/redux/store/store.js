@@ -23,6 +23,7 @@ const allReducers = combineReducers({
     dashboards: dashboardsReducer
 })
 
+
 export const store = createStore(allReducers, {
     user: {firstName:'Lalal'},//{FirstName:"Domantas", id: "13244"},
     queryData: [ 5 , 4, 44],
@@ -34,6 +35,6 @@ export const store = createStore(allReducers, {
     panels: {},
     dashboardsReducer: {}
 },
-    compose(applyMiddleware(thunk)),
-    window.devToolsExtension && window.devToolsExtension()
+    compose(applyMiddleware(thunk))
+   // window.devToolsExtension && window.devToolsExtension()
 );

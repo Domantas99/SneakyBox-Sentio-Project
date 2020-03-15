@@ -14,7 +14,7 @@ namespace Sentio.Services.ServiceInterfaces
         Task<ResponseResult<ICollection<TrackableQuery>>> GetDatabaseQueries(Guid databaseId);
         Task CreateMetricsJson(MetricFileProps props);
         Task<ResponseResult<TrackableQuery>> DeleteQuery(Guid queryId);
-        Task<ResponseResult<ICollection<TrackableQuery>>> GetAllQueries(); //reikes padaryt kad pagal UID
+        Task<ResponseResult<ICollection<TrackableQuery>>> GetAllQueries(Guid userId);
        
 
     }
