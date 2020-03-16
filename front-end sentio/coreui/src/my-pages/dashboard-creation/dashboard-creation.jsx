@@ -9,7 +9,7 @@ import {fetchAllPanels} from '../../services/redux/actions/panel-actions';
 function DashboardCreation(props) {
     const userId = props.user.id;
     const panels = props.panels ? props.panels : [];
-
+    const dbId = props.match.params.dbId;
     useEffect(() => {
         props.getPanels("72c50eeb-bb66-47fa-ae1d-63eacbeb74fe")
         // props.getPanels(userId)
@@ -18,8 +18,9 @@ function DashboardCreation(props) {
     return (
         // <div className="flexbox">
         <div >
+            {/* paduot db id */}
             {console.log(props, 'cia props db create')}
-            <DragDrop data={ panels }></DragDrop>
+            <DragDrop data={ panels } dbId={ dbId }></DragDrop>
             
             {/* <Board id="board-1" className="flexbox__board">
                 <Card id="card-1" className="flexbox__board-card" draggable="true">

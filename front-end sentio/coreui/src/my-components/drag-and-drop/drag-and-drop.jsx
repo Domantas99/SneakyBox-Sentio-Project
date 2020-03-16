@@ -17,6 +17,7 @@ class DragDrop extends React.Component {
     }
     
     onSubmit = () => {
+        debugger;
         const obj = JSON.stringify({ 
             Name: this.state.name,
             DatabaseId: this.props.dbId,
