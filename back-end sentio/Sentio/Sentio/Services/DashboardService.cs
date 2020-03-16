@@ -57,7 +57,7 @@ namespace Sentio.Services
 
         public async Task<ResponseResult<ICollection<Dashboard>>> GetUserDashboards(Guid userId)
         {
-            var result =_context.Dashboards.Where(d => d.Database.UserId == userId).Include(d => d.DashboardPanels).ToList();
+            var result =_context.Dashboards.Include(d=>d.Database).Where(d => d.Database.UserId == userId).Include(d => d.DashboardPanels).ToList();
             return new ResponseResult<ICollection<Dashboard>> { IsValid = true, Message = "Success", ReturnResult = result };
         }
 

@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FormGroup, Label, Button, Card, CardBody, CardHeader, Col, Table, Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fetchDashboards } from '../../services/redux/actions/dashboards-actions';
 
-
-export default function DatabaseDashboards(props) {
+function DatabaseDashboards(props) {
     const dbId = props.match.params.dbId;
+    const userId = props.user.id;
+    debugger;
+    const dashboards = (!props.dashboards.isFetching && !props.dashboards.error) ? props.dashboards.dashboards.filter(x=> x.databaseId === dbId) : [];
+    useEffect(() => {
+      debugger
+      props.getDashboards(userId)
+    }, []) 
 
+    function onDeleteDashboardClick(dashboardId){
+      
+    }
     
     return (
         <div>
@@ -25,14 +36,23 @@ export default function DatabaseDashboards(props) {
                 <Table responsive>
                   <thead>
                     <tr>
-                        <th>Database Name</th>
+                        <th>Dashboard Name</th>
                         <th>Panels Count</th>  
                         <th>Edit</th>  
                         <th>Remove</th>  
                     </tr>
                   </thead>
                   <tbody>
-                    
+                    {
+                      dashboards.map(d => (
+                        <tr>
+                          <td>{d.name}</td>
+                          <td>{d.dashboardPanels.length}</td>
+                          <td><Button className="px-3"  color="warning"><i className="cui-pencil icons"></i></Button></td>
+                          <td><Button className="px-3" onClick={() => onDeleteDashboardClick(d.id)} color="danger"><i className="cui-trash icons"></i></Button></td>
+                        </tr>
+                      ))
+                    }
                   </tbody>
                 </Table>         
               </CardBody>
@@ -42,3 +62,13 @@ export default function DatabaseDashboards(props) {
         </div>
     )
 }
+const mapStateToProps = state => ({ 
+  user: state.user,
+  dashboards: state.dashboards,
+  state
+})
+const mapDispatchToProps = dispatch => ({
+  getDashboards: userId => dispatch(fetchDashboards(userId))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(DatabaseDashboards)

@@ -29,4 +29,5 @@ export const PanelDeleteApi = `${RootApiUrl}/Panel/delete/`;                // +
 
 
 // Dashboard
-export const AddNewDashboardAPI = `${RootApiUrl}/Dashboards/Add`;
+export const AddNewDashboardAPI = `${RootApiUrl}/Dashboards/Add`;           // Post
+export const GetUserDashboardsAPI = `${RootApiUrl}/Dashboards/all/`;         // + userId

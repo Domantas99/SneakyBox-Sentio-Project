@@ -3,21 +3,26 @@ import { AddNewDashboardAPI } from '../../backend-urls';
 import { object } from 'prop-types';
 
 function dashboards(state = { isFetching: false, error: false, user: '',databases:[]}, action,) { 
+    debugger;
     switch (action.type) {
         case REQUEST_DASHBOARDS:
             return Object.assign({}, state, {
                 isFetching: true,
                 error: false
-            })// replacing su dashboards
+            })
         case RECEIVE_DASHBOARDS:
-            const result = action.db_By_Uid_Result
-            if(result.isValid) {   
+            debugger
+            if(action.result.isValid) {   
                 return Object.assign({}, state, {
                     isFetching: false,
-                    databases: result.databases
+                    dashboards: action.result.returnResult
                 })
             }
-            break;
+            return Object.assign({}, state, {
+                isFetching: false,
+                error: true,
+                dashboards: []
+            })
         case DELETE_DASHBOARD: 
             if(action.json.isValid === true) { 
                 const deletedDb = action.json.returnResult
@@ -46,6 +51,7 @@ function dashboards(state = { isFetching: false, error: false, user: '',database
 }
 
 export default function dashboardsReducer(state ='', action) {
+    debugger;
     switch(action.type) {
         case REQUEST_DASHBOARDS:
             return  dashboards(state, action)

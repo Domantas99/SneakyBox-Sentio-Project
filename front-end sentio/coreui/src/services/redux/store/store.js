@@ -36,7 +36,10 @@ export const store = createStore(allReducers, {
         isFetching:true,
         error: false
     },
-    dashboardsReducer: {}
+    dashboards: {
+        isFetching:true,
+        error: false
+    }
 },
     compose(applyMiddleware(thunk))
    // window.devToolsExtension && window.devToolsExtension()

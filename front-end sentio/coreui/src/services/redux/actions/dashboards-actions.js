@@ -1,4 +1,4 @@
-import { AddNewDashboardAPI } from '../../backend-urls';
+import { AddNewDashboardAPI, GetUserDashboardsAPI } from '../../backend-urls';
 export const REQUEST_DASHBOARDS = 'dashboards:request_dashboard';
 export const RECEIVE_DASHBOARDS = 'dashboards:receive_dashboard';
 export const DELETE_DASHBOARD = 'dashboards:delete_dashboard';
@@ -28,13 +28,14 @@ export  function  addDashboard(json){
 // Delete dashboard
 export function DeleteDashboard(dashboardId) {
     return {
-        type: REQUEST_DASHBOARDS,
+        type: DELETE_DASHBOARD,
         dashboardId
     }
 }
 
 // Get dashboards
 function RequestDashboards(userId) {
+    debugger
     return {
         type: REQUEST_DASHBOARDS,
         userId
@@ -42,16 +43,18 @@ function RequestDashboards(userId) {
 }
 
 function ReceiveDashboards(json) {
+    debugger
     return {
-        type: REQUEST_DASHBOARDS,
+        type: RECEIVE_DASHBOARDS,
         result: json
     }
 }
 
 export function fetchDashboards(userId) {
+    debugger;
     return dispatch => {
         dispatch(RequestDashboards(userId))
-        return fetch('url' + userId, {
+        return fetch(GetUserDashboardsAPI + userId, {
             method: 'GET'
         }).then(response => response.json())
             .then(json => dispatch(ReceiveDashboards(json)))
