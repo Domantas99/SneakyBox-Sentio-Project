@@ -23,7 +23,14 @@ class DragDrop extends React.Component {
             DatabaseId: this.props.dbId,
             Panels: this.state.container
         });
-        this.props.addDashboard(obj);
+        this.props.addDashboard(obj).then(res => {
+            if(res.json.isValid) {
+                alert("Dashboard added successfully")
+            }
+            else {
+                alert("There was an error");
+            }
+        });
     }
 
     onNameChange = (value) => {

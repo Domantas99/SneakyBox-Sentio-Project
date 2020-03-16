@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Sentio.Context;
 using Sentio.Entities;
 using Sentio.Models.DashboardCreation;
@@ -53,8 +54,29 @@ namespace Sentio.Services
 
             return new ResponseResult<ReceivedDashboardModel> { IsValid = false, Message = "Object is null", ReturnResult = null };
         }
-        
 
+        public async Task<ResponseResult<ICollection<Dashboard>>> GetUserDashboards(Guid userId)
+        {
+            var result =_context.Dashboards.Where(d => d.Database.UserId == userId).Include(d => d.DashboardPanels).ToList();
+            return new ResponseResult<ICollection<Dashboard>> { IsValid = true, Message = "Success", ReturnResult = result };
+        }
 
+        public async Task<ResponseResult<Dashboard>> DeleteDashboard(Guid dashboardId)
+        {
+            var dashboardToDelete = await _context.Dashboards.FirstOrDefaultAsync(d => d.Id == dashboardId);
+            string message;
+            bool flag = true;
+            if (dashboardToDelete != null)
+            {
+                _context.Dashboards.Remove(dashboardToDelete);
+                message = "Deleted successfully";
+                await _context.SaveChangesAsync();
+            }
+            else {
+                message = "Dashboard not found";
+                flag = false;
+            }
+            return new ResponseResult<Dashboard> { IsValid = true, Message = message, ReturnResult = dashboardToDelete };
+        }
     }
 }
