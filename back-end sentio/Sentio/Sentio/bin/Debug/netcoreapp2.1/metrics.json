@@ -1,0 +1,57 @@
+{
+  "Queries":[
+              {
+          "Name": "Prizu_kuriu_taskai_maziau_uz__56_kiekis",
+          "Query": "SELECT COUNT(*) COUNT FROM Prizes WHERE PointPrice<'56';",
+          "Name": "Prizu_kuriu_taskai_maziau_uz__56_kiekis",
+          "Columns": [
+              {
+                  "Name": "COUNT",
+                  "Label": "Prizu_kuriu_taskai_maziau_uz__56_kiekis_COUNT",
+                  "Usage": "Gauge",
+                  "DefaultValue": 0
+              }
+          ]
+      },
+              {
+          "Name": "Point_Price_vidurkis",
+          "Query": "SELECT AVG(PointPrice) FROM Prizes;",
+          "Name": "Point_Price_vidurkis",
+          "Columns": [
+              {
+                  "Name": "AVERAGE",
+                  "Label": "Point_Price_vidurkis_AVERAGE",
+                  "Usage": "Gauge",
+                  "DefaultValue": 0
+              }
+          ]
+      },
+              {
+          "Name": "Teacher_COUNT",
+          "Query": "SELECT COUNT(*) COUNT FROM Teachers;",
+          "Name": "Teacher_COUNT",
+          "Columns": [
+              {
+                  "Name": "COUNT",
+                  "Label": "Teacher_COUNT_COUNT",
+                  "Usage": "Gauge",
+                  "DefaultValue": 0
+              }
+          ]
+      },
+              {
+          "Name": "Prizu_skaicius",
+          "Query": "SELECT COUNT(*) COUNT FROM Prizes;",
+          "Name": "Prizu_skaicius",
+          "Columns": [
+              {
+                  "Name": "COUNT",
+                  "Label": "Prizu_skaicius_COUNT",
+                  "Usage": "Gauge",
+                  "DefaultValue": 0
+              }
+          ]
+      }
+  ],
+  "MillisecondTimeout": 4000
+}

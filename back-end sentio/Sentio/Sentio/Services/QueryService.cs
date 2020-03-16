@@ -129,14 +129,15 @@ namespace Sentio.Services
                 for (int i = 0; i < queries.Count; i++)
                 {
                     var query = queries[i];
+                    string queryName = string.Join('_', query.Name.Split(' '));
                     sr.WriteLine("              {");
-                    sr.WriteLine("          \"Name\": \"" + query.Name + "\",");
+                    sr.WriteLine("          \"Name\": \"" + queryName + "\",");
                     sr.WriteLine("          \"Query\": \"" + query.GeneratedQuery + "\",");
-                    sr.WriteLine("          \"Name\": \"" + query.Name + "\",");
+                    sr.WriteLine("          \"Name\": \"" + queryName + "\",");
                     sr.WriteLine("          \"Columns\": [");
                     sr.WriteLine("              {");
                     sr.WriteLine("                  \"Name\": \"" + query.OperationType + "\",");
-                    sr.WriteLine("                  \"Label\": \"" + query.Name + "_" + query.OperationType + "\",");
+                    sr.WriteLine("                  \"Label\": \"" + queryName + "_" + query.OperationType + "\",");
                     sr.WriteLine("                  \"Usage\": \"Gauge\",");
                     sr.WriteLine("                  \"DefaultValue\": 0");
                     sr.WriteLine("              }");

@@ -51,3 +51,4 @@ C:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\back-end 
 C:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\back-end sentio\Sentio\Sentio\obj\Debug\netcoreapp2.1\Sentio.RazorTargetAssemblyInfo.cache
 C:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\back-end sentio\Sentio\Sentio\obj\Debug\netcoreapp2.1\Sentio.dll
 C:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\back-end sentio\Sentio\Sentio\obj\Debug\netcoreapp2.1\Sentio.pdb
+C:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\back-end sentio\Sentio\Sentio\bin\Debug\netcoreapp2.1\metrics.json

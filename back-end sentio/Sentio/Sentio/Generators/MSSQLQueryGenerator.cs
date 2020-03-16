@@ -15,13 +15,23 @@ namespace Sentio.Generators
         public string GenerateQuery(TableQueryConditions tableQueryConditions) {
             if (tableQueryConditions.Operation == "COUNT")
             {
-                string query = "SELECT COUNT(*) COUNT FROM " + tableQueryConditions.TableName + " WHERE ";
+                string query = "SELECT COUNT(*) COUNT FROM " + tableQueryConditions.TableName;
                 var conditions = tableQueryConditions.Conditions;
+                if (conditions.Count > 0)
+                {
+                    
+                }
+                bool addWhere = true;
                 for (int i = 0; i < conditions.Count; i++)
                 {
                     var element = conditions.ElementAt(i);
                     if (element.FilterOption != "No Option")
                     {
+                        if (addWhere)
+                        {
+                            query += " WHERE ";
+                            addWhere = false;
+                        }
                         string condition = element.TableProperty.CollumnName + element.FilterOption + "'" +element.FilterValue + "'";
                         if (i != conditions.Count - 1)
                         {
@@ -34,12 +44,12 @@ namespace Sentio.Generators
 
                 return query;
             }
-            else if (tableQueryConditions.Operation == "AVERAGE" && tableQueryConditions.Conditions.Count == 1) {
+            else if (tableQueryConditions.Operation == "AVG" && tableQueryConditions.Conditions.Count == 1) {
                 var condition = tableQueryConditions.Conditions.ElementAt(0);
                 string query;
                 if (condition.FilterOption == "No Option")
                 {
-                    query = $"SELECT AVG({condition.TableProperty.CollumnName}) FROM {tableQueryConditions.TableName};";
+                    query = $"SELECT AVG({condition.TableProperty.CollumnName}) AVG FROM {tableQueryConditions.TableName};";
                 }
                 else
                 {

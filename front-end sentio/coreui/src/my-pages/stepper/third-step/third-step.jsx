@@ -90,7 +90,7 @@ function ThirdStep(props) {
                   <option value="No Option">No option</option>
                   <option value="COUNT">COUNT</option>  
                   { 
-                      (options.length === 1 && options[0].property.collumnType==='int') && <option value="AVERAGE">Average</option> 
+                      (options.length === 1 && options[0].property.collumnType==='int') && <option value="AVG">Average</option> 
                   }                             
               </Input>  
             </FormGroup>
