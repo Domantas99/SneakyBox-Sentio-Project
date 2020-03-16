@@ -1,5 +1,4 @@
-import {RECEIVE_DASHBOARDS,REQUEST_DASHBOARDS, ADD_NEW_DASHBOARD, DELETE_DASHBOARD} from '../actions/dashboards-actions';
-import { AddNewDashboardAPI } from '../../backend-urls';
+import {RECEIVE_DASHBOARDS,REQUEST_DASHBOARDS, ADD_NEW_DASHBOARD, DELETE_DASHBOARD_IN_STORE, DELETE_DASHBOARD_IN_DATABASE} from '../actions/dashboards-actions';
 import { object } from 'prop-types';
 
 function dashboards(state = { isFetching: false, error: false, user: '',databases:[]}, action,) { 
@@ -23,16 +22,30 @@ function dashboards(state = { isFetching: false, error: false, user: '',database
                 error: true,
                 dashboards: []
             })
-        case DELETE_DASHBOARD: 
-            if(action.json.isValid === true) { 
-                const deletedDb = action.json.returnResult
-                const filteredState= state.databases.filter(db => db.id !== deletedDb.id)
-                return  Object.assign({}, state, {
-                    isFetching: false,
-                    databases: filteredState
-                })
+        case DELETE_DASHBOARD_IN_STORE: 
+            const filteredDashboards = state.dashboards.filter(x => x.id !== action.dashboardId);
+            return Object.assign({}, state, { 
+                isFetching:true, 
+                error:false, 
+                message: "Dashboard is deleted in store and request to server is sent",
+                dashboards: filteredDashboards
+            });
+        case DELETE_DASHBOARD_IN_DATABASE: 
+            const res = action.json;
+            if(res.isValid) {
+                return Object.assign({}, state, { 
+                    isFetching:false, 
+                    error:false, 
+                    message: "Dashboard is deleted in database succesfully",
+                });
             }
-            break;
+            else {
+                return Object.assign({}, state, { 
+                    isFetching:false, 
+                    error:true, 
+                    message: "There was an error deleting dashboard in database",
+                });
+            }
         case ADD_NEW_DASHBOARD:
             if(action.json.isValid) {
                 return  Object.assign({}, state, {
@@ -57,7 +70,9 @@ export default function dashboardsReducer(state ='', action) {
             return  dashboards(state, action)
         case RECEIVE_DASHBOARDS:   
             return dashboards(state,action)    
-        case DELETE_DASHBOARD:
+        case DELETE_DASHBOARD_IN_STORE:
+            return dashboards(state, action)
+        case DELETE_DASHBOARD_IN_DATABASE:
             return dashboards(state, action)
         case ADD_NEW_DASHBOARD:
             return dashboards(state, action)

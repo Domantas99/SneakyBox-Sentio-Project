@@ -34,11 +34,13 @@ export const store = createStore(allReducers, {
     metrics: { metrics: []},
     panels: {
         isFetching:true,
-        error: false
+        error: false,
+        panels: []
     },
     dashboards: {
         isFetching:true,
-        error: false
+        error: false,
+        dashboards: []
     }
 },
     compose(applyMiddleware(thunk))

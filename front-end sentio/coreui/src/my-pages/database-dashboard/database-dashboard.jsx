@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button, Badge, Card, CardBody, CardHeader, Col, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText, Row, TabContent, TabPane } from 'reactstrap';
 import { fetchDbMetrics } from '../../services/redux/actions/metrics-actions';
 import { fetchAllPanels } from '../../services/redux/actions/panel-actions';
+import { fetchDashboards } from '../../services/redux/actions/dashboards-actions';
 
 // database dashboard to view data
 import './database-dashboard.scss';
@@ -12,10 +13,11 @@ function DatabaseDashboard(props) {
     const dbId = props.match.params.dbId;
     const metrics = props.metrics;
     const panels = !props.panels.isFetching || (!props.panels.isFetching && !props.panels.error) ? props.panels.panels.filter(p => p.databaseId === dbId) : [];
-
+    const dashboards = props.dashboards.filter(x => x.databaseId === dbId);
     useEffect(() => {
         props.getMetrics(dbId);
-        props.getPanels(userId)
+        props.getPanels(userId);
+        props.getDashboards(userId);
     }, [])
 
     return (
@@ -72,9 +74,9 @@ function DatabaseDashboard(props) {
                     </Link>
                     <ListGroup>
                         {
-                        //    panels.length > 0 ? panels.map(panel => (       
-                        //    <ListGroupItem>{panel.legend}</ListGroupItem>
-                        //    )) :
+                           dashboards.length > 0 ? dashboards.map(dashboard => (       
+                           <ListGroupItem>{dashboard.name}</ListGroupItem>
+                           )) :
                             <ListGroupItem>No dashboards yet</ListGroupItem>
                         } 
                     </ListGroup>
@@ -88,11 +90,13 @@ function DatabaseDashboard(props) {
 const mapStateToProps = state => ({
     metrics: state.metrics.metrics,
     panels: state.panels,
+    dashboards: state.dashboards.dashboards,
     user: state.user
 });
 const mapDispatchToProps = dispatch => ({
     getMetrics: dbId => dispatch(fetchDbMetrics(dbId)),
-    getPanels: userId => dispatch(fetchAllPanels(userId))
+    getPanels: userId => dispatch(fetchAllPanels(userId)),
+    getDashboards: userId => dispatch(fetchDashboards(userId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DatabaseDashboard)

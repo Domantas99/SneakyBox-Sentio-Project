@@ -2,20 +2,20 @@ import React, { useEffect } from 'react'
 import { FormGroup, Label, Button, Card, CardBody, CardHeader, Col, Table, Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchDashboards } from '../../services/redux/actions/dashboards-actions';
+import { fetchDashboards, deleteDashboard } from '../../services/redux/actions/dashboards-actions';
 
 function DatabaseDashboards(props) {
     const dbId = props.match.params.dbId;
     const userId = props.user.id;
     debugger;
-    const dashboards = (!props.dashboards.isFetching && !props.dashboards.error) ? props.dashboards.dashboards.filter(x=> x.databaseId === dbId) : [];
+    const dashboards = props.dashboards.dashboards; //(!props.dashboards.isFetching && !props.dashboards.error) ? props.dashboards.dashboards.filter(x=> x.databaseId === dbId) : [];
     useEffect(() => {
       debugger
       props.getDashboards(userId)
     }, []) 
 
     function onDeleteDashboardClick(dashboardId){
-      
+      props.deleteDashboard(dashboardId);
     }
     
     return (
@@ -68,7 +68,8 @@ const mapStateToProps = state => ({
   state
 })
 const mapDispatchToProps = dispatch => ({
-  getDashboards: userId => dispatch(fetchDashboards(userId))
+  getDashboards: userId => dispatch(fetchDashboards(userId)),
+  deleteDashboard: dashboardId => dispatch(deleteDashboard(dashboardId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(DatabaseDashboards)
