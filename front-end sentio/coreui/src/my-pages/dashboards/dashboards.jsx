@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
 
-export default function Dashboards(props) {
+
+function Dashboards(props) {
     return (
         <div>
             {console.log("cia db dashboards")}
@@ -9,3 +11,10 @@ export default function Dashboards(props) {
         </div>
     )
 }
+
+
+
+const mapStateToProps = state => ({state});
+const mapDispatchToProps = dispatch => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboards);

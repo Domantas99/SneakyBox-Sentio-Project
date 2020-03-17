@@ -9,7 +9,11 @@
         //height: 400px;
         //background-color: red;
         &__card {
-            
+            &-header {
+                display: flex;
+                justify-content: space-between;
+            }
+
             &-list {
                 height: 600px;
                 overflow-y: scroll;

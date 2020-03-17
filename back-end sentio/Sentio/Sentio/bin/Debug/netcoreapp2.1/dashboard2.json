@@ -66,17 +66,17 @@
         {
           "expr": "Prizu_kuriu_taskai_maziau_uz__56_kiekis",
           "legendFormat": "da",
-          "refId": "A"
+          "refId": "B"
         },
         {
           "expr": "Teacher_COUNT",
           "legendFormat": "as",
-          "refId": "A"
+          "refId": "C"
         },
         {
           "expr": "Point_Price_vidurkis",
           "legendFormat": "ad",
-          "refId": "A"
+          "refId": "D"
         }
       ],
       "thresholds": [],
@@ -168,7 +168,7 @@
         {
           "expr": "Prizu_skaicius",
           "legendFormat": "prc skc",
-          "refId": "A"
+          "refId": "B"
         }
       ],
       "thresholds": [],

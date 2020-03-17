@@ -24,13 +24,18 @@ function DatabaseDashboard(props) {
         <div className="db-dash-container">
             <div className="db-dash-container-item">
                 <Card className="db-dash-container-item__card">
-                    <CardHeader>
-                        <i className="fa fa-align-justify"></i><strong>Metrics</strong>
+                    <CardHeader className="db-dash-container-item__card-header">
+                        <div>
+                            <strong><h3>Metrics</h3></strong>
+                        </div>
+                        <div>
+                            <Link to={`/databases/${dbId}/metrics`}>
+                               <Button color="success">View More</Button>
+                            </Link>
+                        </div>
                     </CardHeader>
                     <CardBody>
-                        <Link to={`/databases/${dbId}/metrics`}>
-                            <Button color="success">View More Details</Button>
-                        </Link>
+                        
                         <ListGroup className="db-dash-container-item__card-list">
                         
                         {
@@ -45,13 +50,18 @@ function DatabaseDashboard(props) {
 
             <div className="db-dash-container-item">      
                 <Card className="db-dash-container-item__card">
-                    <CardHeader>
-                    <i className="fa fa-align-justify"></i><strong>Panels</strong>
+                    <CardHeader className="db-dash-container-item__card-header">
+                        <div>
+                            <strong><h3>Panels</h3></strong>
+                        </div>
+                        <div>
+                        <Link to={`/databases/${dbId}/panels`}>
+                            <Button color="success">View More</Button>
+                        </Link>
+                        </div>
                     </CardHeader>
                     <CardBody>
-                        <Link to={`/databases/${dbId}/panels`}>
-                            <Button color="success">View Panels</Button>
-                        </Link>
+                        
                         <ListGroup className="db-dash-container-item__card-list">
                             {
                             panels.length > 0 ? panels.map(panel => (       
@@ -65,13 +75,17 @@ function DatabaseDashboard(props) {
 
             <div className="db-dash-container-item">
                 <Card className="db-dash-container-item__card">
-                    <CardHeader>
-                        <i className="fa fa-align-justify"></i><strong>Dashboards</strong>
+                    <CardHeader className="db-dash-container-item__card-header">
+                        <div>
+                            <strong><h3>Dashboards</h3></strong>
+                        </div>
+                        <div>
+                        <Link to={`/databases/${dbId}/dashboards`}>
+                            <Button color="success">View More</Button>
+                        </Link>
+                        </div>
                     </CardHeader>
                     <CardBody>
-                    <Link to={`/databases/${dbId}/dashboards`}>
-                        <Button color="success">View Dashboards</Button>
-                    </Link>
                     <ListGroup className="db-dash-container-item__card-list">
                         {
                            dashboards.length > 0 ? dashboards.map(dashboard => (       
