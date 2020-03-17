@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace Sentio.Models
 {
-    public class MetricFileProps
+    public class FileProps
     {
-        public Guid DatabaseId { get; set; }
+        public Guid ObjectId { get; set; }
         public string FileName { get; set; }
     }
 }

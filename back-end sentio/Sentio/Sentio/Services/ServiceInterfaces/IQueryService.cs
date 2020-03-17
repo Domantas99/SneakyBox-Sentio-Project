@@ -12,7 +12,7 @@ namespace Sentio.Services.ServiceInterfaces
     {
         Task<ResponseResult<TableQueryConditions>> AddNewQuery(TableQueryConditions queryConditions);
         Task<ResponseResult<ICollection<TrackableQuery>>> GetDatabaseQueries(Guid databaseId);
-        Task CreateMetricsJson(MetricFileProps props);
+        Task CreateMetricsJson(FileProps props);
         Task<ResponseResult<TrackableQuery>> DeleteQuery(Guid queryId);
         Task<ResponseResult<ICollection<TrackableQuery>>> GetAllQueries(Guid userId);
        

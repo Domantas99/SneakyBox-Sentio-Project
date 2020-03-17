@@ -2,11 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using Sentio.Context;
 using Sentio.Entities;
+using Sentio.Models;
 using Sentio.Models.DashboardCreation;
 using Sentio.RequestResults;
 using Sentio.Services.ServiceInterfaces;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -79,246 +81,207 @@ namespace Sentio.Services
             return new ResponseResult<Dashboard> { IsValid = true, Message = message, ReturnResult = dashboardToDelete };
         }
 
-        public async Task GenerateDashboard(Guid dashboardId) {
-            var dashboard = await _context.Dashboards.Include(d => d.DashboardPanels).ThenInclude(d => d.)//FirstOrDefaultAsync(d => d.Id == dashboardId);
-            
-            string text = "";
-            text += "{";
-            text += "  \"annotations\": {";
-            text += "    \"list\": [";
-            text += "      {";
-            text += "        \"builtIn\": 1,";
-            text += "        \"datasource\": \"-- Grafana --\",";
-            text += "        \"enable\": true,";
-            text += "        \"hide\": true,";
-            text += "        \"iconColor\": \"rgba(0, 211, 255, 1)\",";
-            text += "        \"name\": \"Annotations & Alerts\",";
-            text += "        \"type\": \"dashboard\"";
-            text += "      }";
-            text += "    ]";
-            text += "  },";
-            text += "  \"editable\": true,";
-            text += "  \"gnetId\": null,";
-            text += "  \"graphTooltip\": 0,";
-            text += "  \"id\": 1,";
-            text += "  \"links\": [],";
-            text += "  \"panels\": [";
-            // cia prasides cikliukas
-            text += "    {";
-            text += "      \"aliasColors\": {},";
-            text += "      \"bars\": false,";
-            text += "      \"dashLength\": 10,";
-            text += "      \"dashes\": false,";
-            text += "      \"datasource\": null,";
-            text += "      \"fill\": 1,";
-            text += "      \"fillGradient\": 0,";
-            text += "      \"gridPos\": {";
-            text += "        \"h\": 8,";
-            text += "        \"w\": 12,";
-            text += "        \"x\": 0,";
-            text += "        \"y\": 0";
-            text += "      },";
-            text += "      \"hiddenSeries\": false,";
-            text += "      \"id\": 4,";
-            text += "      \"legend\": {";
-            text += "        \"avg\": false,";
-            text += "        \"current\": false,";
-            text += "        \"max\": false,";
-            text += "        \"min\": false,";
-            text += "        \"show\": true,";
-            text += "        \"total\": false,";
-            text += "        \"values\": false";
-            text += "      },";
-            text += "      \"lines\": true,";
-            text += "      \"linewidth\": 1,";
-            text += "      \"nullPointMode\": \"null\",";
-            text += "      \"options\": {";
-            text += "        \"dataLinks\": []";
-            text += "      },";
-            text += "      \"percentage\": false,";
-            text += "      \"pointradius\": 2,";
-            text += "      \"points\": false,";
-            text += "      \"renderer\": \"flot\",";
-            text += "      \"seriesOverrides\": [],";
-            text += "      \"spaceLength\": 10,";
-            text += "      \"stack\": false,";
-            text += "      \"steppedLine\": false,";
-            text += "      \"targets\": [";
-            text += "        {";
-            text += "          \"expr\": \"Teacher_COUNT_COUNT\",";
-            text += "          \"legendFormat\": \"cia teacher count label\",";
-            text += "          \"refId\": \"A\"";
-            text += "        }";
-            text += "      ],";
-            text += "      \"thresholds\": [],";
-            text += "      \"timeFrom\": null,";
-            text += "      \"timeRegions\": [],";
-            text += "      \"timeShift\": null,";
-            text += "      \"title\": \"aa Panel Title cia tile pa\",";
-            text += "      \"tooltip\": {";
-            text += "        \"shared\": true,";
-            text += "        \"sort\": 0,";
-            text += "        \"value_type\": \"individual\"";
-            text += "      },";
-            text += "      \"type\": \"graph\",";
-            text += "      \"xaxis\": {";
-            text += "        \"buckets\": null,";
-            text += "        \"mode\": \"time\",";
-            text += "        \"name\": null,";
-            text += "        \"show\": true,";
-            text += "        \"values\": []";
-            text += "      },";
-            text += "      \"yaxes\": [";
-            text += "        {";
-            text += "          \"format\": \"short\",";
-            text += "          \"label\": null,";
-            text += "          \"logBase\": 1,";
-            text += "          \"max\": null,";
-            text += "          \"min\": null,";
-            text += "          \"show\": true";
-            text += "        },";
-            text += "        {";
-            text += "          \"format\": \"short\",";
-            text += "          \"label\": null,";
-            text += "          \"logBase\": 1,";
-            text += "          \"max\": null,";
-            text += "          \"min\": null,";
-            text += "          \"show\": true";
-            text += "        }";
-            text += "      ],";
-            text += "      \"yaxis\": {";
-            text += "        \"align\": false,";
-            text += "        \"alignLevel\": null";
-            text += "      }";
-            text += "    },";
-            // cia baigiasi cikliukas y+8 kiekviena karta
+        public async Task GenerateDashboardGrafanaJson(FileProps props)
+        {
+            var dashboard = await _context.Dashboards.Include(d => d.DashboardPanels).FirstOrDefaultAsync(d => d.Id == props.ObjectId);
+            // Panel query id values(it is important to be letters)
+            string IdValues = "ABCDEFGHIYJKLMNOPRSTUVZ";
+            var panels = _context.DashboardPanels.Where(d => d.DashboardId == props.ObjectId)
+                                                    .Select(d => d.Panel)
+                                                    .Include(p => p.PanelQueries)
+                                                    .ToList();     
+            if (File.Exists(props.FileName))
+            {
+                File.Delete(props.FileName);
+            }
 
-            text += "    {";
-            text += "      \"aliasColors\": {},";
-            text += "      \"bars\": false,";
-            text += "      \"dashLength\": 10,";
-            text += "      \"dashes\": false,";
-            text += "      \"datasource\": null,";
-            text += "      \"fill\": 1,";
-            text += "      \"fillGradient\": 0,";
-            text += "      \"gridPos\": {";
-            text += "        \"h\": 8,";
-            text += "        \"w\": 12,";
-            text += "        \"x\": 0,";
-            text += "        \"y\": 8";
-            text += "      },";
-            text += "      \"hiddenSeries\": false,";
-            text += "      \"id\": 2,";
-            text += "      \"legend\": {";
-            text += "        \"avg\": false,";
-            text += "        \"current\": false,";
-            text += "        \"max\": false,";
-            text += "        \"min\": false,";
-            text += "        \"show\": true,";
-            text += "        \"total\": false,";
-            text += "        \"values\": false";
-            text += "      },";
-            text += "      \"lines\": true,";
-            text += "      \"linewidth\": 1,";
-            text += "      \"nullPointMode\": \"null\",";
-            text += "      \"options\": {";
-            text += "        \"dataLinks\": []";
-            text += "      },";
-            text += "      \"percentage\": false,";
-            text += "      \"pointradius\": 2,";
-            text += "      \"points\": false,";
-            text += "      \"renderer\": \"flot\",";
-            text += "      \"seriesOverrides\": [],";
-            text += "      \"spaceLength\": 10,";
-            text += "      \"stack\": false,";
-            text += "      \"steppedLine\": false,";
-            text += "      \"targets\": [";
-            text += "        {";
-            text += "          \"expr\": \"Prizu_kuriu_taskai_maziau_uz__56_kiekis_COUNT\",";
-            text += "          \"legendFormat\": \"cia prizu legenda\",";
-            text += "          \"refId\": \"A\"";
-            text += "        },";
-            text += "        {";
-            text += "          \"expr\": \"Point_Price_vidurkis_AVERAGE\",";
-            text += "          \"legendFormat\": \"cia vidurkis\",";
-            text += "          \"refId\": \"B\"";
-            text += "        }";
-            text += "      ],";
-            text += "      \"thresholds\": [],";
-            text += "      \"timeFrom\": null,";
-            text += "      \"timeRegions\": [],";
-            text += "      \"timeShift\": null,";
-            text += "      \"title\": \"CIA YRA PANELELS PAVADINIMAS\",";
-            text += "      \"tooltip\": {";
-            text += "        \"shared\": true,";
-            text += "        \"sort\": 0,";
-            text += "        \"value_type\": \"individual\"";
-            text += "      },";
-            text += "      \"type\": \"graph\",";
-            text += "      \"xaxis\": {";
-            text += "        \"buckets\": null,";
-            text += "        \"mode\": \"time\",";
-            text += "        \"name\": null,";
-            text += "        \"show\": true,";
-            text += "        \"values\": []";
-            text += "      },";
-            text += "      \"yaxes\": [";
-            text += "        {";
-            text += "          \"format\": \"short\",";
-            text += "          \"label\": null,";
-            text += "          \"logBase\": 1,";
-            text += "          \"max\": null,";
-            text += "          \"min\": null,";
-            text += "          \"show\": true";
-            text += "        },";
-            text += "        {";
-            text += "          \"format\": \"short\",";
-            text += "          \"label\": null,";
-            text += "          \"logBase\": 1,";
-            text += "          \"max\": null,";
-            text += "          \"min\": null,";
-            text += "          \"show\": true";
-            text += "        }";
-            text += "      ],";
-            text += "      \"yaxis\": {";
-            text += "        \"align\": false,";
-            text += "        \"alignLevel\": null";
-            text += "      }";
-            text += "    }";
-            text += "  ],";
-            text += "  \"schemaVersion\": 22,";
-            text += "  \"style\": \"dark\",";
-            text += "  \"tags\": [],";
-            text += "  \"templating\": {";
-            text += "    \"list\": []";
-            text += "  },";
-            text += "  \"time\": {";
-            text += "    \"from\": \"now-6h\",";
-            text += "    \"to\": \"now\"";
-            text += "  },";
-            text += "  \"timepicker\": {";
-            text += "    \"refresh_intervals\": [";
-            text += "      \"5s\",";
-            text += "      \"10s\",";
-            text += "      \"30s\",";
-            text += "      \"1m\",";
-            text += "      \"5m\",";
-            text += "      \"15m\",";
-            text += "      \"30m\",";
-            text += "      \"1h\",";
-            text += "      \"2h\",";
-            text += "      \"1d\"";
-            text += "    ]";
-            text += "  },";
-            text += "  \"timezone\": \"\",";
-            text += "  \"title\": \"Mano naujas dashboard\",";
-            text += "  \"uid\": \"IOoq2fuWz\",";
-            text += "  \"version\": 3";
-            text += "}";
-            
-            //return null;
+            using (StreamWriter sr = new StreamWriter(props.FileName, true))
+            {
+                // Dashboard creation
+                sr.WriteLine("{");
+                sr.WriteLine("  \"annotations\": {");
+                sr.WriteLine("    \"list\": [");
+                sr.WriteLine("      {");
+                sr.WriteLine("        \"builtIn\": 1,");
+                sr.WriteLine("        \"datasource\": \"-- Grafana --\",");
+                sr.WriteLine("        \"enable\": true,");
+                sr.WriteLine("        \"hide\": true,");
+                sr.WriteLine("        \"iconColor\": \"rgba(0, 211, 255, 1)\",");
+                sr.WriteLine("        \"name\": \"Annotations & Alerts\",");
+                sr.WriteLine("        \"type\": \"dashboard\"");
+                sr.WriteLine("      }");
+                sr.WriteLine("    ]");
+                sr.WriteLine("  },");
+                sr.WriteLine("  \"editable\": true,");
+                sr.WriteLine("  \"gnetId\": null,");
+                sr.WriteLine("  \"graphTooltip\": 0,");
+                sr.WriteLine("  \"id\": 1,");
+                sr.WriteLine("  \"links\": [],");
+                sr.WriteLine("  \"panels\": [");
+
+                // Adding panels to dashboard
+                int defHeigth = 8;
+                int defWidth = 12;
+                const int dashboardWidth = 24;
+                int xPosition = 0;
+                int yPosition = 0;
+                int panelsCount = dashboard.DashboardPanels.Count;
+
+                for (int i = 0; i < panelsCount; i++)
+                {
+                    sr.WriteLine("    {");
+                    sr.WriteLine("      \"aliasColors\": {},");
+                    sr.WriteLine("      \"bars\": false,");
+                    sr.WriteLine("      \"dashLength\": 10,");
+                    sr.WriteLine("      \"dashes\": false,");
+                    sr.WriteLine("      \"datasource\": null,");
+                    sr.WriteLine("      \"fill\": 1,");
+                    sr.WriteLine("      \"fillGradient\": 0,");
+                    sr.WriteLine("      \"gridPos\": {");
+                    sr.WriteLine($"        \"h\": {defHeigth},");
+                    sr.WriteLine($"        \"w\": {defWidth},");
+                    sr.WriteLine($"        \"x\": {xPosition},");
+                    sr.WriteLine($"        \"y\": {yPosition}");
+                    xPosition += defWidth;
+                    if (xPosition >= dashboardWidth)
+                    {
+                        xPosition = 0;
+                        yPosition += defHeigth;
+                    }
+                    sr.WriteLine("      },");
+                    sr.WriteLine("      \"hiddenSeries\": false,");
+                    sr.WriteLine($"      \"id\": {i},");
+                    sr.WriteLine("      \"legend\": {");
+                    sr.WriteLine("        \"avg\": false,");
+                    sr.WriteLine("        \"current\": false,");
+                    sr.WriteLine("        \"max\": false,");
+                    sr.WriteLine("        \"min\": false,");
+                    sr.WriteLine("        \"show\": true,");
+                    sr.WriteLine("        \"total\": false,");
+                    sr.WriteLine("        \"values\": false");
+                    sr.WriteLine("      },");
+                    sr.WriteLine("      \"lines\": true,");
+                    sr.WriteLine("      \"linewidth\": 1,");
+                    sr.WriteLine("      \"nullPointMode\": \"null\",");
+                    sr.WriteLine("      \"options\": {");
+                    sr.WriteLine("        \"dataLinks\": []");
+                    sr.WriteLine("      },");
+                    sr.WriteLine("      \"percentage\": false,");
+                    sr.WriteLine("      \"pointradius\": 2,");
+                    sr.WriteLine("      \"points\": false,");
+                    sr.WriteLine("      \"renderer\": \"flot\",");
+                    sr.WriteLine("      \"seriesOverrides\": [],");
+                    sr.WriteLine("      \"spaceLength\": 10,");
+                    sr.WriteLine("      \"stack\": false,");
+                    sr.WriteLine("      \"steppedLine\": false,");
+                    sr.WriteLine("      \"targets\": [");
+
+                    // Adding queries to panel
+                    int idPointer = 0;
+                    int queryCount = panels.ElementAt(i).PanelQueries.Count;
+                    var queries = _context.PanelQueries.Where(x => x.PanelId == panels.ElementAt(i).Id).Include(a=>a.TrackableQuery).ToList();
+                    for (int j = 0; j < queryCount; j++)
+                    {
+
+                        var panelQuery = queries.ElementAt(j);//panels.ElementAt(j).PanelQueries.ElementAt(j);
+                        sr.WriteLine("        {");
+                        string expression = string.Join('_', panelQuery.TrackableQuery.Name.Split(' '));
+                        sr.WriteLine($"          \"expr\": \"{expression}\",");
+                        sr.WriteLine($"          \"legendFormat\": \"{panelQuery.Legend}\",");
+                        sr.WriteLine($"          \"refId\": \"{IdValues[idPointer]}\"");
+                        idPointer++;
+                        if (j == queryCount - 1)
+                        {
+                            sr.WriteLine("        }");
+                        }
+                        else
+                        {
+                            sr.WriteLine("        },");
+                        }
+                    }
+                    sr.WriteLine("      ],");
+                    sr.WriteLine("      \"thresholds\": [],");
+                    sr.WriteLine("      \"timeFrom\": null,");
+                    sr.WriteLine("      \"timeRegions\": [],");
+                    sr.WriteLine("      \"timeShift\": null,");
+                    sr.WriteLine($"      \"title\": \"{panels.ElementAt(i).Legend}\",");
+                    sr.WriteLine("      \"tooltip\": {");
+                    sr.WriteLine("        \"shared\": true,");
+                    sr.WriteLine("        \"sort\": 0,");
+                    sr.WriteLine("        \"value_type\": \"individual\"");
+                    sr.WriteLine("      },");
+                    sr.WriteLine("      \"type\": \"graph\",");
+                    sr.WriteLine("      \"xaxis\": {");
+                    sr.WriteLine("        \"buckets\": null,");
+                    sr.WriteLine("        \"mode\": \"time\",");
+                    sr.WriteLine("        \"name\": null,");
+                    sr.WriteLine("        \"show\": true,");
+                    sr.WriteLine("        \"values\": []");
+                    sr.WriteLine("      },");
+                    sr.WriteLine("      \"yaxes\": [");
+                    sr.WriteLine("        {");
+                    sr.WriteLine("          \"format\": \"short\",");
+                    sr.WriteLine("          \"label\": null,");
+                    sr.WriteLine("          \"logBase\": 1,");
+                    sr.WriteLine("          \"max\": null,");
+                    sr.WriteLine("          \"min\": null,");
+                    sr.WriteLine("          \"show\": true");
+                    sr.WriteLine("        },");
+                    sr.WriteLine("        {");
+                    sr.WriteLine("          \"format\": \"short\",");
+                    sr.WriteLine("          \"label\": null,");
+                    sr.WriteLine("          \"logBase\": 1,");
+                    sr.WriteLine("          \"max\": null,");
+                    sr.WriteLine("          \"min\": null,");
+                    sr.WriteLine("          \"show\": true");
+                    sr.WriteLine("        }");
+                    sr.WriteLine("      ],");
+                    sr.WriteLine("      \"yaxis\": {");
+                    sr.WriteLine("        \"align\": false,");
+                    sr.WriteLine("        \"alignLevel\": null");
+                    sr.WriteLine("      }");
+                    if (i == panelsCount - 1)
+                    {
+                        sr.WriteLine("    }");
+                    }
+                    else
+                    {
+                        sr.WriteLine("    },");
+                    }
+                }
+              
+                sr.WriteLine("  ],");
+                sr.WriteLine("  \"schemaVersion\": 22,");
+                sr.WriteLine("  \"style\": \"dark\",");
+                sr.WriteLine("  \"tags\": [],");
+                sr.WriteLine("  \"templating\": {");
+                sr.WriteLine("    \"list\": []");
+                sr.WriteLine("  },");
+                sr.WriteLine("  \"time\": {");
+                sr.WriteLine("    \"from\": \"now-6h\",");
+                sr.WriteLine("    \"to\": \"now\"");
+                sr.WriteLine("  },");
+                sr.WriteLine("  \"timepicker\": {");
+                sr.WriteLine("    \"refresh_intervals\": [");
+                sr.WriteLine("      \"5s\",");
+                sr.WriteLine("      \"10s\",");
+                sr.WriteLine("      \"30s\",");
+                sr.WriteLine("      \"1m\",");
+                sr.WriteLine("      \"5m\",");
+                sr.WriteLine("      \"15m\",");
+                sr.WriteLine("      \"30m\",");
+                sr.WriteLine("      \"1h\",");
+                sr.WriteLine("      \"2h\",");
+                sr.WriteLine("      \"1d\"");
+                sr.WriteLine("    ]");
+                sr.WriteLine("  },");
+                sr.WriteLine("  \"timezone\": \"\",");
+                sr.WriteLine($"  \"title\": \"{dashboard.Name}\",");
+                sr.WriteLine("  \"uid\": \"IOoq2fuWz\",");
+                sr.WriteLine("  \"version\": 7");
+                sr.WriteLine("}");
+            }
         }
-
 
     }
 }

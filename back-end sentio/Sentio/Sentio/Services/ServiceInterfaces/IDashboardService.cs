@@ -1,4 +1,5 @@
 ﻿using Sentio.Entities;
+using Sentio.Models;
 using Sentio.Models.DashboardCreation;
 using Sentio.RequestResults;
 using System;
@@ -13,6 +14,7 @@ namespace Sentio.Services.ServiceInterfaces
         Task<ResponseResult<ReceivedDashboardModel>> AddDashboardToDb(ReceivedDashboardModel dashboardModel);
         Task<ResponseResult<ICollection<Dashboard>>> GetUserDashboards(Guid userId);
         Task<ResponseResult<Dashboard>> DeleteDashboard(Guid dashboardId);
+        Task GenerateDashboardGrafanaJson(FileProps props);
 
     }
 }

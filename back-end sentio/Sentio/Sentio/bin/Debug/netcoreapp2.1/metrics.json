@@ -7,7 +7,7 @@
           "Columns": [
               {
                   "Name": "COUNT",
-                  "Label": "Prizu_kuriu_taskai_maziau_uz__56_kiekis_COUNT",
+                  "Label": "Prizu_kuriu_taskai_maziau_uz__56_kiekis",
                   "Usage": "Gauge",
                   "DefaultValue": 0
               }
@@ -15,12 +15,12 @@
       },
               {
           "Name": "Point_Price_vidurkis",
-          "Query": "SELECT AVG(PointPrice) FROM Prizes;",
+          "Query": "SELECT AVG(PointPrice) AVG FROM Prizes;",
           "Name": "Point_Price_vidurkis",
           "Columns": [
               {
-                  "Name": "AVERAGE",
-                  "Label": "Point_Price_vidurkis_AVERAGE",
+                  "Name": "AVG",
+                  "Label": "Point_Price_vidurkis",
                   "Usage": "Gauge",
                   "DefaultValue": 0
               }
@@ -33,7 +33,7 @@
           "Columns": [
               {
                   "Name": "COUNT",
-                  "Label": "Teacher_COUNT_COUNT",
+                  "Label": "Teacher_COUNT",
                   "Usage": "Gauge",
                   "DefaultValue": 0
               }
@@ -46,7 +46,7 @@
           "Columns": [
               {
                   "Name": "COUNT",
-                  "Label": "Prizu_skaicius_COUNT",
+                  "Label": "Prizu_skaicius",
                   "Usage": "Gauge",
                   "DefaultValue": 0
               }

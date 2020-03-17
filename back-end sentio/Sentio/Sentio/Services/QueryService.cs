@@ -113,14 +113,14 @@ namespace Sentio.Services
         }
      
 
-        public async Task CreateMetricsJson(MetricFileProps props)
+        public async Task CreateMetricsJson(FileProps props)
         {
             if (File.Exists(props.FileName))
             {
                 File.Delete(props.FileName);
             }
             var queries = await _context.TrackableQueries.Include(q => q.Table)
-                            .Where(q => q.Table.DatabaseId == props.DatabaseId).ToListAsync();
+                            .Where(q => q.Table.DatabaseId == props.ObjectId).ToListAsync();
             using (StreamWriter sr = new StreamWriter(props.FileName, true))
             {
                 sr.WriteLine("{");
@@ -137,7 +137,7 @@ namespace Sentio.Services
                     sr.WriteLine("          \"Columns\": [");
                     sr.WriteLine("              {");
                     sr.WriteLine("                  \"Name\": \"" + query.OperationType + "\",");
-                    sr.WriteLine("                  \"Label\": \"" + queryName + "_" + query.OperationType + "\",");
+                    sr.WriteLine("                  \"Label\": \"" + queryName + "\","); // query to call with prometheus
                     sr.WriteLine("                  \"Usage\": \"Gauge\",");
                     sr.WriteLine("                  \"DefaultValue\": 0");
                     sr.WriteLine("              }");

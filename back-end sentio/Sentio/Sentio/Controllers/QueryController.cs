@@ -60,7 +60,7 @@ namespace Sentio.Controllers
 
 
         [HttpPost][Route("CreateMetricsFile")]
-        public async Task GenerateMetricsJsonFile([FromBody]MetricFileProps props) {
+        public async Task GenerateMetricsJsonFile([FromBody]FileProps props) {
             await _queryService.CreateMetricsJson(props);
         }
 

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sentio.Entities;
+using Sentio.Models;
 using Sentio.Models.DashboardCreation;
 using Sentio.RequestResults;
 using Sentio.Services.ServiceInterfaces;
@@ -26,6 +27,13 @@ namespace Sentio.Controllers
         public async Task<ActionResult<ResponseResult<ReceivedDashboardModel>>> AddDashboardToDb([FromBody]ReceivedDashboardModel dashboardModel) {
             var result = await _dashboardService.AddDashboardToDb(dashboardModel);
             return result;
+        }
+
+        [HttpPost]
+        [Route("Generate-Dashboard-Json-To-Grafana")]
+        public async Task GenerateDashboardJsonToGrafana([FromBody]FileProps props)
+        {
+            await _dashboardService.GenerateDashboardGrafanaJson(props);
         }
 
         [HttpGet("all/{userId}")]
