@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { fetchTables } from '../../../services/redux/actions/dbTables-actions';
 import {  Button, Badge, Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Table, Input, InputGroup, InputGroupAddon } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import CreateQueryForm from '../../../my-components/create-query-form/create-query-form';
+import './first-step.scss';
 
 function FirstStep(props) {
     const dbId = props.match.params.dbId;
@@ -14,12 +16,12 @@ function FirstStep(props) {
     }, [])
 
     return (
-        <div>
-            
-        <Col xs="10" lg="10">
+        <div className="fs-container">
+          <div className="fs-container__queries">   
+            {/* <Col xs="10" lg="10"> */}
             <Card>
               <CardHeader>
-                <h5><i className="fa fa-align-justify"></i> Start creating metric by selecting table or enter your own query </h5>
+                <h5><i className="fa fa-align-justify"></i> Search </h5>
                 <div> 
                   <InputGroup>
                     <Input id="appendedInputButton" size="10" type="text" />
@@ -38,7 +40,7 @@ function FirstStep(props) {
                     <th>Action</th>        
                   </tr>
                   </thead>
-                  <tbody>
+                  <tbody className="fs-container__queries-list">
                     {
                         tables && tables.map((table, index) => (
                             <tr key={index} className="tableRow">
@@ -65,9 +67,12 @@ function FirstStep(props) {
                 </Pagination>
               </CardBody>
             </Card>
-          </Col>
-
-
+          {/* </Col> */}
+          </div>
+        
+          <div className="fs-container-form">
+            <CreateQueryForm dbId={dbId}></CreateQueryForm>
+          </div>
 
 
         </div>

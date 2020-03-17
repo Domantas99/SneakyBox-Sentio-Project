@@ -15,9 +15,9 @@ namespace Sentio.Entities
         public Guid Id { get; set; } = Guid.NewGuid();
         public string Name { get; set; }
         public string OperationType { get; set; }
-        [ForeignKey("TableId")][JsonIgnore]
-        public virtual Table Table { get; set; }
-        public Guid TableId { get; set; }
+        //[ForeignKey("TableId")][JsonIgnore]
+        //public virtual Table Table { get; set; }
+        //public Guid TableId { get; set; }
         public virtual ICollection<QueryCondition> QueryConditions { get; set; }
         public string GeneratedQuery { get; set; }
         public virtual ICollection<PanelQuery> PanelQueries { get; set; }

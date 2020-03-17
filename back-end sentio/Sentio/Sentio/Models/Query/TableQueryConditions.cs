@@ -13,5 +13,6 @@ namespace Sentio.Models
         public ICollection<QueryConditionModel> Conditions { get; set; }
         public string Operation { get; set; }
         public Guid DatabaseId { get; set; }
+        public string Query { get; set; } // Optional(Query passed by user)
     }
 }

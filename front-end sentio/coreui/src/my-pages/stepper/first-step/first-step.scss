@@ -1,0 +1,18 @@
+.fs-container {
+    display: flex;
+    flex-direction: row;
+    &__queries
+    {
+        margin: 0px 30px;
+        &-list {
+            height: 600px;
+            overflow-y: scroll;
+        }
+        
+    }
+
+    &-form {
+        width: 500px;
+    }
+    
+}

@@ -49,43 +49,59 @@ namespace Sentio.Services
 
         public async Task<ResponseResult<ICollection<TrackableQuery>>> GetDatabaseQueries(Guid databaseId)
         {
-            var tableIds = _context.Tables.Where(table => table.DatabaseId == databaseId).Select(table=> table.Id).ToArray();
+            //var tableIds = _context.Tables.Where(table => table.DatabaseId == databaseId).Select(table=> table.Id).ToArray();
             //List<TableQueryConditions> metricsList = new List<TableQueryConditions>();
-            var metricsList = new List<TrackableQuery>();
-         
-            for (int i = 0; i < tableIds.Count(); i++)
-            {
-                var queries = await (_context.TrackableQueries.Where(query => query.TableId == tableIds[i]).Include(q => q.QueryConditions)).ToListAsync();        
-                metricsList.AddRange(queries);
-            }
-            return new ResponseResult<ICollection<TrackableQuery>> { IsValid = true, Message = "Success", ReturnResult = metricsList };  
+            //var metricsList = new List<TrackableQuery>();
+
+            //for (int i = 0; i < tableIds.Count(); i++)
+            //{
+            //    var queries = await (_context.TrackableQueries.Where(query => query..TableId == tableIds[i]).Include(q => q.QueryConditions)).ToListAsync();        
+            //    metricsList.AddRange(queries);
+            //}
+
+            var queries = _context.TrackableQueries.Where(q => q.DatabaseId == databaseId).ToList();
+            return new ResponseResult<ICollection<TrackableQuery>> { IsValid = true, Message = "Success", ReturnResult = queries };  
         }
 
         public async Task<ResponseResult<TableQueryConditions>> AddNewQuery(TableQueryConditions queryConditions) {  
             var conditionsList = new List<QueryCondition>();
             Guid trackableQueryId = Guid.NewGuid();
-            for (int i = 0; i < queryConditions.Conditions.Count; i++)
+            if (queryConditions.Conditions != null)
             {
-                var conditions = queryConditions.Conditions.ElementAt(i);
-                var queryCondition = new QueryCondition
+                for (int i = 0; i < queryConditions.Conditions.Count; i++)
                 {
-                    Value = conditions.FilterValue,
-                    CollumnPropertyId = conditions.TableProperty.Id,
-                    ConditionType = conditions.FilterOption,
-                    TrackableQueryId = trackableQueryId                    
-                };
-                conditionsList.Add(queryCondition);
+                    var conditions = queryConditions.Conditions.ElementAt(i);
+                    var queryCondition = new QueryCondition
+                    {
+                        Value = conditions.FilterValue,
+                        CollumnPropertyId = conditions.TableProperty.Id,
+                        ConditionType = conditions.FilterOption,
+                        TrackableQueryId = trackableQueryId
+                    };
+                    conditionsList.Add(queryCondition);
+                }
             }
             //queryConditions
-            string tableName = _context.Tables.FirstOrDefaultAsync(table => table.Id == queryConditions.TableId).Result.Name;
-            queryConditions.TableName = tableName;
-            string generatedQuery = await GetGeneratedQuery(queryConditions);
+            if (queryConditions.TableName != null)
+            {
+                string tableName = _context.Tables.FirstOrDefaultAsync(table => table.Id == queryConditions.TableId).Result.Name;
+                queryConditions.TableName = tableName;
+            }
+            // Later add query validation to check if query is correct
+            string generatedQuery;
+            if (queryConditions.Query == null)
+            {
+                generatedQuery = await GetGeneratedQuery(queryConditions);
+            }
+            else {
+                generatedQuery = queryConditions.Query;
+            }
 
             var trackableQuery = new TrackableQuery
             {
                 Name = queryConditions.Name,
                 OperationType = queryConditions.Operation,
-                TableId = queryConditions.TableId,
+                //TableId = queryConditions.TableId,
                 QueryConditions = conditionsList,
                 Id = trackableQueryId,
                 GeneratedQuery = generatedQuery,
@@ -119,8 +135,9 @@ namespace Sentio.Services
             {
                 File.Delete(props.FileName);
             }
-            var queries = await _context.TrackableQueries.Include(q => q.Table)
-                            .Where(q => q.Table.DatabaseId == props.ObjectId).ToListAsync();
+            var queries = await _context.TrackableQueries.Include(q => q.DatabaseId == props.ObjectId).ToListAsync();
+                //await _context.TrackableQueries.Include(q => q.Table)
+                            //.Where(q => q.Table.DatabaseId == props.ObjectId).ToListAsync();
             using (StreamWriter sr = new StreamWriter(props.FileName, true))
             {
                 sr.WriteLine("{");

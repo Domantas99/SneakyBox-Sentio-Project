@@ -18,6 +18,6 @@ namespace Sentio.Entities
         [ForeignKey("DatabaseId")]
         public virtual Database Database { get; set; }
         public Guid DatabaseId { get; set; }
-        public virtual ICollection<TrackableQuery> TrackableQueries { get; set; }
+        //public virtual ICollection<TrackableQuery> TrackableQueries { get; set; }
     }
 }
