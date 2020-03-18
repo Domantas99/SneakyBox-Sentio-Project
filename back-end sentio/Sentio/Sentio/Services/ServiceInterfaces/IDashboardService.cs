@@ -15,6 +15,6 @@ namespace Sentio.Services.ServiceInterfaces
         Task<ResponseResult<ICollection<Dashboard>>> GetUserDashboards(Guid userId);
         Task<ResponseResult<Dashboard>> DeleteDashboard(Guid dashboardId);
         Task GenerateDashboardGrafanaJson(FileProps props);
-
+        Task<ResponseResult<Dashboard>> UpdateDashboard(Dashboard dashboard);
     }
 }

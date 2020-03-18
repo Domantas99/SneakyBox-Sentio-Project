@@ -12,7 +12,8 @@ function DatabaseDashboard(props) {
     const userId = props.user.id;
     const dbId = props.match.params.dbId;
     const metrics = props.metrics;
-    const panels = !props.panels.isFetching || (!props.panels.isFetching && !props.panels.error) ? props.panels.panels.filter(p => p.databaseId === dbId) : [];
+    //const panels = !props.panels.isFetching || (!props.panels.isFetching && !props.panels.error) ? props.panels.panels.filter(p => p.databaseId === dbId) : [];
+    const panels = props.panels.panels? props.panels.panels.filter(p => p.databaseId === dbId) : [];
     const dashboards = props.dashboards.filter(x => x.databaseId === dbId);
     useEffect(() => {
         props.getMetrics(dbId);

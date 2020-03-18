@@ -1,20 +1,20 @@
 import React from 'react';
-import Databases from './my-pages/databases/databases';
-import AllMetrics from './my-pages/all-metrics/all-metrics';
-import DatabaseMetrics from './my-pages/database-metrics/database-metrics';
-import FirstStep from './my-pages/stepper/first-step/first-step';
-import SecondStep from './my-pages/stepper/second-step/second-step';
-import ThirdStep from './my-pages/stepper/third-step/third-step';
-import MetricSelection from './my-pages/panel-creation/metrics-selection/metrics-selection';
-import VisualizationSettings from './my-pages/panel-creation/visualization-settings/visualization-settings';
-import Dashboards from './my-pages/dashboards/dashboards';
-import DatabaseDashboard from './my-pages/database-dashboard/database-dashboard';
-import DatabasePanels from './my-pages/database-panels/database-panels';
-import DatabaseDashboards from './my-pages/database-dashboards/database-dashboards';
-import DatabaseCreation from './my-pages/database-creation/database-creation';
-import AllPanels from './my-pages/all-panels/all-panels';
-import DashboardCreation from './my-pages/dashboard-creation/dashboard-creation';
-
+const Databases = React.lazy(() => import( './my-pages/databases/databases'));
+const AllMetrics = React.lazy(() => import( './my-pages/all-metrics/all-metrics'));
+const DatabaseMetrics = React.lazy(() => import( './my-pages/database-metrics/database-metrics'));
+const FirstStep = React.lazy(() => import( './my-pages/stepper/first-step/first-step'));
+const SecondStep = React.lazy(() => import( './my-pages/stepper/second-step/second-step'));
+const ThirdStep = React.lazy(() => import( './my-pages/stepper/third-step/third-step'));
+const MetricSelection = React.lazy(() => import( './my-pages/panel-creation/metrics-selection/metrics-selection'));
+const VisualizationSettings = React.lazy(() => import( './my-pages/panel-creation/visualization-settings/visualization-settings'));
+const Dashboards = React.lazy(() => import( './my-pages/dashboards/dashboards'));
+const DatabaseDashboard = React.lazy(() => import( './my-pages/database-dashboard/database-dashboard'));
+const DatabasePanels = React.lazy(() => import( './my-pages/database-panels/database-panels'));
+const DatabaseDashboards = React.lazy(() => import( './my-pages/database-dashboards/database-dashboards'));
+const DatabaseCreation= React.lazy(() => import(  './my-pages/database-creation/database-creation'));
+const AllPanels= React.lazy(() => import(  './my-pages/all-panels/all-panels'));
+const DashboardCreation = React.lazy(() => import( './my-pages/dashboard-creation/dashboard-creation'));
+//
 const Breadcrumbs = React.lazy(() => import('./views/Base/Breadcrumbs'));
 const Cards = React.lazy(() => import('./views/Base/Cards'));
 const Carousels = React.lazy(() => import('./views/Base/Carousels'));

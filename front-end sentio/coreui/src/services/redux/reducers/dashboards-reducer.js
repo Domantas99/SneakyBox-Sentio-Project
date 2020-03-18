@@ -1,9 +1,40 @@
-import {RECEIVE_DASHBOARDS,REQUEST_DASHBOARDS, ADD_NEW_DASHBOARD, DELETE_DASHBOARD_IN_STORE, DELETE_DASHBOARD_IN_DATABASE} from '../actions/dashboards-actions';
+import { UPDATE_DASHBOARD_IN_STORE, UPDATE_DASHBOARD_IN_DATABASE, RECEIVE_DASHBOARDS,REQUEST_DASHBOARDS, ADD_NEW_DASHBOARD, DELETE_DASHBOARD_IN_STORE, DELETE_DASHBOARD_IN_DATABASE} from '../actions/dashboards-actions';
 import { object } from 'prop-types';
 
-function dashboards(state = { isFetching: false, error: false, user: '',databases:[]}, action,) { 
+function dashboards(state = { isFetching: false, error: false, user: '',dashboards:[]}, action,) { 
     debugger;
     switch (action.type) {
+        case UPDATE_DASHBOARD_IN_STORE:
+            const dbToReplace = state.dashboards.find(d => d.id === action.dashboard.id)
+            const index = state.dashboards.indexOf(dbToReplace);      
+            if(index >= 0 ) {
+                let arr = state.dashboards;
+                arr[index] = action.dashboard;
+                return Object.assign({}, state, {
+                    dashboards: arr,
+                    error: false,
+                    isFetching: true
+                })
+            }
+            return Object.assign({}, state, {
+                message: "dashboard not found",
+                error: true,
+                isFetching: true
+            })
+            
+        case UPDATE_DASHBOARD_IN_DATABASE:
+            if (action.json.isValid) {
+                return Object.assign({}, state, {
+                    message: "dashboard update",
+                    error: false,
+                    isFetching: false
+                })
+            }   
+            return Object.assign({}, state, {
+                message: action.json.message,
+                error: true,
+                isFetching: false
+            })
         case REQUEST_DASHBOARDS:
             return Object.assign({}, state, {
                 isFetching: true,
@@ -66,6 +97,10 @@ function dashboards(state = { isFetching: false, error: false, user: '',database
 export default function dashboardsReducer(state ='', action) {
     debugger;
     switch(action.type) {
+        case UPDATE_DASHBOARD_IN_STORE:
+            return  dashboards(state, action)
+        case UPDATE_DASHBOARD_IN_DATABASE:   
+            return dashboards(state,action)    
         case REQUEST_DASHBOARDS:
             return  dashboards(state, action)
         case RECEIVE_DASHBOARDS:   

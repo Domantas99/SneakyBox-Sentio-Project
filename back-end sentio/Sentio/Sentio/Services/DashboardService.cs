@@ -24,7 +24,33 @@ namespace Sentio.Services
             _mapper = mapper;
         }
 
+        public async Task<ResponseResult<Dashboard>> UpdateDashboard(Dashboard newDashboard)
+        {
+            bool flag = false;
+            string msg = "Dashboard not found";
+            var currentDashboard = await _context.Dashboards.FirstOrDefaultAsync(d => d.Id == newDashboard.Id);
+            if (currentDashboard != null)
+            {
+                try
+                {
+                    var dpToReplace = _context.DashboardPanels.Where(a => a.DashboardId == currentDashboard.Id);
+                    _context.DashboardPanels.RemoveRange(dpToReplace);
+                    await _context.SaveChangesAsync();
+                    currentDashboard.Name = newDashboard.Name;
+                    currentDashboard.DashboardPanels = newDashboard.DashboardPanels;
+                    await _context.SaveChangesAsync();
+                    flag = true;
+                    msg = "Dashboard updated successfully";
+                }
+                catch (Exception e) {
+                    msg = e.Message;
+                }
+            }
+            return new ResponseResult<Dashboard> { IsValid = flag, Message = msg, ReturnResult = currentDashboard };
+        }
+
         public async Task<ResponseResult<ReceivedDashboardModel>> AddDashboardToDb(ReceivedDashboardModel dashboardModel) {
+            string msg = "Object is null";
             if (dashboardModel != null)
             {
                 try
@@ -37,10 +63,12 @@ namespace Sentio.Services
                     _context.Dashboards.Add(dashboard);
                     for (int i = 0; i < panels.Count; i++)
                     {
-                        var dbPanel = new DashboardPanel { DashboardId = newDashboardId, PanelId = panels.ElementAt(i).Id };
-                        _context.DashboardPanels.Add(dbPanel);
+                        var dbPanel = new DashboardPanel { Id = Guid.NewGuid(), DashboardId = newDashboardId, PanelId = panels.ElementAt(i).Id };
+                       
                         dashboardPanelList.Add(dbPanel);
                     }
+                    _context.DashboardPanels.AddRange(dashboardPanelList);
+                    // bug neleidzia sukurti panel su dviem tokiais paciais prop
                     // _context.SaveChanges();
 
                     //var a = _context.SaveChanges();
@@ -49,12 +77,11 @@ namespace Sentio.Services
                     return new ResponseResult<ReceivedDashboardModel> { IsValid = true, Message = "Successfully added", ReturnResult = dashboardModel };
                 }
                 catch (Exception e) {
-                    var x = e;
-                
-                }
+                    msg = e.Message;
+                    }
                 }
 
-            return new ResponseResult<ReceivedDashboardModel> { IsValid = false, Message = "Object is null", ReturnResult = null };
+            return new ResponseResult<ReceivedDashboardModel> { IsValid = false, Message = msg, ReturnResult = null };
         }
 
         public async Task<ResponseResult<ICollection<Dashboard>>> GetUserDashboards(Guid userId)
@@ -283,5 +310,6 @@ namespace Sentio.Services
             }
         }
 
+        
     }
 }

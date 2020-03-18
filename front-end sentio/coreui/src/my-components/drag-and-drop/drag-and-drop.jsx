@@ -1,8 +1,8 @@
-import React,{Component} from 'react'
+import React from 'react';
 import { connect } from 'react-redux';
+import { Button, Input } from 'reactstrap';
+import { addDashboard, updateDashboard } from '../../services/redux/actions/dashboards-actions';
 import './drag-and-drop.scss';
-import {Button, Input} from 'reactstrap';
-import { addDashboard } from '../../services/redux/actions/dashboards-actions';
 
 
 let uniqId=0;
@@ -25,7 +25,6 @@ class DragDrop extends React.Component {
         }
         console.log(currentDashboardPanels, 'cia tos panels');
         this.state = {
-          //container : [],
           dashboard: props.dashboard,
           container : currentDashboardPanels,
           data: props.data,
@@ -36,36 +35,60 @@ class DragDrop extends React.Component {
     onSubmit = () => {
         debugger;
         if(!this.state.dashboard) {
-            const obj = JSON.stringify({ 
-                Name: this.state.name,
-                DatabaseId: this.props.dbId,
-                Panels: this.state.container
-            });
-            this.props.addDashboard(obj)
-                .then(res => {
-                    if(res.json.isValid) {
-                        alert("Dashboard added successfully")
-                    }
-                    else {
-                        alert("There was an error");
-                    }
-                });
+            this.makeAdd();
         }
         else {
-
-
+            this.makeUpdate();
+            
         }
     }
 
+    makeAdd() {
+        const obj = JSON.stringify({ 
+            Name: this.state.name,
+            DatabaseId: this.props.dbId,
+            Panels: this.state.container
+        });
+        this.props.addDashboard(obj)
+            .then(res => {
+                if(res.json.isValid) {
+                    alert("Dashboard added successfully")
+                }
+                else {
+                    alert("There was an error adding");
+                }
+            });
+    }
 
-
+    makeUpdate() {
+        let newObj = this.state.dashboard;
+            let newDashboardPanels = [];
+            const panels = this.state.container;
+            for (let i=0; i< panels.length; i++) {
+                newDashboardPanels.push({
+                                        DashboardId: this.props.dashboard.id,
+                                        PanelId : panels[i].id
+                                    });
+            }
+            newObj.name= this.state.name;
+            newObj.dashboardPanels = newDashboardPanels;
+            this.props.updateDashboard(newObj)
+                .then(res => res.json())
+                    .then(json => {
+                        if(json.isValid) {
+                            alert("Dashboard updated successfully")
+                        }
+                        else {
+                            alert("There was an error updating");
+                        }
+                    });
+    }
 
     onNameChange = (value) => {
         this.setState({name: value});
     }
 
     onDragStart = (e,v) =>{
-        //console.log(v);
         e.dataTransfer.dropEffect = "move";
         e.dataTransfer.setData( "text/plain", JSON.stringify(v) )
     }
@@ -115,7 +138,7 @@ class DragDrop extends React.Component {
                         }
                         </div>
                     </div>
-                
+        
                     <div className="DragAndDrop" onDragOver={this.allowDrop} onDrop={this.onDropLeft}>
                     <h2>Your dashboard panels</h2>
                     <div className="DragAndDrop__list">
@@ -132,14 +155,11 @@ class DragDrop extends React.Component {
                         }
                     </div>
                     </div>
-
                 </div>
-                <div className="container-submit">
-                    
-                        <label htmlFor="">Enter your dashboard name</label>
-                        <Input value={this.state.name} onChange={(e) => this.onNameChange(e.target.value)}></Input>
-                        <Button onClick={() => this.onSubmit()}>Sumbit</Button>
-                    
+                <div className="container-submit">        
+                    <label htmlFor="">Enter your dashboard name</label>
+                    <Input value={this.state.name} onChange={(e) => this.onNameChange(e.target.value)}></Input>
+                    <Button onClick={() => this.onSubmit()}>Sumbit</Button>        
                 </div>
             </div>
         </>)
@@ -150,7 +170,8 @@ const mapStateToProps = state => ({
     panels: state.panels.panels
 });
 const mapDispatchToProps = dispatch => ({
-    addDashboard: json => dispatch(addDashboard(json))
+    addDashboard: json => dispatch(addDashboard(json)),
+    updateDashboard: obj => dispatch(updateDashboard(obj))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DragDrop)

@@ -1,10 +1,8 @@
-import React, { useEffect } from 'react'
-import Board from '../../my-components/board/board';
-import Card from '../../my-components/card/card';
-import './dashboard-creation.scss';
-import DragDrop from '../../my-components/drag-and-drop/drag-and-drop';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import {fetchAllPanels} from '../../services/redux/actions/panel-actions';
+import DragDrop from '../../my-components/drag-and-drop/drag-and-drop';
+import { fetchAllPanels } from '../../services/redux/actions/panel-actions';
+import './dashboard-creation.scss';
 
 function DashboardCreation(props) {
     const userId = props.user.id;

@@ -48,5 +48,11 @@ namespace Sentio.Controllers
             var result = await _dashboardService.DeleteDashboard(dashboardId);
             return result;
         }
+
+        [HttpPut("update")]
+        public async Task<ActionResult<ResponseResult<Dashboard>>> UpdateDashboard([FromBody] Dashboard dashboard) {
+            var result = await _dashboardService.UpdateDashboard(dashboard);
+            return result;
+        }
     }
 }
