@@ -49,16 +49,6 @@ namespace Sentio.Services
 
         public async Task<ResponseResult<ICollection<TrackableQuery>>> GetDatabaseQueries(Guid databaseId)
         {
-            //var tableIds = _context.Tables.Where(table => table.DatabaseId == databaseId).Select(table=> table.Id).ToArray();
-            //List<TableQueryConditions> metricsList = new List<TableQueryConditions>();
-            //var metricsList = new List<TrackableQuery>();
-
-            //for (int i = 0; i < tableIds.Count(); i++)
-            //{
-            //    var queries = await (_context.TrackableQueries.Where(query => query..TableId == tableIds[i]).Include(q => q.QueryConditions)).ToListAsync();        
-            //    metricsList.AddRange(queries);
-            //}
-
             var queries = _context.TrackableQueries.Where(q => q.DatabaseId == databaseId).ToList();
             return new ResponseResult<ICollection<TrackableQuery>> { IsValid = true, Message = "Success", ReturnResult = queries };  
         }

@@ -1,0 +1,232 @@
+filename, language, Properties, Markdown, JSON, HTML, SCSS, JavaScript, JavaScript React, XML, comment, blank, total
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\.editorconfig, Properties, 11, 0, 0, 0, 0, 0, 0, 0, 1, 3, 15
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\CHANGELOG.md, Markdown, 0, 417, 0, 0, 0, 0, 0, 0, 0, 60, 477
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\CONTRIBUTING.md, Markdown, 0, 118, 0, 0, 0, 0, 0, 0, 0, 55, 173
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\CRA.md, Markdown, 0, 1676, 0, 0, 0, 0, 0, 0, 1, 797, 2474
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\ISSUE_TEMPLATE.md, Markdown, 0, 13, 0, 0, 0, 0, 0, 0, 0, 8, 21
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\REACT.md, Markdown, 0, 34, 0, 0, 0, 0, 0, 0, 0, 8, 42
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\README.md, Markdown, 0, 124, 0, 0, 0, 0, 0, 0, 0, 54, 178
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\package-lock.json, JSON, 0, 0, 19562, 0, 0, 0, 0, 0, 0, 1, 19563
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\package.json, JSON, 0, 0, 68, 0, 0, 0, 0, 0, 10, 0, 78
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\public\index.html, HTML, 0, 0, 0, 30, 0, 0, 0, 0, 51, 3, 84
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\public\manifest.json, JSON, 0, 0, 15, 0, 0, 0, 0, 0, 0, 1, 16
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\App.js, JavaScript, 0, 0, 0, 0, 0, 29, 0, 0, 3, 8, 40
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\App.scss, SCSS, 0, 0, 0, 0, 5, 0, 0, 0, 6, 2, 13
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\App.test.js, JavaScript, 0, 0, 0, 0, 0, 7, 0, 0, 0, 3, 10
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\_nav.js, JavaScript, 0, 0, 0, 0, 0, 309, 0, 0, 0, 1, 310
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\assets\img\brand\logo.svg, XML, 0, 0, 0, 0, 0, 0, 0, 43, 1, 1, 45
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\assets\img\brand\sygnet.svg, XML, 0, 0, 0, 0, 0, 0, 0, 16, 1, 1, 18
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\containers\DefaultLayout\DefaultAside.js, JavaScript, 0, 0, 0, 0, 0, 296, 0, 0, 1, 21, 318
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\containers\DefaultLayout\DefaultFooter.js, JavaScript, 0, 0, 0, 0, 0, 20, 0, 0, 1, 8, 29
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\containers\DefaultLayout\DefaultHeader.js, JavaScript, 0, 0, 0, 0, 0, 73, 0, 0, 1, 10, 84
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\containers\DefaultLayout\DefaultLayout.js, JavaScript, 0, 0, 0, 0, 0, 83, 0, 0, 2, 8, 93
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\containers\DefaultLayout\__tests__\DefaultAside.test.js, JavaScript, 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\containers\DefaultLayout\__tests__\DefaultFooter.test.js, JavaScript, 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\containers\DefaultLayout\__tests__\DefaultHeader.test.js, JavaScript, 0, 0, 0, 0, 0, 9, 0, 0, 0, 2, 11
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\containers\DefaultLayout\__tests__\DefaultLayout.test.js, JavaScript, 0, 0, 0, 0, 0, 9, 0, 0, 0, 2, 11
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\containers\DefaultLayout\index.js, JavaScript, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2, 4
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\containers\DefaultLayout\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\containers\index.js, JavaScript, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2, 4
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\index.js, JavaScript, 0, 0, 0, 0, 0, 12, 0, 0, 4, 3, 19
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\index.scss, SCSS, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 6
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-components\board\board.jsx, JavaScript React, 0, 0, 0, 0, 0, 0, 24, 0, 0, 6, 30
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-components\board\board.scss, SCSS, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-components\card\card.jsx, JavaScript React, 0, 0, 0, 0, 0, 0, 25, 0, 0, 7, 32
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-components\card\card.scss, SCSS, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-components\create-query-form\create-query-form.jsx, JavaScript React, 0, 0, 0, 0, 0, 0, 83, 0, 0, 7, 90
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-components\create-query-form\create-query-form.scss, SCSS, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-components\drag-and-drop\drag-and-drop.jsx, JavaScript React, 0, 0, 0, 0, 0, 0, 110, 0, 0, 17, 127
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-components\drag-and-drop\drag-and-drop.scss, SCSS, 0, 0, 0, 0, 39, 0, 0, 0, 2, 5, 46
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-components\visualization-settings\graph-visualization-settings\graph-visualization-settings.jsx, JavaScript React, 0, 0, 0, 0, 0, 0, 82, 0, 2, 7, 91
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-components\visualization-settings\graph-visualization-settings\graph-visualization-settings.scss, SCSS, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-components\visualization-settings\singlestat-visualization-settings\singlestat-visualization-settings.jsx, JavaScript React, 0, 0, 0, 0, 0, 0, 8, 0, 0, 2, 10
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-components\visualization-settings\singlestat-visualization-settings\singlestat-visualization-settings.scss, SCSS, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\all-metrics\all-metrics.jsx, JavaScript React, 0, 0, 0, 0, 0, 0, 76, 0, 2, 9, 87
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\all-metrics\all-metrics.scss, SCSS, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\all-panels\all-panels.jsx, JavaScript React, 0, 0, 0, 0, 0, 0, 63, 0, 0, 9, 72
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\all-panels\all-panels.scss, SCSS, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\dashboard-creation\dashboard-creation.jsx, JavaScript React, 0, 0, 0, 0, 0, 0, 33, 0, 11, 4, 48
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\dashboard-creation\dashboard-creation.scss, SCSS, 0, 0, 0, 0, 24, 0, 0, 0, 0, 1, 25
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\dashboards\dashboards.jsx, JavaScript React, 0, 0, 0, 0, 0, 0, 63, 0, 0, 11, 74
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\dashboards\dashboards.scss, SCSS, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\database-creation\database-creation.jsx, JavaScript React, 0, 0, 0, 0, 0, 0, 67, 0, 0, 7, 74
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\database-creation\database-creation.scss, SCSS, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\database-dashboard\database-dashboard.jsx, JavaScript React, 0, 0, 0, 0, 0, 0, 106, 0, 1, 9, 116
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\database-dashboard\database-dashboard.scss, SCSS, 0, 0, 0, 0, 19, 0, 0, 0, 3, 1, 23
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\database-dashboards\database-dashboards.jsx, JavaScript React, 0, 0, 0, 0, 0, 0, 70, 0, 0, 5, 75
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\database-dashboards\database-dashboards.scss, SCSS, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\database-metrics\database-metrics.jsx, JavaScript React, 0, 0, 0, 0, 0, 0, 62, 0, 2, 8, 72
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\database-metrics\database-metrics.scss, SCSS, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\database-panels\database-panels.jsx, JavaScript React, 0, 0, 0, 0, 0, 0, 66, 0, 0, 8, 74
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\database-panels\database-panels.scss, SCSS, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\databases\databases.jsx, JavaScript React, 0, 0, 0, 0, 0, 0, 93, 0, 15, 17, 125
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\databases\databases.scss, SCSS, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\panel-creation\metrics-selection\metrics-selection.jsx, JavaScript React, 0, 0, 0, 0, 0, 0, 94, 0, 1, 13, 108
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\panel-creation\metrics-selection\metrics-selection.scss, SCSS, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\panel-creation\visualization-settings\visualization-settings.jsx, JavaScript React, 0, 0, 0, 0, 0, 0, 25, 0, 0, 5, 30
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\panel-creation\visualization-settings\visualization-settings.scss, SCSS, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\stepper\first-step\first-step.jsx, JavaScript React, 0, 0, 0, 0, 0, 0, 80, 0, 0, 8, 88
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\stepper\first-step\first-step.scss, SCSS, 0, 0, 0, 0, 15, 0, 0, 0, 0, 3, 18
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\stepper\second-step\second-step.jsx, JavaScript React, 0, 0, 0, 0, 0, 0, 112, 0, 0, 10, 122
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\stepper\second-step\second-step.scss, SCSS, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\stepper\third-step\third-step.jsx, JavaScript React, 0, 0, 0, 0, 0, 0, 100, 0, 0, 11, 111
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\my-pages\stepper\third-step\third-step.scss, SCSS, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\polyfill.js, JavaScript, 0, 0, 0, 0, 0, 13, 0, 0, 25, 9, 47
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\routes.js, JavaScript, 0, 0, 0, 0, 0, 110, 0, 0, 1, 9, 120
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\scss\_custom.scss, SCSS, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\scss\_ie-fix.scss, SCSS, 0, 0, 0, 0, 9, 0, 0, 0, 1, 2, 12
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\scss\_variables.scss, SCSS, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\scss\style.scss, SCSS, 0, 0, 0, 0, 5, 0, 0, 0, 5, 5, 15
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\scss\vendors\_variables.scss, SCSS, 0, 0, 0, 0, 3, 0, 0, 0, 1, 1, 5
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\serviceWorker.js, JavaScript, 0, 0, 0, 0, 0, 85, 0, 0, 30, 13, 128
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\services\backend-urls.js, JavaScript, 0, 0, 0, 0, 0, 20, 0, 0, 6, 9, 35
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\services\redux\actions\dashboards-actions.js, JavaScript, 0, 0, 0, 0, 0, 71, 0, 0, 3, 7, 81
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\services\redux\actions\databases-actions.js, JavaScript, 0, 0, 0, 0, 0, 60, 0, 0, 3, 7, 70
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\services\redux\actions\dbTables-actions.js, JavaScript, 0, 0, 0, 0, 0, 27, 0, 0, 1, 3, 31
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\services\redux\actions\metrics-actions.js, JavaScript, 0, 0, 0, 0, 0, 68, 0, 0, 3, 7, 78
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\services\redux\actions\panel-actions.js, JavaScript, 0, 0, 0, 0, 0, 66, 0, 0, 3, 7, 76
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\services\redux\actions\queryData-actions.js, JavaScript, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\services\redux\actions\tempPanelOptions-actions.js, JavaScript, 0, 0, 0, 0, 0, 14, 0, 0, 1, 1, 16
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\services\redux\actions\tempProperties-actions.js, JavaScript, 0, 0, 0, 0, 0, 14, 0, 0, 1, 2, 17
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\services\redux\actions\user-actions.js, JavaScript, 0, 0, 0, 0, 0, 31, 0, 0, 1, 5, 37
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\services\redux\reducers\dashboards-reducer.js, JavaScript, 0, 0, 0, 0, 0, 79, 0, 0, 0, 3, 82
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\services\redux\reducers\databases-reducers.js, JavaScript, 0, 0, 0, 0, 0, 57, 0, 0, 0, 2, 59
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\services\redux\reducers\dbTables-reducers.js, JavaScript, 0, 0, 0, 0, 0, 32, 0, 0, 1, 2, 35
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\services\redux\reducers\metrics-reducer.js, JavaScript, 0, 0, 0, 0, 0, 50, 0, 0, 1, 2, 53
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\services\redux\reducers\panels-reducer.js, JavaScript, 0, 0, 0, 0, 0, 69, 0, 0, 1, 4, 74
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\services\redux\reducers\queryData-reducer.js, JavaScript, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\services\redux\reducers\tempPanelOptions-reducer.js, JavaScript, 0, 0, 0, 0, 0, 11, 0, 0, 0, 1, 12
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\services\redux\reducers\tempProperties-reducer.js, JavaScript, 0, 0, 0, 0, 0, 11, 0, 0, 0, 1, 12
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\services\redux\reducers\user-reducer.js, JavaScript, 0, 0, 0, 0, 0, 44, 0, 0, 0, 4, 48
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\services\redux\store\store.js, JavaScript, 0, 0, 0, 0, 0, 43, 0, 0, 1, 4, 48
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\settings\typeOptions.js, JavaScript, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\setupTests.js, JavaScript, 0, 0, 0, 0, 0, 13, 0, 0, 0, 3, 16
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Breadcrumbs\Breadcrumbs.js, JavaScript, 0, 0, 0, 0, 0, 48, 0, 0, 0, 3, 51
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Breadcrumbs\Breadcrumbs.test.js, JavaScript, 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Breadcrumbs\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Cards\Cards.js, JavaScript, 0, 0, 0, 0, 0, 408, 0, 0, 0, 9, 417
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Cards\Cards.test.js, JavaScript, 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Cards\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Carousels\Carousels.js, JavaScript, 0, 0, 0, 0, 0, 111, 0, 0, 0, 13, 124
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Carousels\Carousels.test.js, JavaScript, 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Carousels\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Collapses\Collapses.js, JavaScript, 0, 0, 0, 0, 0, 214, 0, 0, 0, 17, 231
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Collapses\Collapses.test.js, JavaScript, 0, 0, 0, 0, 0, 71, 0, 0, 0, 3, 74
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Collapses\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Dropdowns\Dropdowns.js, JavaScript, 0, 0, 0, 0, 0, 163, 0, 0, 0, 6, 169
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Dropdowns\Dropdowns.test.js, JavaScript, 0, 0, 0, 0, 0, 26, 0, 0, 0, 2, 28
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Dropdowns\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Forms\Forms.js, JavaScript, 0, 0, 0, 0, 0, 1155, 0, 0, 0, 7, 1162
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Forms\Forms.test.js, JavaScript, 0, 0, 0, 0, 0, 37, 0, 0, 0, 3, 40
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Forms\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Jumbotrons\Jumbotrons.js, JavaScript, 0, 0, 0, 0, 0, 53, 0, 0, 0, 4, 57
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Jumbotrons\Jumbotrons.test.js, JavaScript, 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Jumbotrons\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\ListGroups\ListGroups.js, JavaScript, 0, 0, 0, 0, 0, 224, 0, 0, 0, 7, 231
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\ListGroups\ListGroups.test.js, JavaScript, 0, 0, 0, 0, 0, 18, 0, 0, 0, 2, 20
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\ListGroups\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Navbars\Navbars.js, JavaScript, 0, 0, 0, 0, 0, 111, 0, 0, 0, 7, 118
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Navbars\Navbars.test.js, JavaScript, 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Navbars\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Navs\Navs.js, JavaScript, 0, 0, 0, 0, 0, 153, 0, 0, 0, 6, 159
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Navs\Navs.test.js, JavaScript, 0, 0, 0, 0, 0, 18, 0, 0, 0, 2, 20
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Navs\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Paginations\Paginations.test.js, JavaScript, 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Paginations\Pagnations.js, JavaScript, 0, 0, 0, 0, 0, 174, 0, 0, 0, 4, 178
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Paginations\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Popovers\Popovers.js, JavaScript, 0, 0, 0, 0, 0, 98, 0, 0, 0, 11, 109
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Popovers\Popovers.test.js, JavaScript, 0, 0, 0, 0, 0, 9, 0, 0, 0, 2, 11
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Popovers\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\ProgressBar\ProgressBar.js, JavaScript, 0, 0, 0, 0, 0, 163, 0, 0, 0, 4, 167
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\ProgressBar\ProgressBar.test.js, JavaScript, 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\ProgressBar\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Switches\Switches.js, JavaScript, 0, 0, 0, 0, 0, 483, 0, 0, 0, 12, 495
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Switches\Switches.test.js, JavaScript, 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Switches\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Tables\Tables.js, JavaScript, 0, 0, 0, 0, 0, 384, 0, 0, 0, 10, 394
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Tables\Tables.test.js, JavaScript, 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Tables\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Tabs\Tabs.js, JavaScript, 0, 0, 0, 0, 0, 175, 0, 0, 0, 9, 184
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Tabs\Tabs.test.js, JavaScript, 0, 0, 0, 0, 0, 20, 0, 0, 0, 2, 22
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Tabs\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Tooltips\Tooltips.js, JavaScript, 0, 0, 0, 0, 0, 124, 0, 0, 0, 11, 135
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Tooltips\Tooltips.test.js, JavaScript, 0, 0, 0, 0, 0, 9, 0, 0, 0, 2, 11
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\Tooltips\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Base\index.js, JavaScript, 0, 0, 0, 0, 0, 20, 0, 0, 0, 3, 23
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Buttons\BrandButtons\BrandButtons.js, JavaScript, 0, 0, 0, 0, 0, 319, 0, 0, 0, 6, 325
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Buttons\BrandButtons\BrandButtons.test.js, JavaScript, 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Buttons\BrandButtons\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Buttons\ButtonDropdowns\ButtonDropdowns.js, JavaScript, 0, 0, 0, 0, 0, 284, 0, 0, 0, 7, 291
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Buttons\ButtonDropdowns\ButtonDropdowns.test.js, JavaScript, 0, 0, 0, 0, 0, 18, 0, 0, 0, 3, 21
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Buttons\ButtonDropdowns\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Buttons\ButtonGroups\ButtonGroups.js, JavaScript, 0, 0, 0, 0, 0, 186, 0, 0, 0, 7, 193
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Buttons\ButtonGroups\ButtonGroups.test.js, JavaScript, 0, 0, 0, 0, 0, 18, 0, 0, 0, 2, 20
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Buttons\ButtonGroups\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Buttons\Buttons\Buttons.js, JavaScript, 0, 0, 0, 0, 0, 667, 0, 0, 0, 3, 670
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Buttons\Buttons\Buttons.test.js, JavaScript, 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Buttons\Buttons\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Buttons\index.js, JavaScript, 0, 0, 0, 0, 0, 7, 0, 0, 0, 2, 9
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Charts\Charts.js, JavaScript, 0, 0, 0, 0, 0, 246, 0, 0, 0, 10, 256
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Charts\Charts.test.js, JavaScript, 0, 0, 0, 0, 0, 16, 0, 0, 0, 2, 18
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Charts\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Dashboard\Dashboard.js, JavaScript, 0, 0, 0, 0, 0, 1078, 0, 0, 8, 44, 1130
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Dashboard\Dashboard.test.js, JavaScript, 0, 0, 0, 0, 0, 1, 0, 0, 16, 5, 22
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Dashboard\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Icons\CoreUIIcons\CoreUIIcons.js, JavaScript, 0, 0, 0, 0, 0, 425, 0, 0, 0, 4, 429
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Icons\CoreUIIcons\CoreUIIcons.test.js, JavaScript, 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Icons\CoreUIIcons\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Icons\Flags\Flags.js, JavaScript, 0, 0, 0, 0, 0, 1020, 0, 0, 0, 3, 1023
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Icons\Flags\Flags.test.js, JavaScript, 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Icons\Flags\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Icons\FontAwesome\FontAwesome.js, JavaScript, 0, 0, 0, 0, 0, 2839, 0, 0, 0, 864, 3703
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Icons\FontAwesome\FontAwesome.test.js, JavaScript, 0, 0, 0, 0, 0, 8, 0, 0, 0, 1, 9
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Icons\FontAwesome\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Icons\SimpleLineIcons\SimpleLineIcons.js, JavaScript, 0, 0, 0, 0, 0, 569, 0, 0, 0, 187, 756
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Icons\SimpleLineIcons\SimpleLineIcons.test.js, JavaScript, 0, 0, 0, 0, 0, 8, 0, 0, 0, 1, 9
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Icons\SimpleLineIcons\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Icons\index.js, JavaScript, 0, 0, 0, 0, 0, 7, 0, 0, 0, 2, 9
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Notifications\Alerts\Alerts.js, JavaScript, 0, 0, 0, 0, 0, 140, 0, 0, 0, 7, 147
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Notifications\Alerts\Alerts.test.js, JavaScript, 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Notifications\Alerts\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Notifications\Badges\Badges.js, JavaScript, 0, 0, 0, 0, 0, 85, 0, 0, 0, 3, 88
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Notifications\Badges\Badges.test.js, JavaScript, 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Notifications\Badges\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Notifications\Modals\Modals.js, JavaScript, 0, 0, 0, 0, 0, 211, 0, 0, 0, 23, 234
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Notifications\Modals\Modals.test.js, JavaScript, 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Notifications\Modals\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Notifications\index.js, JavaScript, 0, 0, 0, 0, 0, 6, 0, 0, 0, 2, 8
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Pages\Login\Login.js, JavaScript, 0, 0, 0, 0, 0, 93, 0, 0, 0, 13, 106
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Pages\Login\Login.test.js, JavaScript, 0, 0, 0, 0, 0, 9, 0, 0, 0, 2, 11
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Pages\Login\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Pages\Page404\Page404.js, JavaScript, 0, 0, 0, 0, 0, 33, 0, 0, 0, 3, 36
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Pages\Page404\Page404.test.js, JavaScript, 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Pages\Page404\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Pages\Page500\Page500.js, JavaScript, 0, 0, 0, 0, 0, 33, 0, 0, 0, 3, 36
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Pages\Page500\Page500.test.js, JavaScript, 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Pages\Page500\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Pages\Register\Register.js, JavaScript, 0, 0, 0, 0, 0, 66, 0, 0, 0, 3, 69
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Pages\Register\Register.test.js, JavaScript, 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 10
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Pages\Register\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Pages\index.js, JavaScript, 0, 0, 0, 0, 0, 7, 0, 0, 0, 1, 8
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Theme\Colors\Colors.js, JavaScript, 0, 0, 0, 0, 0, 169, 0, 0, 4, 12, 185
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Theme\Colors\Colors.test.js, JavaScript, 0, 0, 0, 0, 0, 6, 0, 0, 0, 2, 8
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Theme\Colors\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Theme\Typography\Typography.js, JavaScript, 0, 0, 0, 0, 0, 164, 0, 0, 0, 7, 171
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Theme\Typography\Typography.test.js, JavaScript, 0, 0, 0, 0, 0, 8, 0, 0, 0, 1, 9
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Theme\Typography\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Theme\index.js, JavaScript, 0, 0, 0, 0, 0, 5, 0, 0, 0, 1, 6
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Users\User.js, JavaScript, 0, 0, 0, 0, 0, 39, 0, 0, 0, 8, 47
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Users\User.test.js, JavaScript, 0, 0, 0, 0, 0, 13, 0, 0, 0, 3, 16
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Users\Users.js, JavaScript, 0, 0, 0, 0, 0, 61, 0, 0, 0, 10, 71
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Users\Users.test.js, JavaScript, 0, 0, 0, 0, 0, 9, 0, 0, 0, 2, 11
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Users\UsersData.js, JavaScript, 0, 0, 0, 0, 0, 30, 0, 0, 0, 2, 32
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Users\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Widgets\Widget01.js, JavaScript, 0, 0, 0, 0, 0, 52, 0, 0, 2, 10, 64
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Widgets\Widget02.js, JavaScript, 0, 0, 0, 0, 0, 64, 0, 0, 1, 11, 76
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Widgets\Widget03.js, JavaScript, 0, 0, 0, 0, 0, 52, 0, 0, 2, 12, 66
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Widgets\Widget04.js, JavaScript, 0, 0, 0, 0, 0, 53, 0, 0, 1, 9, 63
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Widgets\Widgets.js, JavaScript, 0, 0, 0, 0, 0, 225, 0, 0, 1, 7, 233
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Widgets\Widgets.test.js, JavaScript, 0, 0, 0, 0, 0, 11, 0, 0, 0, 2, 13
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\Widgets\package.json, JSON, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+c:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\front-end sentio\coreui\src\views\index.js, JavaScript, 0, 0, 0, 0, 0, 66, 0, 0, 0, 4, 70
+Total, -, 11, 2382, 19879, 30, 125, 15912, 1442, 59, 248, 2945, 43033

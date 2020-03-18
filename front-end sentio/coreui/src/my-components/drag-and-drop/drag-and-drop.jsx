@@ -9,35 +9,63 @@ let uniqId=0;
 class DragDrop extends React.Component {
     constructor(props){
         super(props)
+        console.log(props, 'cia props construktoriuje')
+        const dashboard = props.dashboard;
+        const panels = props.panels;
+        let currentDashboardPanels = [];
+        if(dashboard) {
+            for (let i = 0; i < dashboard.dashboardPanels.length; i++) {
+                const dPanel = dashboard.dashboardPanels[i];
+                for (let j = 0; j < panels.length; j++) {
+                    if(dPanel.panelId === panels[j].id) {
+                        currentDashboardPanels.push(panels[j]);
+                    } 
+                }
+            }
+        }
+        console.log(currentDashboardPanels, 'cia tos panels');
         this.state = {
-          container : [],
+          //container : [],
+          dashboard: props.dashboard,
+          container : currentDashboardPanels,
           data: props.data,
-          name: ''
+          name: props.dashboard?.name || ''
         }
     }
     
     onSubmit = () => {
         debugger;
-        const obj = JSON.stringify({ 
-            Name: this.state.name,
-            DatabaseId: this.props.dbId,
-            Panels: this.state.container
-        });
-        this.props.addDashboard(obj).then(res => {
-            if(res.json.isValid) {
-                alert("Dashboard added successfully")
-            }
-            else {
-                alert("There was an error");
-            }
-        });
+        if(!this.state.dashboard) {
+            const obj = JSON.stringify({ 
+                Name: this.state.name,
+                DatabaseId: this.props.dbId,
+                Panels: this.state.container
+            });
+            this.props.addDashboard(obj)
+                .then(res => {
+                    if(res.json.isValid) {
+                        alert("Dashboard added successfully")
+                    }
+                    else {
+                        alert("There was an error");
+                    }
+                });
+        }
+        else {
+
+
+        }
     }
+
+
+
 
     onNameChange = (value) => {
         this.setState({name: value});
     }
 
     onDragStart = (e,v) =>{
+        //console.log(v);
         e.dataTransfer.dropEffect = "move";
         e.dataTransfer.setData( "text/plain", JSON.stringify(v) )
     }
@@ -69,6 +97,7 @@ class DragDrop extends React.Component {
     render() {
 
         return(<>
+            { console.log(this.props, 'cia props drag drope') }
             <div className="container-main">
                 <div className="container-data">                    
                     <div className="DragAndDrop">
@@ -108,7 +137,7 @@ class DragDrop extends React.Component {
                 <div className="container-submit">
                     
                         <label htmlFor="">Enter your dashboard name</label>
-                        <Input onChange={(e) => this.onNameChange(e.target.value)}></Input>
+                        <Input value={this.state.name} onChange={(e) => this.onNameChange(e.target.value)}></Input>
                         <Button onClick={() => this.onSubmit()}>Sumbit</Button>
                     
                 </div>

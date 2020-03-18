@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
 import { FormGroup, Label, Button, Card, CardBody, CardHeader, Col, Table, Input } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchDashboards, deleteDashboard } from '../../services/redux/actions/dashboards-actions';
 
 function DatabaseDashboards(props) {
     const dbId = props.match.params.dbId;
     const userId = props.user.id;
-    debugger;
     const dashboards = props.dashboards.dashboards; //(!props.dashboards.isFetching && !props.dashboards.error) ? props.dashboards.dashboards.filter(x=> x.databaseId === dbId) : [];
+    const history = useHistory();
+    
     useEffect(() => {
       debugger
       props.getDashboards(userId)
@@ -18,6 +19,8 @@ function DatabaseDashboards(props) {
       props.deleteDashboard(dashboardId);
     }
     
+    
+
     return (
         <div>
             <h1>Database dashboards</h1>
@@ -48,8 +51,18 @@ function DatabaseDashboards(props) {
                         <tr>
                           <td>{d.name}</td>
                           <td>{d.dashboardPanels.length}</td>
-                          <td><Button className="px-3"  color="warning"><i className="cui-pencil icons"></i></Button></td>
-                          <td><Button className="px-3" onClick={() => onDeleteDashboardClick(d.id)} color="danger"><i className="cui-trash icons"></i></Button></td>
+                          <td>
+                            <Link to={`/databases/${dbId}/dashboards/${d.id}/edit`}>
+                              <Button className="px-3"  color="warning">
+                                <i className="cui-pencil icons"></i>
+                              </Button>
+                            </Link>
+                          </td>
+                          <td>
+                            <Button className="px-3" onClick={() => onDeleteDashboardClick(d.id)} color="danger">
+                              <i className="cui-trash icons"></i>
+                            </Button>
+                          </td>
                         </tr>
                       ))
                     }

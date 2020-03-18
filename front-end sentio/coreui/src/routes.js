@@ -71,7 +71,8 @@ const routes = [
   { path: '/databases/:dbId/panels/creation/metric-selection/visualization-settings', exact: true, name: 'Settings', component: VisualizationSettings },
  
   { path: '/databases/:dbId/dashboards', exact: true, name: 'Database Dashboards', component: DatabaseDashboards },
-  { path: '/databases/:dbId/dashboards/create', exact: true, name: 'DashboardCreation', component: DashboardCreation },
+  { path: '/databases/:dbId/dashboards/create', exact: true, name: 'Dashboard Creation', component: DashboardCreation },
+  { path: '/databases/:dbId/dashboards/:dashboardId/edit', exact: true, name: 'Dashboard Edit', component: DashboardCreation },
   { path: '/all-metrics', exact: true, name: 'All Metrics', component: AllMetrics },
   
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
