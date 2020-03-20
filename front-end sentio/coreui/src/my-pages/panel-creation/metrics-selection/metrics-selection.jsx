@@ -1,16 +1,14 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import { connect } from 'react-redux';
 import { Link, useHistory} from 'react-router-dom';
 import { FormGroup, Label, Button, Card, CardBody, CardHeader, Col, Table, Input } from 'reactstrap';
 import { setPanelOptionsAction } from '../../../services/redux/actions/tempPanelOptions-actions';
 import { fetchDbMetrics } from '../../../services/redux/actions/metrics-actions';
-
-
+import './metrics-selection.scss';
 
 function MetricSelection(props) {
     const dbId = props.match.params.dbId;
     const metrics = props.metrics.metrics
-    
     const history = useHistory();
     
     useEffect(() => {
@@ -51,20 +49,18 @@ function MetricSelection(props) {
     }
 
     return (
-        <div>        
-          {console.log(props, 'cia props ms')}
-            <Col xs="9" lg="10">                                         
+        <div>                                            
             <Card>
               <CardHeader>
-                 <h3>Select what metrics you would like to see</h3>
+                 <h3>Select what metrics you would like to see in your panel</h3>
               </CardHeader>
               <CardBody>
                 <Table responsive>
                   <thead>
                     <tr>
-                        <th>Metric name</th>
-                        <th>Operation Type</th>  
-                        <th>Selected</th>              
+                      <th>Metric name</th>
+                      <th>Operation Type</th>  
+                      <th className="select-option">Selected</th>              
                     </tr>
                   </thead>
                   <tbody>
@@ -72,7 +68,7 @@ function MetricSelection(props) {
                       <tr key={index}>
                         <td>{metric.name}</td>
                         <td>{metric.operationType}</td>                
-                        <td>
+                        <td className="select-option">
                           <Input onClick={() => onCheckBoxClick(metric)} type="checkbox"></Input>
                         </td>                      
                       </tr>
@@ -81,20 +77,19 @@ function MetricSelection(props) {
                 </Table>         
               </CardBody>
             </Card>
-            <Label>Select visualization </Label>
+            <Label>Select what visualization you would like to see </Label>
             <FormGroup>
               <Input onChange={(e) => onVisualizationChange(e.target.value)} type="select">
-                  <option value="No Option">No option</option>
-                  <option value="graph">Graph</option>                          
-                  <option value="singlestat">Singlestat</option>                          
-                  <option value="gauge">Gauge</option>                          
-                  <option value="bar gauge">Bar Gauge</option>                          
+                <option value="No Option">No option</option>
+                <option value="graph">Graph</option>                          
+                <option value="singlestat">Singlestat</option>                          
+                <option value="gauge">Gauge</option>                          
+                <option value="bar gauge">Bar Gauge</option>                          
               </Input>  
             </FormGroup>
             <Link>
-              <Button onClick={() => onSubmit()}>Go to visualization settings</Button>
-            </Link>
-            </Col>       
+              <Button color="primary" onClick={() => onSubmit()}>Go to visualization settings</Button>
+            </Link>    
         </div>      
     )
 }
