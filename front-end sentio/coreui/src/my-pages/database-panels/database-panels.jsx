@@ -18,38 +18,37 @@ function DatabasePanels(props) {
     }
 
     return (
-      
-        <div>
-          { console.log(dbPanels,'cia props db panel')}
-            <Col xs="6" lg="6">
-                
-                <Link to={`/databases/${dbId}/panels/creation/metric-selection`}>
-                    <Button color="success">Create new panel</Button>
-                </Link>
-                
+        <div>     
             <Card>
-              <CardHeader>
-                 <h3>Panels</h3>
+              <CardHeader className="container-header">
+                <div>
+                  <h3>Panels</h3>
+                </div>
+                <div>
+                  <Link to={`/databases/${dbId}/panels/creation/metric-selection`}>
+                    <Button color="success">Create new panel</Button>
+                  </Link>
+                </div>
               </CardHeader>
               <CardBody>
-                <Table responsive>
+                <Table className="container__table" responsive>
                   <thead>
                     <tr>
-                        <th>Panel name</th>
-                        <th>Panel Type</th>  
-                        <th>Edit</th>  
-                        <th>Remove</th>  
+                        <th className="container__table-row-text">Panel name</th>
+                        <th className="container__table-row-text">Panel Type</th>  
+                        <th className="container__table-row-action">Edit</th>  
+                        <th className="container__table-row-action">Remove</th>  
                     </tr>
                   </thead>
                   <tbody>
                     {
                       dbPanels.map(panel => <tr>
-                        <td>{ panel.legend }</td>
-                        <td>{ panel.panelType }</td>
-                        <td>
+                        <td className="container__table-row-text">{ panel.legend }</td>
+                        <td className="container__table-row-text">{ panel.panelType }</td>
+                        <td className="container__table-row-action">
                           <Button className="px-3" color="warning"><i className="cui-pencil icons"></i></Button>
                         </td>
-                        <td>
+                        <td className="container__table-row-action">
                           <Button onClick={() => onDeleteClick(panel.id)} className="px-3" color="danger"><i className="cui-trash icons"></i></Button>
                         </td>
                       </tr>)
@@ -57,8 +56,7 @@ function DatabasePanels(props) {
                   </tbody>
                 </Table>         
               </CardBody>
-            </Card>
-            </Col>       
+            </Card>  
         </div>
     )
 }
