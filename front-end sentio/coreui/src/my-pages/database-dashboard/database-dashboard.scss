@@ -17,6 +17,13 @@
             &-list {
                 height: 600px;
                 overflow-y: scroll;
+                &-item {        
+                   margin: 4px 0px;    
+                   margin-right: 15px;
+                   &:hover {
+                       background-color: rgb(240,243,245);
+                   }
+                }
             }
         }
     }

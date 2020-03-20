@@ -12,7 +12,6 @@ function DatabaseDashboard(props) {
     const userId = props.user.id;
     const dbId = props.match.params.dbId;
     const metrics = props.metrics;
-    //const panels = !props.panels.isFetching || (!props.panels.isFetching && !props.panels.error) ? props.panels.panels.filter(p => p.databaseId === dbId) : [];
     const panels = props.panels.panels? props.panels.panels.filter(p => p.databaseId === dbId) : [];
     const dashboards = props.dashboards.filter(x => x.databaseId === dbId);
     useEffect(() => {
@@ -35,14 +34,12 @@ function DatabaseDashboard(props) {
                             </Link>
                         </div>
                     </CardHeader>
-                    <CardBody>
-                        
+                    <CardBody>    
                         <ListGroup className="db-dash-container-item__card-list">
-                        
                         {
                             metrics.length > 0 ? metrics.map(metric => (       
-                                <ListGroupItem>{metric.name}</ListGroupItem>
-                            )) : <ListGroupItem>No metrics yet</ListGroupItem>
+                                <ListGroupItem className="db-dash-container-item__card-list-item">{metric.name}</ListGroupItem>
+                            )) : <ListGroupItem className="db-dash-container-item__card-list-item">No metrics yet</ListGroupItem>
                         }  
                         </ListGroup>
                     </CardBody>
@@ -56,18 +53,17 @@ function DatabaseDashboard(props) {
                             <strong><h3>Panels</h3></strong>
                         </div>
                         <div>
-                        <Link to={`/databases/${dbId}/panels`}>
-                            <Button color="success">View More</Button>
-                        </Link>
+                            <Link to={`/databases/${dbId}/panels`}>
+                                <Button color="success">View More</Button>
+                            </Link>
                         </div>
                     </CardHeader>
                     <CardBody>
-                        
                         <ListGroup className="db-dash-container-item__card-list">
                             {
                             panels.length > 0 ? panels.map(panel => (       
-                                <ListGroupItem>{panel.legend}</ListGroupItem>
-                            )) : <ListGroupItem>No panels yet</ListGroupItem>
+                                <ListGroupItem className="db-dash-container-item__card-list-item">{panel.legend}</ListGroupItem>
+                            )) : <ListGroupItem className="db-dash-container-item__card-list-item">No panels yet</ListGroupItem>
                             } 
                         </ListGroup>
                     </CardBody>
@@ -81,18 +77,18 @@ function DatabaseDashboard(props) {
                             <strong><h3>Dashboards</h3></strong>
                         </div>
                         <div>
-                        <Link to={`/databases/${dbId}/dashboards`}>
-                            <Button color="success">View More</Button>
-                        </Link>
+                            <Link to={`/databases/${dbId}/dashboards`}>
+                                <Button color="success">View More</Button>
+                            </Link>
                         </div>
                     </CardHeader>
                     <CardBody>
                     <ListGroup className="db-dash-container-item__card-list">
                         {
                            dashboards.length > 0 ? dashboards.map(dashboard => (       
-                           <ListGroupItem>{dashboard.name}</ListGroupItem>
+                           <ListGroupItem className="db-dash-container-item__card-list-item">{dashboard.name}</ListGroupItem>
                            )) :
-                            <ListGroupItem>No dashboards yet</ListGroupItem>
+                            <ListGroupItem className="db-dash-container-item__card-list-item">No dashboards yet</ListGroupItem>
                         } 
                     </ListGroup>
                 </CardBody>
