@@ -4,13 +4,14 @@ import { useHistory } from 'react-router-dom';
 import { Button, Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Table } from 'reactstrap';
 import { deleteDatabase, fetchUserDatabases } from '../../services/redux/actions/databases-actions';
 import {Link} from 'react-router-dom';
-
+import './databases.scss'
 
 function Databases({userId, databases, getUserDatabases, deleteDb}) {
     const history = useHistory();
     
     useEffect(()=>{  
-        getUserDatabases(userId)
+      //  getUserDatabases(userId)
+        getUserDatabases('72c50eeb-bb66-47fa-ae1d-63eacbeb74fe')
      }, [])
 
     function onViewDbMetricsMetricClick(dbId) {
@@ -23,87 +24,47 @@ function Databases({userId, databases, getUserDatabases, deleteDb}) {
 
     return (
         
-        <div>
-{console.log(databases)}
-            
-            <Col xs="8" lg="8">
-              <Link to="databases/creation">
-                <Button>Add new database </Button>
-              </Link>
+        <div>             
             <Card>
-              <CardHeader>
-                 <h3>Select database to create new metric</h3>
+              <CardHeader className="dbCard-header">
+                <div>
+                  <h3>Select which database's data you would like to view</h3>
+                </div>
+                <div>
+                  <Link to="databases/creation">
+                    <Button color="success">Add new database</Button>
+                  </Link>
+                </div>
               </CardHeader>
               <CardBody>
                 <Table responsive>
                   <thead>
-                  <tr>
-                    <th>Database name</th>
-                    <th>Database Type</th>
-                    <th>Select</th>
-                    <th>Edit</th>
-                    <th>Remove</th>
+                    <tr className="dbCard__table-row">
+                      <th className="dbCard__table-row-text">Database name</th>
+                      <th className="dbCard__table-row-text">Database Type</th>
+                      <th className="dbCard__table-row-action">Select</th>
+                      <th className="dbCard__table-row-action">Remove</th>
                   </tr>
                   </thead>
                   <tbody>
                     {
                         databases && databases.map((db, index) => (
-                            <tr key={db.id} className="tableRow">
-                                <td>{ db.databaseName }</td>
-                                <td> MSSQL</td>
-                                <td> 
+                            <tr key={db.id} className="dbCard__table-row">
+                                <td className="dbCard__table-row-text">{ db.databaseName }</td>
+                                <td className="dbCard__table-row-text"> MSSQL</td>
+                                <td className="dbCard__table-row-action"> 
                                   <Button onClick={() => onViewDbMetricsMetricClick(db.id)} color="success"><i className="cui-layers icons px-4"></i></Button> 
                                 </td>
-                                <td> 
-                                  <Button className="px-3"color="warning"><i className="cui-pencil icons"></i></Button> 
-                                </td>
-                                <td>  
+                                <td className="dbCard__table-row-action">  
                                   <Button className="px-3" onClick={() => onDeleteDatabaseClick(db.id)} color="danger"><i className="cui-trash icons ="></i></Button>
                                 </td>
-                                
-                                {/* <td> 
-                                    <Button onClick={() => onViewDbMetricsMetricClick(db.id)} color="success"><i className="cui-layers icons px-2"></i></Button> 
-                                    <Button className="ml-1"color="warning"><i className="cui-pencil icons"></i></Button> 
-                                    <Button className="ml-1" onClick={() => onDeleteDatabaseClick(db.id)} color="danger"><i className="cui-trash icons ="></i></Button>
-                                </td> */}
                             </tr>
                         ))
-                    } 
-                  {/* <tr>
-                    <td>Yiorgos Avraamu</td>
-                    <td>2012/01/01</td>
-                    <td>Member</td>
-                    <td>
-                      <Badge color="success">Active</Badge>
-                    </td>
-                  </tr> */}
-                  
-                  {/* <tr>
-                    <td>Agapetus Tadeáš</td>
-                    <td>2012/01/21</td>
-                    <td>Staff</td>
-                    <td>
-                      <Badge color="success">Active</Badge>
-                    </td>
-                  </tr> */}
+                    }
                   </tbody>
                 </Table>
-                <Pagination>
-                  <PaginationItem disabled><PaginationLink previous tag="button">Prev</PaginationLink></PaginationItem>
-                  <PaginationItem active>
-                    <PaginationLink tag="button">1</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem><PaginationLink tag="button">2</PaginationLink></PaginationItem>
-                  <PaginationItem><PaginationLink tag="button">3</PaginationLink></PaginationItem>
-                  <PaginationItem><PaginationLink tag="button">4</PaginationLink></PaginationItem>
-                  <PaginationItem><PaginationLink next tag="button">Next</PaginationLink></PaginationItem>
-                </Pagination>
               </CardBody>
             </Card>
-          </Col>
-
-
-
         </div>
     )
 }
