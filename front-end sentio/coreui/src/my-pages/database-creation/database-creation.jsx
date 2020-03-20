@@ -34,8 +34,7 @@ function DatabaseCreation(props) {
             <Col xs="12" sm="6">
             <Card>
               <CardHeader>
-                <strong>Credit Card</strong>
-                <small> Form</small>
+                <strong>Enter your database connection data</strong>
               </CardHeader>
               <CardBody>
                 <Row>
@@ -49,7 +48,7 @@ function DatabaseCreation(props) {
                 <Row>
                   <Col xs="12">
                     <FormGroup>
-                      <Label htmlFor="ccnumber">Credit Card Number</Label>
+                      <Label htmlFor="ccnumber">Database Type</Label>
                       <Input onChange={(e) => onDbTypeChange(e.target.value)} type="select" required>
                             <option value="Not Selected">Not Selected</option>
                             <option value="MSSQL">MSSQL</option>
@@ -60,7 +59,7 @@ function DatabaseCreation(props) {
                   </Col>
                 </Row>
 
-                <Button onClick={() => onSubmit()}>Submit</Button>
+                <Button color="success" onClick={() => onSubmit()}>Submit</Button>
               </CardBody>
             </Card>
           </Col>
