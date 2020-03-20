@@ -43,16 +43,14 @@ function GraphVisualizationSettings(props, { dbId }) {
 
     return (
         <div>
-            GraphVisualizationSettings comp
             <Col xs="9" lg="10">                                         
             <Card>
-              { console.log(props,'cia porps gvs')}
               <CardHeader>
                  <h3>Select what metrics you would like to see</h3>
               </CardHeader>
               <CardBody>
                 <FormGroup>
-                    <Label>Graph name</Label>
+                    <h4><Label>Graph name</Label></h4>
                     <Input onChange={(e) => onNameChange(e.target.value)}></Input>
                 </FormGroup>
                 <Table responsive>

@@ -9,8 +9,6 @@ function VisualizationSettings(props) {
     const visualization = props.panelOptions.visualization;
     return (
         <div>
-            { console.log(props, 'vs page props') }
-            <h2>Welcome to vizualization page</h2>
             { 
                 visualization === 'graph' ? 
                     <GraphVisualizationSettings dbId={dbId} ></GraphVisualizationSettings> : 
@@ -18,9 +16,6 @@ function VisualizationSettings(props) {
                     <SinglestatVisualizationSettings></SinglestatVisualizationSettings> : 
                 <div> Option not implemented yet </div>
             }
-            
-        
-
         </div>
     )
 }
