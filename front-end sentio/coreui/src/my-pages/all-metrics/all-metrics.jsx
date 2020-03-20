@@ -29,49 +29,53 @@ function AllMetrics(props) {
 
     return (
         <div>
-          {console.log(props, 'cia mtx props')}
-          {console.log(userId, 'cia userId props')}
-            There will be displayed all created metrics from all tables
-            <Col xs="6" lg="6">
-                <Link to={`/databases`}>
-                    <Button color="success">Create new metric</Button>
-                </Link>
+                
             <Card>
-              <CardHeader>
-                 <h3>Metrics</h3>
+              <CardHeader className="container-header">
+                 <div>
+                   <h3>Metrics</h3>
+                  </div>
+                 <div>
+                  <Link to={`/databases`}>
+                    <Button color="success">Create new metric</Button>
+                  </Link>
+                 </div>
               </CardHeader>
               <CardBody>
                 <Table responsive>
                   <thead>
                     <tr>
-                        <th>Metric Name</th>
-                        <th>Database Name</th>
-                        <th>Database Type</th>
-                        <th>Operation Type</th>  
-                        <th>Edit</th>  
-                        <th>Remove</th>  
+                        <th className="container__table-row-text">Metric Name</th>
+                        <th className="container__table-row-text">Database Name</th>
+                        <th className="container__table-row-text">Database Type</th>
+                        <th className="container__table-row-text">Operation Type</th>  
+                        <th className="container__table-row-action">Edit</th>  
+                        <th className="container__table-row-action">Remove</th>  
                     </tr>
                   </thead>
                   <tbody>
                     { metrics && metrics.map((metric, index) => (
                       <tr key={index}>
-                        <td>{metric.name}</td>
-                        <td>{metric.database.databaseName}</td>
-                        {/* <td>{metric.database.databaseType}</td> */}
-                        <td>MSSQL</td>
-                        <td>{metric.operationType}</td>                
-                        <td><Button className="px-3"  color="warning"><i className="cui-pencil icons"></i></Button></td>
-                        <td><Button className="px-3" onClick={() => onDeleteMetricClick(metric.id)} color="danger"><i className="cui-trash icons"></i></Button></td>
+                        <td className="container__table-row-text">{metric.name}</td>
+                        <td className="container__table-row-text">{metric.database.databaseName}</td>
+                        <td className="container__table-row-text">MSSQL</td>
+                        <td className="container__table-row-text">{metric.operationType}</td>                
+                        <td className="container__table-row-action">
+                          <Button className="px-3"  color="warning">
+                            <i className="cui-pencil icons"></i>
+                          </Button>
+                        </td>
+                        <td className="container__table-row-action">
+                          <Button className="px-3" onClick={() => onDeleteMetricClick(metric.id)} color="danger">
+                            <i className="cui-trash icons"></i>
+                          </Button>
+                        </td>
                       </tr>
                     )) }
                   </tbody>
                 </Table>         
               </CardBody>
             </Card>
-         
-
-            </Col>       
-
         </div>
     )
 }
