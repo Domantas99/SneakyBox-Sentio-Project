@@ -26,7 +26,7 @@ function Databases({userId, databases, getUserDatabases, deleteDb}) {
         
         <div>             
             <Card>
-              <CardHeader className="dbCard-header">
+              <CardHeader className="container-header">
                 <div>
                   <h3>Select which database's data you would like to view</h3>
                 </div>
@@ -39,23 +39,23 @@ function Databases({userId, databases, getUserDatabases, deleteDb}) {
               <CardBody>
                 <Table responsive>
                   <thead>
-                    <tr className="dbCard__table-row">
-                      <th className="dbCard__table-row-text">Database name</th>
-                      <th className="dbCard__table-row-text">Database Type</th>
-                      <th className="dbCard__table-row-action">Select</th>
-                      <th className="dbCard__table-row-action">Remove</th>
+                    <tr className="container__table-row">
+                      <th className="container__table-row-text">Database name</th>
+                      <th className="container__table-row-text">Database Type</th>
+                      <th className="container__table-row-action">Select</th>
+                      <th className="container__table-row-action">Remove</th>
                   </tr>
                   </thead>
                   <tbody>
                     {
                         databases && databases.map((db, index) => (
-                            <tr key={db.id} className="dbCard__table-row">
-                                <td className="dbCard__table-row-text">{ db.databaseName }</td>
-                                <td className="dbCard__table-row-text"> MSSQL</td>
-                                <td className="dbCard__table-row-action"> 
+                            <tr key={db.id} className="container__table-row">
+                                <td className="container__table-row-text">{ db.databaseName }</td>
+                                <td className="container__table-row-text"> MSSQL</td>
+                                <td className="container__table-row-action"> 
                                   <Button onClick={() => onViewDbMetricsMetricClick(db.id)} color="success"><i className="cui-layers icons px-4"></i></Button> 
                                 </td>
-                                <td className="dbCard__table-row-action">  
+                                <td className="container__table-row-action">  
                                   <Button className="px-3" onClick={() => onDeleteDatabaseClick(db.id)} color="danger"><i className="cui-trash icons ="></i></Button>
                                 </td>
                             </tr>

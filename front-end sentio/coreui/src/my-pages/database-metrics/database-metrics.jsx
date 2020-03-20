@@ -18,43 +18,41 @@ function DatabaseMetrics(props) {
     }
 
     return (
-
-        <div>
-          { console.log(props,'cia props')}
-            <Col xs="6" lg="6">
-                <Link to={`/databases/${dbId}/metrics/first-step`}>
-                    <Button color="success">Create new metric</Button>
-                </Link>
+        <div> 
             <Card>
-              <CardHeader>
-                 <h3>Metrics</h3>
+              <CardHeader className="container-header">
+                  <div>
+                    <h3>Metrics</h3>
+                  </div>
+                  <div>
+                    <Link to={`/databases/${dbId}/metrics/first-step`}>
+                      <Button color="success">Create new metric</Button>
+                    </Link>
+                 </div>
               </CardHeader>
               <CardBody>
-                <Table responsive>
+                <Table className="container__table"  responsive>
                   <thead>
-                    <tr>
-                        <th>Metric name</th>
-                        <th>Operation Type</th>  
-                        <th>Edit</th>  
-                        <th>Remove</th>  
+                    <tr className="container__table-row">
+                        <th className="container__table-row-text">Metric name</th>
+                        <th className="container__table-row-text">Operation Type</th>  
+                        <th className="container__table-row-action">Edit</th>  
+                        <th className="container__table-row-action">Remove</th>  
                     </tr>
                   </thead>
                   <tbody>
                     { metrics && metrics.map((metric, index) => (
                       <tr key={index}>
-                        <td>{metric.name}</td>
-                        <td>{metric.operationType}</td>                
-                        <td><Button className="px-3"  color="warning"><i className="cui-pencil icons"></i></Button></td>
-                        <td><Button className="px-3" onClick={() => onDeleteMetricClick(metric.id)} color="danger"><i className="cui-trash icons"></i></Button></td>
+                        <td className="container__table-row-text">{metric.name}</td>
+                        <td className="container__table-row-text">{metric.operationType}</td>                
+                        <td className="container__table-row-action"><Button className="px-3"  color="warning"><i className="cui-pencil icons"></i></Button></td>
+                        <td className="container__table-row-action"><Button className="px-3" onClick={() => onDeleteMetricClick(metric.id)} color="danger"><i className="cui-trash icons"></i></Button></td>
                       </tr>
                     )) }
                   </tbody>
                 </Table>         
               </CardBody>
-            </Card>
-         
-
-            </Col>       
+            </Card>    
         </div>
     )
 }
