@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Input } from 'reactstrap';
+import { Button, Input, Label } from 'reactstrap';
 import { addDashboard, updateDashboard } from '../../services/redux/actions/dashboards-actions';
 import './drag-and-drop.scss';
-
+import PanelCard from '../panel-card/panel-card';
 
 let uniqId=0;
 class DragDrop extends React.Component {
@@ -23,7 +23,6 @@ class DragDrop extends React.Component {
                 }
             }
         }
-        console.log(currentDashboardPanels, 'cia tos panels');
         this.state = {
           dashboard: props.dashboard,
           container : currentDashboardPanels,
@@ -33,7 +32,6 @@ class DragDrop extends React.Component {
     }
     
     onSubmit = () => {
-        debugger;
         if(!this.state.dashboard) {
             this.makeAdd();
         }
@@ -120,20 +118,17 @@ class DragDrop extends React.Component {
     render() {
 
         return(<>
-            { console.log(this.props, 'cia props drag drope') }
             <div className="container-main">
-                <div className="container-data">                    
+                <h2 className="container-main-header">Drag and drop panels to your dashboard</h2>                
+                <div className="container-data">    
                     <div className="DragAndDrop">
                         <h2>Available panels</h2>
                         <div className="DragAndDrop__list">
                         {
                             this.props.data.map((item) =>{
                             return <div className="DragAndDrop__list-item" draggable="true" onDragStart={ (e) => this.onDragStart(e, item) } >
-                                    <ul>
-                                        <li>{item.legend}</li>
-                                        <li>{item.panelType}</li>
-                                    </ul>                          
-                                </div>
+                                        <PanelCard panel={item}></PanelCard>
+                                    </div>
                         })
                         }
                         </div>
@@ -144,12 +139,9 @@ class DragDrop extends React.Component {
                     <div className="DragAndDrop__list">
                         {    
                             this.state.container.map( item => {
-                                    return <div className="DragAndDrop__list-item">{item.text}          
-                                                <ul>
-                                                    <li>{item.legend}</li>
-                                                    <li>{item.panelType}</li>
-                                                </ul>  
-                                                <Button onClick={()=> this.onRemoveClick(item.uniqId)}>Remove</Button>
+                                    return <div className="CardWithRemove">     
+                                                <PanelCard className="CardWithRemove-panel" panel={item}></PanelCard>
+                                                <Button color="danger" className="CardWithRemove-btn" onClick={()=> this.onRemoveClick(item.uniqId)}>Remove</Button>
                                             </div>
                         })
                         }
@@ -157,8 +149,8 @@ class DragDrop extends React.Component {
                     </div>
                 </div>
                 <div className="container-submit">        
-                    <label htmlFor="">Enter your dashboard name</label>
-                    <Input value={this.state.name} onChange={(e) => this.onNameChange(e.target.value)}></Input>
+                    <Label className="container-submit-title" htmlFor="name">Enter your dashboard name</Label>
+                    <Input name="name"value={this.state.name} onChange={(e) => this.onNameChange(e.target.value)}></Input>
                     <Button onClick={() => this.onSubmit()}>Sumbit</Button>        
                 </div>
             </div>

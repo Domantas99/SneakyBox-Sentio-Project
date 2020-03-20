@@ -1,0 +1,28 @@
+.panel-card {
+    &:hover {
+        background-color: rgb(243, 243, 243);
+    }
+    &:active {
+        background-color: rgb(133, 133, 133);
+    }
+    cursor: grab;
+    border: solid 2px rgb(167, 167, 167);
+    display: flex;
+    margin: 10px;
+    background-color: white;
+    padding: 13px;
+    flex-direction: column;
+    &-line {
+        //border-bottom: ridge 0.2px rgb(0, 0, 0);
+        cursor: grab;    
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-size: 16px;
+        &-title {
+            cursor: grab;
+            font-weight: 700;
+            padding-right: 40px;
+        }
+    }
+}
