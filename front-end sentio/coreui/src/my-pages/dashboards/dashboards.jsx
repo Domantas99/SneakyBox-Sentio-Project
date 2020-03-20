@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { fetchDashboards  } from '../../services/redux/actions/dashboards-actions';
+import { fetchDashboards, deleteDashboard } from '../../services/redux/actions/dashboards-actions';
 import { Button, Card, CardBody, CardHeader, Col, Table } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
@@ -12,63 +12,64 @@ function Dashboards(props) {
         props.getDashboards(userId)
     }, [])
 
+    function onDeleteDashboardClick(dashboardId){
+      props.deleteDashboard(dashboardId);
+    }
 
     return (
         <div>
-            {console.log(props, "cia db dashboards")}
-            <h1>Welcome to dashboards list page</h1>
-            {/* There will be displayed list of created dashboards, and you will be able to create one */}
-            <Col xs="6" lg="6">
-                
-                <Link to={`/databases`}>
-                    <Button color="success">Create new dashboard</Button>
-                </Link>
-                
+          {console.log(props)}
             <Card>
-              <CardHeader>
-                 <h3>Panels</h3>
+              <CardHeader className="container-header">
+                <div>
+                 <h3>All Dashboards</h3>
+                </div>
+                <div>
+                  <Link to={`/databases`}>
+                    <Button color="success">Create new dashboard</Button>
+                  </Link>
+                </div>
               </CardHeader>
               <CardBody>
                 <Table responsive>
                   <thead>
                     <tr>
-                        <th>Dashboard Name</th>
-                        <th>Database Name</th>  
-                        <th>Edit</th>  
-                        <th>Remove</th>  
+                        <th className="container__table-row-text">Dashboard Name</th>
+                        <th className="container__table-row-text">Database Name</th>  
+                        <th className="container__table-row-action">Edit</th>  
+                        <th className="container__table-row-action">Remove</th>  
                     </tr>
                   </thead>
                   <tbody>
                     {
                       dashboards.map(dashboard => <tr>
-                        <td>{ dashboard.name }</td>
-                        <td>{ dashboard.database.databaseName }</td>
-                        <td>
-                          <Button className="px-3" color="warning"><i className="cui-pencil icons"></i></Button>
+                        <td className="container__table-row-text">{ dashboard.name }</td>
+                        <td className="container__table-row-text">{ dashboard.database.databaseName }</td>
+                        <td className="container__table-row-action">
+                          <Link to={`/databases/${dashboard.databaseId}/dashboards/${dashboard.id}/edit`}>
+                            <Button className="px-3" color="warning"><i className="cui-pencil icons"></i></Button>
+                          </Link>
                         </td>
-                        <td>
-                          <Button className="px-3" color="danger"><i className="cui-trash icons"></i></Button>
+                        <td className="container__table-row-action">
+                          <Button onClick={() => onDeleteDashboardClick(dashboard.id)} className="px-3" color="danger"><i className="cui-trash icons"></i></Button>
                         </td>
                       </tr>)
                     }
                   </tbody>
                 </Table>         
               </CardBody>
-            </Card>
-            </Col>       
-        
+            </Card>  
         </div>
     )
 }
-
-
 
 const mapStateToProps = state => ({
     user: state.user,
     dashboards: state.dashboards.dashboards
 });
 const mapDispatchToProps = dispatch => ({
-    getDashboards: userId => dispatch(fetchDashboards(userId))
+    getDashboards: userId => dispatch(fetchDashboards(userId)),
+    deleteDashboard: dashboardId => dispatch(deleteDashboard(dashboardId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboards);

@@ -11,7 +11,6 @@ function DatabaseDashboards(props) {
     const dashboards = props.dashboards.dashboards;
 
     useEffect(() => {
-      debugger
       props.getDashboards(userId)
     }, []) 
 
