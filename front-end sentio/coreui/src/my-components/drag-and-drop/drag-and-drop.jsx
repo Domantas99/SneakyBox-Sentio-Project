@@ -17,16 +17,20 @@ class DragDrop extends React.Component {
             for (let i = 0; i < dashboard.dashboardPanels.length; i++) {
                 const dPanel = dashboard.dashboardPanels[i];
                 for (let j = 0; j < panels.length; j++) {
+                    // if(dPanel.panelId === panels[j].id && props.dbId === panels[j].databaseId) {
                     if(dPanel.panelId === panels[j].id) {
                         currentDashboardPanels.push(panels[j]);
                     } 
                 }
             }
         }
+        debugger;
+        const p = props.data.filter(x => x.databaseId === props.dbId)
+
         this.state = {
           dashboard: props.dashboard,
           container : currentDashboardPanels,
-          data: props.data,
+          data: p,
           name: props.dashboard?.name || ''
         }
     }
@@ -125,7 +129,7 @@ class DragDrop extends React.Component {
                         <h2>Available panels</h2>
                         <div className="DragAndDrop__list">
                         {
-                            this.props.data.map((item) =>{
+                            this.state.data.map((item) =>{
                             return <div className="DragAndDrop__list-item" draggable="true" onDragStart={ (e) => this.onDragStart(e, item) } >
                                         <PanelCard panel={item}></PanelCard>
                                     </div>

@@ -9,15 +9,21 @@ function DatabaseCreation(props) {
     const [dbType, setDbType] = useState('Not selected');
     const history = useHistory();
     function onSubmit() {
+      debugger;
+        if(dbType === 'Not selected') {
+          alert("Please select database type")
+        }
+        else{
         const jsonObj = JSON.stringify({ ConnectionString: connStr, DatabaseType: dbType });
         props.addDb(jsonObj).then(res=> {
             if(res.json.isValid) {
                 history.push('/databases')
             } else {
-                alert("There was an error")
+                alert(res.json.message)
             }
 
-        });;
+        });
+      }
     }
     
     function onConnectionStrChange(value) {

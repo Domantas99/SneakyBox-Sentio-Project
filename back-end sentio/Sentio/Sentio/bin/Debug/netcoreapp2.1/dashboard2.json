@@ -59,31 +59,16 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "Prizu_skaicius",
-          "legendFormat": "ass",
-          "refId": "A"
-        },
-        {
-          "expr": "Prizu_kuriu_taskai_maziau_uz__56_kiekis",
-          "legendFormat": "da",
-          "refId": "B"
-        },
-        {
           "expr": "Teacher_COUNT",
-          "legendFormat": "as",
-          "refId": "C"
-        },
-        {
-          "expr": "Point_Price_vidurkis",
-          "legendFormat": "ad",
-          "refId": "D"
+          "legendFormat": "teacher count",
+          "refId": "A"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "mix",
+      "title": "Mokytoju kiekis",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -161,21 +146,31 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "Prizu_kuriu_taskai_maziau_uz__56_kiekis",
-          "legendFormat": "mazesni uz 56",
+          "expr": "Prizu_skaicius",
+          "legendFormat": "ass",
           "refId": "A"
         },
         {
-          "expr": "Prizu_skaicius",
-          "legendFormat": "prc skc",
+          "expr": "Prizu_kuriu_taskai_maziau_uz__56_kiekis",
+          "legendFormat": "da",
           "refId": "B"
+        },
+        {
+          "expr": "Teacher_COUNT",
+          "legendFormat": "as",
+          "refId": "C"
+        },
+        {
+          "expr": "Point_Price_vidurkis",
+          "legendFormat": "ad",
+          "refId": "D"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Prizu skaiciaus palyginimas su prizais kurie maziau uz 56",
+      "title": "mix",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -253,16 +248,21 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "Teacher_COUNT",
-          "legendFormat": "tcount",
+          "expr": "Prizu_kuriu_taskai_maziau_uz__56_kiekis",
+          "legendFormat": "mazesni uz 56",
           "refId": "A"
+        },
+        {
+          "expr": "Prizu_skaicius",
+          "legendFormat": "prc skc",
+          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Teeacheriu graphas",
+      "title": "Prizu skaiciaus palyginimas su prizais kurie maziau uz 56",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -325,7 +325,7 @@
     ]
   },
   "timezone": "",
-  "title": "sudetingesnis",
+  "title": "Mano dashboard ciaa",
   "uid": "IOoq2fuWz",
   "version": 7
 }

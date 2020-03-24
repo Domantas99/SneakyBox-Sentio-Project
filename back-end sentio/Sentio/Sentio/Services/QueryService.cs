@@ -105,9 +105,10 @@ namespace Sentio.Services
 
         private async Task<string> GetGeneratedQuery(TableQueryConditions tableQueryConditions) {
             var table = await _context.Tables.Include(t => t.Database).FirstOrDefaultAsync(t => t.Id == tableQueryConditions.TableId);
-            var databaseId =  table.Database.DatabaseType;//_context..FirstOrDefaultAsync(db => db.Id == tableQueryConditions.)
+            var dbType =  table.Database.DatabaseType;//_context..FirstOrDefaultAsync(db => db.Id == tableQueryConditions.)
+            tableQueryConditions.TableName = table.Name;
             string queryString;
-            switch (databaseId) {
+            switch (dbType) {
                 case DatabaseType.MSSQL:
                     queryString = _generators[DatabaseType.MSSQL].GenerateQuery(tableQueryConditions);
                     break;
@@ -125,10 +126,14 @@ namespace Sentio.Services
             {
                 File.Delete(props.FileName);
             }
-            var queries = await _context.TrackableQueries.Include(q => q.DatabaseId == props.ObjectId).ToListAsync();
+            
+            try
+            {
+               // var queries = await _context.TrackableQueries.Include(q => q.DatabaseId == props.ObjectId).Where(q => q.DatabaseId == props.ObjectId).ToListAsync();
+                var queries = await _context.TrackableQueries.Where(q => q.DatabaseId == props.ObjectId).ToListAsync();
                 //await _context.TrackableQueries.Include(q => q.Table)
-                            //.Where(q => q.Table.DatabaseId == props.ObjectId).ToListAsync();
-            using (StreamWriter sr = new StreamWriter(props.FileName, true))
+                //.;
+                using (StreamWriter sr = new StreamWriter(props.FileName, true))
             {
                 sr.WriteLine("{");
                 sr.WriteLine("  \"Queries\":[");
@@ -161,6 +166,13 @@ namespace Sentio.Services
                 sr.WriteLine("  \"MillisecondTimeout\": 4000");
                 sr.WriteLine("}");
             }
+            }
+            catch (Exception e)
+            {
+                var x = e;
+                throw;
+            }
+
         }
 
     }

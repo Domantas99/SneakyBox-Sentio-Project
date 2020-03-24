@@ -8,7 +8,7 @@ import './database-dashboards.scss';
 function DatabaseDashboards(props) {
     const dbId = props.match.params.dbId;
     const userId = props.user.id;
-    const dashboards = props.dashboards.dashboards;
+    const dashboards = props.dashboards.dashboards.filter(x=>x.databaseId === dbId);
 
     useEffect(() => {
       props.getDashboards(userId)

@@ -1,52 +1,52 @@
 {
   "Queries":[
               {
-          "Name": "Prizu_kuriu_taskai_maziau_uz__56_kiekis",
-          "Query": "SELECT COUNT(*) COUNT FROM Prizes WHERE PointPrice<'56';",
-          "Name": "Prizu_kuriu_taskai_maziau_uz__56_kiekis",
+          "Name": "Mokiniai_su_7_class_Id_kiekis",
+          "Query": "SELECT COUNT(*) COUNT FROM ClassStudents WHERE ClassId=='7';",
+          "Name": "Mokiniai_su_7_class_Id_kiekis",
           "Columns": [
               {
                   "Name": "COUNT",
-                  "Label": "Prizu_kuriu_taskai_maziau_uz__56_kiekis",
+                  "Label": "Mokiniai_su_7_class_Id_kiekis",
                   "Usage": "Gauge",
                   "DefaultValue": 0
               }
           ]
       },
               {
-          "Name": "Point_Price_vidurkis",
+          "Name": "Sud",
+          "Query": "SELECT COUNT(*) COUNT FROM Prizes WHERE PointPrice>='56' AND Remainder>'150';",
+          "Name": "Sud",
+          "Columns": [
+              {
+                  "Name": "COUNT",
+                  "Label": "Sud",
+                  "Usage": "Gauge",
+                  "DefaultValue": 0
+              }
+          ]
+      },
+              {
+          "Name": "Studentu_skaicius",
+          "Query": "SELECT COUNT(*) COUNT FROM Students;",
+          "Name": "Studentu_skaicius",
+          "Columns": [
+              {
+                  "Name": "COUNT",
+                  "Label": "Studentu_skaicius",
+                  "Usage": "Gauge",
+                  "DefaultValue": 0
+              }
+          ]
+      },
+              {
+          "Name": "Vidurkis_tassku",
           "Query": "SELECT AVG(PointPrice) AVG FROM Prizes;",
-          "Name": "Point_Price_vidurkis",
+          "Name": "Vidurkis_tassku",
           "Columns": [
               {
                   "Name": "AVG",
-                  "Label": "Point_Price_vidurkis",
-                  "Usage": "Gauge",
-                  "DefaultValue": 0
-              }
-          ]
-      },
-              {
-          "Name": "Teacher_COUNT",
-          "Query": "SELECT COUNT(*) COUNT FROM Teachers;",
-          "Name": "Teacher_COUNT",
-          "Columns": [
-              {
-                  "Name": "COUNT",
-                  "Label": "Teacher_COUNT",
-                  "Usage": "Gauge",
-                  "DefaultValue": 0
-              }
-          ]
-      },
-              {
-          "Name": "Prizu_skaicius",
-          "Query": "SELECT COUNT(*) COUNT FROM Prizes;",
-          "Name": "Prizu_skaicius",
-          "Columns": [
-              {
-                  "Name": "COUNT",
-                  "Label": "Prizu_skaicius",
+                  "Label": "Vidurkis_tassku",
                   "Usage": "Gauge",
                   "DefaultValue": 0
               }

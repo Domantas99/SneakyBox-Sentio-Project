@@ -34,8 +34,13 @@ function databases(state = { isFetching: false, user: '',databases:[]}, action,)
                     isFetching: false,
                     databases: temp
                 })
-            }    
-            break;
+            }  
+            return Object.assign({}, state, {
+                isFetching: false,
+                databases: databases,
+                error: true,
+                message: action.json.message
+            })  
         default: 
             return state     
     }
