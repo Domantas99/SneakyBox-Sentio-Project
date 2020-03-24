@@ -4,12 +4,11 @@ import { FormGroup, Label, Button, Card, CardBody, CardHeader, Col, Input, Table
 import { AddNewMetric } from '../../../services/redux/actions/metrics-actions';
 import { useHistory } from 'react-router-dom';
 
-
- 
 function ThirdStep(props) {
+  debugger;
     console.log(props)
     const dbId = props.match.params.dbId;
-    const options = props.tempProperties.options;
+    const options = props.tempProperties.options.filter(x => x.include === true);
     const [Operation, setOperation] = useState(false);
     const [MetricName, setMetricName] = useState('');
     const history = useHistory();
@@ -33,7 +32,8 @@ function ThirdStep(props) {
           if(!json.isValid) {
             alert('There was an error adding metric')
           }
-          history.push(`/databases/${dbId}/metrics`)
+          history.push(`/databases/${dbId}/metrics`);
+          // Optional to reset tempProperties to empty array, but is already done in first-step
         }
         )
     }
@@ -48,8 +48,6 @@ function ThirdStep(props) {
 
     return (
         <div>
-            
-            {console.log(options, 'cia options')}
             <Col xs="6" lg="6">
                 <h2>Choose an action</h2>
             <Card>

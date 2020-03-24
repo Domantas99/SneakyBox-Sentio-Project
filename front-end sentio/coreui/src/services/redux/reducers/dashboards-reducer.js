@@ -2,7 +2,6 @@ import { UPDATE_DASHBOARD_IN_STORE, UPDATE_DASHBOARD_IN_DATABASE, RECEIVE_DASHBO
 import { object } from 'prop-types';
 
 function dashboards(state = { isFetching: false, error: false, user: '',dashboards:[]}, action,) { 
-    debugger;
     switch (action.type) {
         case UPDATE_DASHBOARD_IN_STORE:
             const dbToReplace = state.dashboards.find(d => d.id === action.dashboard.id)
@@ -41,7 +40,6 @@ function dashboards(state = { isFetching: false, error: false, user: '',dashboar
                 error: false
             })
         case RECEIVE_DASHBOARDS:
-            debugger
             if(action.result.isValid) {   
                 return Object.assign({}, state, {
                     isFetching: false,
@@ -95,7 +93,6 @@ function dashboards(state = { isFetching: false, error: false, user: '',dashboar
 }
 
 export default function dashboardsReducer(state ='', action) {
-    debugger;
     switch(action.type) {
         case UPDATE_DASHBOARD_IN_STORE:
             return  dashboards(state, action)

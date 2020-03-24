@@ -5,6 +5,7 @@ import {  Button, Badge, Card, CardBody, CardHeader, Col, Pagination, Pagination
 import { Link } from 'react-router-dom';
 import CreateQueryForm from '../../../my-components/create-query-form/create-query-form';
 import './first-step.scss';
+import { ResetTempPropertiesAction } from '../../../services/redux/actions/tempProperties-actions';
 
 function FirstStep(props) {
     const dbId = props.match.params.dbId;
@@ -12,7 +13,7 @@ function FirstStep(props) {
     const tables = props.state.dbTables.Tables
     useEffect(() => {
       props.getTables(dbId).then(res=> console.log(res, ' cia resas table pg', props));
-    
+      props.resetSelectedOptions();
     }, [])
 
     return (
@@ -83,6 +84,7 @@ const mapStateToProps = state => ({
     state
 })
 const mapDispatchToProps = dispatch => ({
-    getTables: dbId => dispatch(fetchTables(dbId))
+    getTables: dbId => dispatch(fetchTables(dbId)),
+    resetSelectedOptions: () => dispatch(ResetTempPropertiesAction())
 })
 export default connect(mapStateToProps, mapDispatchToProps)(FirstStep)
