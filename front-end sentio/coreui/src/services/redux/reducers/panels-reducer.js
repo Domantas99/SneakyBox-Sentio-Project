@@ -1,4 +1,4 @@
-import { ADD_NEW_PANEL, DELETE_PANEL_IN_STORE, DELETE_PANEL_IN_DB, REQUEST_ALL_PANELS, RECEIVE_ALL_PANELS } from '../actions/panel-actions';
+import { ADD_NEW_PANEL, UPDATE_PANEL, DELETE_PANEL_IN_STORE, DELETE_PANEL_IN_DB, REQUEST_ALL_PANELS, RECEIVE_ALL_PANELS } from '../actions/panel-actions';
 
 function panels(state={ isFetching:false, error:false, panels:[] }, action) {
     switch(action.type) {
@@ -7,6 +7,11 @@ function panels(state={ isFetching:false, error:false, panels:[] }, action) {
                 return Object.assign({}, state, { isFetching:false, error:false, message: "New Panel added successfully"});
             }
             return Object.assign({}, state, { isFetching:false, error:true, message: "An error occur while adding new panel"});
+        case UPDATE_PANEL:  /// padaryt kad duotu api
+            if(action.json.isValid) {
+                return Object.assign({}, state, { isFetching:false, error:false, message: "Panel updated successfully"});
+            }
+            return Object.assign({}, state, { isFetching:false, error:true, message: "An error occur while updating new panel"});
         case DELETE_PANEL_IN_STORE:
             const filteredPanels = state.panels.filter(x => x.id !== action.panelId);
             return Object.assign({}, state, { 
@@ -58,6 +63,8 @@ function panels(state={ isFetching:false, error:false, panels:[] }, action) {
 export default function panelsReducer (state='', action) {
     switch(action.type) {
         case ADD_NEW_PANEL:
+            return panels(state, action);
+        case UPDATE_PANEL:
             return panels(state, action);
         case DELETE_PANEL_IN_STORE:
             return panels(state, action);

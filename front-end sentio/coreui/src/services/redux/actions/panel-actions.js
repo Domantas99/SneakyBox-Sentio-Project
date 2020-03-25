@@ -1,5 +1,6 @@
-import { AddNewPanelAPI, PanelDeleteApi, AllPanelsAPI } from '../../backend-urls';
+import { AddNewPanelAPI, PanelDeleteApi, AllPanelsAPI, PanelUpdateApi } from '../../backend-urls';
 export const ADD_NEW_PANEL = 'panels:add_new_panel';
+export const UPDATE_PANEL = 'panels:update_panel';
 export const REQUEST_ALL_PANELS = 'panels:request_all_panels';
 export const RECEIVE_ALL_PANELS = 'panels:receive_all_panels';
 export const DELETE_PANEL_IN_STORE = 'panels:delete_panels_in_store';
@@ -49,6 +50,29 @@ export function AddNewPanel(json) {
                 .then(jsonRes => dispatch(AddNewPanelAction(jsonRes)))
     }
 }
+
+
+// UPDATE Panel
+function UpdatePanelAction(json) {
+    return {
+        type: UPDATE_PANEL,
+        json
+    }
+}
+
+export function UpdatePanel(json) {
+    return dispatch => {
+        return fetch(PanelUpdateApi, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: json
+            }).then(res => res.json())
+                .then(jsonRes => dispatch(UpdatePanelAction(jsonRes)))
+    }
+}
+
 
 // DELETE Panel
 function DeletePanelInStore(panelId){

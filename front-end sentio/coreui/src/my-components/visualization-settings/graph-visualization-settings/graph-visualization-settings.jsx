@@ -2,11 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { FormGroup, Label, Button, Card, CardBody, CardHeader, Col, Table, Input } from 'reactstrap';
 import { AddNewPanelAPI } from '../../../services/backend-urls';
-import { AddNewPanel } from '../../../services/redux/actions/panel-actions';
+import { AddNewPanel, UpdatePanel } from '../../../services/redux/actions/panel-actions';
 import { useHistory } from 'react-router-dom';
 import { handleMetricLegendChange, handlePanelNameChange } from '../../../services/redux/actions/tempPanelOptions-actions';
 
 function GraphVisualizationSettings(props, { dbId }) {
+    debugger
     const history = useHistory();
     const panel = props.panelOptions;
     const  metrics = panel.options.filter(o => o.include === true);
@@ -26,17 +27,28 @@ function GraphVisualizationSettings(props, { dbId }) {
         m => arr.push({TrackableQueryId: m.id, Legend: m.Legend})
       )
       const panelObj = JSON.stringify({
+        PanelId: panel.id,
         Legend: panel.panelName,
         PanelQueries: arr,
         PanelType: 'graph',
         DatabaseId: props.dbId
       });
-      props.addPanel(panelObj)
-        .then(res => {
-          if(res.json.isValid) {
-            history.push(`/databases/${props.dbId}/panels`);
-          }
-        })
+
+      if(panel.editing) {
+        props.updatePanel(panelObj)
+          .then(res => {
+            if(res.json.isValid) {
+              history.push(`/databases/${props.dbId}/panels`);
+            }
+          })
+      } else {
+        props.addPanel(panelObj)
+          .then(res => {
+            if(res.json.isValid) {
+              history.push(`/databases/${props.dbId}/panels`);
+            }
+          })
+      }
     }
 
     return (
@@ -82,6 +94,7 @@ function GraphVisualizationSettings(props, { dbId }) {
 const mapStateToProps = state => ({ panelOptions: state.tempPanelOptions, s:state })
 const mapDispatchToProps = dispatch => ({
     addPanel: jsonObj => dispatch(AddNewPanel(jsonObj)),
+    updatePanel: jsonObj => dispatch(UpdatePanel(jsonObj)),
     changeLegend: (metric, value) => dispatch(handleMetricLegendChange(metric,value)),
     changePanelName: value => dispatch(handlePanelNameChange(value)),
 })

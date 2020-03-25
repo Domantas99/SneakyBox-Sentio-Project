@@ -42,15 +42,6 @@ namespace Sentio.Services
                 flag = true;
                 msg = "Panel updated successfully";
 
-                //var panel = new Panel
-                //{
-                //    Id = Guid.NewGuid(),
-                //    Legend = panelModel.Legend,
-                //    PanelType = panelModel.PanelType,
-                //    PanelQueries = panelQueryList,
-                //    DatabaseId = panelModel.DatabaseId
-                //};
-
             }
             return new ResponseResult<Panel> { IsValid = flag, Message = msg, ReturnResult = currentPanel };
         }
@@ -71,19 +62,7 @@ namespace Sentio.Services
         }
 
         public async Task<ResponseResult<PanelModel>> AddPanel(PanelModel panelModel) {
-            //var pq = _mapper.Map<PanelQuery>(panelModel.PanelQueries);
-            //var panelQueryList = new List<PanelQuery>();
             var panelQueryModelList = panelModel.PanelQueries;
-            //for (int i = 0; i < panelQueryModelList.Count; i++)
-            //{
-            //    var panelQuery = new PanelQuery 
-            //    { 
-            //        Id = Guid.NewGuid(),
-            //        Legend = panelQueryModelList.ElementAt(i).Legend,
-            //        TrackableQueryId = panelQueryModelList.ElementAt(i).TrackableQueryId
-            //    };
-            //    panelQueryList.Add(panelQuery);
-            //}
             var panelQueryList = CreatePanelQueries(panelQueryModelList);
             var panel = new Panel
             {

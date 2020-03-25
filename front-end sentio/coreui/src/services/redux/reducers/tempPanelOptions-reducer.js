@@ -5,15 +5,17 @@ import { SET_TEMP_PANEL_OPTIONS,
         HANDLE_METRIC_LEGEND_CHANGE,
         HANDLE_PANEL_NAME_CHANGE } from '../actions/tempPanelOptions-actions';
 
-function tempPanelOptions (state={ panelName: '', visualization: 'No Option', options: [] }, action) {
+function tempPanelOptions (state={ panelName: '', visualization: 'No Option', options: [], editing: false }, action) {
     debugger;
     switch(action.type) {
         case SET_TEMP_PANEL_OPTIONS: {
             debugger;
+            let editFlag=false;
             let arr = []
             action.options.forEach(o => {
                 arr.push({...o, Legend: o.name, include:false})
                 if(action.panel) {
+                    editFlag = true;
                     const panelMetrics = action.panel.panelQueries;
                     for (let i=0; i < panelMetrics.length; i++) {
                         debugger
@@ -27,7 +29,10 @@ function tempPanelOptions (state={ panelName: '', visualization: 'No Option', op
             return Object.assign({}, state, { 
                 panelName: action.panel? action.panel.legend : '', 
                 visualization: action.panel ? action.panel.panelType: '', 
-                options: arr});    
+                options: arr, 
+                editing:editFlag,
+                id: action.panel? action.panel.id : ''
+            });    
         }
         case RESET_TEMP_PANEL_OPTIONS:
             return Object.assign({}, state, { panelName: '', visualization: 'No Option', options: [] }); 

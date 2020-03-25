@@ -14,7 +14,7 @@ namespace Sentio.Services.ServiceInterfaces
         Task<ResponseResult<ICollection<Panel>>> GetAllUserPanels(Guid userId);
         Task<ResponseResult<ICollection<Panel>>> GetAllDbPanels(Guid databaseId);
         Task<ResponseResult<Panel>> DeletePanel(Guid panelId);
-
+        Task<ResponseResult<Panel>> UpdatePanel(PanelModel panelModel);
 
     }
 }

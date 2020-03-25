@@ -26,6 +26,7 @@ export const AddNewPanelAPI = `${RootApiUrl}/Panel/Add`;                    // P
 export const AllPanelsAPI = `${RootApiUrl}/Panel/all-panels/`;              // + userId            
 export const DatabasePanelsApi = `${RootApiUrl}/Panel/db-panels/`;          // + dbid            
 export const PanelDeleteApi = `${RootApiUrl}/Panel/delete/`;                // + panelId
+export const PanelUpdateApi = `${RootApiUrl}/Panel/update`;                 // PUT
 
 
 // Dashboard

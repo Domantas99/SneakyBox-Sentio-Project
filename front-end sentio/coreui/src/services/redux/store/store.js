@@ -30,7 +30,7 @@ export const store = createStore(allReducers, {
     dbTables: {},
     databases: {},
     tempProperties: { tableId:'', options:[]},
-    tempPanelOptions: { panelName: '', visualization: 'No Option', options: [] },
+    tempPanelOptions: { panelName: '', visualization: 'No Option', options: [], editing: false, id:'' },
     metrics: { metrics: []},
     panels: {
         isFetching:true,
