@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Sentio.Context;
 using Sentio.Entities;
 using Sentio.Models;
+using Sentio.Models.DashboardCreation;
 using Sentio.RequestResults;
 using Sentio.Services.ServiceInterfaces;
 using System;
@@ -22,20 +23,68 @@ namespace Sentio.Services
             _mapper = mapper;
         }
 
-        public async Task<ResponseResult<PanelModel>> AddPanel(PanelModel panelModel) {
-            //var pq = _mapper.Map<PanelQuery>(panelModel.PanelQueries);
-            var panelQueryList = new List<PanelQuery>();
-            var panelQueryModelList = panelModel.PanelQueries;
+        public async Task<ResponseResult<Panel>> UpdatePanel(PanelModel panelModel) {
+            bool flag = false;
+            string msg = "Panel not found";
+            var currentPanel = await _context.Panels.FirstOrDefaultAsync(p => p.Id == panelModel.PanelId);
+            if (currentPanel != null)
+            {
+                var panelQueryList = CreatePanelQueries(panelModel.PanelQueries);
+                currentPanel.Legend = panelModel.Legend;
+                currentPanel.PanelType = panelModel.PanelType;
+                
+                var pqToRemove = _context.PanelQueries.Where(p => p.PanelId == currentPanel.Id);
+                _context.PanelQueries.RemoveRange(pqToRemove);
+                await _context.SaveChangesAsync();
+                currentPanel.PanelQueries = panelQueryList;
+                await _context.SaveChangesAsync();
+
+                flag = true;
+                msg = "Panel updated successfully";
+
+                //var panel = new Panel
+                //{
+                //    Id = Guid.NewGuid(),
+                //    Legend = panelModel.Legend,
+                //    PanelType = panelModel.PanelType,
+                //    PanelQueries = panelQueryList,
+                //    DatabaseId = panelModel.DatabaseId
+                //};
+
+            }
+            return new ResponseResult<Panel> { IsValid = flag, Message = msg, ReturnResult = currentPanel };
+        }
+
+        private List<PanelQuery> CreatePanelQueries(ICollection<PanelQueryModel> panelQueryModelList) {
+            List<PanelQuery> list = new List<PanelQuery>();
             for (int i = 0; i < panelQueryModelList.Count; i++)
             {
-                var panelQuery = new PanelQuery 
-                { 
+                var panelQuery = new PanelQuery
+                {
                     Id = Guid.NewGuid(),
                     Legend = panelQueryModelList.ElementAt(i).Legend,
                     TrackableQueryId = panelQueryModelList.ElementAt(i).TrackableQueryId
                 };
-                panelQueryList.Add(panelQuery);
+                list.Add(panelQuery);
             }
+            return list;
+        }
+
+        public async Task<ResponseResult<PanelModel>> AddPanel(PanelModel panelModel) {
+            //var pq = _mapper.Map<PanelQuery>(panelModel.PanelQueries);
+            //var panelQueryList = new List<PanelQuery>();
+            var panelQueryModelList = panelModel.PanelQueries;
+            //for (int i = 0; i < panelQueryModelList.Count; i++)
+            //{
+            //    var panelQuery = new PanelQuery 
+            //    { 
+            //        Id = Guid.NewGuid(),
+            //        Legend = panelQueryModelList.ElementAt(i).Legend,
+            //        TrackableQueryId = panelQueryModelList.ElementAt(i).TrackableQueryId
+            //    };
+            //    panelQueryList.Add(panelQuery);
+            //}
+            var panelQueryList = CreatePanelQueries(panelQueryModelList);
             var panel = new Panel
             {
                 Id = Guid.NewGuid(),
@@ -45,14 +94,8 @@ namespace Sentio.Services
                 DatabaseId = panelModel.DatabaseId
             };
             var res = _context.Panels.Add(panel);
-            // res = res.Entity();
             int x = await _context.SaveChangesAsync();
-            //var o = 2;
 
-            //var panel = _mapper.Map<Panel>(panelModel);
-            // neveikia mapping
-            //var o = panel;
-            //_context.Panels
             
             return new ResponseResult<PanelModel> { IsValid=true, Message="Added successfully", ReturnResult = panelModel};
         }

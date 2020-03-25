@@ -9,6 +9,7 @@ namespace Sentio.Models
 {
     public class PanelModel
     {
+        public Guid PanelId { get; set; } = Guid.NewGuid();
         public string PanelType { get; set; } // graph/ single stat
         // public Guid Id { get; set; }
         public string Legend { get; set; }
