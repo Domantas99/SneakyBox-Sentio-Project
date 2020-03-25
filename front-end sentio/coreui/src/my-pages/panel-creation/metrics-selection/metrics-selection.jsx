@@ -2,54 +2,52 @@ import React, {useEffect} from 'react'
 import { connect } from 'react-redux';
 import { Link, useHistory} from 'react-router-dom';
 import { FormGroup, Label, Button, Card, CardBody, CardHeader, Col, Table, Input } from 'reactstrap';
-import { setPanelOptionsAction } from '../../../services/redux/actions/tempPanelOptions-actions';
+import { setPanelOptionsAction, handleMetricCheckboxChange, handleVisualizationChange } from '../../../services/redux/actions/tempPanelOptions-actions';
 import { fetchDbMetrics } from '../../../services/redux/actions/metrics-actions';
 import './metrics-selection.scss';
+//import { handleCheckBoxChange } from '../../../services/redux/actions/tempProperties-actions';
 
 function MetricSelection(props) {
+  debugger
     const dbId = props.match.params.dbId;
-    const metrics = props.metrics.metrics
+    const panelId = props.match.params.panelId;
+    const metrics = props.metrics.metrics;
+    const panel = props.editablePanel;
     const history = useHistory();
-    
+
     useEffect(() => {
+      debugger
       props.getMetrics(dbId)
+      debugger
+      if(panel.visualization === 'No Option' || panel.visualization === '') {
+        const panelToFilter = props.panels.find(x=> x.id === panelId);
+        props.setInitOptions(metrics, panelToFilter);
+      }
     },[])
     
-    let visualization='No Option';
-    let selectedMetrics = [];
 
     function onVisualizationChange(value) {
-      // jeigu yra state tai nusiresetina
-      visualization = value
+      props.changeVisualization(value);
     }
 
     function onCheckBoxClick(metric) {
-      const index = selectedMetrics.indexOf(metric);
-      if(index > -1) {
-        selectedMetrics.splice(index, 1);
-      } else {
-        selectedMetrics.push(metric)
-      }
-      console.log(selectedMetrics, 'cia toks');
+      props.handleCheckbox(metric);
     }
 
     function onSubmit() {
-      console.log(selectedMetrics)
-      if(visualization !== 'No Option') {
-      const obj = {
-        visualization: visualization,
-        panelMetrics: selectedMetrics
-      };
-      
-      props.setOptions(obj);
-      history.push(`/databases/${dbId}/panels/creation/metric-selection/visualization-settings`);
+      if (panel.visualization !== 'No Option') {
+          if(panelId) {
+            history.push(`/databases/${dbId}/panels/edit/${panelId}/metric-selection/visualization-settings`);
+          } else {
+            history.push(`/databases/${dbId}/panels/creation/metric-selection/visualization-settings`);
+          }
       } else {
         alert('Please select visualization option');
       }
     }
 
     return (
-        <div>                                            
+        <div>                                          
             <Card>
               <CardHeader>
                  <h3>Select what metrics you would like to see in your panel</h3>
@@ -64,12 +62,12 @@ function MetricSelection(props) {
                     </tr>
                   </thead>
                   <tbody>
-                    { metrics && metrics.map((metric, index) => (
+                    {  panel.options && panel.options.map((metric, index) => (
                       <tr key={index}>
                         <td>{metric.name}</td>
                         <td>{metric.operationType}</td>                
                         <td className="select-option">
-                          <Input onClick={() => onCheckBoxClick(metric)} type="checkbox"></Input>
+                          <Input checked={metric.include} onClick={() => onCheckBoxClick(metric)} type="checkbox"></Input>
                         </td>                      
                       </tr>
                     )) }
@@ -79,7 +77,7 @@ function MetricSelection(props) {
             </Card>
             <Label>Select what visualization you would like to see </Label>
             <FormGroup>
-              <Input onChange={(e) => onVisualizationChange(e.target.value)} type="select">
+              <Input value={panel.visualization} onChange={(e) => onVisualizationChange(e.target.value)} type="select">
                 <option value="No Option">No option</option>
                 <option value="graph">Graph</option>                          
                 <option value="singlestat">Singlestat</option>                          
@@ -94,10 +92,16 @@ function MetricSelection(props) {
     )
 }
 
-const mapStateToProps = state => ({ metrics: state.metrics });
+const mapStateToProps = state => ({ 
+                                    metrics: state.metrics,
+                                    panels: state.panels.panels,
+                                    editablePanel: state.tempPanelOptions
+                                  });
 const mapDispatchToProps = dispatch => ({
   getMetrics: dbId => dispatch(fetchDbMetrics(dbId)),
-  setOptions: obj => dispatch(setPanelOptionsAction(obj))
+  handleCheckbox: metric => dispatch(handleMetricCheckboxChange(metric)),
+  changeVisualization: value => dispatch(handleVisualizationChange(value)),
+  setInitOptions: (allMetrics, panelToFilter) => dispatch(setPanelOptionsAction(allMetrics, panelToFilter))
  });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MetricSelection)

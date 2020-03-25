@@ -54,10 +54,10 @@ const User = React.lazy(() => import('./views/Users/User'));
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/home', exact: true, name: 'Home' },
-  
   { path: '/my-dashboards', exact: true, name: 'Dashboards', component: Dashboards },
   { path: '/my-panels', exact: true, name: 'Panels', component: AllPanels },
   { path: '/databases', exact: true, name: 'Databases', component: Databases },
+
   { path: '/databases/creation', exact: true, name: 'Database Creation', component: DatabaseCreation },
   { path: '/databases/:dbId', exact: true, name: 'Database Dashboard', component: DatabaseDashboard },
   { path: '/databases/:dbId/metrics', exact: true, name: 'Metrics', component: DatabaseMetrics },
@@ -65,10 +65,12 @@ const routes = [
   { path: '/databases/:dbId/metrics/first-step/:tableId/second-step', exact: true, name: 'Second Step', component: SecondStep },
   { path: '/databases/:dbId/metrics/first-step/:tableId/second-step/third-step', exact: true, name: 'Third Step', component: ThirdStep },
 
- 
+  //
   { path: '/databases/:dbId/panels', exact: true, name: 'Database Panels', component: DatabasePanels },
   { path: '/databases/:dbId/panels/creation/metric-selection', exact: true, name: 'Metric Selection', component: MetricSelection },
   { path: '/databases/:dbId/panels/creation/metric-selection/visualization-settings', exact: true, name: 'Settings', component: VisualizationSettings },
+  { path: '/databases/:dbId/panels/edit/:panelId/metric-selection', exact: true, name: 'Metric Selection [Edit]', component: MetricSelection },
+  { path: '/databases/:dbId/panels/edit/:panelId/metric-selection/visualization-settings', exact: true, name: 'Settings [Edit]', component: VisualizationSettings },
  
   { path: '/databases/:dbId/dashboards', exact: true, name: 'Database Dashboards', component: DatabaseDashboards },
   { path: '/databases/:dbId/dashboards/create', exact: true, name: 'Dashboard Creation', component: DashboardCreation },

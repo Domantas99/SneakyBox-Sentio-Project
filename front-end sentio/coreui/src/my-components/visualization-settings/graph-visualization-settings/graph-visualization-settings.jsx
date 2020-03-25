@@ -4,41 +4,39 @@ import { FormGroup, Label, Button, Card, CardBody, CardHeader, Col, Table, Input
 import { AddNewPanelAPI } from '../../../services/backend-urls';
 import { AddNewPanel } from '../../../services/redux/actions/panel-actions';
 import { useHistory } from 'react-router-dom';
+import { handleMetricLegendChange, handlePanelNameChange } from '../../../services/redux/actions/tempPanelOptions-actions';
 
 function GraphVisualizationSettings(props, { dbId }) {
     const history = useHistory();
-    //const panelOptions = props.panelOptions;
-    let metrics = props.panelOptions.panelMetrics
-    let name = '';
-    let arr = [];
-    metrics.forEach(
-      m => arr.push({TrackableQueryId: m.id, Legend: m.name})
-    )
+    const panel = props.panelOptions;
+    const  metrics = panel.options.filter(o => o.include === true);
 
-    function onNameChange(value) {
-      name = value;
+    function onPanelNameChange(value) {
+      props.changePanelName(value);
     }
 
-    function onLegendChange(metricId, value) {
-      const element = arr.find(el => el.TrackableQueryId === metricId);  
-      const index = arr.indexOf(element);
-      arr[index].Legend = value;
-      
+    function onLegendChange(metric, value) {
+      props.changeLegend(metric, value);
     }
-    // prideti db id
+    // padaryt update ir add
     function onSubmit() {
+      debugger;
+      let arr = [];
+      metrics.forEach(
+        m => arr.push({TrackableQueryId: m.id, Legend: m.Legend})
+      )
       const panelObj = JSON.stringify({
-        Legend: name,
+        Legend: panel.panelName,
         PanelQueries: arr,
         PanelType: 'graph',
         DatabaseId: props.dbId
       });
       props.addPanel(panelObj)
-      .then(res => {
-        if(res.json.isValid) {
-          history.push(`/databases/${props.dbId}/panels`);
-        }
-      })
+        .then(res => {
+          if(res.json.isValid) {
+            history.push(`/databases/${props.dbId}/panels`);
+          }
+        })
     }
 
     return (
@@ -51,7 +49,7 @@ function GraphVisualizationSettings(props, { dbId }) {
               <CardBody>
                 <FormGroup>
                     <h4><Label>Graph name</Label></h4>
-                    <Input onChange={(e) => onNameChange(e.target.value)}></Input>
+                    <Input value={panel.panelName} onChange={(e) => onPanelNameChange(e.target.value)}></Input>
                 </FormGroup>
                 <Table responsive>
                   <thead>
@@ -67,7 +65,7 @@ function GraphVisualizationSettings(props, { dbId }) {
                         <td>{metric.name}</td>
                         <td>{metric.operationType}</td>                
                         <td>
-                          <Input onChange={(e) => onLegendChange(metric.id, e.target.value) }></Input>
+                          <Input value={metric.Legend} onChange={(e) => onLegendChange(metric, e.target.value) }></Input>
                         </td> 
                       </tr>
                     )) }
@@ -83,7 +81,9 @@ function GraphVisualizationSettings(props, { dbId }) {
 
 const mapStateToProps = state => ({ panelOptions: state.tempPanelOptions, s:state })
 const mapDispatchToProps = dispatch => ({
-    addPanel: jsonObj => dispatch(AddNewPanel(jsonObj))
+    addPanel: jsonObj => dispatch(AddNewPanel(jsonObj)),
+    changeLegend: (metric, value) => dispatch(handleMetricLegendChange(metric,value)),
+    changePanelName: value => dispatch(handlePanelNameChange(value)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(GraphVisualizationSettings)

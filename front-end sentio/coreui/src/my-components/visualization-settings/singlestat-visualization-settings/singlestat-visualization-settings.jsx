@@ -4,20 +4,13 @@ import { FormGroup, Label, Button, Card, CardBody, CardHeader, Col, Table, Input
 
 function SinglestatVisualizationSettings(props) {
     const alphabet = "ABCDEFGHIYJKLMNOPQRSTUVXWZ";
-    const metrics = props.panelOptions.panelMetrics
+    const metrics = props.panelOptions.options.filter(x => x.include === true);
     const [formula, setFormula] = useState('');
     const [metricNames, setNames] = useState(metrics.map(m => ({TrackableQueryId: m.id, Legend: m.name})));
-    debugger
-    // let temp =[];
-    // metrics.forEach(
-    //   m => temp.push({TrackableQueryId: m.id, Legend: m.name})
-    // )
-    // setNames(temp);
-    
 
     function onLegendChange(metricId, value) {
       debugger;
-        const element = metricNames.find(el => el.TrackableQueryId === metricId);  
+      const element = metricNames.find(el => el.TrackableQueryId === metricId);  
       const index = metricNames.indexOf(element);
       let arr = metricNames;
       arr[index].Legend = value;
@@ -25,12 +18,11 @@ function SinglestatVisualizationSettings(props) {
       console.log(metricNames);
     }
 
-
+    // Reikes pabaikti su redux
     function onNameChange(id, value) {
         const name = metricNames.find(x => x.id === id);
         const index = metricNames.indexOf(name);
         if(index < 0 ) {
-
         }  
     }
 

@@ -84,7 +84,8 @@ namespace Sentio.Services
 
         public async Task<ResponseResult<ICollection<Panel>>> GetAllUserPanels(Guid userId)
         {
-            var panels = await _context.Panels.Include(p => p.Database).Where(p => p.Database.UserId == userId).ToListAsync();
+            //var panels = await _context.Panels.Include(p => p.Database).Where(p => p.Database.UserId == userId).ToListAsync();
+            var panels = await _context.Panels.Include(p => p.PanelQueries).Include(p => p.Database).Where(p => p.Database.UserId == userId).ToListAsync();
             return new ResponseResult<ICollection<Panel>> { IsValid = true, Message = "Success", ReturnResult = panels };       
         }
     }
