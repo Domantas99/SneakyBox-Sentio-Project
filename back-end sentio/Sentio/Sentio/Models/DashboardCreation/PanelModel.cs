@@ -1,4 +1,5 @@
 ﻿
+using Sentio.Entities.Visualizations;
 using Sentio.Models.DashboardCreation;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace Sentio.Models
     {
         public Guid PanelId { get; set; } = Guid.NewGuid();
         public string PanelType { get; set; } // graph/ single stat
+        public Stat Stat { get; set; } 
         // public Guid Id { get; set; }
         public string Legend { get; set; }
         public ICollection<PanelQueryModel> PanelQueries { get; set; }

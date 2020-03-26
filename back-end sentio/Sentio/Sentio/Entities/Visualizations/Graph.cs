@@ -7,5 +7,6 @@ namespace Sentio.Entities
 {
     public class Graph
     {
+        //public Guid G
     }
 }

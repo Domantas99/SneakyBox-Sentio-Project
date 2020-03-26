@@ -15,9 +15,9 @@ namespace Sentio.Entities
         //public Graph Graph { get; set; }
         //public Guid GraphId { get; set; }
 
-        //[ForeignKey("StatId")]
-        //public Stat Stat { get; set; }
-        //public Guid StatId { get; set; }
+        [ForeignKey("StatId")]
+        public virtual Stat Stat { get; set; }
+        public Guid? StatId { get; set; }
 
         //[ForeignKey("GaugeId")]
         //public Gauge Gauge { get; set; }

@@ -44,12 +44,17 @@ namespace Sentio.Services
         }
 
         public async Task<UserValidationResult> LoginUser(UserLoginModel userLoginModel) {
-            var user = _context.Users.FirstOrDefault(u => u.Email == userLoginModel.Email && u.Password == userLoginModel.Password);
-            if (user != null)
+            try
             {
-                return new UserValidationResult { IsValid = true, Message = "Logged in successfully", User= _mapper.Map<UserViewModel>(user) };
+                var user = _context.Users.FirstOrDefault(u => u.Email == userLoginModel.Email && u.Password == userLoginModel.Password);
+                if (user != null)
+                {
+                    return new UserValidationResult { IsValid = true, Message = "Logged in successfully", User = _mapper.Map<UserViewModel>(user) };
+                }
             }
-
+            catch (Exception e) {
+                var x = e;
+            }
             return new UserValidationResult { IsValid = false, Message = "User not found" };            
         }
     }

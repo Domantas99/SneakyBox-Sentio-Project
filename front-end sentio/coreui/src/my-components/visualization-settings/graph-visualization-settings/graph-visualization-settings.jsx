@@ -27,7 +27,6 @@ function GraphVisualizationSettings(props, { dbId }) {
         m => arr.push({TrackableQueryId: m.id, Legend: m.Legend})
       )
       const panelObj = JSON.stringify({
-        PanelId: panel.id,
         Legend: panel.panelName,
         PanelQueries: arr,
         PanelType: 'graph',
@@ -35,7 +34,8 @@ function GraphVisualizationSettings(props, { dbId }) {
       });
 
       if(panel.editing) {
-        props.updatePanel(panelObj)
+
+        props.updatePanel({...panelObj, PanelId: panel.id })
           .then(res => {
             if(res.json.isValid) {
               history.push(`/databases/${props.dbId}/panels`);

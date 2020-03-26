@@ -13,7 +13,7 @@ function VisualizationSettings(props) {
                 visualization === 'graph' ? 
                     <GraphVisualizationSettings dbId={dbId} ></GraphVisualizationSettings> : 
                 visualization === 'singlestat' ? 
-                    <SinglestatVisualizationSettings></SinglestatVisualizationSettings> : 
+                    <SinglestatVisualizationSettings dbId={dbId}></SinglestatVisualizationSettings> : 
                 <div> Option not implemented yet </div>
             }
         </div>

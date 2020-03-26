@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sentio.Context;
 
 namespace Sentio.Migrations
 {
     [DbContext(typeof(SentioContext))]
-    partial class SentioContextModelSnapshot : ModelSnapshot
+    [Migration("20200326180437_statFk")]
+    partial class statFk
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -229,9 +231,13 @@ namespace Sentio.Migrations
 
                     b.Property<string>("Formula");
 
+                    b.Property<Guid>("PanelId");
+
                     b.Property<string>("Query");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PanelId");
 
                     b.ToTable("StatVisualizations");
                 });
@@ -332,6 +338,14 @@ namespace Sentio.Migrations
                     b.HasOne("Sentio.Entities.Database", "Database")
                         .WithMany("TrackableQueries")
                         .HasForeignKey("DatabaseId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Sentio.Entities.Visualizations.Stat", b =>
+                {
+                    b.HasOne("Sentio.Entities.Panel", "Panel")
+                        .WithMany()
+                        .HasForeignKey("PanelId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

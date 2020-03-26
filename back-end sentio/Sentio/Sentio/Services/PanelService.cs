@@ -26,24 +26,63 @@ namespace Sentio.Services
         public async Task<ResponseResult<Panel>> UpdatePanel(PanelModel panelModel) {
             bool flag = false;
             string msg = "Panel not found";
-            var currentPanel = await _context.Panels.FirstOrDefaultAsync(p => p.Id == panelModel.PanelId);
+            var currentPanel = await _context.Panels.Include(a=>a.Stat).FirstOrDefaultAsync(p => p.Id == panelModel.PanelId);
             if (currentPanel != null)
             {
-                var panelQueryList = CreatePanelQueries(panelModel.PanelQueries);
-                currentPanel.Legend = panelModel.Legend;
-                currentPanel.PanelType = panelModel.PanelType;
-                
-                var pqToRemove = _context.PanelQueries.Where(p => p.PanelId == currentPanel.Id);
-                _context.PanelQueries.RemoveRange(pqToRemove);
-                await _context.SaveChangesAsync();
-                currentPanel.PanelQueries = panelQueryList;
-                await _context.SaveChangesAsync();
+                try
+                {
 
-                flag = true;
-                msg = "Panel updated successfully";
+                    var panelQueryList = CreatePanelQueries(panelModel.PanelQueries);
+                    currentPanel.Legend = panelModel.Legend;
+                    currentPanel.PanelType = panelModel.PanelType;
+                    var pqToRemove = _context.PanelQueries.Where(p => p.PanelId == currentPanel.Id);
+                    _context.PanelQueries.RemoveRange(pqToRemove);
+                    await _context.SaveChangesAsync();
+                    currentPanel.PanelQueries = panelQueryList;
+                    await _context.SaveChangesAsync();
+                    if (panelModel.Stat != null)
+                    {
+                      //  panelModel.Stat.Id = currentPanel.Stat.Id;
+                        currentPanel.Stat.Formula = panelModel.Stat.Formula;
+                        currentPanel.Stat.Query = GenerateQueryFromFormula(panelModel.Stat.Formula, panelQueryList);
+                       // currentPanel.Stat.Query;
+                    }
 
+                    await _context.SaveChangesAsync();
+
+                    flag = true;
+                    msg = "Panel updated successfully";
+                }
+                catch (Exception e) {
+                    var a = e;
+
+                }
             }
             return new ResponseResult<Panel> { IsValid = flag, Message = msg, ReturnResult = currentPanel };
+        }
+
+        private string GenerateQueryFromFormula(string formula, ICollection<PanelQuery> panelQueries) {
+            string query = "";
+            string alphabet = "ABCDEFGHIY";
+            var letterByQueryNameDictionary = new Dictionary<char, string>();
+            for (int i = 0; i < panelQueries.Count; i++)
+            {
+                string name = _context.PanelQueries.Include(x => x.TrackableQuery).FirstOrDefault(x => x.Id == panelQueries.ElementAt(i).Id).TrackableQuery.Name;
+                letterByQueryNameDictionary.Add(alphabet[i], name);
+            }
+            for (int i = 0; i < formula.Length; i++)
+            {
+                if (letterByQueryNameDictionary.ContainsKey(formula[i]))
+                {
+                    query += letterByQueryNameDictionary[formula[i]];
+                } else
+                {
+                    query += formula[i];
+                }
+
+            }
+
+            return query;
         }
 
         private List<PanelQuery> CreatePanelQueries(ICollection<PanelQueryModel> panelQueryModelList) {
@@ -62,22 +101,41 @@ namespace Sentio.Services
         }
 
         public async Task<ResponseResult<PanelModel>> AddPanel(PanelModel panelModel) {
-            var panelQueryModelList = panelModel.PanelQueries;
-            var panelQueryList = CreatePanelQueries(panelQueryModelList);
-            var panel = new Panel
+            try
             {
-                Id = Guid.NewGuid(),
-                Legend = panelModel.Legend,
-                PanelType = panelModel.PanelType,
-                PanelQueries = panelQueryList,
-                DatabaseId = panelModel.DatabaseId
-            };
-            var res = _context.Panels.Add(panel);
-            int x = await _context.SaveChangesAsync();
+                var panelQueryModelList = panelModel.PanelQueries;
+                var panelQueryList = CreatePanelQueries(panelQueryModelList);
 
-            
-            return new ResponseResult<PanelModel> { IsValid=true, Message="Added successfully", ReturnResult = panelModel};
-        }
+
+                var panel = new Panel
+                {
+                    Id = Guid.NewGuid(),
+                    Legend = panelModel.Legend,
+                    PanelType = panelModel.PanelType,
+                    PanelQueries = panelQueryList,
+                    DatabaseId = panelModel.DatabaseId
+                };
+                if (panelModel.Stat != null)
+                {
+                    panelModel.Stat.Query = GenerateQueryFromFormula(panelModel.Stat.Formula, panelQueryList);
+                    var id = Guid.NewGuid();
+                    panelModel.Stat.Id = id;
+                    //panelModel.Stat.PanelId = panel.Id;
+                    panel.Stat = panelModel.Stat;
+                    panel.StatId = id;
+                }
+                var res = _context.Panels.Add(panel);
+                int x = await _context.SaveChangesAsync();
+
+
+                return new ResponseResult<PanelModel> { IsValid = true, Message = "Added successfully", ReturnResult = panelModel };
+            }
+            catch (Exception e) {
+                var a = e;
+                return null;
+            }
+
+            }
 
         public async Task<ResponseResult<Panel>> DeletePanel(Guid panelId)
         {

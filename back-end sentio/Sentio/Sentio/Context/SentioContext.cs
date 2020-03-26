@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Sentio.Entities;
+using Sentio.Entities.Visualizations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace Sentio.Context
         public DbSet<Panel> Panels { get; set; }
         public DbSet<PanelQuery> PanelQueries { get; set; }
         public DbSet<DashboardPanel> DashboardPanels { get; set; }
+        public DbSet<Stat> StatVisualizations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -46,8 +48,8 @@ namespace Sentio.Context
             modelBuilder.Entity<Dashboard>().HasMany(dp => dp.DashboardPanels).WithOne(a => a.Dashboard).OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Panel>().HasMany(p => p.PanelQueries).WithOne(q => q.Panel).OnDelete(DeleteBehavior.Cascade);
-          
 
+            //modelBuilder.Entity<Panel>().HasOne(a => a.Stat).WithOne(s => s.Panel);
 
             modelBuilder.Entity<TrackableQuery>();
                 //.HasOne(i => i.TableProperty)
