@@ -110,19 +110,21 @@ namespace Sentio.Services
 
         public async Task GenerateDashboardGrafanaJson(FileProps props)
         {
+            string filePath = "GeneratedFiles/Dashboards/"+ props.FileName;
             var dashboard = await _context.Dashboards.Include(d => d.DashboardPanels).FirstOrDefaultAsync(d => d.Id == props.ObjectId);
             // Panel query id values(it is important to be letters)
             string IdValues = "ABCDEFGHIYJKLMNOPRSTUVZ";
             var panels = _context.DashboardPanels.Where(d => d.DashboardId == props.ObjectId)
                                                     .Select(d => d.Panel)
                                                     .Include(p => p.PanelQueries)
+                                                    .Include(a=>a.Stat)
                                                     .ToList();     
-            if (File.Exists(props.FileName))
+            if (File.Exists(filePath))
             {
-                File.Delete(props.FileName);
+                File.Delete(filePath);
             }
 
-            using (StreamWriter sr = new StreamWriter(props.FileName, true))
+            using (StreamWriter sr = new StreamWriter(filePath, true))
             {
                 // Dashboard creation
                 sr.WriteLine("{");
@@ -156,117 +158,170 @@ namespace Sentio.Services
 
                 for (int i = 0; i < panelsCount; i++)
                 {
-                    sr.WriteLine("    {");
-                    sr.WriteLine("      \"aliasColors\": {},");
-                    sr.WriteLine("      \"bars\": false,");
-                    sr.WriteLine("      \"dashLength\": 10,");
-                    sr.WriteLine("      \"dashes\": false,");
-                    sr.WriteLine("      \"datasource\": null,");
-                    sr.WriteLine("      \"fill\": 1,");
-                    sr.WriteLine("      \"fillGradient\": 0,");
-                    sr.WriteLine("      \"gridPos\": {");
-                    sr.WriteLine($"        \"h\": {defHeigth},");
-                    sr.WriteLine($"        \"w\": {defWidth},");
-                    sr.WriteLine($"        \"x\": {xPosition},");
-                    sr.WriteLine($"        \"y\": {yPosition}");
-                    xPosition += defWidth;
-                    if (xPosition >= dashboardWidth)
+                    var panel = panels.ElementAt(i);
+                    if (panel.PanelType == "graph")
                     {
-                        xPosition = 0;
-                        yPosition += defHeigth;
-                    }
-                    sr.WriteLine("      },");
-                    sr.WriteLine("      \"hiddenSeries\": false,");
-                    sr.WriteLine($"      \"id\": {i},");
-                    sr.WriteLine("      \"legend\": {");
-                    sr.WriteLine("        \"avg\": false,");
-                    sr.WriteLine("        \"current\": false,");
-                    sr.WriteLine("        \"max\": false,");
-                    sr.WriteLine("        \"min\": false,");
-                    sr.WriteLine("        \"show\": true,");
-                    sr.WriteLine("        \"total\": false,");
-                    sr.WriteLine("        \"values\": false");
-                    sr.WriteLine("      },");
-                    sr.WriteLine("      \"lines\": true,");
-                    sr.WriteLine("      \"linewidth\": 1,");
-                    sr.WriteLine("      \"nullPointMode\": \"null\",");
-                    sr.WriteLine("      \"options\": {");
-                    sr.WriteLine("        \"dataLinks\": []");
-                    sr.WriteLine("      },");
-                    sr.WriteLine("      \"percentage\": false,");
-                    sr.WriteLine("      \"pointradius\": 2,");
-                    sr.WriteLine("      \"points\": false,");
-                    sr.WriteLine("      \"renderer\": \"flot\",");
-                    sr.WriteLine("      \"seriesOverrides\": [],");
-                    sr.WriteLine("      \"spaceLength\": 10,");
-                    sr.WriteLine("      \"stack\": false,");
-                    sr.WriteLine("      \"steppedLine\": false,");
-                    sr.WriteLine("      \"targets\": [");
+                        sr.WriteLine("    {");
+                        sr.WriteLine("      \"aliasColors\": {},");
+                        sr.WriteLine("      \"bars\": false,");
+                        sr.WriteLine("      \"dashLength\": 10,");
+                        sr.WriteLine("      \"dashes\": false,");
+                        sr.WriteLine("      \"datasource\": null,");
+                        sr.WriteLine("      \"fill\": 1,");
+                        sr.WriteLine("      \"fillGradient\": 0,");
+                        sr.WriteLine("      \"gridPos\": {");
+                        sr.WriteLine($"        \"h\": {defHeigth},");
+                        sr.WriteLine($"        \"w\": {defWidth},");
+                        sr.WriteLine($"        \"x\": {xPosition},");
+                        sr.WriteLine($"        \"y\": {yPosition}");                 
+                        sr.WriteLine("      },");
+                        sr.WriteLine("      \"hiddenSeries\": false,");
+                        sr.WriteLine($"      \"id\": {i},");
+                        sr.WriteLine("      \"legend\": {");
+                        sr.WriteLine("        \"avg\": false,");
+                        sr.WriteLine("        \"current\": false,");
+                        sr.WriteLine("        \"max\": false,");
+                        sr.WriteLine("        \"min\": false,");
+                        sr.WriteLine("        \"show\": true,");
+                        sr.WriteLine("        \"total\": false,");
+                        sr.WriteLine("        \"values\": false");
+                        sr.WriteLine("      },");
+                        sr.WriteLine("      \"lines\": true,");
+                        sr.WriteLine("      \"linewidth\": 1,");
+                        sr.WriteLine("      \"nullPointMode\": \"null\",");
+                        sr.WriteLine("      \"options\": {");
+                        sr.WriteLine("        \"dataLinks\": []");
+                        sr.WriteLine("      },");
+                        sr.WriteLine("      \"percentage\": false,");
+                        sr.WriteLine("      \"pointradius\": 2,");
+                        sr.WriteLine("      \"points\": false,");
+                        sr.WriteLine("      \"renderer\": \"flot\",");
+                        sr.WriteLine("      \"seriesOverrides\": [],");
+                        sr.WriteLine("      \"spaceLength\": 10,");
+                        sr.WriteLine("      \"stack\": false,");
+                        sr.WriteLine("      \"steppedLine\": false,");
+                        sr.WriteLine("      \"targets\": [");
 
-                    // Adding queries to panel
-                    int idPointer = 0;
-                    int queryCount = panels.ElementAt(i).PanelQueries.Count;
-                    var queries = _context.PanelQueries.Where(x => x.PanelId == panels.ElementAt(i).Id).Include(a=>a.TrackableQuery).ToList();
-                    for (int j = 0; j < queryCount; j++)
-                    {
+                        // Adding queries to panel
+                        int idPointer = 0;
+                        int queryCount = panels.ElementAt(i).PanelQueries.Count;
+                        var queries = _context.PanelQueries.Where(x => x.PanelId == panels.ElementAt(i).Id).Include(a => a.TrackableQuery).ToList();
 
-                        var panelQuery = queries.ElementAt(j);//panels.ElementAt(j).PanelQueries.ElementAt(j);
+                        for (int j = 0; j < queryCount; j++)
+                        {
+                            var panelQuery = queries.ElementAt(j);//panels.ElementAt(j).PanelQueries.ElementAt(j);
+                            sr.WriteLine("        {");
+                            string expression = string.Join('_', panelQuery.TrackableQuery.Name.Split(' '));
+                            sr.WriteLine($"          \"expr\": \"{expression}\",");
+                            sr.WriteLine($"          \"legendFormat\": \"{panelQuery.Legend}\",");
+                            sr.WriteLine($"          \"refId\": \"{IdValues[idPointer]}\"");
+                            idPointer++;
+                            if (j == queryCount - 1)
+                            {
+                                sr.WriteLine("        }");
+                            }
+                            else
+                            {
+                                sr.WriteLine("        },");
+                            }
+                        }                    
+                        sr.WriteLine("      ],");
+                        sr.WriteLine("      \"thresholds\": [],");
+                        sr.WriteLine("      \"timeFrom\": null,");
+                        sr.WriteLine("      \"timeRegions\": [],");
+                        sr.WriteLine("      \"timeShift\": null,");
+                        sr.WriteLine($"      \"title\": \"{panels.ElementAt(i).Legend}\",");
+                        sr.WriteLine("      \"tooltip\": {");
+                        sr.WriteLine("        \"shared\": true,");
+                        sr.WriteLine("        \"sort\": 0,");
+                        sr.WriteLine("        \"value_type\": \"individual\"");
+                        sr.WriteLine("      },");
+                        sr.WriteLine($"      \"type\": \"{panels.ElementAt(i).PanelType}\",");
+                        sr.WriteLine("      \"xaxis\": {");
+                        sr.WriteLine("        \"buckets\": null,");
+                        sr.WriteLine("        \"mode\": \"time\",");
+                        sr.WriteLine("        \"name\": null,");
+                        sr.WriteLine("        \"show\": true,");
+                        sr.WriteLine("        \"values\": []");
+                        sr.WriteLine("      },");
+                        sr.WriteLine("      \"yaxes\": [");
                         sr.WriteLine("        {");
-                        string expression = string.Join('_', panelQuery.TrackableQuery.Name.Split(' '));
-                        sr.WriteLine($"          \"expr\": \"{expression}\",");
-                        sr.WriteLine($"          \"legendFormat\": \"{panelQuery.Legend}\",");
-                        sr.WriteLine($"          \"refId\": \"{IdValues[idPointer]}\"");
-                        idPointer++;
-                        if (j == queryCount - 1)
-                        {
-                            sr.WriteLine("        }");
-                        }
-                        else
-                        {
-                            sr.WriteLine("        },");
-                        }
+                        sr.WriteLine("          \"format\": \"short\",");
+                        sr.WriteLine("          \"label\": null,");
+                        sr.WriteLine("          \"logBase\": 1,");
+                        sr.WriteLine("          \"max\": null,");
+                        sr.WriteLine("          \"min\": null,");
+                        sr.WriteLine("          \"show\": true");
+                        sr.WriteLine("        },");
+                        sr.WriteLine("        {");
+                        sr.WriteLine("          \"format\": \"short\",");
+                        sr.WriteLine("          \"label\": null,");
+                        sr.WriteLine("          \"logBase\": 1,");
+                        sr.WriteLine("          \"max\": null,");
+                        sr.WriteLine("          \"min\": null,");
+                        sr.WriteLine("          \"show\": true");
+                        sr.WriteLine("        }");
+                        sr.WriteLine("      ],");
+                        sr.WriteLine("      \"yaxis\": {");
+                        sr.WriteLine("        \"align\": false,");
+                        sr.WriteLine("        \"alignLevel\": null");
+                        sr.WriteLine("      }");
                     }
-                    sr.WriteLine("      ],");
-                    sr.WriteLine("      \"thresholds\": [],");
-                    sr.WriteLine("      \"timeFrom\": null,");
-                    sr.WriteLine("      \"timeRegions\": [],");
-                    sr.WriteLine("      \"timeShift\": null,");
-                    sr.WriteLine($"      \"title\": \"{panels.ElementAt(i).Legend}\",");
-                    sr.WriteLine("      \"tooltip\": {");
-                    sr.WriteLine("        \"shared\": true,");
-                    sr.WriteLine("        \"sort\": 0,");
-                    sr.WriteLine("        \"value_type\": \"individual\"");
-                    sr.WriteLine("      },");
-                    sr.WriteLine("      \"type\": \"graph\",");
-                    sr.WriteLine("      \"xaxis\": {");
-                    sr.WriteLine("        \"buckets\": null,");
-                    sr.WriteLine("        \"mode\": \"time\",");
-                    sr.WriteLine("        \"name\": null,");
-                    sr.WriteLine("        \"show\": true,");
-                    sr.WriteLine("        \"values\": []");
-                    sr.WriteLine("      },");
-                    sr.WriteLine("      \"yaxes\": [");
-                    sr.WriteLine("        {");
-                    sr.WriteLine("          \"format\": \"short\",");
-                    sr.WriteLine("          \"label\": null,");
-                    sr.WriteLine("          \"logBase\": 1,");
-                    sr.WriteLine("          \"max\": null,");
-                    sr.WriteLine("          \"min\": null,");
-                    sr.WriteLine("          \"show\": true");
-                    sr.WriteLine("        },");
-                    sr.WriteLine("        {");
-                    sr.WriteLine("          \"format\": \"short\",");
-                    sr.WriteLine("          \"label\": null,");
-                    sr.WriteLine("          \"logBase\": 1,");
-                    sr.WriteLine("          \"max\": null,");
-                    sr.WriteLine("          \"min\": null,");
-                    sr.WriteLine("          \"show\": true");
-                    sr.WriteLine("        }");
-                    sr.WriteLine("      ],");
-                    sr.WriteLine("      \"yaxis\": {");
-                    sr.WriteLine("        \"align\": false,");
-                    sr.WriteLine("        \"alignLevel\": null");
-                    sr.WriteLine("      }");
+                    else if (panel.PanelType == "stat")
+                    {
+                        sr.WriteLine("    {");
+                        sr.WriteLine("      \"datasource\": null,");
+                        sr.WriteLine("      \"gridPos\": {");
+                        sr.WriteLine($"        \"h\": {defHeigth},");
+                        sr.WriteLine($"        \"w\": {defWidth},");
+                        sr.WriteLine($"        \"{xPosition}\": 0,");
+                        sr.WriteLine($"        \"{yPosition}\": 0");
+                        sr.WriteLine("      },");
+                        sr.WriteLine("      \"id\": 5,");
+                        sr.WriteLine("      \"options\": {");
+                        sr.WriteLine("        \"colorMode\": \"value\",");
+                        sr.WriteLine("        \"fieldOptions\": {");
+                        sr.WriteLine("          \"calcs\": [");
+                        sr.WriteLine("            \"mean\"");
+                        sr.WriteLine("          ],");
+                        sr.WriteLine("          \"defaults\": {");
+                        sr.WriteLine("            \"mappings\": [],");
+                        sr.WriteLine("            \"thresholds\": {");
+                        sr.WriteLine("              \"mode\": \"absolute\",");
+                        sr.WriteLine("              \"steps\": [");
+                        sr.WriteLine("                {");
+                        sr.WriteLine("                  \"color\": \"green\",");
+                        sr.WriteLine("                  \"value\": null");
+                        sr.WriteLine("                },");
+                        sr.WriteLine("                {");
+                        sr.WriteLine("                  \"color\": \"red\",");
+                        sr.WriteLine("                  \"value\": 80");
+                        sr.WriteLine("                }");
+                        sr.WriteLine("              ]");
+                        sr.WriteLine("            }");
+                        sr.WriteLine("          },");
+                        sr.WriteLine("          \"overrides\": [],");
+                        sr.WriteLine("          \"values\": false");
+                        sr.WriteLine("        },");
+                        sr.WriteLine("        \"graphMode\": \"none\",");
+                        sr.WriteLine("        \"justifyMode\": \"auto\",");
+                        sr.WriteLine("        \"orientation\": \"auto\"");
+                        sr.WriteLine("      },");
+                        sr.WriteLine("      \"pluginVersion\": \"6.6.2\",");
+                        sr.WriteLine("      \"targets\": [");
+                        sr.WriteLine("        {");
+                        string expression = string.Join('_', panel.Stat.Query.Split(' '));
+                        sr.WriteLine($"          \"expr\": \"{expression}\",");
+                        sr.WriteLine($"          \"legendFormat\": \"{panel.Stat.Query}\",");  // should be metric name but temporary will be panel name
+                        sr.WriteLine($"          \"refId\": \"A\"");                 
+                        sr.WriteLine("        }");
+                        sr.WriteLine("      ],");
+                        sr.WriteLine("      \"timeFrom\": null,");
+                        sr.WriteLine("      \"timeShift\": null,");
+                        sr.WriteLine("      \"title\": \"panel pavadinimas\",");
+                        sr.WriteLine("      \"type\": \"stat\"");
+
+                    }
                     if (i == panelsCount - 1)
                     {
                         sr.WriteLine("    }");
@@ -275,8 +330,14 @@ namespace Sentio.Services
                     {
                         sr.WriteLine("    },");
                     }
+                    xPosition += defWidth;
+                    if (xPosition >= dashboardWidth)
+                    {
+                        xPosition = 0;
+                        yPosition += defHeigth;
+                    }
                 }
-              
+
                 sr.WriteLine("  ],");
                 sr.WriteLine("  \"schemaVersion\": 22,");
                 sr.WriteLine("  \"style\": \"dark\",");
@@ -308,8 +369,6 @@ namespace Sentio.Services
                 sr.WriteLine("  \"version\": 7");
                 sr.WriteLine("}");
             }
-        }
-
-        
+        }  
     }
 }

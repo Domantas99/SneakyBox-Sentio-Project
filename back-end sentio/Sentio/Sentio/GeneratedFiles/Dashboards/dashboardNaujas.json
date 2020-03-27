@@ -19,6 +19,57 @@
   "links": [],
   "panels": [
     {
+      "datasource": null,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "0": 0,
+        "0": 0
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto"
+      },
+      "pluginVersion": "6.6.2",
+      "targets": [
+        {
+          "expr": "Point_Price_vidurkis*Teacher_COUNT+Teacher_COUNT/Point_Price_vidurkis",
+          "legendFormat": "Point Price vidurkis*Teacher COUNT+Teacher COUNT/Point Price vidurkis",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "panel pavadinimas",
+      "type": "stat"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -29,11 +80,11 @@
       "gridPos": {
         "h": 8,
         "w": 12,
-        "x": 0,
+        "x": 12,
         "y": 0
       },
       "hiddenSeries": false,
-      "id": 0,
+      "id": 1,
       "legend": {
         "avg": false,
         "current": false,
@@ -116,11 +167,11 @@
       "gridPos": {
         "h": 8,
         "w": 12,
-        "x": 12,
-        "y": 0
+        "x": 0,
+        "y": 8
       },
       "hiddenSeries": false,
-      "id": 1,
+      "id": 2,
       "legend": {
         "avg": false,
         "current": false,
@@ -218,11 +269,11 @@
       "gridPos": {
         "h": 8,
         "w": 12,
-        "x": 0,
+        "x": 12,
         "y": 8
       },
       "hiddenSeries": false,
-      "id": 2,
+      "id": 3,
       "legend": {
         "avg": false,
         "current": false,
@@ -325,7 +376,7 @@
     ]
   },
   "timezone": "",
-  "title": "Mano dashboard ciaa",
+  "title": "Treciasis dashboardas",
   "uid": "IOoq2fuWz",
   "version": 7
 }

@@ -56,9 +56,6 @@ C:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\back-end 
 C:\Users\User\Desktop\Programavimas\Sneakybox\SneakyBox-Sentio-Project\back-end sentio\Sentio\Sentio\bin\Debug\netcoreapp2.1\dashboard2.json
 C:\Users\User\Desktop\Sentio\Sneakybox\SneakyBox-Sentio-Project\back-end sentio\Sentio\Sentio\bin\Debug\netcoreapp2.1\appsettings.Development.json
 C:\Users\User\Desktop\Sentio\Sneakybox\SneakyBox-Sentio-Project\back-end sentio\Sentio\Sentio\bin\Debug\netcoreapp2.1\appsettings.json
-C:\Users\User\Desktop\Sentio\Sneakybox\SneakyBox-Sentio-Project\back-end sentio\Sentio\Sentio\bin\Debug\netcoreapp2.1\dashboard1.json
-C:\Users\User\Desktop\Sentio\Sneakybox\SneakyBox-Sentio-Project\back-end sentio\Sentio\Sentio\bin\Debug\netcoreapp2.1\dashboard2.json
-C:\Users\User\Desktop\Sentio\Sneakybox\SneakyBox-Sentio-Project\back-end sentio\Sentio\Sentio\bin\Debug\netcoreapp2.1\metricsFile.json
 C:\Users\User\Desktop\Sentio\Sneakybox\SneakyBox-Sentio-Project\back-end sentio\Sentio\Sentio\bin\Debug\netcoreapp2.1\Properties\launchSettings.json
 C:\Users\User\Desktop\Sentio\Sneakybox\SneakyBox-Sentio-Project\back-end sentio\Sentio\Sentio\bin\Debug\netcoreapp2.1\Sentio.deps.json
 C:\Users\User\Desktop\Sentio\Sneakybox\SneakyBox-Sentio-Project\back-end sentio\Sentio\Sentio\bin\Debug\netcoreapp2.1\Sentio.runtimeconfig.json
@@ -74,5 +71,4 @@ C:\Users\User\Desktop\Sentio\Sneakybox\SneakyBox-Sentio-Project\back-end sentio\
 C:\Users\User\Desktop\Sentio\Sneakybox\SneakyBox-Sentio-Project\back-end sentio\Sentio\Sentio\obj\Debug\netcoreapp2.1\Sentio.RazorTargetAssemblyInfo.cache
 C:\Users\User\Desktop\Sentio\Sneakybox\SneakyBox-Sentio-Project\back-end sentio\Sentio\Sentio\obj\Debug\netcoreapp2.1\Sentio.dll
 C:\Users\User\Desktop\Sentio\Sneakybox\SneakyBox-Sentio-Project\back-end sentio\Sentio\Sentio\obj\Debug\netcoreapp2.1\Sentio.pdb
-C:\Users\User\Desktop\Sentio\Sneakybox\SneakyBox-Sentio-Project\back-end sentio\Sentio\Sentio\bin\Debug\netcoreapp2.1\metrics.json
-C:\Users\User\Desktop\Sentio\Sneakybox\SneakyBox-Sentio-Project\back-end sentio\Sentio\Sentio\bin\Debug\netcoreapp2.1\dashboardNaujas.json
+C:\Users\User\Desktop\Sentio\Sneakybox\SneakyBox-Sentio-Project\back-end sentio\Sentio\Sentio\bin\Debug\netcoreapp2.1\GeneratedFiles\Metrics\metrics.json

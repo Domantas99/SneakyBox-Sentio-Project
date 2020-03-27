@@ -12,6 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="GeneratedFiles\Dashboards\" />
+    <Folder Include="GeneratedFiles\Metrics\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

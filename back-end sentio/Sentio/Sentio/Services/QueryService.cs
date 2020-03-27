@@ -118,54 +118,54 @@ namespace Sentio.Services
             }
             return queryString;
         }
-     
+
 
         public async Task CreateMetricsJson(FileProps props)
         {
-            if (File.Exists(props.FileName))
+            string filePath = "GeneratedFiles/Metrics/" + props.FileName;
+            if (File.Exists(filePath))
             {
-                File.Delete(props.FileName);
+                File.Delete(filePath);
             }
-            
-            try
-            {
-               // var queries = await _context.TrackableQueries.Include(q => q.DatabaseId == props.ObjectId).Where(q => q.DatabaseId == props.ObjectId).ToListAsync();
-                var queries = await _context.TrackableQueries.Where(q => q.DatabaseId == props.ObjectId).ToListAsync();
-                //await _context.TrackableQueries.Include(q => q.Table)
-                //.;
-                using (StreamWriter sr = new StreamWriter(props.FileName, true))
-            {
-                sr.WriteLine("{");
-                sr.WriteLine("  \"Queries\":[");
 
-                for (int i = 0; i < queries.Count; i++)
+            try
+            {     
+                var queries = await _context.TrackableQueries.Where(q => q.DatabaseId == props.ObjectId).ToListAsync();
+
+                using (StreamWriter sr = new StreamWriter(filePath, true))
                 {
-                    var query = queries[i];
-                    string queryName = string.Join('_', query.Name.Split(' '));
-                    sr.WriteLine("              {");
-                    sr.WriteLine("          \"Name\": \"" + queryName + "\",");
-                    sr.WriteLine("          \"Query\": \"" + query.GeneratedQuery + "\",");
-                    sr.WriteLine("          \"Name\": \"" + queryName + "\",");
-                    sr.WriteLine("          \"Columns\": [");
-                    sr.WriteLine("              {");
-                    sr.WriteLine("                  \"Name\": \"" + query.OperationType + "\",");
-                    sr.WriteLine("                  \"Label\": \"" + queryName + "\","); // query to call with prometheus
-                    sr.WriteLine("                  \"Usage\": \"Gauge\",");
-                    sr.WriteLine("                  \"DefaultValue\": 0");
-                    sr.WriteLine("              }");
-                    sr.WriteLine("          ]");
-                    if (i != queries.Count - 1)
+                    sr.WriteLine("{");
+                    sr.WriteLine("  \"Queries\":[");
+
+                    for (int i = 0; i < queries.Count; i++)
                     {
-                        sr.WriteLine("      },");
+                        var query = queries[i];
+                        string queryName = string.Join('_', query.Name.Split(' '));
+                        sr.WriteLine("              {");
+                        sr.WriteLine("          \"Name\": \"" + queryName + "\",");
+                        sr.WriteLine("          \"Query\": \"" + query.GeneratedQuery + "\",");
+                        sr.WriteLine("          \"Name\": \"" + queryName + "\",");
+                        sr.WriteLine("          \"Columns\": [");
+                        sr.WriteLine("              {");
+                        sr.WriteLine("                  \"Name\": \"" + query.OperationType + "\",");
+                        sr.WriteLine("                  \"Label\": \"" + queryName + "\","); // query to call with prometheus
+                        sr.WriteLine("                  \"Usage\": \"Gauge\",");
+                        sr.WriteLine("                  \"DefaultValue\": 0");
+                        sr.WriteLine("              }");
+                        sr.WriteLine("          ]");
+                        if (i != queries.Count - 1)
+                        {
+                            sr.WriteLine("      },");
+                        }
+                        else
+                        {
+                            sr.WriteLine("      }");
+                        }
                     }
-                    else {
-                        sr.WriteLine("      }");
-                    }          
+                    sr.WriteLine("  ],");
+                    sr.WriteLine("  \"MillisecondTimeout\": 4000");
+                    sr.WriteLine("}");
                 }
-                sr.WriteLine("  ],");
-                sr.WriteLine("  \"MillisecondTimeout\": 4000");
-                sr.WriteLine("}");
-            }
             }
             catch (Exception e)
             {
@@ -174,6 +174,5 @@ namespace Sentio.Services
             }
 
         }
-
     }
 }
