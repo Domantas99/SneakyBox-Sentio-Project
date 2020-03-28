@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { fetchDashboards, deleteDashboard } from '../../services/redux/actions/dashboards-actions';
 import { Button, Card, CardBody, CardHeader, Col, Table } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import linkToGrafana from '../../services/grafana/grafana';
 
 function Dashboards(props) {
     const userId = props.user.id;
@@ -14,6 +15,19 @@ function Dashboards(props) {
 
     function onDeleteDashboardClick(dashboardId){
       props.deleteDashboard(dashboardId);
+    }
+
+    function goToGrafana(databaseId, dashboardId) {
+      linkToGrafana(databaseId, dashboardId).then(res => res.json())
+        .then(json=> {
+          debugger
+          if(json.isValid) {
+            window.open("http://localhost:3000");
+          }
+          else {
+            alert("There was an error:" + json.message);
+          }
+        });
     }
 
     return (
@@ -35,6 +49,7 @@ function Dashboards(props) {
                     <tr>
                         <th className="container__table-row-text">Dashboard Name</th>
                         <th className="container__table-row-text">Database Name</th>  
+                        <th className="container__table-row-text">Grafana</th>  
                         <th className="container__table-row-action">Edit</th>  
                         <th className="container__table-row-action">Remove</th>  
                     </tr>
@@ -44,6 +59,9 @@ function Dashboards(props) {
                       dashboards.map(dashboard => <tr key={dashboard.id}>
                         <td className="container__table-row-text">{ dashboard.name }</td>
                         <td className="container__table-row-text">{ dashboard.database.databaseName }</td>
+                        <td className="container__table-row-text">
+                          <Button color="primary" onClick={() => goToGrafana(dashboard.databaseId, dashboard.id)}>View Grafana</Button>
+                        </td>
                         <td className="container__table-row-action">
                           <Link to={`/databases/${dashboard.databaseId}/dashboards/${dashboard.id}/edit`}>
                             <Button className="px-3" color="warning"><i className="cui-pencil icons"></i></Button>

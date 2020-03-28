@@ -3,6 +3,7 @@ import { FormGroup, Label, Button, Card, CardBody, CardHeader, Col, Table, Input
 import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchDashboards, deleteDashboard } from '../../services/redux/actions/dashboards-actions';
+import linkToGrafana from '../../services/grafana/grafana';
 import './database-dashboards.scss';
 
 function DatabaseDashboards(props) {
@@ -18,6 +19,19 @@ function DatabaseDashboards(props) {
       props.deleteDashboard(dashboardId);
     }
     
+    function goToGrafana(databaseId, dashboardId) {
+      linkToGrafana(databaseId, dashboardId).then(res => res.json())
+        .then(json=> {
+          debugger
+          if(json.isValid) {
+            window.open("http://localhost:3000");
+          }
+          else {
+            alert("There was an error:" + json.message);
+          }
+        });
+    }
+
     return (
             <div>      
               <Card>
@@ -37,6 +51,7 @@ function DatabaseDashboards(props) {
                       <tr>
                           <th className="container__table-row-text">Dashboard Name</th>
                           <th className="container__table-row-action">Panels Count</th>  
+                          <th className="container__table-row-action">Grafana</th>  
                           <th className="container__table-row-action">Edit</th>  
                           <th className="container__table-row-action">Remove</th>  
                       </tr>
@@ -47,6 +62,13 @@ function DatabaseDashboards(props) {
                           <tr key={d.id}>
                             <td className="container__table-row-text">{d.name}</td>
                             <td className="container__table-row-action">{d.dashboardPanels.length}</td>
+                            <td className="container__table-row-action">
+                            {/* <Link to={`/databases/${dbId}/dashboards/${d.id}/edit`}> */}
+                                <Button onClick={() => goToGrafana(d.databaseId, d.id)} color="primary">
+                                    View Grafana
+                                </Button>
+                              {/* </Link> */}
+                            </td>
                             <td  className="container__table-row-action">
                               <Link to={`/databases/${dbId}/dashboards/${d.id}/edit`}>
                                 <Button className="px-3"  color="warning">
