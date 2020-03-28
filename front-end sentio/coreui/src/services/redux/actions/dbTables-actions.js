@@ -11,7 +11,6 @@ function requestDbTablesAction(dbId) {
 }
 
 function receiveDbTablesAction(dbId, json) {
-    console.log(json, 'cia tas table json');  
     return {
         type: RECEIVE_DATABASE_TABLES,
         dbId,

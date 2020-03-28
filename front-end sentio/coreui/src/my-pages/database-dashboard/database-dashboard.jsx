@@ -38,8 +38,8 @@ function DatabaseDashboard(props) {
                         <ListGroup className="db-dash-container-item__card-list">
                         {
                             metrics.length > 0 ? metrics.map(metric => (       
-                                <ListGroupItem className="db-dash-container-item__card-list-item">{metric.name}</ListGroupItem>
-                            )) : <ListGroupItem className="db-dash-container-item__card-list-item">No metrics yet</ListGroupItem>
+                                <ListGroupItem key={metric.id} className="db-dash-container-item__card-list-item">{metric.name}</ListGroupItem>
+                            )) : <ListGroupItem key="-1" className="db-dash-container-item__card-list-item">No metrics yet</ListGroupItem>
                         }  
                         </ListGroup>
                     </CardBody>
@@ -62,8 +62,8 @@ function DatabaseDashboard(props) {
                         <ListGroup className="db-dash-container-item__card-list">
                             {
                             panels.length > 0 ? panels.map(panel => (       
-                                <ListGroupItem className="db-dash-container-item__card-list-item">{panel.legend}</ListGroupItem>
-                            )) : <ListGroupItem className="db-dash-container-item__card-list-item">No panels yet</ListGroupItem>
+                                <ListGroupItem key={panel.id} className="db-dash-container-item__card-list-item">{panel.legend}</ListGroupItem>
+                            )) : <ListGroupItem key="-2"className="db-dash-container-item__card-list-item">No panels yet</ListGroupItem>
                             } 
                         </ListGroup>
                     </CardBody>
@@ -86,9 +86,9 @@ function DatabaseDashboard(props) {
                     <ListGroup className="db-dash-container-item__card-list">
                         {
                            dashboards.length > 0 ? dashboards.map(dashboard => (       
-                           <ListGroupItem className="db-dash-container-item__card-list-item">{dashboard.name}</ListGroupItem>
+                           <ListGroupItem key={dashboard.id} className="db-dash-container-item__card-list-item">{dashboard.name}</ListGroupItem>
                            )) :
-                            <ListGroupItem className="db-dash-container-item__card-list-item">No dashboards yet</ListGroupItem>
+                            <ListGroupItem key="-3" className="db-dash-container-item__card-list-item">No dashboards yet</ListGroupItem>
                         } 
                     </ListGroup>
                 </CardBody>

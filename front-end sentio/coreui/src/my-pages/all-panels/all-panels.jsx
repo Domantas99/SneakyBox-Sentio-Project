@@ -38,7 +38,7 @@ function AllPanels(props) {
                   </thead>
                   <tbody>
                     {
-                      panels.map(panel => <tr>
+                      panels.map(panel => <tr key={panel.id}>
                         <td className="container__table-row-text">{ panel.legend }</td>
                         <td className="container__table-row-text">{ panel.panelType }</td>
                         <td className="container__table-row-action">

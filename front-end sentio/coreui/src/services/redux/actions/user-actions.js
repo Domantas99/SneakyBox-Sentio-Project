@@ -12,7 +12,6 @@ function requestValidationResult(userCredentials) {
 }
 
 function receiveValidationResult(userCredentials, json) {
-    console.log(json, 'cia tas json');  
     return {
         type: RECEIVE_VALIDATION_RESULT,
         userCredentials,

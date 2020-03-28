@@ -5,15 +5,12 @@ import { AddNewMetric } from '../../../services/redux/actions/metrics-actions';
 import { useHistory } from 'react-router-dom';
 
 function ThirdStep(props) {
-  debugger;
-    console.log(props)
     const dbId = props.match.params.dbId;
     const options = props.tempProperties.options.filter(x => x.include === true);
     const [Operation, setOperation] = useState(false);
     const [MetricName, setMetricName] = useState('');
     const history = useHistory();
 
-    console.log(options, 'cia options')
     function onSubmit() {
       const json = JSON.stringify({ 
         Name: MetricName,
@@ -33,7 +30,6 @@ function ThirdStep(props) {
             alert('There was an error adding metric')
           }
           history.push(`/databases/${dbId}/metrics`);
-          // Optional to reset tempProperties to empty array, but is already done in first-step
         }
         )
     }

@@ -7,7 +7,6 @@ import { useHistory } from 'react-router-dom';
 import { handleMetricLegendChange, handlePanelNameChange } from '../../../services/redux/actions/tempPanelOptions-actions';
 
 function GraphVisualizationSettings(props, { dbId }) {
-    debugger
     const history = useHistory();
     const panel = props.panelOptions;
     const  metrics = panel.options.filter(o => o.include === true);
@@ -19,9 +18,8 @@ function GraphVisualizationSettings(props, { dbId }) {
     function onLegendChange(metric, value) {
       props.changeLegend(metric, value);
     }
-    // padaryt update ir add
+    
     function onSubmit() {
-      debugger;
       let arr = [];
       metrics.forEach(
         m => arr.push({TrackableQueryId: m.id, Legend: m.Legend})

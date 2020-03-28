@@ -9,10 +9,9 @@ import { ResetTempPropertiesAction } from '../../../services/redux/actions/tempP
 
 function FirstStep(props) {
     const dbId = props.match.params.dbId;
-    console.log(props,'daeina i fp')
     const [tables, setTables] = useState(props.state.dbTables.Tables);
     useEffect(() => {
-      props.getTables(dbId).then(res=> console.log(res, ' cia resas table pg', props));
+      props.getTables(dbId);
       props.resetSelectedOptions();
     }, [])
 

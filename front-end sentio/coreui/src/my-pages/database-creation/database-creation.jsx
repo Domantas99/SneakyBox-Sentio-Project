@@ -9,7 +9,6 @@ function DatabaseCreation(props) {
     const [dbType, setDbType] = useState('Not selected');
     const history = useHistory();
     function onSubmit() {
-      debugger;
         if(dbType === 'Not selected') {
           alert("Please select database type")
         }

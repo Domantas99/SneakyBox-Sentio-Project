@@ -70,8 +70,6 @@ function Databases({userId, databases, getUserDatabases, deleteDb}) {
 }
 
 function mapStateToProps( state) {
-    console.log(state, 'cia tas state pries seta')
-
     return {
     userId: state.user.id,
     databases: state.databases.databases

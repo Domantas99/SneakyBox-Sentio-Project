@@ -6,10 +6,8 @@ import { SET_TEMP_PANEL_OPTIONS,
         HANDLE_PANEL_NAME_CHANGE } from '../actions/tempPanelOptions-actions';
 
 function tempPanelOptions (state={ panelName: '', visualization: 'No Option', options: [], editing: false }, action) {
-    debugger;
     switch(action.type) {
         case SET_TEMP_PANEL_OPTIONS: {
-            debugger;
             let editFlag=false;
             let arr = []
             action.options.forEach(o => {
@@ -18,14 +16,12 @@ function tempPanelOptions (state={ panelName: '', visualization: 'No Option', op
                     editFlag = true;
                     const panelMetrics = action.panel.panelQueries;
                     for (let i=0; i < panelMetrics.length; i++) {
-                        debugger
                         if (panelMetrics[i].trackableQueryId === arr[arr.length-1].id) {
                             arr[arr.length-1].include = true;
                         }
                     }
                 }
             })
-            debugger;
             return Object.assign({}, state, { 
                 panelName: action.panel? action.panel.legend : '', 
                 visualization: action.panel ? action.panel.panelType: '', 
@@ -47,7 +43,6 @@ function tempPanelOptions (state={ panelName: '', visualization: 'No Option', op
             return Object.assign({}, state, {...state, options: arr});
         }
         case HANDLE_METRIC_CHECKBOX_CHANGE:
-            debugger
             const index = state.options.indexOf(action.metric);
             let temp = state.options;
             temp[index].include = !temp[index].include;
@@ -58,7 +53,6 @@ function tempPanelOptions (state={ panelName: '', visualization: 'No Option', op
 }
 
 export default function tempPanelOptionsReducer(state ={ panelName: '', visualization: 'No Option', options: [] }, action) {
-    debugger;
     switch(action.type) {
         case SET_TEMP_PANEL_OPTIONS:
             return tempPanelOptions(state, action);    

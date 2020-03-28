@@ -24,7 +24,6 @@ function DatabasePanels(props) {
 
     return (
         <div>     
-          {console.log(props, 'db panels props')}
             <Card>
               <CardHeader className="container-header">
                 <div>
@@ -48,7 +47,7 @@ function DatabasePanels(props) {
                   </thead>
                   <tbody>
                     {
-                      dbPanels.map(panel => <tr>
+                      dbPanels.map(panel => <tr key={panel.id}>
                         <td className="container__table-row-text">{ panel.legend }</td>
                         <td className="container__table-row-text">{ panel.panelType }</td>
                         <td className="container__table-row-action">

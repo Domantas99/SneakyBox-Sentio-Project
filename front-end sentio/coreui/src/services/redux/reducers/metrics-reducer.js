@@ -4,9 +4,6 @@ import { DELETE_DATABASE } from '../actions/databases-actions';
 function metrics(state = { isFetching:false, error: false,metrics:[] }, action) {
     switch(action.type) {
         case ADD_NEW_METRIC:
-            console.log(state, 'cia state')
-            console.log(action, 'cia action')
-            //metrics.push(act) 
             return state
         case REQUEST_DB_METRICS:
             return Object.assign({}, state, { isFetching: true, error: false });

@@ -8,7 +8,6 @@ import './metrics-selection.scss';
 //import { handleCheckBoxChange } from '../../../services/redux/actions/tempProperties-actions';
 
 function MetricSelection(props) {
-  debugger
     const dbId = props.match.params.dbId;
     const panelId = props.match.params.panelId;
     const metrics = props.metrics.metrics;
@@ -16,9 +15,7 @@ function MetricSelection(props) {
     const history = useHistory();
 
     useEffect(() => {
-      debugger
       props.getMetrics(dbId)
-      debugger
       if(panel.visualization === 'No Option' || panel.visualization === '') {
         const panelToFilter = props.panels.find(x=> x.id === panelId);
         props.setInitOptions(metrics, panelToFilter);
@@ -63,11 +60,11 @@ function MetricSelection(props) {
                   </thead>
                   <tbody>
                     {  panel.options && panel.options.map((metric, index) => (
-                      <tr key={index}>
+                      <tr key={metric.id}>
                         <td>{metric.name}</td>
                         <td>{metric.operationType}</td>                
                         <td className="select-option">
-                          <Input checked={metric.include} onClick={() => onCheckBoxClick(metric)} type="checkbox"></Input>
+                          <Input defaultChecked={metric.include} onClick={() => onCheckBoxClick(metric)} type="checkbox"></Input>
                         </td>                      
                       </tr>
                     )) }
@@ -80,7 +77,7 @@ function MetricSelection(props) {
               <Input value={panel.visualization} onChange={(e) => onVisualizationChange(e.target.value)} type="select">
                 <option value="No Option">No option</option>
                 <option value="graph">Graph</option>                          
-                <option value="singlestat">Singlestat</option>                          
+                <option value="stat">Singlestat</option>                          
                 <option value="gauge">Gauge</option>                          
                 <option value="bar gauge">Bar Gauge</option>                          
               </Input>  

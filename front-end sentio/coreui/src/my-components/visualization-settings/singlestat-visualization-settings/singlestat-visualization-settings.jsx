@@ -10,27 +10,7 @@ function SinglestatVisualizationSettings(props) {
     const panel = props.panelOptions;
     const metrics = props.panelOptions.options.filter(x => x.include === true);
     const [formula, setFormula] = useState('');
-    //const [metricNames, setNames] = useState(metrics.map(m => ({TrackableQueryId: m.id, Legend: m.name})));
-  //  const [metricNames, setNames] = useState(metrics.map(m => ({TrackableQueryId: m.id, Legend: m.name})));
     const history = useHistory()
-
-    // function onLegendChange(metricId, value) {
-    //   debugger;
-    //   const element = metricNames.find(el => el.TrackableQueryId === metricId);  
-    //   const index = metricNames.indexOf(element);
-    //   let arr = metricNames;
-    //   arr[index].Legend = value;
-    //   setNames(arr);
-    //   console.log(metricNames);
-    // }
-
-    // Reikes pabaikti su redux
-    // function onNameChange(id, value) {
-    //     const name = metricNames.find(x => x.id === id);
-    //     const index = metricNames.indexOf(name);
-    //     if(index < 0 ) {
-    //     }  
-    // }
 
     function onPanelNameChange(value) {
       props.changePanelName(value);
@@ -45,7 +25,6 @@ function SinglestatVisualizationSettings(props) {
     }
 
     function onSubmit() {
-      debugger;
       let arr = [];
       metrics.forEach(
         m => arr.push({TrackableQueryId: m.id, Legend: m.Legend})
@@ -77,12 +56,8 @@ function SinglestatVisualizationSettings(props) {
       }
     }
 
-
-    debugger
     return (
         <div>
-            {console.log(props, 'cia props SingleV')}
-
             <Col xs="9" lg="10">                                         
             <Card>
               <CardHeader>
@@ -91,7 +66,7 @@ function SinglestatVisualizationSettings(props) {
               <CardBody>
                 <FormGroup>
                     <h4><Label>Graph name</Label></h4>
-                    <Input onChange={(e) => onPanelNameChange(e.target.value)}></Input>
+                    <Input value={panel.panelName} onChange={(e) => onPanelNameChange(e.target.value)}></Input>
                 </FormGroup>
                 <Table responsive>
                   <thead>
@@ -109,7 +84,7 @@ function SinglestatVisualizationSettings(props) {
                         <td>{metric.name}</td>
                         <td>{metric.operationType}</td>                
                         <td>
-                          <Input onChange={(e) => onLegendChange(metric, e.target.value) }></Input>
+                          <Input value={metric.Legend} onChange={(e) => onLegendChange(metric, e.target.value) }></Input>
                         </td> 
                       </tr>
                     )) }

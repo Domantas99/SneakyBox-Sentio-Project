@@ -16,7 +16,6 @@ function DashboardCreation(props) {
 
     return (
         <div >
-            {console.log(props, 'cia props db create')}
             <DragDrop data={ panels } dbId={ databaseId } dashboard={ dashboard }></DragDrop>
         </div>
     )

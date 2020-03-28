@@ -35,7 +35,6 @@ function SecondStep(props) {
 
     return (
         <div>
-            {console.log(props, 'cia second stp')}
             <Col xs="10" lg="10">
             <Card>
               <CardHeader>

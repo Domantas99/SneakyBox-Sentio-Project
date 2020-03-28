@@ -18,7 +18,6 @@ function Dashboards(props) {
 
     return (
         <div>
-          {console.log(props)}
             <Card>
               <CardHeader className="container-header">
                 <div>
@@ -42,7 +41,7 @@ function Dashboards(props) {
                   </thead>
                   <tbody>
                     {
-                      dashboards.map(dashboard => <tr>
+                      dashboards.map(dashboard => <tr key={dashboard.id}>
                         <td className="container__table-row-text">{ dashboard.name }</td>
                         <td className="container__table-row-text">{ dashboard.database.databaseName }</td>
                         <td className="container__table-row-action">

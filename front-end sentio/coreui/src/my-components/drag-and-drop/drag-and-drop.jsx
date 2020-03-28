@@ -9,7 +9,6 @@ let uniqId=0;
 class DragDrop extends React.Component {
     constructor(props){
         super(props)
-        console.log(props, 'cia props construktoriuje')
         const dashboard = props.dashboard;
         const panels = props.panels;
         let currentDashboardPanels = [];
@@ -17,14 +16,12 @@ class DragDrop extends React.Component {
             for (let i = 0; i < dashboard.dashboardPanels.length; i++) {
                 const dPanel = dashboard.dashboardPanels[i];
                 for (let j = 0; j < panels.length; j++) {
-                    // if(dPanel.panelId === panels[j].id && props.dbId === panels[j].databaseId) {
                     if(dPanel.panelId === panels[j].id) {
                         currentDashboardPanels.push(panels[j]);
                     } 
                 }
             }
         }
-        debugger;
         const p = props.data.filter(x => x.databaseId === props.dbId)
 
         this.state = {
@@ -40,8 +37,7 @@ class DragDrop extends React.Component {
             this.makeAdd();
         }
         else {
-            this.makeUpdate();
-            
+            this.makeUpdate();  
         }
     }
 
@@ -101,13 +97,10 @@ class DragDrop extends React.Component {
     
     onDropLeft = e =>{
         e.preventDefault();
-        const data = e.dataTransfer.getData("text/plain");
-        console.log(JSON.parse(data), 'cia data');
-    
+        const data = e.dataTransfer.getData("text/plain"); 
         let {container} = this.state;
         const deserializeObj =JSON.parse(data);
         const obj = {...deserializeObj, uniqId};
-        console.log(obj, 'cia naujas obj');
         uniqId+=1;
         container.push(obj);
         this.setState({ container });
@@ -129,8 +122,8 @@ class DragDrop extends React.Component {
                         <h2>Available panels</h2>
                         <div className="DragAndDrop__list">
                         {
-                            this.state.data.map((item) =>{
-                            return <div className="DragAndDrop__list-item" draggable="true" onDragStart={ (e) => this.onDragStart(e, item) } >
+                            this.state.data.map((item, index) =>{
+                            return <div key={item.id + index} className="DragAndDrop__list-item" draggable="true" onDragStart={ (e) => this.onDragStart(e, item) } >
                                         <PanelCard panel={item}></PanelCard>
                                     </div>
                         })
@@ -143,7 +136,7 @@ class DragDrop extends React.Component {
                     <div className="DragAndDrop__list">
                         {    
                             this.state.container.map( item => {
-                                    return <div className="CardWithRemove">     
+                                    return <div key={item.id} className="CardWithRemove">     
                                                 <PanelCard className="CardWithRemove-panel" panel={item}></PanelCard>
                                                 <Button color="danger" className="CardWithRemove-btn" onClick={()=> this.onRemoveClick(item.uniqId)}>Remove</Button>
                                             </div>

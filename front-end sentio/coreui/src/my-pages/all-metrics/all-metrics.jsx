@@ -15,7 +15,6 @@ function AllMetrics(props) {
             method: 'GET'
         }).then(res=> res.json())
             .then(json => {
-                console.log(json, 'cia json')
                 if(json.isValid) {
                 setMetrics(json.returnResult)
                

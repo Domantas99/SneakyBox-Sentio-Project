@@ -44,7 +44,7 @@ function DatabaseDashboards(props) {
                     <tbody>
                       {
                         dashboards.map(d => (
-                          <tr>
+                          <tr key={d.id}>
                             <td className="container__table-row-text">{d.name}</td>
                             <td className="container__table-row-action">{d.dashboardPanels.length}</td>
                             <td  className="container__table-row-action">

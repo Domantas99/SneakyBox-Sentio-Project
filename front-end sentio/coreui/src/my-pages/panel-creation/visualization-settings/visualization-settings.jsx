@@ -5,14 +5,13 @@ import  SinglestatVisualizationSettings  from '../../../my-components/visualizat
 
 function VisualizationSettings(props) {
     const dbId = props.match.params.dbId;
-    const panelOptions = props.panelOptions.options;
     const visualization = props.panelOptions.visualization;
     return (
         <div>
             { 
                 visualization === 'graph' ? 
                     <GraphVisualizationSettings dbId={dbId} ></GraphVisualizationSettings> : 
-                visualization === 'singlestat' ? 
+                visualization === 'stat' ? 
                     <SinglestatVisualizationSettings dbId={dbId}></SinglestatVisualizationSettings> : 
                 <div> Option not implemented yet </div>
             }

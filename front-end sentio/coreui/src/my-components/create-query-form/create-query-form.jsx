@@ -41,7 +41,6 @@ function CreateQueryForm(props) {
             DatabaseId: props.dbId,
             Query: sqlQuery
         });
-        console.log(json);
         props.addNewMetric(json)
             .then(res => res.json)
                 .then(json => {

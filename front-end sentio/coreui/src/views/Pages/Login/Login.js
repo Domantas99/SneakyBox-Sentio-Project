@@ -11,12 +11,10 @@ function Login(props) {
     
 
     function handleLoginSubmit() {
-      debugger
       const jsonUser = JSON.stringify({Email, Password});   
       props.validateUser(jsonUser)
         .then(resposnse => resposnse.validationResult)
         .then(result => {
-          debugger
           if(result.isValid)
           {
             history.push('/home')
