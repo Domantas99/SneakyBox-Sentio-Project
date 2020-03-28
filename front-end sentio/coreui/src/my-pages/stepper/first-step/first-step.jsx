@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, {useState, useEffect } from 'react'
 import { connect } from 'react-redux';
 import { fetchTables } from '../../../services/redux/actions/dbTables-actions';
 import {  Button, Badge, Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Table, Input, InputGroup, InputGroupAddon } from 'reactstrap';
@@ -10,25 +10,27 @@ import { ResetTempPropertiesAction } from '../../../services/redux/actions/tempP
 function FirstStep(props) {
     const dbId = props.match.params.dbId;
     console.log(props,'daeina i fp')
-    const tables = props.state.dbTables.Tables
+    const [tables, setTables] = useState(props.state.dbTables.Tables);
     useEffect(() => {
       props.getTables(dbId).then(res=> console.log(res, ' cia resas table pg', props));
       props.resetSelectedOptions();
     }, [])
 
+    function filterBySearch(filter) {
+      let temp = props.state.dbTables.Tables;
+      temp = temp.filter(t => t.tableName.toLowerCase().includes(filter.toLowerCase()));
+      setTables(temp);
+    }
+
     return (
         <div className="fs-container">
           <div className="fs-container__queries">   
-            {/* <Col xs="10" lg="10"> */}
             <Card>
               <CardHeader>
                 <h5><i className="fa fa-align-justify"></i> Search </h5>
                 <div> 
                   <InputGroup>
-                    <Input id="appendedInputButton" size="10" type="text" />
-                      <InputGroupAddon addonType="append">
-                        <Button color="primary">Submit</Button>
-                    </InputGroupAddon>
+                    <Input onChange={(e) => filterBySearch(e.target.value)} id="appendedInputButton" size="10" type="text" />
                   </InputGroup>
                 </div>
               </CardHeader>
