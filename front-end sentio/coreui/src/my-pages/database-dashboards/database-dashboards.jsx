@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { fetchDashboards, deleteDashboard } from '../../services/redux/actions/dashboards-actions';
 import linkToGrafana from '../../services/grafana/grafana';
 import './database-dashboards.scss';
+import { fetchAllPanels } from '../../services/redux/actions/panel-actions';
 
 function DatabaseDashboards(props) {
     const dbId = props.match.params.dbId;
@@ -12,7 +13,8 @@ function DatabaseDashboards(props) {
     const dashboards = props.dashboards.dashboards.filter(x=>x.databaseId === dbId);
 
     useEffect(() => {
-      props.getDashboards(userId)
+      props.getDashboards(userId);
+      props.getPanels(userId);
     }, []) 
 
     function onDeleteDashboardClick(dashboardId){
@@ -24,7 +26,7 @@ function DatabaseDashboards(props) {
         .then(json=> {
           debugger
           if(json.isValid) {
-            window.open("http://localhost:3000");
+            window.open("http://localhost:3000/dashboard/import");
           }
           else {
             alert("There was an error:" + json.message);
@@ -98,7 +100,8 @@ const mapStateToProps = state => ({
 })
 const mapDispatchToProps = dispatch => ({
   getDashboards: userId => dispatch(fetchDashboards(userId)),
-  deleteDashboard: dashboardId => dispatch(deleteDashboard(dashboardId))
+  deleteDashboard: dashboardId => dispatch(deleteDashboard(dashboardId)),
+  getPanels: userId => dispatch(fetchAllPanels(userId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(DatabaseDashboards)

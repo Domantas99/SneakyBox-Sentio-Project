@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Button, Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Table } from 'reactstrap';
@@ -6,12 +6,14 @@ import { deleteDatabase, fetchUserDatabases } from '../../services/redux/actions
 import {Link} from 'react-router-dom';
 import './databases.scss'
 
-function Databases({userId, databases, getUserDatabases, deleteDb}) {
+function Databases(props) {
     const history = useHistory();
-    
+    let databases = props.databases;
+    const [sortReverse, setSort] = useState(false);
+  
     useEffect(()=>{  
       //  getUserDatabases(userId)
-        getUserDatabases('72c50eeb-bb66-47fa-ae1d-63eacbeb74fe')
+        props.getUserDatabases('72c50eeb-bb66-47fa-ae1d-63eacbeb74fe')
      }, [])
 
     function onViewDbMetricsMetricClick(dbId) {
@@ -19,7 +21,27 @@ function Databases({userId, databases, getUserDatabases, deleteDb}) {
     }
 
     function onDeleteDatabaseClick(dbId) {      
-        deleteDb(dbId);
+        props.deleteDb(dbId);
+    }
+
+    function sortTable(property) {
+      debugger;
+      let temp = databases;
+      switch (property){
+        case 'databaseName':
+          temp.sort((a, b) => (a.databaseName > b.databaseName) ? 1: -1);
+          break;
+        case 'databaseType':
+          temp.sort((a, b) => (a.databaseType > b.databaseType) ? 1: -1);
+          break;
+        case 'dataAdded':
+        default:
+      }
+      if(sortReverse) {
+        temp.reverse();
+      }
+      setSort(!sortReverse);
+      databases = temp;
     }
 
     return (
@@ -40,8 +62,8 @@ function Databases({userId, databases, getUserDatabases, deleteDb}) {
                 <Table responsive>
                   <thead>
                     <tr className="container__table-row">
-                      <th className="container__table-row-text">Database name</th>
-                      <th className="container__table-row-text">Database Type</th>
+                      <th className="container__table-row-text" >Database name <i onClick={() => sortTable('databaseName')} className="fa fa-sort fa-lg"></i></th>
+                      <th className="container__table-row-text" >Database Type <i onClick={() => sortTable('databaseType')} className="fa fa-sort fa-lg"></i></th>
                       <th className="container__table-row-action">Select</th>
                       <th className="container__table-row-action">Remove</th>
                   </tr>

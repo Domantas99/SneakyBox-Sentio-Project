@@ -8,8 +8,8 @@ import { connect } from 'react-redux';
 function AllMetrics(props) {
     const[metrics, setMetrics] = useState([]);
     const userId = props.user.id;
-    // reikes padaryt kad rodytu metric pagal user id
-    // reikes padaryt kad pridetu visas metricas, o db metrics atfiltroutu metric pagal db id
+    const [sortReverse, setSort] = useState(false);
+
     useEffect(() => {
         fetch(AllMetricsAPI + userId, {
             method: 'GET'
@@ -21,6 +21,33 @@ function AllMetrics(props) {
             }
         })
     }, [])
+
+    function sortTable(property) {
+      debugger;
+      let temp = metrics;
+      switch (property){
+        case 'metricName':
+          temp.sort((a, b) => (a.name > b.name) ? 1: -1);
+          break;
+        case 'databaseName':
+          temp.sort((a, b) => (a.database.databaseName > b.database.databaseName) ? 1: -1);
+          break;
+        case 'databaseType':
+          temp.sort((a, b) => (a.database.databaseType > b.database.databaseType) ? 1: -1);
+          break;
+        case 'operationType':
+          temp.sort((a, b) => (a.operationType > b.operationType) ? 1: -1);
+          break;
+        case 'dataAdded':
+        default:
+      }
+      if(sortReverse) {
+        temp.reverse();
+      }
+      setSort(!sortReverse);
+      setMetrics(temp);
+    }
+
 
     function onDeleteMetricClick(metricId) {
         props.deleteMetric(metricId);
@@ -44,10 +71,10 @@ function AllMetrics(props) {
                 <Table responsive>
                   <thead>
                     <tr>
-                        <th className="container__table-row-text">Metric Name</th>
-                        <th className="container__table-row-text">Database Name</th>
-                        <th className="container__table-row-text">Database Type</th>
-                        <th className="container__table-row-text">Operation Type</th>  
+                        <th className="container__table-row-text">Metric Name <i onClick={() => sortTable('metricName')} className="fa fa-sort fa-lg"></i></th>
+                        <th className="container__table-row-text">Database Name <i onClick={() => sortTable('databaseName')} className="fa fa-sort fa-lg"></i></th>
+                        <th className="container__table-row-text">Database Type <i onClick={() => sortTable('databaseType')} className="fa fa-sort fa-lg"></i></th>
+                        <th className="container__table-row-text">Operation Type <i onClick={() => sortTable('operationType')} className="fa fa-sort fa-lg"></i></th>  
                         <th className="container__table-row-action">Edit</th>  
                         <th className="container__table-row-action">Remove</th>  
                     </tr>

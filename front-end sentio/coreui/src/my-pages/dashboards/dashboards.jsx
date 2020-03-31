@@ -22,7 +22,7 @@ function Dashboards(props) {
         .then(json=> {
           debugger
           if(json.isValid) {
-            window.open("http://localhost:3000");
+            window.open("http://localhost:3000/dashboard/import");
           }
           else {
             alert("There was an error:" + json.message);

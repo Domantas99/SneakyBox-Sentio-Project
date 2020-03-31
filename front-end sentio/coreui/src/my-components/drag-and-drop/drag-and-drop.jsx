@@ -8,6 +8,7 @@ import PanelCard from '../panel-card/panel-card';
 let uniqId=0;
 class DragDrop extends React.Component {
     constructor(props){
+        debugger
         super(props)
         const dashboard = props.dashboard;
         const panels = props.panels;

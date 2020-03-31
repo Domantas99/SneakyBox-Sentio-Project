@@ -19,55 +19,96 @@
   "links": [],
   "panels": [
     {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
       "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 8,
         "w": 12,
-        "0": 0,
-        "0": 0
+        "x": 0,
+        "y": 0
       },
-      "id": 5,
+      "hiddenSeries": false,
+      "id": 0,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
       "options": {
-        "colorMode": "value",
-        "fieldOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": [],
-          "values": false
-        },
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto"
+        "dataLinks": []
       },
-      "pluginVersion": "6.6.2",
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
       "targets": [
         {
-          "expr": "Point_Price_vidurkis*Teacher_COUNT+Teacher_COUNT/Point_Price_vidurkis",
-          "legendFormat": "Point Price vidurkis*Teacher COUNT+Teacher COUNT/Point Price vidurkis",
+          "expr": "Mokiniai_su_7_class_Id_kiekis",
+          "legendFormat": "Mokiniai su 7 class Id kiekis",
           "refId": "A"
+        },
+        {
+          "expr": "Studentu_skaicius",
+          "legendFormat": "Studentu skaicius",
+          "refId": "B"
         }
       ],
+      "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
-      "title": "panel pavadinimas",
-      "type": "stat"
+      "title": "Palyginimas stud ir mok su 7 class id",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "aliasColors": {},
@@ -110,16 +151,21 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "Teacher_COUNT",
-          "legendFormat": "teacher count",
+          "expr": "Vidurkis_tassku",
+          "legendFormat": "Vidurkis tassku",
           "refId": "A"
+        },
+        {
+          "expr": "Sud",
+          "legendFormat": "Sud",
+          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Mokytoju kiekis",
+      "title": "Palyginimas nr 2",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -197,23 +243,23 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "Prizu_skaicius",
-          "legendFormat": "ass",
+          "expr": "Studentu_skaicius",
+          "legendFormat": "Studentu skaicius",
           "refId": "A"
         },
         {
-          "expr": "Prizu_kuriu_taskai_maziau_uz__56_kiekis",
-          "legendFormat": "da",
+          "expr": "Sud",
+          "legendFormat": "Sud",
           "refId": "B"
         },
         {
-          "expr": "Teacher_COUNT",
-          "legendFormat": "as",
+          "expr": "Vidurkis_tassku",
+          "legendFormat": "Vidurkis tassku",
           "refId": "C"
         },
         {
-          "expr": "Point_Price_vidurkis",
-          "legendFormat": "ad",
+          "expr": "Mokiniai_su_7_class_Id_kiekis",
+          "legendFormat": "Mokiniai su 7 class Id kiekis",
           "refId": "D"
         }
       ],
@@ -221,99 +267,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "mix",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 8
-      },
-      "hiddenSeries": false,
-      "id": 3,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "Prizu_kuriu_taskai_maziau_uz__56_kiekis",
-          "legendFormat": "mazesni uz 56",
-          "refId": "A"
-        },
-        {
-          "expr": "Prizu_skaicius",
-          "legendFormat": "prc skc",
-          "refId": "B"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Prizu skaiciaus palyginimas su prizais kurie maziau uz 56",
+      "title": "Mixas",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -376,7 +330,7 @@
     ]
   },
   "timezone": "",
-  "title": "Treciasis dashboardas",
+  "title": "mano naujas dashboarrrrd",
   "uid": "IOoq2fuWz",
   "version": 7
 }
