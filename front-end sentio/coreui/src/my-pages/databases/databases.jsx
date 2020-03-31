@@ -29,12 +29,12 @@ function Databases(props) {
       let temp = databases;
       switch (property){
         case 'databaseName':
-          temp.sort((a, b) => (a.databaseName > b.databaseName) ? 1: -1);
+          temp.sort((a, b) => (a.databaseName.toLowerCase() > b.databaseName.toLowerCase()) ? 1: -1);
           break;
         case 'databaseType':
           temp.sort((a, b) => (a.databaseType > b.databaseType) ? 1: -1);
           break;
-        case 'dataAdded':
+        case 'dateAdded':
         default:
       }
       if(sortReverse) {

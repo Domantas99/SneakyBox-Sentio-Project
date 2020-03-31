@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { fetchAllPanels } from '../../services/redux/actions/panel-actions';
 import { Button, Card, CardBody, CardHeader, Col, Table } from 'reactstrap';
@@ -7,11 +7,33 @@ import './all-panels.scss';
 
 function AllPanels(props) {
     const userId = props.user.id;
-    const panels = props.panels ? props.panels : [];
- 
+    let panels = props.panels ? props.panels : [];
+    const [sortReverse, setSort] = useState(false);
+
     useEffect(() => {
         props.getPanels(userId);     
     }, [])
+
+    function sortTable(property) {
+      debugger;
+      let temp = panels;
+      switch (property){
+        case 'panelName':
+          temp.sort((a, b) => (a.legend.toLowerCase() > b.legend.toLowerCase()) ? 1: -1);
+          break;
+        case 'panelType':
+          temp.sort((a, b) => (a.panelType.toLowerCase() > b.panelType.toLowerCase()) ? 1: -1);
+          break;
+        default:
+      }
+      if(sortReverse) {
+        temp.reverse();
+      }
+      setSort(!sortReverse);
+      panels = temp;
+    }
+
+
 
     return (
         <div>
@@ -30,8 +52,8 @@ function AllPanels(props) {
                 <Table responsive>
                   <thead>
                     <tr>
-                        <th className="container__table-row-text">Panel name</th>
-                        <th className="container__table-row-text">Panel Type</th>  
+                        <th className="container__table-row-text">Panel Name <i onClick={() => sortTable('panelName')} className="fa fa-sort fa-lg"></i></th>
+                        <th className="container__table-row-text">Panel Type <i onClick={() => sortTable('panelType')} className="fa fa-sort fa-lg"></i></th>  
                         <th className="container__table-row-action">Edit</th>  
                         <th className="container__table-row-action">Remove</th>  
                     </tr>

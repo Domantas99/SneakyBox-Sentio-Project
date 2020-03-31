@@ -27,10 +27,10 @@ function AllMetrics(props) {
       let temp = metrics;
       switch (property){
         case 'metricName':
-          temp.sort((a, b) => (a.name > b.name) ? 1: -1);
+          temp.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1: -1);
           break;
         case 'databaseName':
-          temp.sort((a, b) => (a.database.databaseName > b.database.databaseName) ? 1: -1);
+          temp.sort((a, b) => (a.database.databaseName.toLowerCase() > b.database.databaseName.toLowerCase()) ? 1: -1);
           break;
         case 'databaseType':
           temp.sort((a, b) => (a.database.databaseType > b.database.databaseType) ? 1: -1);
@@ -38,7 +38,7 @@ function AllMetrics(props) {
         case 'operationType':
           temp.sort((a, b) => (a.operationType > b.operationType) ? 1: -1);
           break;
-        case 'dataAdded':
+        case 'dateAdded':
         default:
       }
       if(sortReverse) {

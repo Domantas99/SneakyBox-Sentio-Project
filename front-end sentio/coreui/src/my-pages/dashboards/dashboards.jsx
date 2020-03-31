@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { fetchDashboards, deleteDashboard } from '../../services/redux/actions/dashboards-actions';
-import { Button, Card, CardBody, CardHeader, Col, Table } from 'reactstrap';
+import { Button, Card, CardBody, CardHeader, Table } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import linkToGrafana from '../../services/grafana/grafana';
 
 function Dashboards(props) {
     const userId = props.user.id;
-    const dashboards = props.dashboards;
-    
+    let dashboards = props.dashboards;
+    const [sortReverse, setSort] = useState(false);
     useEffect(() => {
         props.getDashboards(userId)
     }, [])
@@ -30,6 +30,27 @@ function Dashboards(props) {
         });
     }
 
+
+    function sortTable(property) {
+      debugger;
+      let temp = dashboards;
+      switch (property){
+        case 'dashboardName':
+          temp.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1: -1);
+          break;
+        case 'databaseName':
+          temp.sort((a, b) => (a.database.databaseName.toLowerCase() > b.database.databaseName.toLowerCase()) ? 1: -1);
+          break;
+        case 'dateAdded':
+        default:
+      }
+      if(sortReverse) {
+        temp.reverse();
+      }
+      setSort(!sortReverse);
+      dashboards=temp;
+    }
+
     return (
         <div>
             <Card>
@@ -47,8 +68,8 @@ function Dashboards(props) {
                 <Table responsive>
                   <thead>
                     <tr>
-                        <th className="container__table-row-text">Dashboard Name</th>
-                        <th className="container__table-row-text">Database Name</th>  
+                        <th className="container__table-row-text">Dashboard Name <i onClick={() => sortTable('dashboardName')} className="fa fa-sort fa-lg"></i></th>
+                        <th className="container__table-row-text">Database Name <i onClick={() => sortTable('databaseName')} className="fa fa-sort fa-lg"></i></th>  
                         <th className="container__table-row-text">Grafana</th>  
                         <th className="container__table-row-action">Edit</th>  
                         <th className="container__table-row-action">Remove</th>  
