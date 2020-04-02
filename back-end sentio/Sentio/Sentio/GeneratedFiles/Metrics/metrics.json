@@ -1,52 +1,52 @@
 {
   "Queries":[
               {
-          "Name": "Mokiniai_su_7_class_Id_kiekis",
-          "Query": "SELECT COUNT(*) COUNT FROM ClassStudents WHERE ClassId=='7';",
-          "Name": "Mokiniai_su_7_class_Id_kiekis",
-          "Columns": [
-              {
-                  "Name": "COUNT",
-                  "Label": "Mokiniai_su_7_class_Id_kiekis",
-                  "Usage": "Gauge",
-                  "DefaultValue": 0
-              }
-          ]
-      },
-              {
-          "Name": "Sud",
-          "Query": "SELECT COUNT(*) COUNT FROM Prizes WHERE PointPrice>='56' AND Remainder>'150';",
-          "Name": "Sud",
-          "Columns": [
-              {
-                  "Name": "COUNT",
-                  "Label": "Sud",
-                  "Usage": "Gauge",
-                  "DefaultValue": 0
-              }
-          ]
-      },
-              {
-          "Name": "Studentu_skaicius",
-          "Query": "SELECT COUNT(*) COUNT FROM Students;",
-          "Name": "Studentu_skaicius",
-          "Columns": [
-              {
-                  "Name": "COUNT",
-                  "Label": "Studentu_skaicius",
-                  "Usage": "Gauge",
-                  "DefaultValue": 0
-              }
-          ]
-      },
-              {
-          "Name": "Vidurkis_tassku",
-          "Query": "SELECT AVG(PointPrice) AVG FROM Prizes;",
-          "Name": "Vidurkis_tassku",
+          "Name": "PointCount_Vidurkis",
+          "Query": "SELECT AVG(PointCount) AVG FROM StudentSubjects;",
+          "Name": "PointCount_Vidurkis",
           "Columns": [
               {
                   "Name": "AVG",
-                  "Label": "Vidurkis_tassku",
+                  "Label": "PointCount_Vidurkis",
+                  "Usage": "Gauge",
+                  "DefaultValue": 0
+              }
+          ]
+      },
+              {
+          "Name": "Prizu_kiekis_filtruotas",
+          "Query": "SELECT COUNT(*) COUNT FROM Prizes WHERE PointPrice>'56' AND Remainder<'500';",
+          "Name": "Prizu_kiekis_filtruotas",
+          "Columns": [
+              {
+                  "Name": "COUNT",
+                  "Label": "Prizu_kiekis_filtruotas",
+                  "Usage": "Gauge",
+                  "DefaultValue": 0
+              }
+          ]
+      },
+              {
+          "Name": "Studentai_class_id_7_",
+          "Query": "SELECT COUNT(*) COUNT FROM ClassStudents WHERE ClassId='7';",
+          "Name": "Studentai_class_id_7_",
+          "Columns": [
+              {
+                  "Name": "COUNT",
+                  "Label": "Studentai_class_id_7_",
+                  "Usage": "Gauge",
+                  "DefaultValue": 0
+              }
+          ]
+      },
+              {
+          "Name": "Studentu_kiekis",
+          "Query": "SELECT COUNT(*) COUNT FROM Students;",
+          "Name": "Studentu_kiekis",
+          "Columns": [
+              {
+                  "Name": "COUNT",
+                  "Label": "Studentu_kiekis",
                   "Usage": "Gauge",
                   "DefaultValue": 0
               }

@@ -59,13 +59,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "Mokiniai_su_7_class_Id_kiekis",
-          "legendFormat": "Mokiniai su 7 class Id kiekis",
+          "expr": "Studentai_class_id_7_",
+          "legendFormat": "Studentai class id 7 ",
           "refId": "A"
         },
         {
-          "expr": "Studentu_skaicius",
-          "legendFormat": "Studentu skaicius",
+          "expr": "Studentu_kiekis",
+          "legendFormat": "Studentu kiekis",
           "refId": "B"
         }
       ],
@@ -73,7 +73,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Palyginimas stud ir mok su 7 class id",
+      "title": "Santykis tarp visu studentu ir studentu 7 klasej",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -151,21 +151,16 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "Vidurkis_tassku",
-          "legendFormat": "Vidurkis tassku",
+          "expr": "PointCount_Vidurkis",
+          "legendFormat": "PointCount Vidurkis",
           "refId": "A"
-        },
-        {
-          "expr": "Sud",
-          "legendFormat": "Sud",
-          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Palyginimas nr 2",
+      "title": "Vidurkis ",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -243,23 +238,23 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "Studentu_skaicius",
-          "legendFormat": "Studentu skaicius",
+          "expr": "Studentai_class_id_7_",
+          "legendFormat": "Studentai class id 7 ",
           "refId": "A"
         },
         {
-          "expr": "Sud",
-          "legendFormat": "Sud",
+          "expr": "PointCount_Vidurkis",
+          "legendFormat": "PointCount Vidurkis",
           "refId": "B"
         },
         {
-          "expr": "Vidurkis_tassku",
-          "legendFormat": "Vidurkis tassku",
+          "expr": "Prizu_kiekis_filtruotas",
+          "legendFormat": "Prizu kiekis filtruotas",
           "refId": "C"
         },
         {
-          "expr": "Mokiniai_su_7_class_Id_kiekis",
-          "legendFormat": "Mokiniai su 7 class Id kiekis",
+          "expr": "Studentu_kiekis",
+          "legendFormat": "Studentu kiekis",
           "refId": "D"
         }
       ],
@@ -303,6 +298,57 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "12": 0,
+        "8": 0
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto"
+      },
+      "pluginVersion": "6.6.2",
+      "targets": [
+        {
+          "expr": "PointCount_Vidurkis/Prizu_kiekis_filtruotas",
+          "legendFormat": "PointCount Vidurkis/Prizu kiekis filtruotas",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "panel pavadinimas",
+      "type": "stat"
     }
   ],
   "schemaVersion": 22,
@@ -330,7 +376,7 @@
     ]
   },
   "timezone": "",
-  "title": "mano naujas dashboarrrrd",
+  "title": "Dashboardas su stat",
   "uid": "IOoq2fuWz",
   "version": 7
 }

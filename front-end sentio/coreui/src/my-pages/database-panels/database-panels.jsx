@@ -12,9 +12,9 @@ function DatabasePanels(props) {
     const dbPanels = props.panels ? props.panels.filter(p => p.databaseId === dbId) : [];
     
     useEffect(() => {
-     // props.getPanels(userId);         
+      props.getPanels(userId);         
      // reiktu reseting temppaneloptions
-      props.getPanels("72c50eeb-bb66-47fa-ae1d-63eacbeb74fe");     
+     // props.getPanels("72c50eeb-bb66-47fa-ae1d-63eacbeb74fe");     
       props.resetTempPanelOptions();
     }, [])
 

@@ -13,7 +13,7 @@ function FirstStep(props) {
     useEffect(() => {
       props.getTables(dbId);
       props.resetSelectedOptions();
-    }, [])
+    }, [props.state.dbTables.Tables])
 
     function filterBySearch(filter) {
       let temp = props.state.dbTables.Tables;

@@ -3,7 +3,7 @@ import { FormGroup, Label, Button, Card, CardBody, CardHeader, Col, Table, Input
 import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchDashboards, deleteDashboard } from '../../services/redux/actions/dashboards-actions';
-import linkToGrafana from '../../services/grafana/grafana';
+import {linkToGrafana} from '../../services/functions/functions';
 import './database-dashboards.scss';
 import { fetchAllPanels } from '../../services/redux/actions/panel-actions';
 

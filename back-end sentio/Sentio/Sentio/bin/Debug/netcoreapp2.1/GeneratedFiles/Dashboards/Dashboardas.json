@@ -59,13 +59,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "Mokiniai_su_7_class_Id_kiekis",
-          "legendFormat": "Mokiniai su 7 class Id kiekis",
+          "expr": "Test_Prizes_Count",
+          "legendFormat": "Test Prizes Count",
           "refId": "A"
         },
         {
-          "expr": "Studentu_skaicius",
-          "legendFormat": "Studentu skaicius",
+          "expr": "TestStudentsCount",
+          "legendFormat": "TestStudentsCount",
           "refId": "B"
         }
       ],
@@ -73,7 +73,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Palyginimas stud ir mok su 7 class id",
+      "title": "Test Santykis Prizu ir Stundetu palyginimas",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -151,21 +151,36 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "Vidurkis_tassku",
-          "legendFormat": "Vidurkis tassku",
+          "expr": "Test_FilteredPrizes",
+          "legendFormat": "Test FilteredPrizes",
           "refId": "A"
         },
         {
-          "expr": "Sud",
-          "legendFormat": "Sud",
+          "expr": "Test_Students_where_avatarID!=0",
+          "legendFormat": "Test Students where avatarID!=0",
           "refId": "B"
+        },
+        {
+          "expr": "Test_Prizes_Count",
+          "legendFormat": "Test Prizes Count",
+          "refId": "C"
+        },
+        {
+          "expr": "TestStudentsCount",
+          "legendFormat": "TestStudentsCount",
+          "refId": "D"
+        },
+        {
+          "expr": "Test_Students_with_classId_7",
+          "legendFormat": "Test Students with classId 7",
+          "refId": "E"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Palyginimas nr 2",
+      "title": "Test Mixas",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -243,31 +258,21 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "Studentu_skaicius",
-          "legendFormat": "Studentu skaicius",
+          "expr": "TestStudentsCount",
+          "legendFormat": "TestStudentsCount",
           "refId": "A"
         },
         {
-          "expr": "Sud",
-          "legendFormat": "Sud",
+          "expr": "Test_Students_with_classId_7",
+          "legendFormat": "Test Students with classId 7",
           "refId": "B"
-        },
-        {
-          "expr": "Vidurkis_tassku",
-          "legendFormat": "Vidurkis tassku",
-          "refId": "C"
-        },
-        {
-          "expr": "Mokiniai_su_7_class_Id_kiekis",
-          "legendFormat": "Mokiniai su 7 class Id kiekis",
-          "refId": "D"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Mixas",
+      "title": "Test Studentu palyginimas",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -330,7 +335,7 @@
     ]
   },
   "timezone": "",
-  "title": "mano naujas dashboarrrrd",
+  "title": "TestDashboardas",
   "uid": "IOoq2fuWz",
   "version": 7
 }

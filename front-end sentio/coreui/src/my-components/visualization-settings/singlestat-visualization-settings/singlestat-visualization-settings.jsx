@@ -25,6 +25,7 @@ function SinglestatVisualizationSettings(props) {
     }
 
     function onSubmit() {
+      debugger
       let arr = [];
       metrics.forEach(
         m => arr.push({TrackableQueryId: m.id, Legend: m.Legend})

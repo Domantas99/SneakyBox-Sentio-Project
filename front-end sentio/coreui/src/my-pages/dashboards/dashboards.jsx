@@ -3,14 +3,16 @@ import { connect } from 'react-redux'
 import { fetchDashboards, deleteDashboard } from '../../services/redux/actions/dashboards-actions';
 import { Button, Card, CardBody, CardHeader, Table } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import linkToGrafana from '../../services/grafana/grafana';
+import {linkToGrafana ,sortData} from '../../services/functions/functions';
+import { fetchAllPanels } from '../../services/redux/actions/panel-actions';
 
 function Dashboards(props) {
     const userId = props.user.id;
     let dashboards = props.dashboards;
     const [sortReverse, setSort] = useState(false);
     useEffect(() => {
-        props.getDashboards(userId)
+        props.getDashboards(userId);
+        props.getPanels(userId);
     }, [])
 
     function onDeleteDashboardClick(dashboardId){
@@ -32,7 +34,9 @@ function Dashboards(props) {
 
 
     function sortTable(property) {
-      debugger;
+      //debugger;
+     // const res = sortData(dashboards,property,sortReverse);
+      //dashboards = res;
       let temp = dashboards;
       switch (property){
         case 'dashboardName':
@@ -47,8 +51,8 @@ function Dashboards(props) {
       if(sortReverse) {
         temp.reverse();
       }
-      setSort(!sortReverse);
-      dashboards=temp;
+       setSort(!sortReverse);
+       dashboards=temp;
     }
 
     return (
@@ -107,7 +111,8 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => ({
     getDashboards: userId => dispatch(fetchDashboards(userId)),
-    deleteDashboard: dashboardId => dispatch(deleteDashboard(dashboardId))
+    deleteDashboard: dashboardId => dispatch(deleteDashboard(dashboardId)),
+    getPanels: userId => dispatch(fetchAllPanels(userId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboards);

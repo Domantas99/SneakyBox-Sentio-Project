@@ -1,52 +1,65 @@
 {
   "Queries":[
               {
-          "Name": "Mokiniai_su_7_class_Id_kiekis",
-          "Query": "SELECT COUNT(*) COUNT FROM ClassStudents WHERE ClassId=='7';",
-          "Name": "Mokiniai_su_7_class_Id_kiekis",
+          "Name": "Test_Prizes_Count",
+          "Query": "SELECT COUNT(*) COUNT FROM Prizes;",
+          "Name": "Test_Prizes_Count",
           "Columns": [
               {
                   "Name": "COUNT",
-                  "Label": "Mokiniai_su_7_class_Id_kiekis",
+                  "Label": "Test_Prizes_Count",
                   "Usage": "Gauge",
                   "DefaultValue": 0
               }
           ]
       },
               {
-          "Name": "Sud",
-          "Query": "SELECT COUNT(*) COUNT FROM Prizes WHERE PointPrice>='56' AND Remainder>'150';",
-          "Name": "Sud",
-          "Columns": [
-              {
-                  "Name": "COUNT",
-                  "Label": "Sud",
-                  "Usage": "Gauge",
-                  "DefaultValue": 0
-              }
-          ]
-      },
-              {
-          "Name": "Studentu_skaicius",
+          "Name": "TestStudentsCount",
           "Query": "SELECT COUNT(*) COUNT FROM Students;",
-          "Name": "Studentu_skaicius",
+          "Name": "TestStudentsCount",
           "Columns": [
               {
                   "Name": "COUNT",
-                  "Label": "Studentu_skaicius",
+                  "Label": "TestStudentsCount",
                   "Usage": "Gauge",
                   "DefaultValue": 0
               }
           ]
       },
               {
-          "Name": "Vidurkis_tassku",
-          "Query": "SELECT AVG(PointPrice) AVG FROM Prizes;",
-          "Name": "Vidurkis_tassku",
+          "Name": "Test_Students_with_classId_7",
+          "Query": "SELECT COUNT(*) COUNT FROM ClassStudents WHERE StudentId='7';",
+          "Name": "Test_Students_with_classId_7",
           "Columns": [
               {
-                  "Name": "AVG",
-                  "Label": "Vidurkis_tassku",
+                  "Name": "COUNT",
+                  "Label": "Test_Students_with_classId_7",
+                  "Usage": "Gauge",
+                  "DefaultValue": 0
+              }
+          ]
+      },
+              {
+          "Name": "Test_Students_where_avatarID!=0",
+          "Query": "SELECT COUNT(*) COUNT FROM Students WHERE AvatarId!='0';",
+          "Name": "Test_Students_where_avatarID!=0",
+          "Columns": [
+              {
+                  "Name": "COUNT",
+                  "Label": "Test_Students_where_avatarID!=0",
+                  "Usage": "Gauge",
+                  "DefaultValue": 0
+              }
+          ]
+      },
+              {
+          "Name": "Test_FilteredPrizes",
+          "Query": "SELECT COUNT(*) COUNT FROM Prizes WHERE PointPrice>'56' AND Remainder>'34';",
+          "Name": "Test_FilteredPrizes",
+          "Columns": [
+              {
+                  "Name": "COUNT",
+                  "Label": "Test_FilteredPrizes",
                   "Usage": "Gauge",
                   "DefaultValue": 0
               }

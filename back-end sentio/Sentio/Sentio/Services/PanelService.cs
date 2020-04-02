@@ -67,7 +67,10 @@ namespace Sentio.Services
             var letterByQueryNameDictionary = new Dictionary<char, string>();
             for (int i = 0; i < panelQueries.Count; i++)
             {
-                string name = _context.PanelQueries.Include(x => x.TrackableQuery).FirstOrDefault(x => x.Id == panelQueries.ElementAt(i).Id).TrackableQuery.Name;
+                //string name = _context.PanelQueries.Include(x => x.TrackableQuery).FirstOrDefault(x => x.Id == panelQueries.ElementAt(i).Id).TrackableQuery.Name;
+                var p = _context.PanelQueries.Include(x => x.TrackableQuery);
+                var tracQ = p.FirstOrDefault(x => x.TrackableQueryId == panelQueries.ElementAt(i).TrackableQueryId);//.TrackableQuery.Name;
+                string name = tracQ.TrackableQuery.Name;
                 letterByQueryNameDictionary.Add(alphabet[i], name);
             }
             for (int i = 0; i < formula.Length; i++)

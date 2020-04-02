@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
-import { fetchAllPanels } from '../../services/redux/actions/panel-actions';
+import { fetchAllPanels, DeletePanel } from '../../services/redux/actions/panel-actions';
 import { Button, Card, CardBody, CardHeader, Col, Table } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './all-panels.scss';
@@ -13,6 +13,10 @@ function AllPanels(props) {
     useEffect(() => {
         props.getPanels(userId);     
     }, [])
+
+    function onDeleteClick(panelId) {
+      props.deletePanel(panelId);
+    }
 
     function sortTable(property) {
       debugger;
@@ -64,10 +68,12 @@ function AllPanels(props) {
                         <td className="container__table-row-text">{ panel.legend }</td>
                         <td className="container__table-row-text">{ panel.panelType }</td>
                         <td className="container__table-row-action">
-                          <Button className="px-3" color="warning"><i className="cui-pencil icons"></i></Button>
+                          <Link to={`/databases/${panel.databaseId}/panels/edit/${panel.id}/metric-selection`}>
+                           <Button  className="px-3" color="warning"><i className="cui-pencil icons"></i></Button>
+                          </Link>
                         </td>
                         <td className="container__table-row-action">
-                          <Button className="px-3" color="danger"><i className="cui-trash icons"></i></Button>
+                          <Button onClick={() => onDeleteClick(panel.id)} className="px-3" color="danger"><i className="cui-trash icons"></i></Button>
                         </td>
                       </tr>)
                     }
@@ -83,7 +89,8 @@ const mapStateToProps = state => ({
     panels: state.panels.panels
   });
   const mapDispatchToProps = dispatch => ({
-    getPanels: userId => dispatch(fetchAllPanels(userId))
+    getPanels: userId => dispatch(fetchAllPanels(userId)),
+    deletePanel: panelId => dispatch(DeletePanel(panelId)),
   });
   
 export default connect(mapStateToProps, mapDispatchToProps)(AllPanels)

@@ -72,7 +72,7 @@ class DragDrop extends React.Component {
             newObj.name= this.state.name;
             newObj.dashboardPanels = newDashboardPanels;
             this.props.updateDashboard(newObj)
-                .then(res => res.json())
+                .then(res => res.json)
                     .then(json => {
                         if(json.isValid) {
                             alert("Dashboard updated successfully")
